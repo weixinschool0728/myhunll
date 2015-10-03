@@ -50,8 +50,10 @@ function yanzhengma_blur(){
         yanzhengma:$('input[name=yanzhengma]').val(),
         check:"yanzhengma"
     };
-    $.post('zhuce/check_yanzhengma',data,function(msg){
-        yanzhengma=msg;
+    var urll="check_yanzhengma";
+    alert(urll);
+    $.post(urll,data,function(msg){
+         yanzhengma=msg;
         if(msg==0){
             obj.style.cssText="color:red;";
             obj.innerHTML="验证码错误，请重新输入";
