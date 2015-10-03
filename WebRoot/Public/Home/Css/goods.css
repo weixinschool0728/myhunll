@@ -1,0 +1,254 @@
+.titile1{
+    text-align: left;
+    width: 975px;
+    height: 38px;
+    font-size: 28px;
+    color: #333;
+}
+.titile2{
+    padding: 5px 0px;
+    text-align: left;
+    width: 975px;
+    height: 22px;
+    font-size: 16px;
+    color: #666;
+}
+.touxiang{
+    width: 450px;
+    height: 505px;
+    //border: 1px solid red;
+    float: left;
+}
+.touxiang .xiaotouxiang{
+    width:148px;
+    height: 99px;
+    display: block;
+    float: left;
+    margin-right: 3px;
+    margin-top: 3px;
+}
+.touxiang .xiaotouxiang1{
+    margin-right: 0px;
+}
+.touxiang a:hover{
+    border: 1px solid #03BA8A;
+    width:146px;
+    height: 97px;
+}
+.touxiang .datouxiang{
+    width: 450px;
+}
+.touxiang .xiaotouxiang img{
+    //outline-width:0px;  
+    //vertical-align:top;
+    width: 100%;
+    border: 0px;
+}
+
+.info{
+    width: 500px;
+    float: left;
+    margin: 0px 25px;
+}
+
+.price{
+    width:500px;
+    background-color: #E9E9E9;
+}
+.price1{
+    margin: 10px 0px 0px 10px;
+}
+.price1 .span{
+    width: 80px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    float: left;
+}
+.price1 .span1{
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    float: left;
+}
+.price2{
+    margin: 0px 0px 0px 10px;
+}
+.price2 .span{
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    float: left;
+}
+.price2 .span2{
+    font-size: 24px;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    color: #F76120;
+}
+.xzrq{
+    height: 20px;
+}
+.about{
+    margin: 10px 0px;
+    width: 500px;
+    height: 20px;
+    border-top: 1px solid #EEE;
+    border-bottom: 1px solid #EEE;
+    padding:10px 0px;
+}
+.about div{
+    float: left;
+    line-height: 20px;
+    width: 165.66px;
+    text-align: center;
+    font-size: 14px;
+    border-right: 1px solid #EEE;
+}
+.about #pingjia{
+    border:none;
+}
+.about span{
+    color: #F76120;
+}
+.buy {
+    margin: 20px 0px 0px 0px;;
+}
+.goumai{
+    height: 50px;
+    width:170px;
+    background-color: #03BA8A;
+    line-height: 50px;
+    font-size:20px;
+    text-align: center;
+    display: block;
+    color: #FFFFFF;
+    float: left;
+}
+
+.goumai:hover {
+    //background-color: #00FFDB;
+    border:2px solid #00FFDB;
+    color: #FFFFFF;
+     height: 46px;
+     width:166px;
+}
+
+.gouwuche{
+    height: 48px;
+    width: 60px;
+    line-height: 50px;
+    text-align: center;
+    display: block;
+    float: left;
+    background-image: url(../Images/goods/gouwuche.png);
+    border: 1px solid #E3E3E3;
+    margin: 0px 20px;
+}
+
+.gouwuche:hover {
+    border:2px solid #E3E3E3;
+     height: 46px;
+     width:58px;
+}
+
+.shoucang{
+    height: 50px;
+    width:110px;
+    line-height: 50px;
+    font-size:12px;
+    text-align: center;
+    display: block;
+    float: left;
+}
+
+.jianjie {
+    float: left;
+    width: 198px;
+    height: 502px;
+    border: 1px solid red;
+}
+.other{
+    width: 975px;
+}
+.other_title {
+    position: relative;
+    padding: 20px 0px 10px;
+    border-bottom: 2px solid #BBB;
+}
+.other_title .span1{
+    font-size: 18px;
+    color: #333;
+    font-weight: 800;
+    
+}
+.other_title .span2{
+    font-size: 14px;
+    color: #666;
+    font-weight: 800;
+}
+
+.other_goods{
+    position: relative;
+    //padding: 10px 0px 0px;
+}
+.other_goods .span1{
+    font-size:14px;
+   //color: #666;
+    padding-left: 10px;
+}
+
+.other_goods .span2{
+    font-size: 14px;
+    //color: #666;
+    //font-weight: 800;
+}
+.other_goods .other_a{
+    display: block;
+    height: 35px;
+    line-height: 35px;
+}
+.other_goods .other_a:hover{
+    background-color: #F9F9F9;
+    color: #2BB8AA;
+}
+.other_title .ys{
+    position: absolute;
+    top:25px;
+    right:200px;
+}
+.other_title .mdj{
+    position: absolute;
+    top:25px;
+    right:300px;
+}
+.other_title .hlljg{
+    position: absolute;
+    top:25px;
+    right:400px;
+}
+.other_goods .ys{
+    position: absolute;
+    //top:10px;
+    right:200px;
+}
+.other_goods .mdj{
+    position: absolute;
+    //top:10px;
+    right:300px;
+}
+.other_goods .hlljg{
+    position: absolute;
+    //top:10px;
+    right:400px;
+    color: #F76120;
+    font-weight: 700;
+}
+.goodscontent{
+    margin-top: 20px;
+    width: 975px;
+    height: 1000px;
+    border: 1px solid red;
+}

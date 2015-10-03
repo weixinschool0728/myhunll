@@ -1,0 +1,330 @@
+/* 默认样式设置*/
+/* -moz :火狐私有属性；-weblit :chrome、safari私有属性* -ms IE私有属性*/
+
+/*商品div*/
+.goods{
+float:left;
+border:1px solid #03BA8A;
+}
+/*正文CSS*/
+.gj_r{
+position:fixed;
+_position:absolute;
+right:20px;
+bottom:30px;
+}
+.gj_r a{
+background-image:url(../Images/index/fanhuidingbu.png);
+display:block;
+width:59px;
+height:70px;}
+.gj_l{
+position:absolute;
+_position:absolute;
+left:15px;
+top:1000px;
+}
+.gj_l a{
+display:block;
+width:25px;
+height:35px;
+padding:4px 8px;
+border:1px solid #EEE;
+line-height:40px;
+cursor:pointer;
+}
+.gj_l a:link,.gj_l a:visited {
+}
+.gj_l a:hover{
+background-color:#03BA8A;
+color:#FFFFFF;}
+
+.box{ 
+width:1200px;
+/*border:1px solid #FF0000;*/
+margin:0px auto;
+}
+
+.lunbo{
+width:1200px;
+margin:0px auto;}
+.lunbo_l{
+width:243px;
+height:499px;
+border:1px solid #00FFDB;
+border-top:none;
+float:left;
+}
+.lunbo_l ul li{
+height:45px;
+width:245px;
+text-align:center;
+}
+
+.lunbo_l_m{
+width:215px;
+height:44px;
+margin:0px auto;
+border-bottom:1px solid #00FFDB;
+}
+.lunbo_l_m_l{
+height:44px;
+width:60px;
+line-height:44px;
+font-size:14px;
+font-weight:700;
+color:#333;
+float:left;
+}
+.lunbo_l_m_r{
+float:left;
+width:135px;
+height:44px;
+padding:0px 0px 0px 20px;}
+.lunbo_l_m_r table{
+width:135px;
+height:44px;
+table-layout:fixed;
+}
+.lunbo_l_m_r table td{
+line-height:22px;
+text-align:center;
+font-size:12px;
+text-align:left;}
+
+.lunbo_mm{
+width:735px;
+height:500px;
+position: relative;
+overflow:hidden;
+float:left;
+z-index:0;
+}
+.lunbo_m0{
+width:735px;
+height:300px;
+position: relative;
+overflow:hidden;
+float:left;
+z-index:0;
+}
+.lunbo_m{
+width:735px;
+height:300px;
+position: relative;
+overflow:hidden;
+float:left;
+z-index:1;
+}
+
+.lunbo_m_gd{
+width:735px;
+height:300px;
+float:left;
+position:absolute;
+}
+
+.lunbo_m_gd a{
+float:left;
+border:none;}
+.icon{
+z-index:3;
+position: absolute;
+top: 100px;
+cursor: pointer;
+background-image:url(../Images/index/sprite.png);
+display:none;
+}
+.icon_left{
+left: 0px;
+background-position: left top;
+width: 45px;
+height: 100px;}
+.icon_right{
+right: 0px;
+background-position: right top;
+width: 45px;
+height: 100px;
+}
+
+
+.lunbo_mx0{
+width:735px;
+height:200px;
+position: relative;
+overflow:hidden;
+float:left;
+z-index:0;
+}
+.lunbo_mx{
+width:735px;
+height:200px;
+position: relative;
+overflow:hidden;
+float:left;
+z-index:1;
+}
+
+.lunbo_mx_gd{
+width:735px;
+height:200px;
+float:left;
+position:absolute;
+}
+.lunbo_mx_gd a{
+float:left;
+border:none;}
+.iconx{
+z-index:3;
+position: absolute;
+top: 50px;
+cursor: pointer;
+background-image:url(../Images/index/sprite.png);
+display:none;
+}
+
+
+
+.lunbo_r{
+width:220px;
+height:500px;
+float:left;
+background-color:#F9F9F9;
+}
+.lunbo_r_lrhl{
+width:220px;
+height:190px;
+text-align:center;
+padding-top:10px;
+}
+.lunbo_r_lrhl table{
+padding:0px 5px;
+font-size:12px;
+width:210px;
+height:100px;
+text-align:right;
+}
+.lunbo_r_lrhl input{
+width:130px;
+height:23px;
+padding-left:5px;
+}
+.lunbo_r_lrhl .lrhlss{
+width:80px;
+margin-left: 5px;
+cursor:pointer;/*鼠标放上手形*/}
+.lunbo_r .guanggao{
+padding:10px 10px 0px 10px;
+height:300px;
+width:220px;
+}
+.guanggao span{
+padding:5px 0px;
+display:block;
+width:200px;
+height:40px;}
+
+.shangpindkj{width:1200px;}
+.shangpindkj_title{
+margin-bottom:15px;
+padding-top:30px;
+height:38px;
+line-height:38px;
+border-bottom:2px solid #DADADA;
+}
+.shangpindkj_title a{
+font-size:22px;
+color:#333;
+width:110px;
+display:block;
+padding:0px 5px;
+}
+.shangpindkj_content{
+width:1216px;}
+
+.shopping{
+width:286px;
+height:301px;
+border:1px solid #ddd;
+margin-right:16px;
+float:left;
+margin-bottom:10px;
+}
+.shopping_img{
+height:191px;
+}
+.shopping img{
+width:286px;
+}
+.shopping_title{
+padding:10px 10px 0px 20px;
+font-size:16px;
+color:#000000;
+}
+.shopping_title a{
+line-height:19px;}
+.shopping_title_name{
+background-color:#999;
+font-size:12px;
+float:left;
+padding:1px 2px;
+margin:0px 5px 0px 0px;
+color:#FFFFFF;
+line-height:17px;
+}
+.shopping_tr2{
+padding:10px 10px 0px 20px;
+}
+.shopping_tr2 .shopping_title_name{margin-top:0px;}
+.shopping_tr2 a{
+font-size:14px;
+display:inline-block;}
+.shopping_tr2 div{float:left;}
+
+.shopping_didian img{
+margin-right:7px;
+width:11px;
+height:17px;
+}
+.shopping .shopping_didian{float:right;}
+.shopping .shopping_didian div{
+float:right;
+margin-top:2px;
+}
+.shopping_pricepj{
+height:44px;
+line-height:44px;
+margin-top:10px;
+padding:0px 10px 0px 20px;
+background-color:#f9f9f9;
+}
+.shopping_price{
+height:44px;
+line-height:44px;
+font-size:20px;
+color: #F76120;
+float:left;
+}
+.shopping_pingjia{
+margin-top:2px;
+height:12px;
+width:60px;
+background-image:url(../Images/menu_and_foot/xingxing.png);
+float:right;
+margin-top:16px;
+}
+.shopping_pjrenshu{
+padding-left:3px;
+color:#999;
+float:right;}
+
+.shangpin_foot a{
+width:1198px;
+height:35px;
+line-height:35px;
+text-align:center;
+font-size:14px;
+background-color:#F9F9F9;
+display:block;
+border:1px solid #DADADA;
+}

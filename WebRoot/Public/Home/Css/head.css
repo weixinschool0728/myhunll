@@ -1,0 +1,145 @@
+/* CSS Document */
+
+
+
+
+.top{
+height:29px;
+background-color:#F9F9F9;
+border:1px solid #2BB8AA;
+}
+.top .top1{
+width:1200px;
+margin:0px auto;
+height:29px;
+line-height:29px;
+}
+.top1 .span1{float:left;}
+.top .top1 .span2{
+float:right;
+}
+.top .top1 a{
+padding:0px 12px;
+border-right:1px dotted;
+}
+
+.logo{
+height:102px;
+width:1200px;
+margin:0px auto;
+overflow:hidden;
+}
+
+.box1{
+margin-top:30px;
+width:1200px;
+/*border:1px solid #990066;*/
+}
+.box2{
+/*height:500px;*/
+width:1200px;
+}
+.logo .logol{
+width:175px;
+height:60px;
+margin-top:21px;
+background-image:url(../Images/menu_and_foot/logo.jpg);
+float:left;
+}
+.logo .serch{
+float:left;
+margin:31px 0px 0px 200px;;
+}
+
+.logo .inputsr{
+box-sizing:content-box;/*content-box盒子模型 border-box 怪异模型 border与padding包含其中*/
+height:38px;
+line-height:42px;
+width:389px;
+border:2px solid #03BA8A;
+font-size:14px;
+float:left;
+padding:0px 5px;
+}
+.logo .submitsr{
+height:42px;
+width:56px;
+background:#03BA8A repeat;
+border:0px none;
+float:left;
+font-size:14px;
+color:#FFFFFF;
+cursor:pointer;
+}
+.logo .logor{
+height:60px;
+width:200px;
+float:right;
+margin-top:21px;
+overflow:hidden;
+}
+.logor .phone1{
+margin-top:5px;
+float:left;
+}
+.logor .phone23{
+float:left;
+height:60px;
+width:153px;
+padding-left:10px;
+}
+.logor .phone2{
+float:right;
+}
+.logor .phone3{
+font-size:24px;
+color:#03BA8A;
+clear:both;
+padding-top:8px;
+}
+
+.menu{
+height:40px;
+width:1200px;
+margin:0px auto;
+}
+.menu_l{
+float:left;
+width:230px;
+padding-left:15px;
+height:40px;
+background-color:#555669;
+color:#FFFFFF;
+font-size:16px;
+line-height:40px;
+font-weight:400;
+}
+.menu_r{
+width:1200px;
+margin:0px auto;
+height:40px;
+line-height:40px;
+width:955px;
+background-color:#03BA8A;
+float:left;
+}
+
+.menu li{
+float:left;
+font-size:18px;
+font-weight:700;
+}
+.menu a{
+color:#FFFFFF;
+display:block;
+padding:0px 10px;
+height:40px;
+line-height:40px;
+width:58px;
+text-align:center;
+}
+.menu a:link,.menu a:visited{
+color:#FFFFFF;}
+.menu a:hover{
+background-color:#00FFDB;
+}

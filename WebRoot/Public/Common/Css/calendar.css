@@ -1,0 +1,112 @@
+@charset "utf-8";HTML{height:100%;width:100%}
+/*日历*/
+BODY{margin:0;word-wrap:break-word;word-break:break-all;height:100%;width:100%}
+IMG{border:0}
+A{text-decoration:none;color:#000}
+A:hover{text-decoration:none}
+TABLE{cellpadding:0;cellspacing:0;border-collapse:collapse}
+.btn{width:auto;height:20px;line-height:22px;padding-left:7px;padding-right:7px;margin-top:2px;float:left;cursor:pointer;margin-left:5px;overflow:hidden}
+.btn:hover{text-decoration:none}
+.btnActive{width:auto;height:20px;line-height:22px;padding-left:7px;padding-right:7px;margin-top:2px;float:left;cursor:pointer;margin-left:5px;overflow:hidden}
+.btn img{margin-right:4px;margin-top:3px;width:15px;height:15px;float:left}
+.tableIcon{width:18px;height:18px}
+.overFlowH{overflow:hidden}
+.tAC{text-align:center}
+.W100XHYA{width:100%;overflow-x:hidden;overflow-y:auto}
+.W1H1OFH{width:100%;height:100%;overflow:hidden}
+.W160{width:160px;overflow:hidden}
+.W85{width:90px;overflow:hidden}
+.W75{width:75px;overflow:hidden}
+.W70{width:70px;overflow:hidden}
+.W60{width:56px;overflow:hidden}
+.W50{width:50px;margin-left:auto;margin-right:auto}
+.W35{width:35px;overflow:hidden}
+.LH25{line-height:25px}
+.FLMR8{float:left;margin-right:8px}
+.FLML8{float:left;margin-left:4px}
+.ML5{margin-left:5px}
+.H21{height:21px;overflow:hidden}
+.W200H22{width:190px;height:21px;line-height:22px;overflow:hidden}
+.W60H22{width:60px;height:21px;line-height:22px;overflow:hidden}
+.MarL15{margin-left:15px}
+.W50OFH{width:40%;overflow:hidden}
+.H25BrdBtm{height:25px;line-height:25px}
+.mainLef{width:5px;height:26px;float:left;overflow:hidden}
+.mainRig{width:5px;height:26px;float:left;overflow:hidden}
+.mainCen{height:26px;float:left;overflow:hidden}
+.mainCen SPAN{float:left;margin-top:2px}
+.mainCen STRONG{line-height:27px;float:left;width:100px}
+.mainCen A{float:right;line-height:27px}
+.mainCen A:hover{text-decoration:underline}
+.mainCont{height:105px;padding-left:5px;margin-bottom:5px;background-color:#FFF;overflow:hidden}
+.main{width:100%;background-color:#FFF;margin-left:auto;margin-right:auto;overflow:hidden}
+.bgMain{width:99%;height:100%;margin-left:auto;margin-right:auto;overflow:hidden}
+.indexMain{width:100%;height:100%;overflow:hidden}
+.cadTit{width:260px;height:32px;overflow:hidden}
+.cadCont{width:258px;height:auto;background-color:#FFF;overflow:hidden}
+.ymNaviss{width:256px;height:20px;line-height:20px;margin-top:1px;margin-left:auto;margin-right:auto;overflow:hidden}
+.ymNavis{width:160px;line-height:20px;margin-left:auto;margin-right:auto;overflow:hidden}
+.ymNavis SPAN{float:left;margin-left:3px;margin-right:3px;width:70px;text-align:center}
+.ymNaviBtn{height:15px;width:15px;margin-top:2px;float:left;margin-left:3px;margin-right:3px;overflow:hidden}
+.cadTable{margin-bottom:1px;background-color:#FFF;text-align:center}
+.red{color:red}
+.cadTable thead{height:20px;overflow:hidden}
+.cadTable tbody tr{height:18px}
+.cadTable tbody td A{width:100%;height:100%;float:left}
+.cadTable tbody td A:hover{background-color:#fdfdcf}
+/*-----------------------------------------------------------------------------------------*/
+html{overflow-x:hidden;overflow-y:auto}
+#myrl{position:relative;margin:0 auto;width:490px;height:352px}
+#teshu{float:right;margin-top:0;padding-right:5px;width:285px;height:25px;text-align:right;font-size:14px;line-height:25px}
+#box{position:absolute;top:0;right:0;padding:0}
+.unover{background:#f4f1f1;cursor:auto}
+.pop{position:absolute;width:290px;height:180px;background-color:#fff;color:#000;font-size:12px}
+.pop FONT{padding-left:5px}
+table.biao{border-collapse:collapse;font-family:"Times New Roman","宋体"}
+.over{background:khaki}
+.tt:hover{background:#f9fbc9;text-decoration:none}
+.imag1{margin-right:2px}
+.topDateFont{color:#000;font-size:14px}
+.calTit FONT{margin-top:2px}
+.calTit SPAN{margin-top:2px;font-weight:700}
+#dateSelectionDiv{position:absolute;top:25px;z-index:20;display:none;width:160px;border:1px solid #f8c173;background:#fefef1}
+#dateSelectionHeader{width:100%;font-size:0}
+#dateSelectionBody{width:100%}
+#dateSelectionFooter{width:100%;font-size:0}
+#dateSeparator{margin:0 auto;width:152px;height:2px;font-size:0}
+#dateSelectionBtn{margin:0 auto;width:133px;height:20px;line-height:20px}
+#dateSelectionTodayBtn{float:left;width:41px;height:20px;cursor:pointer}
+#dateSelectionOkBtn{float:left;margin:0 5px 0 5px;width:41px;height:20px;text-align:center;cursor:pointer}
+#dateSelectionCancelBtn{float:right;width:41px;height:20px;text-align:right;cursor:pointer}
+#yearList{width:158px;height:20px;color:green;line-height:20px}
+#yearListPrev{float:left;margin-left:3px;width:8px;height:20px;text-align:left;cursor:pointer}
+#yearListNext{float:right;margin-right:3px;width:8px;height:20px;text-align:right;cursor:pointer}
+#yearListContent{float:left;height:20px}
+#yearListContent .year{float:left;display:block;width:33px;height:20px;text-align:center;font-size:11px;cursor:pointer}
+#yearListContent .curr{color:red}
+#monthList{margin:0 1px 0 1px;padding:0 15px 0 15px}
+#monthListContent .month{float:left;display:block;margin:2px;width:17px;height:15px;text-align:center;line-height:15px;cursor:pointer}
+#monthListContent .curr{color:red}
+/*-------------------------------------------------------------------*/
+.topBar{background-image:url(topBarC.gif);border:1px solid #99BBE8}
+.topBar SPAN{color:#15428B}
+.lsArrow{background-image:url(../../Home/Images/goods/tool-sprites.gif);background-position:0 180px}
+.lsArrow:hover{background-image:url(../../Home/Images/goods/tool-sprites.gif);background-position:15px 180px}
+.lArrow{background-image:url(../../Home/Images/goods/tool-sprites.gif);background-position:0 255px}
+.lArrow:hover{background-image:url(../../Home/Images/goods/tool-sprites.gif);background-position:15px 255px}
+.rsArrow{background-image:url(../../Home/Images/goods/tool-sprites.gif);background-position:0 195px}
+.rsArrow:hover{background-image:url(../../Home/Images/goods/tool-sprites.gif);background-position:15px 195px}
+.rArrow{background-image:url(../../Home/Images/goods/tool-sprites.gif);background-position:0 240px}
+.rArrow:hover{background-image:url(../../Home/Images/goods/tool-sprites.gif);background-position:15px 240px}
+.cadTable thead tr{background-color:#99BBE8}
+.cadTable tbody td{border:1px solid #99BBE8}
+.calTit{background-image:url(calTit.jpg)}
+.calWeekTit{background-color:#2BB8AA;color:#fff}
+.calTit FONT{color:#15428B}
+table.biao td{border:1px solid #ccc}
+.pop{border:1px solid #99BBE8}
+#teshu{background-color:#e6eef7;background-image:url(topBarC.gif)}
+.jinri{background:#cfdff0}
+.cal_next{color:#15428B}
+.selday{background:#FBBB67}
+

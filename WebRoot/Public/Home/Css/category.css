@@ -1,0 +1,159 @@
+/* CSS Document */
+.box{
+width:1200px;
+margin:0px auto;
+margin-top:10px;
+}
+.box_l{
+width:932px;
+float:left;
+}
+.box_l_menu{
+border:1px solid #DDD;
+margin-bottom:10px;
+}
+.box_l_menu div{float:left;}
+.box_l_menu_tr{
+margin:0px 15px;
+border-bottom:1px dotted #ddd;
+padding:5px 0px;
+}
+.menu_tr_head{
+border:1px solid #03BA8A;
+padding:2px 8px;
+float:left;
+margin:2px 0px;
+}
+.jiantou{
+height:25px;
+float:left;
+line-height:25px;
+padding:0px 8px;
+font-size:16px;
+}
+.menu_tr_title{
+width:50px;
+text-align:left;
+float:left;
+padding:5px 0px;
+}
+
+.menu_tr_ul{float:left;width:850px;}
+.menu_tr_ul li{
+margin:3px 30px 3px 0px;
+float:left;
+}
+.menu_tr_ul a{
+display:block;
+padding:2px 4px;
+}
+.menu_tr_ul a:hover {
+background-color:#03BA8A;
+color:#FFFFFF;
+}
+.menu_tr_ul input {
+width:40px;
+}
+.menu_tr_ul2{
+width:auto;
+}
+.menu_tr_ul2 li{
+margin:0px;
+border-right:1px solid #ddd;
+}
+.menu_tr_ul2 a{
+padding:8px 20px;
+}
+.icon_check{
+background-image:url(../Images/menu_and_foot/icon.png);
+background-position: -435px -128px;
+width:13px;
+height:13px;
+display:inline-block;
+float:left;
+margin-top:1px;
+margin-right:4px;
+}
+.menu_tr_check{
+margin:8px 10px;
+display:inline-block;
+float:left;
+}
+.shopping_table{
+width:946px;
+}
+.shopping{
+width:300px;
+height:310px;
+border:1px solid #ddd;
+margin-right:13px;
+float:left;
+margin-bottom:10px;
+}
+.shopping_img{
+height:200px;
+}
+.shopping img{
+width:300px;
+}
+.shopping_title{
+padding:10px 10px 0px 20px;
+font-size:16px;
+color:#000000;
+}
+.shopping_title a{
+line-height:19px;}
+.shopping_title_name{
+background-color:#999;
+font-size:12px;
+float:left;
+padding:1px 2px;
+margin:0px 5px 0px 0px;
+color:#FFFFFF;
+line-height:17px;
+}
+.shopping_tr2{
+padding:10px 10px 0px 20px;
+}
+.shopping_tr2 .shopping_title_name{margin-top:0px;}
+.shopping_tr2 a{
+font-size:14px;
+display:inline-block;}
+.shopping_tr2 div{float:left;}
+
+.shopping_didian img{
+margin-right:7px;
+width:11px;
+height:17px;
+}
+.shopping .shopping_didian{float:right;}
+.shopping .shopping_didian div{
+float:right;
+margin-top:2px;
+}
+.shopping_pricepj{
+height:44px;
+line-height:44px;
+margin-top:10px;
+padding:0px 10px 0px 20px;
+background-color:#f9f9f9;
+}
+.shopping_price{
+height:44px;
+line-height:44px;
+font-size:20px;
+color: #F76120;
+float:left;
+}
+.shopping_pingjia{
+margin-top:2px;
+height:12px;
+width:60px;
+background-image:url(../Images/menu_and_foot/xingxing.png);
+float:right;
+margin-top:16px;
+}
+.shopping_pjrenshu{
+padding-left:3px;
+color:#999;
+float:right;}
