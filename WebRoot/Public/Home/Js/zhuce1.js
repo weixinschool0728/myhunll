@@ -75,9 +75,6 @@ function yanzhengma_blur(){
     };
     var url='/Home/zhuce/check.html';
     $.post(url,data,function(msg){
-        yanzhengma=msg;
-    var urll="check_yanzhengma";
-    $.post(urll,data,function(msg){
          yanzhengma=msg;
         if(msg==0){
             obj.style.cssText="color:red;";
