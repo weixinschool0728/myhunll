@@ -19,3 +19,10 @@ function is_ip(str){
     var reg = /^([1-9]|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])(\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])){3}$/gi;
     return reg.test(str);
 }
+
+//验证是否合法，合法返回true，否则返回false
+function is_hefa(str){
+    var reg = /[!;:@#%&\.\\\/\^\$\(\)\[\]\{\}\*\+\?\-\"\']+/gi;
+    var resule= reg.test(str);
+    return !(reg.test(str));
+}

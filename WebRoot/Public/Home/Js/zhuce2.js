@@ -1,6 +1,5 @@
 // JavaScript Document
-var backurl=document.referrer;
-//if(backurl!="http://www.hunll.com/zhuce/zhuce-1.html"){location.href="zhuce-1.html"}
+//var backurl=document.referrer;
 var obj_form=document.zhuce;
 document.getElementById("dlm_sjh").style.cssText="background-color:#03BA8A;color:#FFF";
 obj_form.huiyuanming.onfocus=function (){huiyuanming_foucs();}
@@ -29,6 +28,11 @@ function huiyuanming_blur(){
 			obj.innerHTML="会员名小于2个字符或者大于12个字符";
 			return false;
 			}
+                else if(!is_hefa(obj_form.huiyuanming.value)){
+                    obj.style.cssText="color:red;";
+                    obj.innerHTML="会员名含有非法字符";
+                    return false;
+                }
 		else{
 			obj.innerHTML="&radic;";
 			return true;
@@ -126,14 +130,11 @@ function querenmima_blur(){
 	}
 function checkForm(obj){
 	var href1,hym_bm;
-	huiyuanming_blur();
 	shezhimima_blur();
 	if(huiyuanming_blur()&&shezhimima_blur()){
 		hym_bm=escape(obj_form.huiyuanming.value);
 		obj_form.submit();
-		href1="zhuce-3.html?shoujihao="+url+"?dengluming="+hym_bm;
-		obj.href=href1;
-		return true;
+		return false;
 		}
 		else {
 			return false;

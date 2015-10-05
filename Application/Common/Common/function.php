@@ -62,3 +62,15 @@ function is_ip($str){
         return true;
     }
 }
+
+
+//验证是否含有非法字符
+function is_hefa($str){
+    $reg='/[!;:@#%&\.\\\/\^\$\(\)\[\]\{\}\*\+\?\-\"\']+/gi';
+    $result=preg_match($reg,$str);
+    if($result==0) {
+        return true;
+    }else{
+        return false;
+    }
+}

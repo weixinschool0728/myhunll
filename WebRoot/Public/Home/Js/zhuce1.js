@@ -2,7 +2,7 @@
 //onfocus
 //onblur
 var obj_form=document.zhuce;
-var yanzhengma;
+var yanzhengma,shoujihao;
 $.ajaxSetup({ 
     async : false 
 });     
@@ -29,9 +29,32 @@ function yzshouji_blur(){
 			return false;
 			}
 		else{
-			obj.innerHTML="&radic;";
-			return true;
-			}
+                    var data="shoujihao="+$('input[name=shoujihao]').val()+"&check='shoujihao'";
+                    var url='/Home/zhuce/check.html';
+                    $.ajax({
+                        type:'post',
+                        url:url,
+                        data:data,
+                        datatype:'json',
+                        beforeSend:function(){
+                            obj.innerHTML="检验中...";
+                        },
+                        success:function(msg){
+                        shoujihao=msg;
+                        if(msg!==0){
+                            obj.style.cssText="color:red;";
+                            obj.innerHTML="手机号已经被注册，请重新填写";
+                            }else {
+                                obj.innerHTML="&radic;";
+                                }
+                        }
+                    });
+                    if(shoujihao==0){
+                        return true;
+                    }else{
+                        return false;
+                    }
+		}
 	}
 
 function yanzhengma_foucs(){
@@ -50,7 +73,8 @@ function yanzhengma_blur(){
         yanzhengma:$('input[name=yanzhengma]').val(),
         check:"yanzhengma"
     };
-    $.post('zhuce/check_yanzhengma',data,function(msg){
+    var url='/Home/zhuce/check.html';
+    $.post(url,data,function(msg){
         yanzhengma=msg;
         if(msg==0){
             obj.style.cssText="color:red;";

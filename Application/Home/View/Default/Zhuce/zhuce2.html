@@ -25,7 +25,8 @@
 </div>
 <hr class="zhuce_hr" />
 <div class="zhuce1_div_form">
-<form name="zhuce"  method="post" >
+    <form name="zhuce"  method="post" action="<{:U('zhuce3')}>">
+        <input type="hidden" name="hidden" value="<{$time2}>" />
 <div class="zhuce1_box">
 <div class="zhuce1_tr">
 <div class="zhuce1_tr_td1">登陆名</div>
@@ -52,11 +53,11 @@
 <input type="password" name="querenmima" class="zhuce1_tr_td2 zhuce1_tr_teshu"/>
 <span id="infor_querenmima"></span>
 </div><!--第四行-->
-<a href="#" id="zhuce1_xiayibu" class="a_xyb"  >下一步</a>
+<a href="javascript:void(0)" id="zhuce1_xiayibu" class="a_xyb" >下一步</a>
 </div>
 
 </form>
 </div>
-<script src="__PUBLIC_HOME__/js/zhuce_2.js" type="text/javascript"></script>
+<script src="__PUBLIC_HOME__/js/zhuce2.js" type="text/javascript"></script>
 </body>
 </html>
