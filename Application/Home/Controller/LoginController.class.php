@@ -68,12 +68,16 @@ class LoginController extends FontEndController {
                 
                 unset($_SESSION['login']);
                 exit();
+                }else{
+                    $this->error('非法进入1，将转到主页',U('index/index'),3);
+                    exit();
                 }
-                $this->error('非法进入，将转到主页',U('index/index'),3);
-                exit();
+         }else{
+             echo $_POST;
+             //echo  $_SESSION['huiyuan'];
+            //$this->error('非法进入2，将转到主页',U('index/index'),3);
+            exit();
          }
-         $this->error('非法进入，将转到主页',U('index/index'),3);
-         exit();
     }
 }
 
