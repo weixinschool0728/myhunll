@@ -23,6 +23,9 @@ table,td{border:none; border-collapse:collapse;}
 .red{
 color:#F76120;
 }
+.green{
+    color:#2BB8AA;//浅绿色#00FFDB
+}
 /*文字自动换行*/
 .warp{
 word-break:break-all;}

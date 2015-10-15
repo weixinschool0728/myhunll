@@ -15,8 +15,6 @@
 
 //比对验证码是否正确
 function check_verify($code){ 
-    //$verify = new \Think\Verify();
-    //return $verify->check($code, $id);
     if(NOW_TIME - $_SESSION['d2d977c58444271d9c780187e93f80e5']['verify_time'] > 30){
         unset($_SESSION['d2d977c58444271d9c780187e93f80e5']);//清空session
         return -1;//验证码过期
@@ -31,7 +29,7 @@ function check_verify($code){
 
 //验证手机号，如果是，返回true,否则返回false
 function is_shoujihao($str){
-    $reg='/^1[3458]\d{9}$/gi';
+    $reg='/^1[3458]\d{9}$/i';
     $result=preg_match($reg,$str);
     if($result==0) {
         return false;
@@ -42,7 +40,7 @@ function is_shoujihao($str){
 
 //验证邮箱，如果是返回true,否则返回false
 function is_youxiang($str){
-    $reg='/^w+[.\w]@(\w+.)+\w{2,4}$/gi';
+    $reg='/^w+[.\w]@(\w+.)+\w{2,4}$/i';
     $result=preg_match($reg,$str);
     if($result==0) {
         return false;
@@ -54,7 +52,7 @@ function is_youxiang($str){
 
 //验证IP是否有效，如果是返回true,否则返回false
 function is_ip($str){
-    $reg='/^([1-9]|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])(\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])){3}$/gi';
+    $reg='/^([1-9]|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])(\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])){3}$/i';
     $result=preg_match($reg,$str);
     if($result==0) {
         return false;
@@ -64,13 +62,56 @@ function is_ip($str){
 }
 
 
-//验证是否含有非法字符
-function is_hefa($str){
-    $reg='/[!;:@#%&\.\\\/\^\$\(\)\[\]\{\}\*\+\?\-\"\']+/gi';
+//验证是否含有非法字符，含有非法返回true，否则返回false
+function is_feifa($str){
+    //$reg='/[=!;:@#%&\.\\\/\^\$\(\)\[\]\{\}\*\+\?\-\"\']+/i';
+    $reg='/[=!;:@#&\.\/\^\$\(\)\[\]\{\}\*\+\?\-\"\']+/i';
     $result=preg_match($reg,$str);
-    if($result==0) {
+    if($result!==0) {
         return true;
     }else{
         return false;
     }
+}
+
+
+//得到微秒数
+function gettime(){
+    $time=explode(' ',  microtime());
+    $mtime=  substr($time[0], strpos($time[0],'.')+1,6);
+    return $time[1].$mtime;
+}
+
+//得到上传文件的重命名
+function getname(){
+    //$extension=  substr($filename, strpos($filename, '.'));
+    $name=gettime();
+    return $name.mt_rand(1000,9999);
+}
+
+//判断文件是否是合法图片
+/*
+function is_image(){
+    $key=  key($_FILES);
+    $file=$_FILES[$key]['tmp_name'];
+    $filename=$_FILES[$key]['name'];
+    $extension=strtolower(substr($filename, strpos($filename, '.')+1));
+    $array=array('jpg', 'jpeg', 'gif', 'png', 'swf', 'bmp');
+    if(in_array($extension, $array,true)&&@getimagesize($file)){
+        return true;
+    }else{
+        return false;
+    }
+}
+*/
+
+
+
+//生成随机字符串
+function create_char($length=0){
+    $rand='';
+    for($i=0;$i<$length;$i++){
+        $rand .= chr(mt_rand(33,126));
+    }
+    return $rand;
 }

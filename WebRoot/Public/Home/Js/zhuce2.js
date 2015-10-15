@@ -1,6 +1,7 @@
 // JavaScript Document
 //var backurl=document.referrer;
 var obj_form=document.zhuce;
+var huiyuanming;
 document.getElementById("dlm_sjh").style.cssText="background-color:#03BA8A;color:#FFF";
 obj_form.huiyuanming.onfocus=function (){huiyuanming_foucs();}
 obj_form.huiyuanming.onblur=function (){huiyuanming_blur();}
@@ -28,14 +29,41 @@ function huiyuanming_blur(){
 			obj.innerHTML="会员名小于2个字符或者大于12个字符";
 			return false;
 			}
-                else if(!is_hefa(obj_form.huiyuanming.value)){
+                else if(is_feifa(obj_form.huiyuanming.value)){
                     obj.style.cssText="color:red;";
                     obj.innerHTML="会员名含有非法字符";
                     return false;
                 }
 		else{
-			obj.innerHTML="&radic;";
-			return true;
+                    var data={
+                            huiyuanming:$('input[name=huiyuanming]').val(),
+                            check:"huiyuanming"
+                            };
+                    var url='/Home/zhuce/check.html';
+                    $.ajax({
+                        type:'post',
+                        async : false,
+                        url:url,
+                        data:data,
+                        datatype:'json',
+                        beforeSend:function(){
+                            obj.innerHTML="检验中...";
+                        },
+                        success:function(msg){
+                        huiyuanming=msg;
+                        if(msg!=='0'){
+                            obj.style.cssText="color:red;";
+                            obj.innerHTML="会员名已经被注册，请重新填写";
+                            }else {
+                                obj.innerHTML="&radic;";
+                                }
+                        }
+                    });
+                    if(huiyuanming==='0'){
+                        return true;
+                    }else{
+                        return false;
+                    }			
 			}
 	}
 function shezhimima_foucs(){
@@ -129,10 +157,8 @@ function querenmima_blur(){
 			}
 	}
 function checkForm(obj){
-	var href1,hym_bm;
 	shezhimima_blur();
 	if(huiyuanming_blur()&&shezhimima_blur()){
-		hym_bm=escape(obj_form.huiyuanming.value);
 		obj_form.submit();
 		return false;
 		}

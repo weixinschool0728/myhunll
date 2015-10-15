@@ -1,0 +1,86 @@
+<link rel="stylesheet" type="text/css" href="__PUBLIC_HOME__/Css/member.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC_HOME__/Css/release_goods.css">
+<script src="__PUBLIC_COMMON__/Js/jquery.min.js"></script> 
+<script src="__PUBLIC_COMMON__/Js/function.js"></script> 
+</head>
+
+<body>
+    <include file='Public/menu'/>
+    <include file='Public/hunliren_left' />
+    <div class="release">
+        <form name="zhuce" method="post" enctype="multipart/form-data" action="<{:U('Zhuce/zhuce4_check')}>">
+            <div class="tr">
+                <div class="tr_td1">服务类型</div>
+                <select name="server_content" class="tr_td2 release_select" >
+                    <volist name="arr_sc" id="vo">
+                        <option value="<{$vo}>"> <{$vo}></option>
+                    </volist>
+                </select>
+                <span id="span_select"></span>
+            </div>
+            <div style="width:400px;height:0px;border-top:1px dashed #666;"></div>
+            
+            
+            <div class="tr">
+                <div class="tr_td1">商品标题</div>
+                <input name="name" type="text" class="text"  />
+                <span id="infor_name"></span>
+            </div>
+            <div style="width:400px;height:0px;border-top:1px dashed #666;"></div>
+        
+        
+        
+            <div class="tr_td1">展示图</div>
+                <input name="file_touxiang" type="file" class="tr_td2"/>
+                <span id="span_touxiang"></span>
+            <div style="width:400px;height:0px;border-top:1px dashed #666;"></div>
+
+
+
+
+            <div class="tr" style="<{$css}>">
+                <div class="tr_td1">性别</div>
+                <div class="tr_td2">
+                    <input name="radio_sex" type="radio" class="radio" value="0" />男
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input name="radio_sex" type="radio" class="radio" value="1" />女
+                </div>
+            </div><!--第二行-->
+            <div style="width:400px;height:0px;border-top:1px dashed #666;<{$css}>"></div>
+            
+            
+            <div class="tr">
+                <div class="tr_td1">价格</div>
+                <input name="name" type="text" class="text price_text"  />
+                <span style="font-size: 14px;">元</span>
+                <span id="infor_name"></span>
+            </div>
+            <div class="tr">
+                <div class="tr_td1">原价</div>
+                <input name="name" type="text" class="text price_text"  />
+                <span style="font-size: 14px;">元</span>
+                <span id="infor_name"></span>
+            </div>
+            <div style="width:400px;height:0px;border-top:1px dashed #666;"></div>
+            
+            
+            <div class="tr">
+                <div class="tr_td1">商品风格</div>
+                <select name="server_content" class="tr_td2 release_select" >
+                    <volist name="arr_sc" id="vo">
+                        <option value="<{$vo}>"> <{$vo}></option>
+                    </volist>
+                </select>
+                <span id="span_select"></span>
+            </div>
+
+            
+            <a href="javascript:void(0)" id="xiayibu" class="xyb">立刻发布</a>
+        </form>
+    </div>
+    
+    
+    
+</div>
+</body>
+</html>

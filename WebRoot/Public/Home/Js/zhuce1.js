@@ -20,16 +20,19 @@ function yzshouji_blur(){
 	var obj=document.getElementById("infor_shoujihao");
 	if(obj_form.shoujihao.value==""){
 		obj.style.cssText="color:red;";
-		obj.innerHTML="手机号码为空，请输入你的手机号码";
+		obj.innerHTML="手机号码为空，请输入";
 		return false;
 		}
 		else if(!is_shoujihao(obj_form.shoujihao.value)){
 			obj.style.cssText="color:red;";
-			obj.innerHTML="手机号不对，请输入正确的11位手机号码";
+			obj.innerHTML="不正确，请输入正确的手机号码";
 			return false;
 			}
 		else{
-                    var data="shoujihao="+$('input[name=shoujihao]').val()+"&check='shoujihao'";
+                    var data={
+                            shoujihao:$('input[name=shoujihao]').val(),
+                            check:"shoujihao"
+                            };
                     var url='/Home/zhuce/check.html';
                     $.ajax({
                         type:'post',
@@ -41,15 +44,17 @@ function yzshouji_blur(){
                         },
                         success:function(msg){
                         shoujihao=msg;
-                        if(msg!==0){
+                        if(msg==='1'){
                             obj.style.cssText="color:red;";
                             obj.innerHTML="手机号已经被注册，请重新填写";
-                            }else {
+                            }else if(msg==='0'){
                                 obj.innerHTML="&radic;";
+                                }else{
+                                    obj.innerHTML="系统错误，请重试";
                                 }
                         }
                     });
-                    if(shoujihao==0){
+                    if(shoujihao==='0'){
                         return true;
                     }else{
                         return false;
@@ -75,24 +80,21 @@ function yanzhengma_blur(){
     };
     var url='/Home/zhuce/check.html';
     $.post(url,data,function(msg){
-        yanzhengma=msg;
-    var urll="check_yanzhengma";
-    $.post(urll,data,function(msg){
          yanzhengma=msg;
-        if(msg==0){
+        if(msg===0){
             obj.style.cssText="color:red;";
             obj.innerHTML="验证码错误，请重新输入";
         }
-        else if(msg==-1){
+        else if(msg===-1){
             obj.style.cssText="color:red;";
             obj.innerHTML="验证码已过期，请点击图片刷新";
         }
-        else {
+        else if(msg===1){
             obj.innerHTML="&radic;";
         }
     });
     }
-    if(yanzhengma==1){
+    if(yanzhengma===1){
         return true;
     }else{
         return false;

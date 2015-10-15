@@ -1,5 +1,5 @@
 // JavaScript Document
-var arr_province=["请选择省市","北京市","天津市","上海市","重庆市","河北省","山西省","内蒙古","辽宁省","吉林省","黑龙江省","江苏省","浙江省","安徽省","福建省","江西省","山东省","河南省","湖北省","湖南省","广东省","广西","海南省","四川省","贵州省","云南省","西藏","陕西省","甘肃省","青海省","宁夏","新疆","香港","澳门","台湾省"];
+var arr_province=["请选择省市","北京市","天津市","上海市","重庆市","河北省","山西省","内蒙古","辽宁省","吉林省","黑龙江省","江苏省","浙江省","安徽省","福建省","江西省","山东省","河南省","湖北省","湖南省","广东省","广西","海南省","四川省","贵州省","云南省","西藏","陕西省","甘肃省","青海省","宁夏","新疆"];//,"香港","澳门","台湾省"];
 var arr_city=[
 ["请选择市区"],
 
@@ -100,10 +100,10 @@ var arr_county=[
 [["新城区","西夏区","兴庆区","永宁县","灵武市","贺兰县","银川市郊区"],["石嘴山区","大武口区","惠农区","平罗县","陶乐县","惠农县"],["利通区","青铜峡市","中卫县","中宁县","盐池县","同心县"],["原州区","海原县","西吉县","隆德县","泾源县","彭阳县"],["沙坡头区"]],
 [["沙依巴克区","新市区","天山区","达坂城区","乌鲁木齐县","水磨沟区","头屯河区"],["克拉玛依区","独山子区","白碱滩区","乌尔禾区"],["吐鲁番市","鄯善县","托克逊县"],["哈密市","伊吾县","巴里坤"],["和田市","和田县","墨玉县","皮山县","洛浦县","策勒县","于田县","民丰县"],["阿克苏市","温宿县","库车县","沙雅县","新和县","拜城县","乌什县","阿瓦提县","柯坪县"],["喀什市","疏附县","疏勒县","英吉沙县","泽普县","莎车县","叶城县","麦盖提县","岳普湖县","伽师县","巴楚县","塔什库尔干"],["阿克陶县","阿合奇县","乌恰县"],["库尔勒市","轮台县","尉犁县","若羌县","且末县","和静县","和硕县","博湖县","焉耆"],["昌吉市","阜康市","米泉市","呼图壁县","玛纳斯县","奇台县","吉木萨尔县","木垒"],["博乐市","精河县","温泉县"],["奎屯市","伊宁县","霍城县","巩留县","新源县","昭苏县","特克斯县","尼勒克县","察布查尔"],["塔城市","乌苏市","额敏县","沙湾县","托里县","裕民县","和布克赛尔"],["阿勒泰市","布尔津县","富蕴县","福海县","哈巴河县","青河县","吉木乃县"]]
 ];
-
+var obj_form=document.zhuce;
 var obj_file_touxiang=document.zhuce.file_touxiang;
 var obj_file_shenfenzheng=document.zhuce.file_shenfenzheng;
-var obj_file_yingyezhizhao=document.zhuce.file_yingyezhizhao;
+//var obj_file_yingyezhizhao=document.zhuce.file_yingyezhizhao;
 var obj_radio_fuwuxingshi=document.zhuce.radio_fuwuxingshi;
 var obj_zhuce4_checkbox=document.getElementById("zhuce4_checkbox");
 var arr_obj=obj_zhuce4_checkbox.getElementsByTagName("input");
@@ -118,25 +118,25 @@ var obj_contact_qq=document.zhuce.contact_qq;
 var obj_contact_weixin=document.zhuce.contact_weixin;
 var obj_contact_email=document.zhuce.contact_email;
 
-obj_file_touxiang.onchange=function(){check_file_image(this,1);}
-obj_file_shenfenzheng.onchange=function(){check_file_image(this,1);}
-obj_file_yingyezhizhao.onchange=function(){check_file_image(this,1);}
-obj_radio_fuwuxingshi[0].onclick=function(){radio_select(this);}
-obj_radio_fuwuxingshi[1].onclick=function(){radio_select(this);}
-obj_radio_fuwuxingshi[2].onclick=function(){radio_select(this);}
-select_province.onchange=function (){province_onchange(this.selectedIndex);}
-select_city.onchange=function (){city_onchange(this.selectedIndex);}
-obj_address_juti.onfocus=function (){address_juti_onfocus();}
-obj_address_juti.onblur=function (){address_juti_onblur();}
-obj_contact_qq.onfocus=function (){contact_onfocus(this.name);}
-obj_contact_qq.onblur=function (){contact_qq_onblur();}
-obj_contact_weixin.onfocus=function (){contact_onfocus(this.name);}
-obj_contact_weixin.onblur=function (){contact_weixin_onblur();}
-obj_contact_email.onfocus=function (){contact_onfocus(this.name);}
-obj_contact_email.onblur=function (){contact_email_onblur();}
-obj_name.onfocus=function (){name_onfocus();}
-obj_name.onblur=function (){name_onblur();}
-document.getElementById("zhuce1_xiayibu").onclick=function (){return xiayibu_onclick();}
+obj_file_touxiang.onchange=function(){check_file_image(this,1);};
+obj_file_shenfenzheng.onchange=function(){check_file_image(this,1);};
+//obj_file_yingyezhizhao.onchange=function(){check_file_image(this,1);};
+obj_radio_fuwuxingshi[0].onclick=function(){radio_select(this);};
+obj_radio_fuwuxingshi[1].onclick=function(){radio_select(this);};
+//obj_radio_fuwuxingshi[2].onclick=function(){radio_select(this);};
+select_province.onchange=function (){province_onchange(this.selectedIndex);};
+select_city.onchange=function (){city_onchange(this.selectedIndex);};
+obj_address_juti.onfocus=function (){address_juti_onfocus();};
+obj_address_juti.onblur=function (){address_juti_onblur();};
+obj_contact_qq.onfocus=function (){contact_onfocus(this.name);};
+obj_contact_qq.onblur=function (){contact_qq_onblur();};
+obj_contact_weixin.onfocus=function (){contact_onfocus(this.name);};
+obj_contact_weixin.onblur=function (){contact_weixin_onblur();};
+obj_contact_email.onfocus=function (){contact_onfocus(this.name);};
+obj_contact_email.onblur=function (){contact_email_onblur();};
+obj_name.onfocus=function (){name_onfocus();};
+obj_name.onblur=function (){name_onblur();};
+document.getElementById("zhuce1_xiayibu").onclick=function (){return xiayibu_onclick();};
 
 
 select_province.length=arr_province.length;
@@ -144,12 +144,15 @@ select_city.length=arr_city[0].length;
 select_county.length=arr_county[0][0].length;
 for(var i=0;i<arr_province.length;i++ ){
 	select_province.options[i].text=arr_province[i];
+        select_province.options[i].value=arr_province[i];
 	}
 for(var i=0;i<arr_city[0].length;i++){
 	select_city.options[i].text=arr_city[0][i];
+        select_city.options[i].value=arr_city[0][i];
 	}
 for(var i=0;i<arr_county[0][0].length;i++){
 	select_county.options[i].text=arr_county[0][0][i];
+        select_county.options[i].value=arr_county[0][0][i];
 	}
 
 
@@ -175,6 +178,7 @@ function province_onchange(index){
 	select_city.length=arr_city[index].length;
 	for(var i=0;i<arr_city[index].length;i++){
 		select_city.options[i].text=arr_city[index][i];
+                select_city.options[i].value=arr_city[index][i];
 		}
 	city_onchange(0)
 	}
@@ -184,15 +188,16 @@ function city_onchange(index){
 	select_county.length=arr_county[province_index][index].length;
 	for(var i=0;i<arr_county[province_index][index].length;i++){
 		select_county.options[i].text=arr_county[province_index][index][i];
+                select_county.options[i].value=arr_county[province_index][index][i];
 		}
 	}
 
 function check_file_image(obj_file,plan){
 	var obj_span_tx=document.getElementById("span_touxiang");
 	var obj_span_sfz=document.getElementById("span_shenfenzheng");
-	var obj_span_yyzz=document.getElementById("span_yingyezhizhao");
+	//var obj_span_yyzz=document.getElementById("span_yingyezhizhao");
 	var flag=false;
-	var arr_image=["jpg","jpeg","png","gif"];
+	var arr_image=["jpg","jpeg","png","gif",'swf','bmp'];
 	var str_suffix=obj_file.value.substr(obj_file.value.lastIndexOf(".")+1).toLowerCase();
 	for(var i=0;i<arr_image.length;i++){
 		if(str_suffix==arr_image[i]){
@@ -205,8 +210,8 @@ function check_file_image(obj_file,plan){
 					obj_span_sfz.innerHTML="&radic;";
 					}
 				else{
-					obj_span_yyzz.style.cssText="color:#666;";
-					obj_span_yyzz.innerHTML="&radic;";
+					//obj_span_yyzz.style.cssText="color:#666;";
+					//obj_span_yyzz.innerHTML="&radic;";
 					}
 			flag=true;
 			break;
@@ -224,8 +229,8 @@ function check_file_image(obj_file,plan){
 					obj_span_sfz.innerHTML="格式不匹配，请上传正确的图片格式";
 					}
 				else{
-					obj_span_yyzz.style.cssText="color:red;";
-					obj_span_yyzz.innerHTML="格式不匹配，请上传正确的图片格式";
+					//obj_span_yyzz.style.cssText="color:red;";
+					//obj_span_yyzz.innerHTML="格式不匹配，请上传正确的图片格式";
 					}
 		}
 		else{
@@ -238,8 +243,8 @@ function check_file_image(obj_file,plan){
 					obj_span_sfz.innerHTML="未上传或格式不匹配，请上传正确的图片格式";
 					}
 				else{
-					obj_span_yyzz.style.cssText="color:red;";
-					obj_span_yyzz.innerHTML="未上传或格式不匹配，请上传正确的图片格式";
+					//obj_span_yyzz.style.cssText="color:red;";
+					//obj_span_yyzz.innerHTML="未上传或格式不匹配，请上传正确的图片格式";
 					}
 			}
 		}
@@ -252,24 +257,24 @@ function radio_select(obj){
 		case "个人" :
 		document.getElementById("radio_1").style.cssText="display:block;";
 		document.getElementById("radio_2").style.cssText="display:block;";
-		document.getElementById("radio_3").style.cssText="display:none;";
+		//document.getElementById("radio_3").style.cssText="display:none;";
 		document.getElementById("radio_1").getElementsByTagName("div")[0].innerHTML="真实姓名";
 		document.getElementById("radio_2").getElementsByTagName("div")[0].innerHTML="身份证照";
 		break;
 		case "工作室":
 		document.getElementById("radio_1").style.cssText="display:block;";
 		document.getElementById("radio_2").style.cssText="display:block;";
-		document.getElementById("radio_3").style.cssText="display:none;";
+		//document.getElementById("radio_3").style.cssText="display:none;";
 		document.getElementById("radio_1").getElementsByTagName("div")[0].innerHTML="负责人姓名";
 		document.getElementById("radio_2").getElementsByTagName("div")[0].innerHTML="负责人身份证照";
 		break;
-		case "公司":
-		document.getElementById("radio_1").style.cssText="display:block;";
-		document.getElementById("radio_2").style.cssText="display:block;";
-		document.getElementById("radio_3").style.cssText="display:block;";
-		document.getElementById("radio_1").getElementsByTagName("div")[0].innerHTML="公司名称";
-		document.getElementById("radio_2").getElementsByTagName("div")[0].innerHTML="法人身份证照";
-		break;
+		//case "公司":
+		//document.getElementById("radio_1").style.cssText="display:block;";
+		//document.getElementById("radio_2").style.cssText="display:block;";
+		//document.getElementById("radio_3").style.cssText="display:block;";
+		//document.getElementById("radio_1").getElementsByTagName("div")[0].innerHTML="公司名称";
+		//document.getElementById("radio_2").getElementsByTagName("div")[0].innerHTML="法人身份证照";
+		//break;
 		}
 	}
 function checkbox(obj){
@@ -339,7 +344,7 @@ function contact_qq_onblur(){
 	}
 function contact_weixin_onblur(){
 	var obj=document.getElementById("infor_contact_weixin");
-	if(obj_contact_qq.value==""){
+	if(obj_contact_weixin.value==""){
 		obj.style.cssText="color:red;";
 		obj.innerHTML="您的微信为空";
 		return false;
@@ -352,34 +357,24 @@ function contact_weixin_onblur(){
 function contact_email_onblur(){
 	var arr=["com","cn","net"];
 	var obj=document.getElementById("infor_contact_email");
-	var index1=obj_contact_email.value.lastIndexOf("@");
-	var str1=obj_contact_email.value.substr(index1+1);
-	var index2=str1.lastIndexOf(".");
-	var str2=str1.substr(index2+1);
+	//var index1=obj_contact_email.value.lastIndexOf("@");
+	//var str1=obj_contact_email.value.substr(index1+1);
+	//var index2=str1.lastIndexOf(".");
+	//var str2=str1.substr(index2+1);
 	if(obj_contact_email.value==""){
 		obj.style.cssText="color:red;";
 		obj.innerHTML="您的邮箱为空";
 		return false;
 		}
-		else if(index1==-1){
-			obj.style.cssText="color:red;";
-			obj.innerHTML="您输入的邮箱格式不正确";
-			return false;
-			}
-		else if(index2==-1){
-			obj.style.cssText="color:red;";
-			obj.innerHTML="您输入的邮箱格式不正确";
-			return false;
-			}
-		else if(str2!=arr[0]&&str2!=arr[1]&&str2!=arr[2]){
-			obj.style.cssText="color:red;";
-			obj.innerHTML="您输入的邮箱格式不正确";
-			return false;
-			}
-		else{
-			obj.innerHTML="&radic;";
+		else if(is_youxiang(obj_contact_email.value)){
+                        obj.innerHTML="&radic;";
 			return true;
 			}
+		else{
+                        obj.style.cssText="color:red;";
+			obj.innerHTML="您输入的邮箱格式不正确";
+			return false;
+			} 
 	}
 function name_onfocus(){
 	var obj=document.getElementById("infor_name");
@@ -405,7 +400,7 @@ function name_onblur(){
 			obj.innerHTML="负责人的姓名为空";
 			}
 			else {
-				obj.innerHTML="公司的名称为空";
+				//obj.innerHTML="公司的名称为空";
 				}
 		return false;
 		}
@@ -439,15 +434,18 @@ function check_checkbox(){
 			}
 	}
 function xiayibu_onclick(){
-	check_file_image(obj_file_touxiang,2);
-	check_file_image(obj_file_shenfenzheng,2);
-	check_file_image(obj_file_yingyezhizhao,2);
-	address_juti_onblur();
-	contact_qq_onblur();
-	contact_weixin_onblur();
-	contact_email_onblur();
-	name_onblur();
-	check_seleck();
-	check_checkbox();
-	return false;
-	}
+	var c1=check_file_image(obj_file_touxiang,2);
+	var c2=check_file_image(obj_file_shenfenzheng,2);
+	//var c3=check_file_image(obj_file_yingyezhizhao,2);
+	var c4=address_juti_onblur();
+	var c5=contact_qq_onblur();
+	var c6=contact_weixin_onblur();
+	var c7=name_onblur();
+	var c8=check_seleck();
+	var c9=check_checkbox();
+
+        if(c1&&c2&&c4&&c5&&c6&&c7&&c8&&c9){
+            obj_form.submit();
+        }
+        return false;
+    }

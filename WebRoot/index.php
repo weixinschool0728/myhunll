@@ -5,6 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+define('UPLOAD','Public/Uploads/');//定义上传文件地址常量
 define('APP_DEBUG', true);
 define('APP_PATH',realpath('../Application')."/");
 require_once '../ThinkPHP/ThinkPHP.php';

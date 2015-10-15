@@ -1,0 +1,78 @@
+/* CSS Document */
+
+/* 默认样式设置*/
+/* -moz :火狐私有属性；-weblit :chrome、safari私有属性* -ms IE私有属性*/
+.right{
+    float: left;
+    width: 935px;
+    margin-left: 20px;
+}
+
+.right .right_head{
+    background-color: #F6F6F6;
+    height: 150px;
+    line-height: 150px;
+}
+.right_head .hlr_touxiang{
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin: 25px 0px 0px 30px;
+    float: left;
+}
+.hlr_touxiang .img{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    z-index: 1;
+    border-raduis:90px;
+}
+.hlr_touxiang .img_circle{
+    position:absolute;
+    z-index: 100;
+    width: 100px;
+    height: 100px;
+}
+.right_head .hlr_name{
+    float: left;
+    margin-left: 30px;
+    font-size: 16px;
+}
+.right a{
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    display: block;
+    font-size: 18px;
+    margin-top: 50px;
+    margin-left: 100px;
+    float: left;
+    text-align: center;
+    color: #FFFFFF;
+}
+.right a:link,.right a:visited{
+    background-color: #03BA8A;
+}
+.right a:hover{
+    background-color: #00FFDB;
+}
+.right .title{
+    font-size: 16px;
+    font-weight: 800;
+    margin: 20px 0px 5px 0px;
+}
+.right .content{
+    background-color: #f6f6f6;
+}
+.content ul li{
+    margin: 5px 0px;
+    font-size: 14px;
+    border: 1px #EEE solid;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+}
+.content .img{
+    width:50px;
+    height: 50px;
+}

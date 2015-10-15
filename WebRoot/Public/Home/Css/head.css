@@ -15,6 +15,9 @@ height:29px;
 line-height:29px;
 }
 .top1 .span1{float:left;}
+.top1 .span1 a:hover{
+    color:#00FFDB;
+}
 .top .top1 .span2{
 float:right;
 }
