@@ -244,7 +244,7 @@ width:1216px;}
 
 .shopping{
 width:286px;
-height:301px;
+height:302px;
 border:1px solid #ddd;
 margin-right:16px;
 float:left;
@@ -252,6 +252,7 @@ margin-bottom:10px;
 }
 .shopping_img{
 height:191px;
+border-bottom: 1px solid #DDD;
 }
 .shopping img{
 width:286px;

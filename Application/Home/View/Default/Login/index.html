@@ -6,7 +6,7 @@
 
 <body>
 <div class="zhuce_top">
-<a href="#"><img src="__PUBLIC_HOME__/Images/menu_and_foot/logo.jpg"/></a>
+    <a href="<{:U('Index/index')}>"><img src="__PUBLIC_HOME__/Images/menu_and_foot/logo.jpg"/></a>
 <span class="zhuce_top_spanl">账户注册</span>
 <div class="zhuce_top_r">
 <div class="zhuce_top_divr">还没有账号？</div>
@@ -21,7 +21,7 @@
 </div>
 <hr class="zhuce_hr" />
 <div class="zhuce1_div_form">
-    <form name="zhuce"  method="post" action="<{$url_to}>" id="form1" >
+    <form name="zhuce"  method="post" action="<{:U('Login/chenggong')}>" id="form1" >
         <input type="hidden" name="hidden" value="<{$time}>" />
 <div class="zhuce1_box">
 <div class="zhuce1_tr">

@@ -113,9 +113,9 @@ class ZhuceController extends FontEndController {
             $this->error('存在未选择的文件');
             exit();
         }
-        $serverform=$_POST['radio_fuwuxingshi'];//获取服务形式
+        $serverform=intval($_POST['radio_fuwuxingshi']);//获取服务形式
         //当服务形式为公司，至少必须上传3个图片文件，否则提示并且返回
-       //if($serverform==='公司'){
+       //if($serverform===2){
             //if(count($file_info)<3){
                 //$this->error('有选现未选择文件');
                 //exit();
@@ -159,7 +159,6 @@ class ZhuceController extends FontEndController {
         //准备需要写进数据库的数组
         $user_id=intval($_SESSION['huiyuan']['user_id']);//获取会员id号
         $row=array(
-            //'user_id'=>$user_id,
             'head_url'=>'/'.$head_url,
             'shenfenzheng_url'=>'/'.$shenfenzheng_url,
             'sex'=>$sex,

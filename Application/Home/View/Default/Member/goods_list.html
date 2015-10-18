@@ -1,0 +1,44 @@
+<link rel="stylesheet" type="text/css" href="__PUBLIC_HOME__/Css/member.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC_HOME__/Css/goods_list.css">
+<script src="__PUBLIC_COMMON__/Js/jquery.min.js"></script> 
+<script src="__PUBLIC_COMMON__/Js/function.js"></script>
+</head>
+
+<body>
+    <include file='Public/menu'/>
+    <include file='Public/hunliren_left' />
+    <div class="release">
+        <div class="div1">
+            商品列表：
+        </div>
+        <div class="title"><!--标题行-->
+            <div class='td1'>序号</div>
+            <div class='td2'>商品名称</div>
+            <div class='td3'>商品图片</div>
+            <div class='td4'>售价</div>
+            <div class='td5'>添加时间</div>
+            <div class='td6'>删除</div>
+        </div>
+        <volist name="list" id="vo">
+        <div class="content"><!--内容遍历-->
+            <div class='td1'><{$key+1}></div>
+            <div class='td2'><{$vo['goods_name']}></div>
+            <div class='td3'><img src="<{$vo['goods_img']}>" class="img_zst"/></div>
+            <div class='td4'><{$vo['price']}></div>
+            <div class='td5'><{$vo['add_time']|date='Y/m/d H：i',###}></div>
+        </div>
+        </volist>
+    
+        
+        
+        <div class="page_foot"><{$page_foot}></div>
+        
+    </div>
+    
+    
+    
+</div>
+<script src="__PUBLIC_HOME__/Js/goods_list.js" type="text/javascript"></script>
+
+</body>
+</html>

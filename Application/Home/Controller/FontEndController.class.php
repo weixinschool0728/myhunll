@@ -34,7 +34,7 @@ HTML;
              $this->assign("yonghuxinxi", $yonghuxinxi);
                      }
          
-        $this->assign("date",date(Y));//给日期赋值 
+        $this->assign("date",date('Y'));//给日期赋值 
         $this->assign("copy","1234567");//给备案号赋值
         $this->assign("keywords","婚啦啦 长沙婚庆");//给关键字赋值
         $this->assign("description","婚啦啦 长沙婚庆");//给描述赋值
@@ -63,7 +63,12 @@ HTML;
         exit();
     }else{// 上传成功,返回文件信息
         return $info;
+        }
     }
-}
+    
+
+
+
+
 
 }

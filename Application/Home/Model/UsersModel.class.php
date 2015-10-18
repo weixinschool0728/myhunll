@@ -8,6 +8,6 @@ class  UsersModel extends Model {
         'rank_points', 'reg_time', 'last_login', 'last_ip', 'visit_count', 'user_rank', 'shopman_id', 'address','salt',
         'qq','mobile_phone','is_validated','credit_line','passwd_question','passwd_answer','server_form','shenfenzheng_url','yingyezhizhao_url',
         'true_name','location','weixin','server_content','shopman_reg_time',
-        '_pk'=>'id','_autoinc'=>true
+        '_pk'=>'user_id','_autoinc'=>true
     );
 }

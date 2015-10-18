@@ -47,3 +47,28 @@ function text_blue(obj,obj_info){
         return true;
     }
 }
+
+//验证图片是否上传和类型是否正确，第一个参数是文件对象，第二个参数是信息对象，第三个参数为真，则弹出对话框，为假，不弹出。  参数为JQ对象
+function check_file_image(obj_file,obj_info,flag){
+	var arr_image=["jpg","jpeg","png","gif",'swf','bmp'];
+	var str_suffix=obj_file.val().substr(obj_file.val().lastIndexOf(".")+1).toLowerCase();//获取后缀
+        if(str_suffix==false){
+            obj_info.css('color','red');
+            obj_info.html("未上传文件，请上传图片");
+            return false;
+        }
+	for(var i=0;i<arr_image.length;i++){
+		if(str_suffix==arr_image[i]){
+                    obj_info.css('color','#666');
+                    obj_info.html("&radic;");
+                    return true;
+                    break;
+			}
+		}
+                if(flag){
+                    alert("文件类型不允许上传，请选择图片格式");
+                }
+            obj_info.css('color','red');
+            obj_info.html("文件类型不允许，请上传正确的图片格式");
+            return false;
+	}

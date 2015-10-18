@@ -14,7 +14,7 @@
                 <img src="<{$touxiang_url}>" class="img" />
                 <img src='__PUBLIC_HOME__/Images/public/circle_f6f6f6.png' class="img_circle" />
             </div>
-            <div class="hlr_name"><{$day_time}>， <{$user_name}>（<{$server_content}>）</div>
+            <div class="hlr_name"><{$day_time}>， <{$userdata['user_name']}>（<{$userdata['server_content']}>）</div>
             <a  href="<{:U('Member/release_goods')}>">发布商品</a>
         </div>
         <div class="title">
@@ -22,16 +22,16 @@
         </div>
         <div class="content">
             <ul>
-                <li>会员名： <{$user_name}></li>
-                <li>商家注册时间： <{$reg_time}></li>
-                <li>性别： <{$sex}></li>
-                <li>服务形式： <{$server_form}></li>
-                <li>服务岗位： <{$server_content}></li>
-                <li>所在城市： <{$location}></li>
-                <li>地址： <{$address}></li>
-                <li>QQ： <{$qq}></li>
-                <li>微信： <{$weixin}></li>
-                <li>email： <{$email}></li>
+                <li>会员名： <{$userdata['user_name']}></li>
+                <li>商家注册时间： <{$userdata['reg_time']|date='Y年m月d日 H：i',###}></li>
+                <li>性别： <{$userdata['sex']==='0'?'男':'女'}></li>
+                <li>服务形式： <{$userdata['server_form']==='0'?'个人':'工作室'}></li>
+                <li>服务岗位： <{$userdata['server_content']}></li>
+                <li>所在城市： <{$userdata['location']}></li>
+                <li>地址： <{$userdata['address']}></li>
+                <li>QQ： <{$userdata['qq']}></li>
+                <li>微信： <{$userdata['weixin']}></li>
+                <li>email： <{$userdata['email']}></li>
             </ul>
         </div>
     </div>

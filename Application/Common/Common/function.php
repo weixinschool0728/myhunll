@@ -25,7 +25,16 @@ function check_verify($code){
     }
 }
 
-
+//判断是否只含有数字 正确返回true 否则 返回false
+function is_shuzi($str){
+    $reg = '/^\d+$/i';
+    $result=preg_match($reg,$str);
+    if($result==0){
+        return false;
+    }else{
+        return true;
+    }
+}
 
 //验证手机号，如果是，返回true,否则返回false
 function is_shoujihao($str){
@@ -115,3 +124,27 @@ function create_char($length=0){
     }
     return $rand;
 }
+
+//得到editor编辑框内的图片文件名（包括地址）
+function get_file($str){
+    $reg='/<img src="\/([^"]+)"/i';
+    preg_match_all($reg,$str,$result);
+    return $result;
+}
+
+//创建当前日期的文件夹
+function creat_file_date($dir){
+    $today=date('Ymd',time());
+    if(!file_exists($dir.$today)){
+        mkdir($dir.$today);
+    }
+    return $dir.$today;
+}
+
+//创建文件夹,创建前先检查是否存在
+function creat_file($dir){
+    if(!file_exists($dir)){
+        mkdir($dir);
+    }
+}
+

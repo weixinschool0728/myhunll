@@ -118,8 +118,8 @@ var obj_contact_qq=document.zhuce.contact_qq;
 var obj_contact_weixin=document.zhuce.contact_weixin;
 var obj_contact_email=document.zhuce.contact_email;
 
-obj_file_touxiang.onchange=function(){check_file_image(this,1);};
-obj_file_shenfenzheng.onchange=function(){check_file_image(this,1);};
+obj_file_touxiang.onchange=function(){check_file_image($(this),$("#span_touxiang"),true);};
+obj_file_shenfenzheng.onchange=function(){check_file_image($(this),$("#span_shenfenzheng"),true);};
 //obj_file_yingyezhizhao.onchange=function(){check_file_image(this,1);};
 obj_radio_fuwuxingshi[0].onclick=function(){radio_select(this);};
 obj_radio_fuwuxingshi[1].onclick=function(){radio_select(this);};
@@ -192,64 +192,7 @@ function city_onchange(index){
 		}
 	}
 
-function check_file_image(obj_file,plan){
-	var obj_span_tx=document.getElementById("span_touxiang");
-	var obj_span_sfz=document.getElementById("span_shenfenzheng");
-	//var obj_span_yyzz=document.getElementById("span_yingyezhizhao");
-	var flag=false;
-	var arr_image=["jpg","jpeg","png","gif",'swf','bmp'];
-	var str_suffix=obj_file.value.substr(obj_file.value.lastIndexOf(".")+1).toLowerCase();
-	for(var i=0;i<arr_image.length;i++){
-		if(str_suffix==arr_image[i]){
-			if(obj_file.name=="file_touxiang"){
-				obj_span_tx.style.cssText="color:#666;";
-				obj_span_tx.innerHTML="&radic;";
-				}
-				else if(obj_file.name=="file_shenfenzheng"){
-					obj_span_sfz.style.cssText="color:#666;";
-					obj_span_sfz.innerHTML="&radic;";
-					}
-				else{
-					//obj_span_yyzz.style.cssText="color:#666;";
-					//obj_span_yyzz.innerHTML="&radic;";
-					}
-			flag=true;
-			break;
-			}
-		}
-	if(flag==false){
-		if(plan==1){
-			alert("文件类型不允许上传，请选择图片格式");
-			if(obj_file.name=="file_touxiang"){
-				obj_span_tx.style.cssText="color:red;";
-				obj_span_tx.innerHTML="格式不匹配，请上传正确的图片格式";
-				}
-				else if(obj_file.name=="file_shenfenzheng"){
-					obj_span_sfz.style.cssText="color:red;";
-					obj_span_sfz.innerHTML="格式不匹配，请上传正确的图片格式";
-					}
-				else{
-					//obj_span_yyzz.style.cssText="color:red;";
-					//obj_span_yyzz.innerHTML="格式不匹配，请上传正确的图片格式";
-					}
-		}
-		else{
-			if(obj_file.name=="file_touxiang"){
-				obj_span_tx.style.cssText="color:red;";
-				obj_span_tx.innerHTML="未上传或格式不匹配，请上传正确的图片格式";
-				}
-				else if(obj_file.name=="file_shenfenzheng"){
-					obj_span_sfz.style.cssText="color:red;";
-					obj_span_sfz.innerHTML="未上传或格式不匹配，请上传正确的图片格式";
-					}
-				else{
-					//obj_span_yyzz.style.cssText="color:red;";
-					//obj_span_yyzz.innerHTML="未上传或格式不匹配，请上传正确的图片格式";
-					}
-			}
-		}
-	return flag;
-	}
+
 function radio_select(obj){
 	var obj_info=document.getElementById("infor_name");
 	obj_info.innerHTML="";
@@ -434,8 +377,8 @@ function check_checkbox(){
 			}
 	}
 function xiayibu_onclick(){
-	var c1=check_file_image(obj_file_touxiang,2);
-	var c2=check_file_image(obj_file_shenfenzheng,2);
+	var c1=check_file_image($(obj_file_touxiang),$("#span_touxiang"),false);
+	var c2=check_file_image($(obj_file_shenfenzheng),$("#span_shenfenzheng"),false);
 	//var c3=check_file_image(obj_file_yingyezhizhao,2);
 	var c4=address_juti_onblur();
 	var c5=contact_qq_onblur();

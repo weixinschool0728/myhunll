@@ -15,8 +15,8 @@ float: left;
 .tr_td1{
 text-align:right;
 margin:10px 0px;
-height:25px;
-line-height:25px;
+height:27px;
+line-height:27px;
 font-size:14px;
 padding-right:30px;;
 width:100px;
@@ -68,4 +68,9 @@ padding:0px 5px;}
 
 span{
     padding-left: 10px;
+}
+
+
+.button_jia{
+    margin-left: 130px;
 }
