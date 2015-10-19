@@ -8,7 +8,15 @@ if(navigator.appName!="Microsoft Internet Explorer"){
 	window.onfocus=start_lunbo;
 	}
 window.onload=function(){
-    lunbochushi();}
+    lunbochushi();
+    $('.shopping_img>img').each(function(i,item){
+        if($(item).height()<191){
+            $(item).css('height','191px');
+            $(item).css('width','auto');
+        }
+    });
+  
+}
 document.getElementById("lunbo_m0").onmouseover=function(){lunbo_icon_over('icon');}
 document.getElementById("lunbo_m0").onmouseout=function(){lunbo_icon_out('icon');}
 document.getElementById("icon_l").onclick=function(){icon_l('icon');}
