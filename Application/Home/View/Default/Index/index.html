@@ -145,7 +145,7 @@
 <div class="shangpindkj_content">
 
     
-<volist name="list" id="vo">    
+<volist name="cehua" id="vo">    
 <div class="shopping">
     <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
 <div class="shopping_title">
@@ -169,16 +169,16 @@
 </div><!--shangpindkj-->
 
 <!--                              策   划  模    块   结         束                                       -->
-<!--                              场   景   模    块   开        始                                        -->
+<!--                              司   仪   模    块   开        始                                        -->
 
 
 <a id="a_gj_2"></a>
 <div class="shangpindkj">
-<div class="shangpindkj_title"><a href="#">布置</a></div>
+<div class="shangpindkj_title"><a href="#">司仪</a></div>
 <div class="shangpindkj_content">
 
     
-<volist name="list" id="vo">    
+<volist name="siyi" id="vo">    
 <div class="shopping">
     <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
 <div class="shopping_title">
@@ -200,587 +200,239 @@
 </div><!--shangpindkj_content-->
 <div class="shangpin_foot"><a href="#" target="_blank">更多策划请点击</a></div>
 </div><!--shangpindkj-->
-<!--                              场   景  模    块   结         束                                       -->
-<!--                              摄  像  师  模    块   开        始                                        -->
+
+<!--                              司   仪 模    块   结         束                                       -->
+<!--                              布   置   模    块   开        始                                        -->
+
+
 <a id="a_gj_3"></a>
+<div class="shangpindkj">
+<div class="shangpindkj_title"><a href="#">布置</a></div>
+<div class="shangpindkj_content">
+
+    
+<volist name="buzhi" id="vo">    
+<div class="shopping">
+    <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
+<div class="shopping_title">
+<div class="shopping_title_name">商品</div>
+<a href="#"><{$vo['goods_name']}></a></div>
+<div class="shopping_tr2">
+<div class="shopping_title_name"><{$vo['cat_name']}></div>
+<a href="#"><{$vo['user_name']}></a>
+<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div><{$vo['area']|str_replace='省'.$a,' ',###|str_replace='市'.$a,' ',###}></div></div>
+</div><!--第二行信息-->
+<div class="shopping_pricepj">
+<div class="shopping_price">&yen;&nbsp;<{$vo['price']}></div>
+<div class="shopping_pjrenshu"><a href="#"><{$vo['comment_number']}>人评价</a></div>
+<div class="shopping_pingjia"></div>
+</div>
+</div><!--商品1-->
+</volist>
+
+</div><!--shangpindkj_content-->
+<div class="shangpin_foot"><a href="#" target="_blank">更多策划请点击</a></div>
+</div><!--shangpindkj-->
+
+<!--                              布  置  模    块   结         束                                       -->
+<!--                              摄  像  师  模    块   开        始                                        -->
+<a id="a_gj_4"></a>
 <div class="shangpindkj">
 <div class="shangpindkj_title"><a href="#">摄像师</a></div>
 <div class="shangpindkj_content">
+    
+<volist name="shexiang" id="vo">    
 <div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
+    <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
 <div class="shopping_title">
 <div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
+<a href="#"><{$vo['goods_name']}></a></div>
 <div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
+<div class="shopping_title_name"><{$vo['cat_name']}></div>
+<a href="#"><{$vo['user_name']}></a>
+<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div><{$vo['area']|str_replace='省'.$a,' ',###|str_replace='市'.$a,' ',###}></div></div>
 </div><!--第二行信息-->
 <div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
+<div class="shopping_price">&yen;&nbsp;<{$vo['price']}></div>
+<div class="shopping_pjrenshu"><a href="#"><{$vo['comment_number']}>人评价</a></div>
 <div class="shopping_pingjia"></div>
 </div>
 </div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-</div><!--shangpindkj_content-->
-<div class="shangpin_foot"><a href="#" target="_blank">更多摄像师请点击</a></div>
-</div><!--shangpindkj-->
-<!--                              摄像师  模    块   结         束    -->
-<!--                              摄影师  模    块   开         始                                        -->
-<a  id="a_gj_4"></a>
-<div class="shangpindkj">
-<div class="shangpindkj_title"><a href="#">摄影师</a></div>
-<div class="shangpindkj_content">
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
+</volist>
+    
 </div><!--shangpindkj_content-->
 <div class="shangpin_foot"><a href="#" target="_blank">更多摄影师请点击</a></div>
 </div><!--shangpindkj-->
+
+<!--                              摄  像  师  模    块   结         束                                       -->
+<!--                              摄  影  师  模    块   开        始                                        -->
+<a id="a_gj_5"></a>
+<div class="shangpindkj">
+<div class="shangpindkj_title"><a href="#">摄像师</a></div>
+<div class="shangpindkj_content">
+    
+<volist name="sheying" id="vo">    
+<div class="shopping">
+    <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
+<div class="shopping_title">
+<div class="shopping_title_name">商品</div>
+<a href="#"><{$vo['goods_name']}></a></div>
+<div class="shopping_tr2">
+<div class="shopping_title_name"><{$vo['cat_name']}></div>
+<a href="#"><{$vo['user_name']}></a>
+<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div><{$vo['area']|str_replace='省'.$a,' ',###|str_replace='市'.$a,' ',###}></div></div>
+</div><!--第二行信息-->
+<div class="shopping_pricepj">
+<div class="shopping_price">&yen;&nbsp;<{$vo['price']}></div>
+<div class="shopping_pjrenshu"><a href="#"><{$vo['comment_number']}>人评价</a></div>
+<div class="shopping_pingjia"></div>
+</div>
+</div><!--商品1-->
+</volist>
+    
+</div><!--shangpindkj_content-->
+<div class="shangpin_foot"><a href="#" target="_blank">更多摄影师请点击</a></div>
+</div><!--shangpindkj-->
+
 <!--                              摄影师  模    块   结         束    -->
 <!--                              跟妆师  模    块   开         始                                        -->
-<a  id="a_gj_5"></a>
+<a  id="a_gj_6"></a>
 <div class="shangpindkj">
 <div class="shangpindkj_title"><a href="#">跟妆师</a></div>
 <div class="shangpindkj_content">
+<volist name="genzhuang" id="vo">    
 <div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
+    <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
 <div class="shopping_title">
 <div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
+<a href="#"><{$vo['goods_name']}></a></div>
 <div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
+<div class="shopping_title_name"><{$vo['cat_name']}></div>
+<a href="#"><{$vo['user_name']}></a>
+<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div><{$vo['area']|str_replace='省'.$a,' ',###|str_replace='市'.$a,' ',###}></div></div>
 </div><!--第二行信息-->
 <div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
+<div class="shopping_price">&yen;&nbsp;<{$vo['price']}></div>
+<div class="shopping_pjrenshu"><a href="#"><{$vo['comment_number']}>人评价</a></div>
 <div class="shopping_pingjia"></div>
 </div>
 </div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
+</volist>
+    
 </div><!--shangpindkj_content-->
-<div class="shangpin_foot"><a href="#" target="_blank">更多跟妆师请点击</a></div>
+<div class="shangpin_foot"><a href="#" target="_blank">更多跟妆请点击</a></div>
 </div><!--shangpindkj-->
-<!--                              跟妆师  模    块   结         束    -->
+
+<!--                              跟妆师   模    块   结         束    -->
 <!--                              车队  模    块   开         始                                        -->
-<a  id="a_gj_6"></a>
-<div class="shangpindkj">
-<div class="shangpindkj_title"><a href="#">车队</a></div>
-<div class="shangpindkj_content">
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-</div><!--shangpindkj_content-->
-<div class="shangpin_foot"><a href="#" target="_blank">更多车队请点击</a></div>
-</div><!--shangpindkj-->
-<!--                              车队  模    块   结         束    -->
-<!--                              演艺  模    块   开         始                                        -->
 <a  id="a_gj_7"></a>
+<div class="shangpindkj">
+<div class="shangpindkj_title"><a href="#">跟妆师</a></div>
+<div class="shangpindkj_content">
+<volist name="chedui" id="vo">    
+<div class="shopping">
+    <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
+<div class="shopping_title">
+<div class="shopping_title_name">商品</div>
+<a href="#"><{$vo['goods_name']}></a></div>
+<div class="shopping_tr2">
+<div class="shopping_title_name"><{$vo['cat_name']}></div>
+<a href="#"><{$vo['user_name']}></a>
+<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div><{$vo['area']|str_replace='省'.$a,' ',###|str_replace='市'.$a,' ',###}></div></div>
+</div><!--第二行信息-->
+<div class="shopping_pricepj">
+<div class="shopping_price">&yen;&nbsp;<{$vo['price']}></div>
+<div class="shopping_pjrenshu"><a href="#"><{$vo['comment_number']}>人评价</a></div>
+<div class="shopping_pingjia"></div>
+</div>
+</div><!--商品1-->
+</volist>
+    
+</div><!--shangpindkj_content-->
+<div class="shangpin_foot"><a href="#" target="_blank">更多跟妆请点击</a></div>
+</div><!--shangpindkj-->
+
+<!--                              车队  模    块   结         束    -->
+<!--                              演艺  模    块   开         始      -->
+<a  id="a_gj_8"></a>
 <div class="shangpindkj">
 <div class="shangpindkj_title"><a href="#">演艺</a></div>
 <div class="shangpindkj_content">
+<volist name="yanyi" id="vo">    
 <div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
+    <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
 <div class="shopping_title">
 <div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
+<a href="#"><{$vo['goods_name']}></a></div>
 <div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
+<div class="shopping_title_name"><{$vo['cat_name']}></div>
+<a href="#"><{$vo['user_name']}></a>
+<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div><{$vo['area']|str_replace='省'.$a,' ',###|str_replace='市'.$a,' ',###}></div></div>
 </div><!--第二行信息-->
 <div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
+<div class="shopping_price">&yen;&nbsp;<{$vo['price']}></div>
+<div class="shopping_pjrenshu"><a href="#"><{$vo['comment_number']}>人评价</a></div>
 <div class="shopping_pingjia"></div>
 </div>
 </div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
+</volist>
+    
 </div><!--shangpindkj_content-->
 <div class="shangpin_foot"><a href="#" target="_blank">更多演艺请点击</a></div>
 </div><!--shangpindkj-->
 <!--                              演艺  模    块   结         束    -->
 <!--                              舞美  模    块   开         始                                        -->
-<a id="a_gj_8"></a>
+<a id="a_gj_9"></a>
 <div class="shangpindkj">
 <div class="shangpindkj_title"><a href="#">舞美</a></div>
 <div class="shangpindkj_content">
+<volist name="wumei" id="vo">    
 <div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
+    <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
 <div class="shopping_title">
 <div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
+<a href="#"><{$vo['goods_name']}></a></div>
 <div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
+<div class="shopping_title_name"><{$vo['cat_name']}></div>
+<a href="#"><{$vo['user_name']}></a>
+<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div><{$vo['area']|str_replace='省'.$a,' ',###|str_replace='市'.$a,' ',###}></div></div>
 </div><!--第二行信息-->
 <div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
+<div class="shopping_price">&yen;&nbsp;<{$vo['price']}></div>
+<div class="shopping_pjrenshu"><a href="#"><{$vo['comment_number']}>人评价</a></div>
 <div class="shopping_pingjia"></div>
 </div>
 </div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
+</volist>
+    
 </div><!--shangpindkj_content-->
 <div class="shangpin_foot"><a href="#" target="_blank">更多舞美请点击</a></div>
 </div><!--shangpindkj-->
 <!--                              舞美  模    块   结         束    -->
-<!--                              囍铺  模    块   开         始                                        -->
-<a  id="a_gj_9"></a>
-<div class="shangpindkj">
-<div class="shangpindkj_title"><a href="#">囍铺</a></div>
-<div class="shangpindkj_content">
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-</div><!--shangpindkj_content-->
-<div class="shangpin_foot"><a href="#" target="_blank">更多婚礼用品请点击</a></div>
-</div><!--shangpindkj-->
-<!--                              囍铺  模    块   结         束    -->
 <!--                              酒店  模    块   开         始                                        -->
 <a  id="a_gj_10"></a>
 <div class="shangpindkj">
 <div class="shangpindkj_title"><a href="#">酒店</a></div>
 <div class="shangpindkj_content">
+<volist name="jiudian" id="vo">    
 <div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
+    <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
 <div class="shopping_title">
 <div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
+<a href="#"><{$vo['goods_name']}></a></div>
 <div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
+<div class="shopping_title_name"><{$vo['cat_name']}></div>
+<a href="#"><{$vo['user_name']}></a>
+<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div><{$vo['area']|str_replace='省'.$a,' ',###|str_replace='市'.$a,' ',###}></div></div>
 </div><!--第二行信息-->
 <div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
+<div class="shopping_price">&yen;&nbsp;<{$vo['price']}></div>
+<div class="shopping_pjrenshu"><a href="#"><{$vo['comment_number']}>人评价</a></div>
 <div class="shopping_pingjia"></div>
 </div>
 </div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
-<div class="shopping">
-<div class="shopping_img"><img src="__PUBLIC_HOME__/Images/index/designers/aiqing.jpg"/></div>
-<div class="shopping_title">
-<div class="shopping_title_name">商品</div>
-<a href="#">爱情的颜色</a></div>
-<div class="shopping_tr2">
-<div class="shopping_title_name">策划师</div>
-<a href="#">汤克嘉</a>
-<div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div>湖南 长沙 天心区</div></div>
-</div><!--第二行信息-->
-<div class="shopping_pricepj">
-<div class="shopping_price">&yen;&nbsp;400</div>
-<div class="shopping_pjrenshu"><a href="#">300人评价</a></div>
-<div class="shopping_pingjia"></div>
-</div>
-</div><!--商品1-->
+</volist>
+    
 </div><!--shangpindkj_content-->
 <div class="shangpin_foot"><a href="#" target="_blank">更多酒店请点击</a></div>
 </div><!--shangpindkj-->
@@ -797,14 +449,14 @@
 <div class="gj_l" id="gj_l">
 <ul>
 <li><a class="a_gj_1" onclick="click_miaodian(this)" id="gj_l_1" onMouseOver="a_mouse(this)" onMouseOut="a_out(this)">策划</a></li>
-<li><a class="a_gj_2" onclick="click_miaodian(this)" id="gj_l_2" onMouseOver="a_mouse(this)" onMouseOut="a_out(this)">布置</a></li>
-<li><a class="a_gj_3" onclick="click_miaodian(this)" id="gj_l_3" onMouseOver="a_mouse(this)" onMouseOut="a_out(this)">摄像</a></li>
-<li><a class="a_gj_4" onclick="click_miaodian(this)" id="gj_l_4" onMouseOver="a_mouse(this)" onMouseOut="a_out(this)">摄影</a></li>
-<li><a class="a_gj_5" onclick="click_miaodian(this)" id="gj_l_5" onMouseOver="a_mouse(this)" onMouseOut="a_out(this)">跟妆</a></li>
-<li><a class="a_gj_6" onclick="click_miaodian(this)" id="gj_l_6" onMouseOver="a_mouse(this)" onMouseOut="a_out(this)">车队</a></li>
-<li><a class="a_gj_7" onclick="click_miaodian(this)" id="gj_l_7" onMouseOver="a_mouse(this)" onMouseOut="a_out(this)">演艺</a></li>
-<li><a class="a_gj_8" onclick="click_miaodian(this)" id="gj_l_8" onMouseOver="a_mouse(this)" onMouseOut="a_out(this)">舞美</a></li>
-<li><a class="a_gj_9" onclick="click_miaodian(this)" id="gj_l_9" onMouseOver="a_mouse(this)" onMouseOut="a_out(this)">喜铺</a></li>
+<li><a class="a_gj_2" onclick="click_miaodian(this)" id="gj_l_2" onMouseOver="a_mouse(this)" onMouseOut="a_out(this)">司仪</a></li>
+<li><a class="a_gj_3" onclick="click_miaodian(this)" id="gj_l_3" onMouseOver="a_mouse(this)" onMouseOut="a_out(this)">布置</a></li>
+<li><a class="a_gj_4" onclick="click_miaodian(this)" id="gj_l_4" onMouseOver="a_mouse(this)" onMouseOut="a_out(this)">摄像</a></li>
+<li><a class="a_gj_5" onclick="click_miaodian(this)" id="gj_l_5" onMouseOver="a_mouse(this)" onMouseOut="a_out(this)">摄影</a></li>
+<li><a class="a_gj_6" onclick="click_miaodian(this)" id="gj_l_6" onMouseOver="a_mouse(this)" onMouseOut="a_out(this)">跟妆</a></li>
+<li><a class="a_gj_7" onclick="click_miaodian(this)" id="gj_l_7" onMouseOver="a_mouse(this)" onMouseOut="a_out(this)">车队</a></li>
+<li><a class="a_gj_8" onclick="click_miaodian(this)" id="gj_l_8" onMouseOver="a_mouse(this)" onMouseOut="a_out(this)">演艺</a></li>
+<li><a class="a_gj_9" onclick="click_miaodian(this)" id="gj_l_9" onMouseOver="a_mouse(this)" onMouseOut="a_out(this)">舞美</a></li>
 <li><a class="a_gj_10" onclick="click_miaodian(this)" id="gj_l_10" onMouseOver="a_mouse(this)" onMouseOut="a_out(this)">酒店</a></li>
 </ul>
 </div><!--左侧挂件1-->
