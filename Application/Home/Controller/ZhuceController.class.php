@@ -103,7 +103,7 @@ class ZhuceController extends FontEndController {
     public function zhuce4_check(){
         //如果已经是婚礼人了  直接跳过
         if($_SESSION['huiyuan']['shopman_id']==='1'){
-            header("location:". U("Member/hunliren"));
+            header("location:". U("Member/hunlirenshangjiaxinxi"));
             exit();
         }
         //获取上传文件信息
@@ -183,7 +183,7 @@ class ZhuceController extends FontEndController {
         $result=$usersmodel->where("user_id={$user_id}")->save($row);
         if($result!==false){
             $_SESSION['huiyuan']['shopman_id']='1';
-            header("location:". U("Member/hunliren"));
+            header("location:". U("Member/hunlirenshangjiaxinxi"));
         }else{
             $this->error('更新数据库失败');
             exit();
