@@ -9,22 +9,37 @@
 <div class="box_l">
 <div class="box_l_menu">
 <div class="box_l_menu_tr">
-<div class="menu_tr_head">策划师</div>
+<div class="menu_tr_head"><{$cat_name}></div>
 <div class="jiantou">&gt;</div>
 </div>
 <div class="box_l_menu_tr">
-<div class="menu_tr_title">分类&nbsp;:</div>
+<div class="menu_tr_title">性别&nbsp;:</div>
 <ul class="menu_tr_ul">
 <li><a href="#">男性</a></li>
 <li><a href="#">女性</a></li>
-<li><a href="#">中式</a></li>
-<li><a href="#">西式</a></li>
-<li><a href="#">户外</a></li>
-<li><a href="#">酒店</a></li>
-<li><a href="#">教堂</a></li>
-<li><a href="#">个性定制</a></li>
-<li><a href="#">0-3年经验</a></li>
-<li><a href="#">3年以上经验</a></li>
+<li style="padding: 2px 4px;background-color: #00FFDB;">形式</li>
+<li><a href="#">团队</a></li>
+<li><a href="#">个人</a></li>
+</ul>
+</div>
+    <div class="box_l_menu_tr" style="border-bottom: none;">
+<ul class="menu_tr_ul">
+<volist name="arr_shuxing1" id="vo">
+    <li style="padding: 2px 4px;background-color: #00FFDB;"><{$key}> :</li>
+    <volist name="vo" id="value">
+<li><a href="#"><{$value}></a></li>
+    </volist>
+</volist>
+</ul>
+</div>
+        <div class="box_l_menu_tr">
+<ul class="menu_tr_ul">
+<volist name="arr_shuxing2" id="vo">
+    <li style="padding: 2px 4px;background-color: #00FFDB;"><{$key}> :</li>
+    <volist name="vo" id="value">
+<li><a href="#"><{$value}></a></li>
+    </volist>
+</volist>
 </ul>
 </div>
 <div class="box_l_menu_tr">

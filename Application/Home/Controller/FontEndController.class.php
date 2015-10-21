@@ -9,8 +9,8 @@ class FontEndController extends Controller {
     function __construct() {
         parent::__construct();
         //权限判断 数组内必须首字母大写
-        $nologin = array('Index', "Zhuce",'Login');
-        if (!in_array(CONTROLLER_NAME, $nologin)) {
+        $login = array('Member');
+        if (in_array(CONTROLLER_NAME, $login)) {
             if (!isset($_SESSION['huiyuan']) || $_SESSION['huiyuan'] == '') {
                 $_SESSION['ref']=CONTROLLER_NAME.'/'.ACTION_NAME;
                 header("location:". U("Login/index"));
