@@ -3,7 +3,7 @@ namespace Home\Controller;
 use Home\Controller;
 class IndexController extends FontEndController {
     public function index(){
-        header("content-type:text/html;charset=utf-8");   
+        header("content-type:text/html;charset=utf-8");  
         header ( " Expires: Mon, 26 Jul 1970 05:00:00 GMT " );
         header ( " Last-Modified:" . gmdate ( " D, d M Y H:i:s " ). "GMT " );
         $this->assign("title","婚啦啦");
@@ -23,19 +23,19 @@ class IndexController extends FontEndController {
 
         
         //获取布置类最新的八个商品信息
-        $buzhi=$goodsmodel->table('m_category t1,m_goods t2,m_users t3')->where("t2.cat_id=7 and t2.is_delete=0 and t2.cat_id=t1.cat_id and t2.user_id=t3.user_id")->limit(8)->order('t2.last_update desc')->field('t2.goods_id,t2.area,t2.user_id,t2.goods_name,t2.price,t2.yuan_price,t2.goods_img,t2.comment_number,t1.cat_name,t3.user_name')->select();
+        $buzhi=$goodsmodel->table('m_category t1,m_goods t2,m_users t3')->where("t2.cat_id=3 and t2.is_delete=0 and t2.cat_id=t1.cat_id and t2.user_id=t3.user_id")->limit(8)->order('t2.last_update desc')->field('t2.goods_id,t2.area,t2.user_id,t2.goods_name,t2.price,t2.yuan_price,t2.goods_img,t2.comment_number,t1.cat_name,t3.user_name')->select();
         $this->assign('buzhi',$buzhi);
         $this->assign('a','|');
 
         
         //获取摄像类最新的八个商品信息
-        $shexiang=$goodsmodel->table('m_category t1,m_goods t2,m_users t3')->where("t2.cat_id=3 and t2.is_delete=0 and t2.cat_id=t1.cat_id and t2.user_id=t3.user_id")->limit(8)->order('t2.last_update desc')->field('t2.goods_id,t2.area,t2.user_id,t2.goods_name,t2.price,t2.yuan_price,t2.goods_img,t2.comment_number,t1.cat_name,t3.user_name')->select();
+        $shexiang=$goodsmodel->table('m_category t1,m_goods t2,m_users t3')->where("t2.cat_id=4 and t2.is_delete=0 and t2.cat_id=t1.cat_id and t2.user_id=t3.user_id")->limit(8)->order('t2.last_update desc')->field('t2.goods_id,t2.area,t2.user_id,t2.goods_name,t2.price,t2.yuan_price,t2.goods_img,t2.comment_number,t1.cat_name,t3.user_name')->select();
         $this->assign('shexiang',$shexiang);
         $this->assign('a','|');
 
         
         //获取摄影类最新的八个商品信息
-        $sheying=$goodsmodel->table('m_category t1,m_goods t2,m_users t3')->where("t2.cat_id=4 and t2.is_delete=0 and t2.cat_id=t1.cat_id and t2.user_id=t3.user_id")->limit(8)->order('t2.last_update desc')->field('t2.goods_id,t2.area,t2.user_id,t2.goods_name,t2.price,t2.yuan_price,t2.goods_img,t2.comment_number,t1.cat_name,t3.user_name')->select();
+        $sheying=$goodsmodel->table('m_category t1,m_goods t2,m_users t3')->where("t2.cat_id=5 and t2.is_delete=0 and t2.cat_id=t1.cat_id and t2.user_id=t3.user_id")->limit(8)->order('t2.last_update desc')->field('t2.goods_id,t2.area,t2.user_id,t2.goods_name,t2.price,t2.yuan_price,t2.goods_img,t2.comment_number,t1.cat_name,t3.user_name')->select();
         $this->assign('sheying',$sheying);
         $this->assign('a','|');
 
@@ -47,7 +47,7 @@ class IndexController extends FontEndController {
 
         
         //获取车队类最新的八个商品信息
-        $chedui=$goodsmodel->table('m_category t1,m_goods t2,m_users t3')->where("t2.cat_id=5 and t2.is_delete=0 and t2.cat_id=t1.cat_id and t2.user_id=t3.user_id")->limit(8)->order('t2.last_update desc')->field('t2.goods_id,t2.area,t2.user_id,t2.goods_name,t2.price,t2.yuan_price,t2.goods_img,t2.comment_number,t1.cat_name,t3.user_name')->select();
+        $chedui=$goodsmodel->table('m_category t1,m_goods t2,m_users t3')->where("t2.cat_id=7 and t2.is_delete=0 and t2.cat_id=t1.cat_id and t2.user_id=t3.user_id")->limit(8)->order('t2.last_update desc')->field('t2.goods_id,t2.area,t2.user_id,t2.goods_name,t2.price,t2.yuan_price,t2.goods_img,t2.comment_number,t1.cat_name,t3.user_name')->select();
         $this->assign('chedui',$chedui);
         $this->assign('a','|');
 
@@ -58,7 +58,7 @@ class IndexController extends FontEndController {
         $this->assign('a','|');
 
         
-        //获取舞美类最新的八个商品信息
+        //获取婚纱租赁类最新的八个商品信息
         $wumei=$goodsmodel->table('m_category t1,m_goods t2,m_users t3')->where("t2.cat_id=9 and t2.is_delete=0 and t2.cat_id=t1.cat_id and t2.user_id=t3.user_id")->limit(8)->order('t2.last_update desc')->field('t2.goods_id,t2.area,t2.user_id,t2.goods_name,t2.price,t2.yuan_price,t2.goods_img,t2.comment_number,t1.cat_name,t3.user_name')->select();
         $this->assign('wumei',$wumei);
         $this->assign('a','|');
