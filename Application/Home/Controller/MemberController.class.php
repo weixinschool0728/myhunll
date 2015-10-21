@@ -7,7 +7,6 @@ class MemberController extends FontEndController {
         $this->display('index');
     }
     public function  hunlirenshangjiaxinxi(){
-        unset($_SESSION['ref']);
         if($_SESSION['huiyuan']['shopman_id']==='0'){
             $_SESSION['ref']=CONTROLLER_NAME.'/'.ACTION_NAME;
             header("location:". U("Zhuce/zhuce4"));
