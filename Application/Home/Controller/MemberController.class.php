@@ -181,11 +181,7 @@ class MemberController extends FontEndController {
         $goodsmodel=D('Goods');
         $user_id=$_SESSION['huiyuan']['user_id'];
         $count=$goodsmodel->where("user_id={$user_id}")->count();
-        $page=new \Think\Page($count,5);//创建一个page类  参数1是数据总条数，参数2是一页显示的条数
-        $page->setConfig('header','<span class="rows">共 %TOTAL_PAGE% 页</span>');
-        $page->setConfig('prev','<上一页');
-        $page->setConfig('next','下一页>');
-        $page->setConfig('theme', '%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% %HEADER%');
+        $page=$this->get_page($count, 5);
         $page_foot=$page->show();//显示页脚信息
         $list=$goodsmodel->where("user_id={$user_id}")->limit($page->firstRow.','.$page->listRows)->select();
         $this->assign('list',$list);

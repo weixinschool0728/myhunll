@@ -22,6 +22,13 @@ class CategoryController extends FontEndController {
             $this->assign("arr_shuxing1",$arr_shuxing[0]);//给模板里面的$arr_shuxing赋值
             $this->assign("arr_shuxing2",$arr_shuxing[1]);//给模板里面的$arr_shuxing赋值
             
+            $goodsmodel=D('Goods');
+            $count=$goodsmodel->where("cat_id={$cat_id}")->count();
+            $page=$this->get_page($count, 100);
+            $page_foot=$page->show();//显示页脚信息
+            $list=$goodsmodel->table('m_goods t1,m_users t2')->where("t1.cat_id={$cat_id} and t1.user_id=t2.user_id and t1.is_delete=0")->limit($page->firstRow.','.$page->listRows)->field('t1.goods_id,t1.area,t1.user_id,t1.goods_name,t1.price,t1.yuan_price,t1.goods_img,t1.comment_number,t2.user_name')->order('t1.last_update desc')->select();
+            $this->assign('list',$list);
+            $this->assign('page_foot',$page_foot);
 
         
             $this->display(index);

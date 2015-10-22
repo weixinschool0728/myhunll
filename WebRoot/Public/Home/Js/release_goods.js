@@ -35,8 +35,10 @@ $('input[name=radio_sex]:eq(0)').attr('checked','checked');
         'anchor', 'link', 'unlink', '|', 'about'
 ],
             uploadJson:"/Home/Member/editor_check",
-            allowMediaUpload:true,
-            allowFileManager : false
+            allowMediaUpload:false,//true时显示视音频上传按钮。
+            allowFlashUpload:false,//true时显示Flash上传按钮。
+            allowFileUpload:false,//true时显示文件上传按钮。
+            allowFileManager:false//true时显示浏览远程服务器按钮。
         };
         editor = K.create('textarea[name="content"]',options);
     });
