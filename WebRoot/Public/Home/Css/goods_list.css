@@ -61,28 +61,3 @@ float: left;
     height: 100px;
 }
 
-.page_foot{
-    margin-top: 20px;
-    background-color: #f6f6f6;
-}
-.page_foot div{
-    text-align: center;
-    height: 30px;
-    line-height: 30px;
-    font-size: 14px;
-}
-.page_foot .num,.page_foot .current{
-    padding: 4px 8px;
-    border: 1px solid #777;
-    margin-left: 3px;
-}
-
-.page_foot .current{
-    color: #00FFDB;
-}
-
-.page_foot .next,.page_foot .prev{
-    border: 1px solid #777;
-    padding: 4px 8px;
-    margin: 0px 5px;
-}
