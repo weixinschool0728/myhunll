@@ -26,7 +26,7 @@ document.getElementById("lunbo_mx0").onmouseover=function(){lunbo_icon_over('ico
 document.getElementById("lunbo_mx0").onmouseout=function(){lunbo_icon_out('iconx');}
 document.getElementById("iconx_l").onclick=function(){icon_l('iconx');}
 document.getElementById("iconx_r").onclick=function(){icon_r('iconx');}
-}
+
 function start_lunbo(){
 	if(lunbobz){
                 clearInterval(time1);
@@ -158,9 +158,6 @@ function lunbox_l(){ var timesxl=setInterval(function(){
 		}
     },30); }
 
-window.onscroll=function(){
-	gj_l_onscroll();
-	}
 function gj_l_onscroll(){
 	var b=document.documentElement.scrollTop||document.body.scrollTop;
 	var a=document.getElementById("a_gj_1").offsetTop,a1=document.getElementById("a_gj_11").offsetTop;
@@ -191,6 +188,13 @@ function gj_l_onscroll(){
 		}		
 	}
 	}
+
+
+        
+        window.onscroll=function(){
+	gj_l_onscroll();
+	}
+};
 function a_mouse(obj){
 	obj.style.cssText="background-color:#03BA8A;color:#FFFFFF;";
 	}
