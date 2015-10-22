@@ -1,4 +1,5 @@
 // JavaScript Document
+window.onload=function(){
 var n,nx,t1,t2,lunbobz;//t是需要轮播图片张数,n记录一张图片走完
 var time1,time2;
 var obj_lunbo_m=document.getElementById("lunbo_m"),obj_lunbo_m_gd=document.getElementById("lunbo_m_gd"),obj_lunbo_mx=document.getElementById("lunbo_mx"),obj_lunbo_mx_gd=document.getElementById("lunbo_mx_gd");
@@ -7,7 +8,7 @@ if(navigator.appName!="Microsoft Internet Explorer"){
 	window.onblur=stop_lunbo;
 	window.onfocus=start_lunbo;
 	}
-window.onload=function(){
+
     lunbochushi();
     $('.shopping_img>img').each(function(i,item){
         if($(item).height()<191){
@@ -16,7 +17,7 @@ window.onload=function(){
         }
     });
   
-}
+
 document.getElementById("lunbo_m0").onmouseover=function(){lunbo_icon_over('icon');}
 document.getElementById("lunbo_m0").onmouseout=function(){lunbo_icon_out('icon');}
 document.getElementById("icon_l").onclick=function(){icon_l('icon');}
@@ -238,3 +239,4 @@ function click_miaodian(obj){
 								   },1);
 	return false;
 	}
+        }
