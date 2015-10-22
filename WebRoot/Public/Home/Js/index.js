@@ -26,6 +26,7 @@ document.getElementById("lunbo_mx0").onmouseover=function(){lunbo_icon_over('ico
 document.getElementById("lunbo_mx0").onmouseout=function(){lunbo_icon_out('iconx');}
 document.getElementById("iconx_l").onclick=function(){icon_l('iconx');}
 document.getElementById("iconx_r").onclick=function(){icon_r('iconx');}
+}
 function start_lunbo(){
 	if(lunbobz){
                 clearInterval(time1);
@@ -239,4 +240,3 @@ function click_miaodian(obj){
 								   },1);
 	return false;
 	}
-        }
