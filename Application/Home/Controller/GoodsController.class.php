@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
-use Think\Controller;
-class GoodsController extends Controller {
+use Home\Controller;
+class GoodsController extends FontEndController {
     public function index(){
         header("content-type:text/html;charset=utf-8");
         $goods_id=$_GET['goods_id'];
