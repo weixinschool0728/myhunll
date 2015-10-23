@@ -19,21 +19,25 @@
     //border: 1px solid red;
     float: left;
 }
+.touxiang .xiangtouxiang_ul{
+    text-align: center;
+    margin-left: -10px;
+} 
 .touxiang .xiaotouxiang{
-    width:148px;
-    height: 99px;
-    display: block;
-    float: left;
-    margin-right: 3px;
-    margin-top: 3px;
+    width:102px;
+    display: inline-block;
+    margin-left: 10px;
+    padding-top: 10px;
 }
-.touxiang .xiaotouxiang1{
-    margin-right: 0px;
+.xiaotouxiang a{
+    width: 102px;
+    height: 68px;
+    display: inline-block;
 }
-.touxiang a:hover{
+.xiaotouxiang a:hover{
     border: 1px solid #03BA8A;
-    width:146px;
-    height: 97px;
+    width: 100px;
+    height: 66px;
 }
 .touxiang .datouxiang{
     width: 450px;
@@ -222,7 +226,7 @@
 .other_title .mdj{
     position: absolute;
     top:25px;
-    right:300px;
+    right:290px;
 }
 .other_title .hlljg{
     position: absolute;
@@ -237,7 +241,7 @@
 .other_goods .mdj{
     position: absolute;
     //top:10px;
-    right:300px;
+    right:290px;
 }
 .other_goods .hlljg{
     position: absolute;

@@ -285,7 +285,7 @@ line-height:17px;
 padding:10px 10px 0px 20px;
 }
 .shopping_tr2 .shopping_title_name{margin-top:0px;}
-.shopping_tr2 a{
+.shopping_tr2 span{
 font-size:14px;
 display:inline-block;
 text-overflow:ellipsis;/*超出部分省略号*/

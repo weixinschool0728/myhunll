@@ -147,13 +147,13 @@
     
 <volist name="cehua" id="vo">    
 <div class="shopping">
-    <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
+    <div class="shopping_img"><a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><img src="<{$vo['goods_img']}>"/></a></div>
 <div class="shopping_title">
 <div class="shopping_title_name">商品</div>
-<a href="#"><{$vo['goods_name']}></a></div>
+<a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><{$vo['goods_name']}></a></div>
 <div class="shopping_tr2">
 <div class="shopping_title_name"><{$vo['cat_name']}></div>
-<a href="#"><{$vo['user_name']}></a>
+<{$vo['user_name']}>
 <div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div><{$vo['area']|str_replace='省'.$a,' ',###|str_replace='市'.$a,' ',###}></div></div>
 </div><!--第二行信息-->
 <div class="shopping_pricepj">
@@ -180,13 +180,13 @@
     
 <volist name="siyi" id="vo">    
 <div class="shopping">
-    <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
+    <div class="shopping_img"><a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><img src="<{$vo['goods_img']}>"/></a></div>
 <div class="shopping_title">
 <div class="shopping_title_name">商品</div>
-<a href="#"><{$vo['goods_name']}></a></div>
+<a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><{$vo['goods_name']}></a></div>
 <div class="shopping_tr2">
 <div class="shopping_title_name"><{$vo['cat_name']}></div>
-<a href="#"><{$vo['user_name']}></a>
+<span><{$vo['user_name']}></span>
 <div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div><{$vo['area']|str_replace='省'.$a,' ',###|str_replace='市'.$a,' ',###}></div></div>
 </div><!--第二行信息-->
 <div class="shopping_pricepj">
@@ -213,13 +213,13 @@
     
 <volist name="buzhi" id="vo">    
 <div class="shopping">
-    <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
+    <div class="shopping_img"><a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><img src="<{$vo['goods_img']}>"/></a></div>
 <div class="shopping_title">
 <div class="shopping_title_name">商品</div>
-<a href="#"><{$vo['goods_name']}></a></div>
+<a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><{$vo['goods_name']}></a></div>
 <div class="shopping_tr2">
 <div class="shopping_title_name"><{$vo['cat_name']}></div>
-<a href="#"><{$vo['user_name']}></a>
+<span><{$vo['user_name']}></span>
 <div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div><{$vo['area']|str_replace='省'.$a,' ',###|str_replace='市'.$a,' ',###}></div></div>
 </div><!--第二行信息-->
 <div class="shopping_pricepj">
@@ -243,13 +243,13 @@
     
 <volist name="shexiang" id="vo">    
 <div class="shopping">
-    <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
+    <div class="shopping_img"><a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><img src="<{$vo['goods_img']}>"/></a></div>
 <div class="shopping_title">
 <div class="shopping_title_name">商品</div>
-<a href="#"><{$vo['goods_name']}></a></div>
+<a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><{$vo['goods_name']}></a></div>
 <div class="shopping_tr2">
 <div class="shopping_title_name"><{$vo['cat_name']}></div>
-<a href="#"><{$vo['user_name']}></a>
+<span><{$vo['user_name']}></span>
 <div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div><{$vo['area']|str_replace='省'.$a,' ',###|str_replace='市'.$a,' ',###}></div></div>
 </div><!--第二行信息-->
 <div class="shopping_pricepj">
@@ -273,13 +273,13 @@
     
 <volist name="sheying" id="vo">    
 <div class="shopping">
-    <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
+    <div class="shopping_img"><a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><img src="<{$vo['goods_img']}>"/></a></div>
 <div class="shopping_title">
 <div class="shopping_title_name">商品</div>
-<a href="#"><{$vo['goods_name']}></a></div>
+<a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><{$vo['goods_name']}></a></div>
 <div class="shopping_tr2">
 <div class="shopping_title_name"><{$vo['cat_name']}></div>
-<a href="#"><{$vo['user_name']}></a>
+<span><{$vo['user_name']}></span>
 <div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div><{$vo['area']|str_replace='省'.$a,' ',###|str_replace='市'.$a,' ',###}></div></div>
 </div><!--第二行信息-->
 <div class="shopping_pricepj">
@@ -302,13 +302,13 @@
 <div class="shangpindkj_content">
 <volist name="genzhuang" id="vo">    
 <div class="shopping">
-    <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
+    <div class="shopping_img"><a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><img src="<{$vo['goods_img']}>"/></a></div>
 <div class="shopping_title">
 <div class="shopping_title_name">商品</div>
-<a href="#"><{$vo['goods_name']}></a></div>
+<a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><{$vo['goods_name']}></a></div>
 <div class="shopping_tr2">
 <div class="shopping_title_name"><{$vo['cat_name']}></div>
-<a href="#"><{$vo['user_name']}></a>
+<span><{$vo['user_name']}></span>
 <div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div><{$vo['area']|str_replace='省'.$a,' ',###|str_replace='市'.$a,' ',###}></div></div>
 </div><!--第二行信息-->
 <div class="shopping_pricepj">
@@ -331,13 +331,13 @@
 <div class="shangpindkj_content">
 <volist name="chedui" id="vo">    
 <div class="shopping">
-    <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
+    <div class="shopping_img"><a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><img src="<{$vo['goods_img']}>"/></a></div>
 <div class="shopping_title">
 <div class="shopping_title_name">商品</div>
-<a href="#"><{$vo['goods_name']}></a></div>
+<a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><{$vo['goods_name']}></a></div>
 <div class="shopping_tr2">
 <div class="shopping_title_name"><{$vo['cat_name']}></div>
-<a href="#"><{$vo['user_name']}></a>
+<span><{$vo['user_name']}></span>
 <div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div><{$vo['area']|str_replace='省'.$a,' ',###|str_replace='市'.$a,' ',###}></div></div>
 </div><!--第二行信息-->
 <div class="shopping_pricepj">
@@ -360,13 +360,13 @@
 <div class="shangpindkj_content">
 <volist name="yanyi" id="vo">    
 <div class="shopping">
-    <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
+    <div class="shopping_img"><a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><img src="<{$vo['goods_img']}>"/></a></div>
 <div class="shopping_title">
 <div class="shopping_title_name">商品</div>
-<a href="#"><{$vo['goods_name']}></a></div>
+<a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><{$vo['goods_name']}></a></div>
 <div class="shopping_tr2">
 <div class="shopping_title_name"><{$vo['cat_name']}></div>
-<a href="#"><{$vo['user_name']}></a>
+<span><{$vo['user_name']}></span>
 <div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div><{$vo['area']|str_replace='省'.$a,' ',###|str_replace='市'.$a,' ',###}></div></div>
 </div><!--第二行信息-->
 <div class="shopping_pricepj">
@@ -388,13 +388,13 @@
 <div class="shangpindkj_content">
 <volist name="wumei" id="vo">    
 <div class="shopping">
-    <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
+    <div class="shopping_img"><a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><img src="<{$vo['goods_img']}>"/></a></div>
 <div class="shopping_title">
 <div class="shopping_title_name">商品</div>
-<a href="#"><{$vo['goods_name']}></a></div>
+<a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><{$vo['goods_name']}></a></div>
 <div class="shopping_tr2">
 <div class="shopping_title_name"><{$vo['cat_name']}></div>
-<a href="#"><{$vo['user_name']}></a>
+<span><{$vo['user_name']}></span>
 <div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div><{$vo['area']|str_replace='省'.$a,' ',###|str_replace='市'.$a,' ',###}></div></div>
 </div><!--第二行信息-->
 <div class="shopping_pricepj">
@@ -416,13 +416,13 @@
 <div class="shangpindkj_content">
 <volist name="jiudian" id="vo">    
 <div class="shopping">
-    <div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
+    <div class="shopping_img"><a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><img src="<{$vo['goods_img']}>"/></a></div>
 <div class="shopping_title">
 <div class="shopping_title_name">商品</div>
-<a href="#"><{$vo['goods_name']}></a></div>
+<a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><{$vo['goods_name']}></a></div>
 <div class="shopping_tr2">
 <div class="shopping_title_name"><{$vo['cat_name']}></div>
-<a href="#"><{$vo['user_name']}></a>
+<span><{$vo['user_name']}></span>
 <div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div><{$vo['area']|str_replace='省'.$a,' ',###|str_replace='市'.$a,' ',###}></div></div>
 </div><!--第二行信息-->
 <div class="shopping_pricepj">

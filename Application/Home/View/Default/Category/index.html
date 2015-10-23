@@ -98,13 +98,13 @@
     
     <volist name="list" id="vo">
 <div class="shopping">
-<div class="shopping_img"><img src="<{$vo['goods_img']}>"/></div>
+    <div class="shopping_img"><a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><img src="<{$vo['goods_img']}>"/></a></div>
 <div class="shopping_title">
 <div class="shopping_title_name">商品</div>
-<a href="#"><{$vo['goods_name']}></a></div>
+<a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><{$vo['goods_name']}></a></div>
 <div class="shopping_tr2">
 <div class="shopping_title_name"><{$cat_name}></div>
-<a href="#"><{$vo['user_name']}></a>
+<span><{$vo['user_name']}></span>
 <div class="shopping_didian"><img src="__PUBLIC_HOME__/Images/index/didian.png"  /><div><{$vo['area']|str_replace='省'.$a,' ',###|str_replace='市'.$a,' ',###}></div></div>
 </div><!--第二行信息-->
 <div class="shopping_pricepj">

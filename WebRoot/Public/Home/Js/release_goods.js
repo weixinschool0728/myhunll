@@ -69,8 +69,8 @@ function price_blue(obj,obj_info){
 var i=1;
 function tianjia(obj){
     var str=' <div  class="tr" id="insert_img"><div class="tr_td1"><input type="button" value="删除" class="bt_delete" /></div><input name="file_imgi" type="file" class="tr_td2 input_img1" /><span id="span_touxiang2"></span></div>';
-    if($('input[type=file]').length>4){
-        alert('最多添加5张图片作为商品展示图');
+    if($('input[type=file]').length>3){
+        alert('最多添加4张图片作为商品展示图');
         return false;
     }
     obj.before(str);

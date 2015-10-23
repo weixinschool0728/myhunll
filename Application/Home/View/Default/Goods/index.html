@@ -13,26 +13,26 @@
 <include file='Public/menu'/>
 <div style="width:1200px;margin:20px auto;">
     <div>
-     <div class="titile1">[策划师]爱情的颜色</div>
-     <div class="titile2">给你美丽的爱情颜色</div>
+     <div class="titile1">[<{$goods['cat_name']}>]<{$goods['goods_name']}></div>
+     <div class="titile2"><{$goods['user_name']}></div>
     <div class="touxiang">
-        <img class="datouxiang" src="__PUBLIC_HOME__/Images/goods/aiqing.jpg"/>
-        <a href="javascript:void(0)" class="xiaotouxiang"><img src="__PUBLIC_HOME__/Images/goods/aiqing.jpg"/></a>
-        <a href="javascript:void(0)" class="xiaotouxiang"><img src="__PUBLIC_HOME__/Images/goods/aiqing.jpg"/></a>
-        <a href="javascript:void(0)" class="xiaotouxiang xiaotouxiang1"><img src="__PUBLIC_HOME__/Images/goods/aiqing.jpg"/></a>
-        <a href="javascript:void(0)" class="xiaotouxiang"><img src="__PUBLIC_HOME__/Images/goods/aiqing.jpg"/></a>
-        <a href="javascript:void(0)" class="xiaotouxiang"><img src="__PUBLIC_HOME__/Images/goods/aiqing.jpg"/></a>
-        <a href="javascript:void(0)" class="xiaotouxiang xiaotouxiang1"><img src="__PUBLIC_HOME__/Images/goods/aiqing.jpg"/></a>
+        <img class="datouxiang" src="<{$goods['goods_img']}>"/>
+        <ul class="xiangtouxiang_ul">
+            <li class="xiaotouxiang"><a href="javascript:void(0)" ><img src="<{$goods['goods_img']}>"/></a></li>
+            <volist name="img_qita" id="vo">
+            <li class="xiaotouxiang"><a href="javascript:void(0)"><img src="<{$vo}>" /></a></li>
+            </volist>
+        </ul>   
     </div>
     <div class="info">
         <div class="price">
-            <div class="price1"><div class="span">价格:</div><div class="span1">&yen;&nbsp;<s>1000.00</s></div></div>
-            <div class="price2"><div class="span">婚啦啦价:</div><div class="span2">&yen;&nbsp;600.00</div></div>
+            <div class="price1"><div class="span">价格:</div><div class="span1">&yen;&nbsp;<s><{$goods['yuan_price']}></s></div></div>
+            <div class="price2"><div class="span">婚啦啦价:</div><div class="span2">&yen;&nbsp;<{$goods['price']}></div></div>
         </div>
         <div class="about">
             <div><a href="#">已售：<span>10</span></a></div>
             <div><a href="#"><span>5</span>分</a></div>
-            <div id="pingjia"><a href="#"><span>5</span>人评价</a></div>
+            <div id="pingjia"><a href="#"><span><{$goods['comment_number']}></span>人评价</a></div>
         </div>
         <div class="xzrq">选择日期：  绿色：已选  白色：未选</div>
     <table class="biao" width="500px" style="table-layout: fixed; ">
@@ -136,23 +136,20 @@
      <div class="other">
          <ul>
              <li class="other_title"> <span class="span1">该商家的其它商品</span>
-                 <span class="span2 hlljg">婚啦啦价</span><span class="span2 mdj">门店价</span><span class="span2 ys">已售</span>
+                 <span class="span2 hlljg">婚啦啦价</span><span class="span2 mdj">门 店 价</span><span class="span2 ys">已售</span>
                  </li>
+                 <volist name="goods_qita" id="vo">
              <li class="other_goods"> 
                  <a href="javascript:void(0)" class="other_a">
-                     <span class="span1">[策划师]紫色的爱情</span>
-                 <span class="span2 hlljg">&yen; 800</span><span class="span2 mdj">&yen; 1500</span><span class="span2 ys">200</span>
+                     <span class="span1">[<{$vo['cat_name']}>]<{$vo['goods_name']}></span>
+                 <span class="span2 hlljg">&yen; <{$vo['price']}></span><span class="span2 mdj">&yen; <{$vo['yuan_price']}></span><span class="span2 ys">200</span>
                  </a>
                  </li>
-             <li class="other_goods">
-                 <a href="javascript:void(0)" class="other_a">
-                    <span class="span1">[策划师]紫色的爱情</span>
-                 <span class="span2 hlljg">&yen; 800</span><span class="span2 mdj">&yen; 1500</span><span class="span2 ys">200</span>
-                 </a>
-                </li>  
+                 </volist>
+
          </ul>
      </div>
-    <div class="goodscontent">asfasf</div>
+    <div class="goodscontent"><{$goods['goods_desc']}></div>
 </div>
 
 
