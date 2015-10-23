@@ -11,7 +11,7 @@ class GoodsController extends Controller {
         $img_qita=unserialize($goods['goods_img_qita']);
         $this->assign('img_qita',$img_qita);
         $user_id=$goods['user_id'];
-        $goods_qita=$goodsmodel->table('m_goods t1,m_category t2')->where("t1.cat_id=t2.cat_id and t1.user_id=$user_id")->order('t1.last_update desc')->field('t2.cat_name,t1.goods_name,t1.price,t1.yuan_price')->select();
+        $goods_qita=$goodsmodel->table('m_goods t1,m_category t2')->where("t1.cat_id=t2.cat_id and t1.user_id=$user_id")->order('t1.last_update desc')->field('t2.cat_name,t1.goods_name,t1.price,t1.yuan_price,t1.goods_id')->select();
         $this->assign('goods_qita',$goods_qita);
         $this->display('index');
  

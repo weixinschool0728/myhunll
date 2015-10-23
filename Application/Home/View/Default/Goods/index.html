@@ -140,7 +140,7 @@
                  </li>
                  <volist name="goods_qita" id="vo">
              <li class="other_goods"> 
-                 <a href="javascript:void(0)" class="other_a">
+                 <a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>" class="other_a">
                      <span class="span1">[<{$vo['cat_name']}>]<{$vo['goods_name']}></span>
                  <span class="span2 hlljg">&yen; <{$vo['price']}></span><span class="span2 mdj">&yen; <{$vo['yuan_price']}></span><span class="span2 ys">200</span>
                  </a>
