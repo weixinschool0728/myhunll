@@ -4,7 +4,7 @@ var n,nx,t1,t2,lunbobz;//t是需要轮播图片张数,n记录一张图片走完
 var time1,time2;
 var obj_lunbo_m=document.getElementById("lunbo_m"),obj_lunbo_m_gd=document.getElementById("lunbo_m_gd"),obj_lunbo_mx=document.getElementById("lunbo_mx"),obj_lunbo_mx_gd=document.getElementById("lunbo_mx_gd");
 var body_scrolltop;
-if(navigator.appName!="Microsoft Internet Explorer"){
+if(navigator.appName!=="Microsoft Internet Explorer"){
 	window.onblur=stop_lunbo;
 	window.onfocus=start_lunbo;
 	}
@@ -244,3 +244,10 @@ function click_miaodian(obj){
 								   },1);
 	return false;
 	}
+        
+       $('.shopping').bind('mouseover',function(){
+           $(this).css('border-color','red');
+       });
+       $('.shopping').bind('mouseout',function(){
+           $(this).css('border-color','#DDD');
+       });

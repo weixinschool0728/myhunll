@@ -24,6 +24,12 @@
     float: left;
     position: relative;
 }
+.datouxiang_div{
+    height: 300px;
+}
+.datouxiang{
+    width:450px;
+}
 .datouxiang_fangda{
     position:absolute;
     left:540px;
