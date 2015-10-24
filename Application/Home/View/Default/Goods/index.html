@@ -136,9 +136,10 @@
      </div>
      <div class="other">
          <ul>
-             <li class="other_title"> <span class="span1">该商家的其它商品</span>
+             <li class="other_title" id="li_title"> <span class="span1">该商家的其它商品</span>
                  <span class="span2 hlljg">婚啦啦价</span><span class="span2 mdj">门 店 价</span><span class="span2 ys">已售</span>
                  </li>
+                 <div id="div_li">
                  <volist name="goods_qita" id="vo">
              <li class="other_goods"> 
                  <a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>" class="other_a">
@@ -147,7 +148,7 @@
                  </a>
                  </li>
                  </volist>
-
+                 </div>
          </ul>
          <div class="page_foot"><{$page_foot}></div>
      </div>

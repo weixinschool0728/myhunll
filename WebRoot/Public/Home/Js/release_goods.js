@@ -7,7 +7,7 @@ $('select[name=server_content]').bind('change',function(){sc_change();});
 $(':text[name=title]').bind('focus',function(){text_focus($('#info_title'),'商品标题可以尽量多包含关键字');});
 $(':text[name=title]').bind('blur',function(){text_blue($(this),$('#info_title'));});
 $('input[name=file_img]').bind('change',function(){check_file_image($(this),$('#span_touxiang'),true);;});
-$('#button_jia').bind('click',function(){tianjia($(this));})
+$('#button_jia').bind('click',function(){tianjia($(this));});
 $(':text[name=price]').bind('focus',function(){text_focus($('#info_price'),'填写售价');});
 $(':text[name=price]').bind('blur',function(){price_blue($(this),$('#info_price'));});
 $(':text[name=yuan_price]').bind('focus',function(){text_focus($('#info_yuan_price'),'填写原价');});
