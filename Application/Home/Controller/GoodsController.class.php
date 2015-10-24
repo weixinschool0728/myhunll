@@ -32,17 +32,17 @@ class GoodsController extends FontEndController {
         $page=$this->get_page($count, 5);
         $page_foot=$page->show();//显示页脚信息
         $goods_qita=$goodsmodel->table('m_goods t1,m_category t2')->where("t1.cat_id=t2.cat_id and t1.user_id=$user_id")->limit($page->firstRow.','.$page->listRows)->order('t1.last_update desc')->field('t2.cat_name,t1.goods_name,t1.price,t1.yuan_price,t1.goods_id')->select();
-        foreach ($goods_qita as $value){
-            $li.=<<<HTML
-                     <li class="other_goods"> 
-                 <a href="/Home/Goods/index/goods_id/{$value['goods_id']}.html" class="other_a">
-                     <span class="span1">[{$value['cat_name']}]{$value['goods_name']}</span>
-                 <span class="span2 hlljg">&yen; {$value['price']}</span><span class="span2 mdj">&yen; {$value['yuan_price']}</span><span class="span2 ys">200</span>
-                 </a>
-                 </li>
-HTML;
-        }
-        $data['li']=$li;
+        //foreach ($goods_qita as $value){
+            //$li.=<<<HTML
+                     //<li class="other_goods"> 
+                 //<a href="/Home/Goods/index/goods_id/{$value['goods_id']}.html" class="other_a">
+                     //<span class="span1">[{$value['cat_name']}]{$value['goods_name']}</span>
+                 //<span class="span2 hlljg">&yen; {$value['price']}</span><span class="span2 mdj">&yen; {$value['yuan_price']}</span><span class="span2 ys">200</span>
+                 //</a>
+                 //</li>
+//HTML;
+        //}
+        $data['li']=$goods_qita;
         $data['page_foot']=$page_foot;
         $this->ajaxReturn($data);
     }
