@@ -49,7 +49,7 @@ $('body').on('click','.page_foot a',function(event){
             url:url,
             datatype:'json',
             success:function(msg){
-                var str;
+                var str='';
                 $(msg.li).each(function(i,item){
                     str+='<li class="other_goods"> ';
                     str+='<a href="/Home/Goods/index/goods_id/'+item.goods_id+'.html" class="other_a">';
@@ -65,3 +65,19 @@ $('body').on('click','.page_foot a',function(event){
         });
     });
 
+//鼠标放到小头像，大头像变化
+$('.xiaotouxiang img').bind('mouseover',function(){
+    var img_src=$(this).attr('src');
+    $('.datouxiang').attr('src',img_src);
+});
+
+//鼠标放到大头像，再放大图片
+$('.datouxiang').bind('mouseover',function(){
+    var img_src=$(this).attr('src');
+    var img_fangda='<img class="datouxiang_fangda" />';
+    $('.touxiang').after(img_fangda);
+    $('.datouxiang_fangda').attr('src',img_src);
+});
+$('.datouxiang').bind('mouseout',function(){
+    $('.datouxiang_fangda').remove();
+    });
