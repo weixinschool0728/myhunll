@@ -1,7 +1,7 @@
 // JavaScript Document
 
 
-    $('.touxiang>img').each(function(i,item){
+    $('.datouxiang_div>img').each(function(i,item){
         if($(item).height()<300){
             $(item).css('height','300px');
             $(item).css('width','auto');
