@@ -23,18 +23,18 @@
             url:url,
             datatype:'json',
             success:function(msg){
-                var li
+                var str="";
                 $(msg.li).each(function(i,item){
-                    li+='<li class="other_goods"> ';
-                    li+='<a href="/Home/Goods/index/goods_id/'+item.goods_id+'.html" class="other_a">';
-                    li+='<span class="span1">['+item.cat_name+']'+item.goods_name+'</span>';
-                    li+='<span class="span2 hlljg">&yen; '+item.price+'</span><span class="span2 mdj">&yen; '+item.yuan_price+'</span><span class="span2 ys">200</span>';
-                    li+='</a></li>';
+                    str+='<li class="other_goods"> ';
+                    str+='<a href="/Home/Goods/index/goods_id/'+item.goods_id+'.html" class="other_a">';
+                    str+='<span class="span1">['+item.cat_name+']'+item.goods_name+'</span>';
+                    str+='<span class="span2 hlljg">&yen; '+item.price+'</span><span class="span2 mdj">&yen; '+item.yuan_price+'</span><span class="span2 ys">200</span>';
+                    str+='</a></li>';
                 });
                 
                 
                 
-                $('#div_li').html(li);
+                $('#div_li').html(str);
                     $('.page_foot').html(msg.page_foot);
             }
         });
