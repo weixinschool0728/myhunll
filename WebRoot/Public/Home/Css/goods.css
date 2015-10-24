@@ -5,6 +5,9 @@
     font-size: 28px;
     color: #333;
     margin-bottom: 15px;
+    text-overflow:ellipsis;/*超出部分省略号*/
+    white-space: nowrap;/*强制文本一行输出*/
+    display:inline-block;/*强制文本一行输出*/
 }
 .titile2{
     padding: 5px 0px;
@@ -49,7 +52,19 @@
     width: 100%;
     border: 0px;
 }
-
+.touxiang .lianxifangshi{
+    margin-top: 30px;
+}
+.touxiang .lianxifangshi span{
+   display:inline-block;
+   width: 200px;
+   padding: 10px;
+   background-color: #E9E9E9;
+   margin-top:10px;
+}
+.lianxifangshi .span_2{
+    margin-left: 10px;
+}
 .info{
     width: 500px;
     float: left;
@@ -251,9 +266,39 @@
     color: #F76120;
     font-weight: 700;
 }
-.goodscontent{
+.content_title{
     margin-top: 20px;
+    width: 955px;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #E3E3E3;
+    font-size: 14px;
+    padding-left: 20px;
+}
+.goods_shuxing{
     width: 975px;
-    height: 1000px;
-    border: 1px solid red;
+    border: 1px solid #E3E3E3;
+    padding-top: 20px;
+}
+.goods_shuxing div{
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+.goods_shuxing .shuxing_title{
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+.goods_shuxing ul li{
+    float: left;
+    width: 300px;
+    height: 18px;
+    line-height: 18px;
+    margin: 0px 15px 10px 0px;
+    overflow: hidden;
+    
+}
+.goodscontent{
+    margin-top: 10px;
+    width: 975px;
+    border: 1px solid #E3E3E3;
 }

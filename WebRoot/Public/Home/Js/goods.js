@@ -1,6 +1,6 @@
 // JavaScript Document
 
-window.onload=function(){
+
     $('.touxiang>img').each(function(i,item){
         if($(item).height()<300){
             $(item).css('height','300px');
@@ -13,4 +13,6 @@ window.onload=function(){
             $(item).css('width','auto');
         }
     });
-}
+
+
+

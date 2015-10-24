@@ -38,7 +38,8 @@ $('input[name=radio_sex]:eq(0)').attr('checked','checked');
             allowMediaUpload:false,//true时显示视音频上传按钮。
             allowFlashUpload:false,//true时显示Flash上传按钮。
             allowFileUpload:false,//true时显示文件上传按钮。
-            allowFileManager:false//true时显示浏览远程服务器按钮。
+            allowFileManager:false,//true时显示浏览远程服务器按钮。
+            fontSizeTable:['9px', '10px', '12px', '14px', '16px', '18px', '24px', '32px']//指定文字大小。
         };
         editor = K.create('textarea[name="content"]',options);
     });

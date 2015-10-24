@@ -22,7 +22,8 @@
             <volist name="img_qita" id="vo">
             <li class="xiaotouxiang"><a href="javascript:void(0)"><img src="<{$vo}>" /></a></li>
             </volist>
-        </ul>   
+        </ul>  
+        <div class="lianxifangshi"><span>联系电话：12345678987</span><span class="span_2">微信：123333333</span><span>qq：122233332</span><span class="span_2">email：122233332@qq.com</span></div>
     </div>
     <div class="info">
         <div class="price">
@@ -148,7 +149,20 @@
                  </volist>
 
          </ul>
+         <div class="page_foot"><{$page_foot}></div>
      </div>
+    <div class="content_title">商品详情</div>
+    <div class="goods_shuxing">
+        <div>商家：<{$goods['user_name']}></div>
+        <div class="shuxing_title">产品属性：</div>
+        <div>
+        <ul>
+            <volist name="shuxing" id="vo">
+            <li><{$key}> ：<{$vo}></li>
+            </volist>
+        </ul>
+        </div>
+    </div>
     <div class="goodscontent"><{$goods['goods_desc']}></div>
 </div>
 
