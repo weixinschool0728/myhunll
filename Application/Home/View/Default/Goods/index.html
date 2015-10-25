@@ -25,10 +25,10 @@
         </ul>  
         <div class="lianxifangshi">
             <ul>
-                <li id="dh"><img src="__PUBLIC_HOME__/Images/public/dianhua.png" /></li>
-                <li id="wx"><img src="__PUBLIC_HOME__/Images/public/weixin.png" /></li>
-                <li id="em"><img src="__PUBLIC_HOME__/Images/public/youxiang.png" /></li>
-                <li class="li_last"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<{$goods['qq']}>&site=qq&menu=yes"><img id="qqjt" src="__PUBLIC_HOME__/Images/public/qqjt.jpg" alt="给我发消息" title="给我发消息"/></a></li>
+                <li id="dh"><img src="__PUBLIC_HOME__/Images/public/dianhua1.png" /></li>
+                <li id="wx"><img src="__PUBLIC_HOME__/Images/public/weixin1.png" /></li>
+                <li id="em"><img src="__PUBLIC_HOME__/Images/public/youxiang1.png" /></li>
+                <li class="li_last"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<{$goods['qq']}>&site=qq&menu=yes"><img id="qqjt" src="__PUBLIC_HOME__/Images/public/qqjt.jpg"/></a></li>
                 
             </ul>
         </div>
@@ -176,7 +176,10 @@
         if(is_login==1){
             var dh='<div id="div_tanchu"><button type="button">电话：<{$goods["mobile_phone"]}></button></div>';
         }else{
-            var dh='<div id="div_tanchu"><button type="button">请登录获取联系方式</button></div>';
+            var dh='<div id="div_tanchu"><button type="button">点我登录获取电话</button></div>';
+            $('#dh').bind('click',function(e){
+                location.href="<{:U('Login/index')}>";
+            });
         }
         $('body').append(dh);
         $('#div_tanchu').css({top: yy, left: xx});
@@ -187,7 +190,10 @@
         if(is_login==1){
             var dh='<div id="div_tanchu"><button type="button">微信：<{$goods["weixin"]}></button></div>';
         }else{
-            var dh='<div id="div_tanchu"><button type="button">请登录获取联系方式</button></div>';
+            var dh='<div id="div_tanchu"><button type="button">点我登录获取微信</button></div>';
+            $('#wx').bind('click',function(e){
+                location.href="<{:U('Login/index')}>";
+            });
         }
         $('body').append(dh);
         $('#div_tanchu').css({top: yy, left: xx});
@@ -197,9 +203,12 @@
         var yy=e.pageY+10;
         
         if(is_login==1){
-            var dh='<div id="div_tanchu"><button type="button">email：<{$goods["email"]}></button></div>';
+            var dh='<div id="div_tanchu" style="width:220px;"><button type="button">email：<{$goods["email"]}></button></div>';
         }else{
-            var dh='<div id="div_tanchu"><button type="button">请登录获取联系方式</button></div>';
+            var dh='<div id="div_tanchu"><button type="button">点我登录获取email</button></div>';
+            $('#em').bind('click',function(e){
+                location.href="<{:U('Login/index')}>";
+            });
         }
         $('body').append(dh);
         $('#div_tanchu').css({top: yy, left: xx});
@@ -210,15 +219,16 @@
         $('#div_tanchu').remove();
     });
     
-    //如果没登录 点击QQ弹出请先登录
+    //如果没登录 点击QQ弹出请先登录,并且title内容改变
+    if(is_login==0){
+        $('.li_last>a').attr('title','点我登录qq交流');
+    }else{
+        $('.li_last>a').attr('title','给我发QQ消息');
+    }
     $('.li_last>a').bind('click',function(event){
-        var xx=event.pageX+10;
-        var yy=event.pageY+10;
         if(is_login==0){
             event.preventDefault();
-            var dh='<div id="div_tanchu"><button type="button">请先登录</button></div>';
-            $('body').append(dh);
-            $('#div_tanchu').css({top: yy, left: xx});
+            location.href="<{:U('Login/index')}>";
         }
     });
     

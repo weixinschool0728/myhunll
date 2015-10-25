@@ -95,8 +95,18 @@ class ZhuceController extends FontEndController {
     }
 
     public function zhuce4() {
-        $this->assign("title", "成为婚礼人");
-        $this->display(zhuce4);
+        //判断是否登录
+        if (isset($_SESSION['huiyuan']) && $_SESSION['huiyuan'] !== '') {
+            //判断是否已经是商家
+            if($_SESSION['huiyuan']['shopman_id']==='1'){
+                header("location:". U("Member/hunlirenshangjiaxinxi"));
+                exit();
+            }
+            $this->assign("title", "成为婚礼人");
+            $this->display(zhuce4);
+        }else{
+            $this->error('请先登录',U('Login/index'),3);
+        }
         
     }
     

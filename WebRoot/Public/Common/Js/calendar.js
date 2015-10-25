@@ -783,6 +783,8 @@ function mOvr(thisObj, v) {
 //------王立岩------start------
 //日期点击函数
 function mOck(thisObj, v){
+        $('#tt td').attr('on','0');
+        $('#tt td').removeClass("selday");
 	var onoff = thisObj.attributes["on"].value;
 	var dayContainer = thisObj.getElementsByTagName("font")[0];
 	//记录是否为周末
@@ -799,14 +801,15 @@ function mOck(thisObj, v){
 	dayJson = '{holiday:'+nian+addZ(yue)+addZ(day)+',lx:'+lx+'}';
 	if(onoff == '0'){
 		//thisObj.style.background='#FBBB67';
-		thisObj.setAttribute("class", "selday"); 
+		//thisObj.setAttribute("class", "selday"); 
+                $(thisObj).addClass("selday");
 		thisObj.attributes["on"].value='1';
 		hDays.push(dayJson);
    }else{
    	//thisObj.style.background='';
-   	thisObj.setAttribute("class", "");
-   	thisObj.attributes["on"].value='0';
-   	delArry(hDays,dayJson);
+   	//thisObj.setAttribute("class", "");
+   	//thisObj.attributes["on"].value='0';
+   	//delArry(hDays,dayJson);
 	}
 }
 //删除数组指定元素

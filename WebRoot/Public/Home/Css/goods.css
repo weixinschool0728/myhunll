@@ -72,20 +72,20 @@
     text-align: center;
 }
 .lianxifangshi ul li{
-    margin-right: 60px;
+    margin-right: 40px;
     cursor:pointer;
     display:inline-block;
     height: 25px;
 }
 #div_tanchu{
-    width: 150px;
+    width: 180px;
     position: absolute;
 }
 .lianxifangshi ul .li_last{
     margin-right: 0px;
 }
 .touxiang .lianxifangshi img{
-   width: 25px;
+   width: 79px;
    height:25px;
 }
 

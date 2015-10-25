@@ -82,3 +82,18 @@ $('.datouxiang').bind('mouseout',function(){
     $('.datouxiang_fangda').remove();
     });
 
+
+//日历增加自己的JS功能
+//让选择div移动到鼠标位置
+$('body').on('click','#dateSelectionRili',function(e){
+    var xx=e.pageX+10;
+    var yy=e.pageY+10;
+    $('#dateSelectionDiv').css({top: yy, left: xx});
+});
+//获取选择的日期
+$('body').unon('click','#tt td');
+$('body').on('click','#tt td',function(){
+    var year=$('#nian').html();
+    var month=$('#yue').html();
+    var day=$(this).children('font').html();
+});

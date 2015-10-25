@@ -8,15 +8,16 @@ class FontEndController extends Controller {
 
     function __construct() {
         parent::__construct();
-        //权限是否需要记录ref
-        $no_ref=array('Login');
-         if (!in_array(CONTROLLER_NAME, $no_ref)) {
-         }
         //权限判断 数组内必须首字母大写
+        $noref_controller=array('Login');
+        $noref_action=array('page');
+        if(!in_array(CONTROLLER_NAME, $noref_controller) && !in_array(ACTION_NAME, $noref_action)){
+            $_SESSION['ref']=  str_replace('.html', '',$_SERVER['REQUEST_URI']);
+        }
         $login = array('Member');
         if (in_array(CONTROLLER_NAME, $login)) {
             if (!isset($_SESSION['huiyuan']) || $_SESSION['huiyuan'] == '') {
-                $_SESSION['ref']=CONTROLLER_NAME.'/'.ACTION_NAME;
+               // $_SESSION['ref']=CONTROLLER_NAME.'/'.ACTION_NAME;
                 header("location:". U("Login/index"));
             }
         }
