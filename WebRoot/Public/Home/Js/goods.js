@@ -81,3 +81,4 @@ $('.datouxiang').bind('mouseover',function(){
 $('.datouxiang').bind('mouseout',function(){
     $('.datouxiang_fangda').remove();
     });
+

@@ -37,7 +37,7 @@
     height:450px;
 }
 .touxiang .xiangtouxiang_ul{
-    text-align: center;
+    text-align: left;
     margin-left: -10px;
 } 
 .touxiang .xiaotouxiang{
@@ -66,17 +66,32 @@
     border: 0px;
 }
 .touxiang .lianxifangshi{
-    margin-top: 30px;
+    margin-top: 50px;
 }
-.touxiang .lianxifangshi span{
-   display:inline-block;
-   width: 200px;
-   padding: 10px;
-   background-color: #E9E9E9;
-   margin-top:10px;
+.lianxifangshi ul{
+    text-align: center;
 }
-.lianxifangshi .span_2{
-    margin-left: 10px;
+.lianxifangshi ul li{
+    margin-right: 60px;
+    cursor:pointer;
+    display:inline-block;
+    height: 25px;
+}
+#div_tanchu{
+    width: 150px;
+    position: absolute;
+}
+.lianxifangshi ul .li_last{
+    margin-right: 0px;
+}
+.touxiang .lianxifangshi img{
+   width: 25px;
+   height:25px;
+}
+
+#qqjt{
+    width: 79px;
+    height: 25px;
 }
 .info{
     width: 500px;

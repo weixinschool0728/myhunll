@@ -8,6 +8,10 @@ class FontEndController extends Controller {
 
     function __construct() {
         parent::__construct();
+        //权限是否需要记录ref
+        $no_ref=array('Login');
+         if (!in_array(CONTROLLER_NAME, $no_ref)) {
+         }
         //权限判断 数组内必须首字母大写
         $login = array('Member');
         if (in_array(CONTROLLER_NAME, $login)) {
