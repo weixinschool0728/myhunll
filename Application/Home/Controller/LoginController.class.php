@@ -9,7 +9,13 @@ class LoginController extends FontEndController {
         $this->assign("time", $time);
         $this->display('index');
     }
-
+    public function mini_login(){
+        $time=gettime();
+        $_SESSION['login']=$time;
+        $this->assign("title", "用户登录");
+        $this->assign("time", $time);
+        $this->display('mini_login');
+    }
     public function quit(){
         unset($_SESSION['huiyuan']);
         $index_url=U('index/index');
@@ -68,7 +74,9 @@ class LoginController extends FontEndController {
                     'shopman_id'=>$smid
                      );
                 unset($_SESSION['login']);
-                if(isset($_SESSION['ref'])){
+                if($_POST['mini_login']==='yse'){
+                    echo '登录成功';
+                }elseif(isset($_SESSION['ref'])){
                     header("location:". U($_SESSION['ref']));
                 }else{
                     header("location:". U('index/index'));

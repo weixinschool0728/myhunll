@@ -3,6 +3,9 @@ namespace Home\Controller;
 use Home\Controller;
 class GoodsController extends FontEndController {
     public function index(){
+        $time=gettime();
+        $_SESSION['login']=$time;
+        $this->assign("time", $time);
         //header("content-type:text/html;charset=utf-8");
         //判断是否登录
         if(isset($_SESSION['huiyuan'])){

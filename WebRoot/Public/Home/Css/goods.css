@@ -331,3 +331,60 @@
     border: 1px solid #E3E3E3;
 }
 
+/*遮罩层css*/
+#overlay {
+    background: #000;
+    filter: alpha(opacity=30); /* IE的透明度 */
+    opacity: 0.3 ; /* 透明度 */
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 100; /* 此处的图层要大于页面 */
+    display:none;
+}
+/*迷你登录div*/
+.mini_login{
+    width: 328px;
+    height: 328px;
+    border: 5px solid #999;
+    background: #FAFAFA;
+    position:absolute;
+    left: 500px;
+    top:110px;
+    display: none;
+    z-index: 1000;
+}
+.mini_head{
+    height: 34px;
+    line-height: 34px;
+    padding-left: 15px;
+    font-weight: 700;
+    font-size: 14px;
+    background-color: #F2F2F2;
+}
+.mini_close{
+    font-size: 22px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    color: #999;
+    position: absolute;
+    top:5px;
+    right: 5px;
+    text-align: center;
+    font-family: Tahoma,sans;
+}
+.mini_close:hover{
+    background-color: #FFF;
+}
+.mini_div{
+    text-align: center;
+}
+.mini_iframe{
+    margin: 0px auto;
+    width: 260px;
+    height: 280px;
+    display: block;
+}

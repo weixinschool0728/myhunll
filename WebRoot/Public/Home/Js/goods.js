@@ -91,9 +91,90 @@ $('body').on('click','#dateSelectionRili',function(e){
     $('#dateSelectionDiv').css({top: yy, left: xx});
 });
 //获取选择的日期
-$('body').unon('click','#tt td');
-$('body').on('click','#tt td',function(){
-    var year=$('#nian').html();
-    var month=$('#yue').html();
-    var day=$(this).children('font').html();
+//$('body').unon('click','#tt td');
+//$('body').on('click','#tt td'.bin,function(){
+    //var year=$('#nian').html();
+    //var month=$('#yue').html();
+    //var day=$(this).children('font').html();
+//});
+
+//显示遮罩层
+function showOverlay() {
+    $("#overlay").height(pageHeight());
+    $("#overlay").width(pageWidth());
+
+    // fadeTo第一个参数为速度，第二个为透明度
+    // 多重方式控制透明度，保证兼容性，但也带来修改麻烦的问题
+    $("#overlay").fadeTo(200, 0.3);
+    $('.mini_login').css('display','block');
+    adjust("#mini_login");
+}
+
+/* 隐藏覆盖层 */
+function hideOverlay() {
+    $("#overlay").fadeOut(200);
+    $('.mini_login').css('display','none');
+}
+
+/* 当前页面高度 */
+function pageHeight() {
+    return document.body.scrollHeight;
+}
+
+/* 当前页面宽度 */
+function pageWidth() {
+    return document.body.scrollWidth;
+}
+
+/* 关闭登录页面 */
+$('.mini_close').bind('click',function(){
+    hideOverlay();
+});
+
+
+/* 定位到页面中心 */
+function adjust(id) {
+    var w = $(id).width();
+    var h = $(id).height();
+    
+    var t = scrollY() + (windowHeight()/2) - (h/2);
+    if(t < 0) t = 0;
+    
+    var l = scrollX() + (windowWidth()/2) - (w/2);
+    if(l < 0) l = 0;
+    
+    $(id).css({left: l+'px', top: t+'px'});
+}
+
+//浏览器视口的高度
+function windowHeight() {
+    var de = document.documentElement;
+
+    return self.innerHeight || (de && de.clientHeight) || document.body.clientHeight;
+}
+
+//浏览器视口的宽度
+function windowWidth() {
+    var de = document.documentElement;
+
+    return self.innerWidth || (de && de.clientWidth) || document.body.clientWidth
+}
+
+/* 浏览器垂直滚动位置 */
+function scrollY() {
+    var de = document.documentElement;
+
+    return self.pageYOffset || (de && de.scrollTop) || document.body.scrollTop;
+}
+
+/* 浏览器水平滚动位置 */
+function scrollX() {
+    var de = document.documentElement;
+
+    return self.pageXOffset || (de && de.scrollLeft) || document.body.scrollLeft;
+}
+
+//滚动条滚动事件绑定
+$(window).bind('scroll',function(){
+    adjust("#mini_login");
 });

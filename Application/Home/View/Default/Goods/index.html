@@ -1,6 +1,7 @@
 
 <link rel="stylesheet" type="text/css" href="__PUBLIC_HOME__/Css/public.css">
 <link rel="stylesheet" type="text/css" href="__PUBLIC_HOME__/Css/goods.css">
+<script src="__PUBLIC_COMMON__/Js/function.js"></script> 
 <!--begin 日历 -->
 <link href="__PUBLIC_COMMON__/Css/calendar.css" rel="stylesheet" type="text/css"/>
 <script src="__PUBLIC_COMMON__/Js/jquery.min.js"></script> 
@@ -165,6 +166,14 @@
     </div>
     <div class="goodscontent"><{$goods['goods_desc']}></div>
 </div>
+<div id="overlay"></div><!--遮罩层div-->
+<div class="mini_login" id="mini_login">
+    <div class="mini_head">账号登录<a class="mini_close" href="javascript:void(0)" title="关闭此窗口">×</a></div>
+    <div class="mini_div">
+        <!--<iframe src="<{:U('Login/mini_login')}>" class="mini_iframe" frameborder="0"></iframe>-->
+        <include file="Login:mini_login" />
+    </div>
+</div>
 <script src="__PUBLIC_HOME__/Js/goods.js" type="text/javascript"></script>
 <script type="text/javascript">
     //检测是否登录
@@ -178,7 +187,7 @@
         }else{
             var dh='<div id="div_tanchu"><button type="button">点我登录获取电话</button></div>';
             $('#dh').bind('click',function(e){
-                location.href="<{:U('Login/index')}>";
+                showOverlay();
             });
         }
         $('body').append(dh);
@@ -192,7 +201,7 @@
         }else{
             var dh='<div id="div_tanchu"><button type="button">点我登录获取微信</button></div>';
             $('#wx').bind('click',function(e){
-                location.href="<{:U('Login/index')}>";
+                showOverlay();
             });
         }
         $('body').append(dh);
@@ -207,7 +216,7 @@
         }else{
             var dh='<div id="div_tanchu"><button type="button">点我登录获取email</button></div>';
             $('#em').bind('click',function(e){
-                location.href="<{:U('Login/index')}>";
+                showOverlay();
             });
         }
         $('body').append(dh);
@@ -228,8 +237,14 @@
     $('.li_last>a').bind('click',function(event){
         if(is_login==0){
             event.preventDefault();
-            location.href="<{:U('Login/index')}>";
+            showOverlay();
         }
     });
-    
+    $('.goumai').bind('click',function(){
+        if(is_login==1){
+            $(this).attr('href',':U("Buy/index")');
+        }else{
+            showOverlay();
+        }
+    });
 </script>
