@@ -133,10 +133,13 @@
                             </SCRIPT>
                             </tbody>
                         </table>
+       
         <form name="buy" action="<{:U('Goods/buy')}>" method="post">
             <input name="server_day" type="hidden" />
             <input name="goods_id" type="hidden" value="<{$goods_id}>" />
         </form>
+        
+        
         <div class="buy" id="buy">
             <a href="javascript:void(0)" class="goumai">立即购买 </a>
             <a href="javascript:void(0)" class="gouwuche" title="加入购物车"> </a>
@@ -244,16 +247,24 @@
         }
     });
     $('.goumai').bind('click',function(){
-        if(is_login==1){
-            if($('input[name=server_day]').val()==''){
-                $('#buy').css('display','none');
-                $('#buy_clone').css('display','block');
-            }else{
-            $('form[name=buy]').submit();
-            }
-            $(this).attr('href','<{:U("Goods/buy")}>');
+        if($('input[name=server_day]').val()==''){
+            $('#buy').css('display','none');
+            $('#buy_clone').css('display','block');
         }else{
-            showOverlay();
-        }
+            if(is_login==1){
+                $('form[name=buy]').submit();
+                }else{
+                    var server_day=$('input[name=server_day]').val().replace(/\//g,'');
+                    var url='/Home/Goods/buy/server_day/'+server_day+'/goods_id/'+$('input[name=goods_id]').val()+'.html';
+                    $.ajax({
+                        type:'post',
+                        async : true,
+                         url:url,
+                         datatype:'json'
+                    });
+                    
+                    showOverlay();  
+                }
+            }
     });
 </script>
