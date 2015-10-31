@@ -242,7 +242,7 @@
     });
     $('.goumai').bind('click',function(){
         if(is_login==1){
-            $(this).attr('href',':U("Buy/index")');
+            $(this).attr('href','<{:U("Buy/index")}>');
         }else{
             showOverlay();
         }
