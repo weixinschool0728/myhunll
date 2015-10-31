@@ -127,7 +127,7 @@ function pageWidth() {
 }
 
 /* 关闭登录页面 */
-$('.mini_close').bind('click',function(){
+$('#mini_close').bind('click',function(){
     hideOverlay();
 });
 
@@ -177,4 +177,23 @@ function scrollX() {
 //滚动条滚动事件绑定
 $(window).bind('scroll',function(){
     adjust("#mini_login");
+});
+
+/* 关闭提示选择日期div */
+$('#tishi_close').bind('click',function(){
+    $('#buy').css('display','block');
+    $('#buy_clone').css('display','none');
+});
+
+//选择日期 关闭提示选择日期
+$('body').on('click','#tt>td',function(){
+    $('#buy').css('display','block');
+    $('#buy_clone').css('display','none');
+});
+//鼠标移动到日期 变手形，边框变红
+$('body').on('mouseover','#tt>td',function(){
+    $(this).children('font').css('color','red');
+});
+$('body').on('mouseout','#tt>td',function(){
+    $(this).children('font').css('color','#666');
 });

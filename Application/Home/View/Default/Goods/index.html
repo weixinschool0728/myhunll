@@ -7,7 +7,6 @@
 <script src="__PUBLIC_COMMON__/Js/jquery.min.js"></script> 
 <script type="text/javascript" src="__PUBLIC_COMMON__/Js/calendar.js"></script>
 <!-- end 日历 -->
-<title>无标题文档</title>
 </head>
 
 <body>
@@ -134,12 +133,17 @@
                             </SCRIPT>
                             </tbody>
                         </table>
-        <div class="buy">
+        <form name="buy" action="<{:U('Goods/buy')}>" method="post">
+            <input name="server_day" type="hidden" />
+            <input name="goods_id" type="hidden" value="<{$goods_id}>" />
+        </form>
+        <div class="buy" id="buy">
             <a href="javascript:void(0)" class="goumai">立即购买 </a>
             <a href="javascript:void(0)" class="gouwuche" title="加入购物车"> </a>
             <a href="javascript:void(0)" class="shoucang">收藏商品（10000）</a>
               <a href="javascript:void(0)" class="shoucang">分享</a>
         </div>
+        <div class="buy buy_clone" id="buy_clone">请选择日期<a class="mini_close" id="tishi_close" href="javascript:void(0)">×</a></div>
     </div>
      <div class="jianjie">商家简介,服务承诺等</div>
      </div>
@@ -168,9 +172,8 @@
 </div>
 <div id="overlay"></div><!--遮罩层div-->
 <div class="mini_login" id="mini_login">
-    <div class="mini_head">账号登录<a class="mini_close" href="javascript:void(0)" title="关闭此窗口">×</a></div>
+    <div class="mini_head">账号登录<a class="mini_close" id="mini_close" href="javascript:void(0)" title="关闭此窗口">×</a></div>
     <div class="mini_div">
-        <!--<iframe src="<{:U('Login/mini_login')}>" class="mini_iframe" frameborder="0"></iframe>-->
         <include file="Login:mini_login" />
     </div>
 </div>
@@ -242,7 +245,12 @@
     });
     $('.goumai').bind('click',function(){
         if(is_login==1){
-            $(this).attr('href',':U("Buy/index")');
+            if($('input[name=server_day]').val()==''){
+                $('#buy').css('display','none');
+                $('#buy_clone').css('display','block');
+            }else{
+            $('form[name=buy]').submit();
+            }
         }else{
             showOverlay();
         }

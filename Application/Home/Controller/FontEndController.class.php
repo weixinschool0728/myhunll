@@ -9,9 +9,9 @@ class FontEndController extends Controller {
     function __construct() {
         parent::__construct();
         //权限判断 数组内必须首字母大写
-        $noref_controller=array('Login');
-        $noref_action=array('page');
-        if(!in_array(CONTROLLER_NAME, $noref_controller) && !in_array(ACTION_NAME, $noref_action)){
+        $noref=array('Goods/page');
+        $noref_contorller=array('Zhuce','Login');
+        if(!in_array(CONTROLLER_NAME.'/'.ACTION_NAME, $noref)&&!in_array(CONTROLLER_NAME, $noref_contorller)){
             $_SESSION['ref']=  str_replace('.html', '',$_SERVER['REQUEST_URI']);
         }
         $login = array('Member');
@@ -41,6 +41,7 @@ HTML;
          
         $this->assign("date",date('Y'));//给日期赋值 
         $this->assign("copy","1234567");//给备案号赋值
+        $this->assign("title","婚啦啦");//给标题赋值
         $this->assign("keywords","婚啦啦 长沙婚庆");//给关键字赋值
         $this->assign("description","婚啦啦 长沙婚庆");//给描述赋值
         $ismobile = ismobile();//检查客户端是否是手机

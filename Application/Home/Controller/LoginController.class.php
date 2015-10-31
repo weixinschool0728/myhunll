@@ -46,7 +46,7 @@ class LoginController extends FontEndController {
     
     public function chenggong() {
         if(empty($_POST['hidden'])||empty($_SESSION['login'])){
-            $this->error('非法进入，将转到主页',U('index/index'),3);
+            $this->error('不是从登录页面进入，将转到主页',U('index/index'),3);
         }
         if($_POST['hidden']==$_SESSION['login']){
                 $dlm=$_POST['shoujihao'];
@@ -74,15 +74,13 @@ class LoginController extends FontEndController {
                     'shopman_id'=>$smid
                      );
                 unset($_SESSION['login']);
-                if($_POST['mini_login']==='yse'){
-                    echo '登录成功';
-                }elseif(isset($_SESSION['ref'])){
+                if(isset($_SESSION['ref'])){
                     header("location:". U($_SESSION['ref']));
                 }else{
                     header("location:". U('index/index'));
                 }
             }else{
-                    $this->error('非法进入1，将转到主页',U('index/index'),3);
+                    $this->error('非法进入，将转到主页',U('index/index'),3);
                 }
     }
     

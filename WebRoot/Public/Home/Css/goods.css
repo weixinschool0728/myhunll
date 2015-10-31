@@ -164,6 +164,16 @@
 .buy {
     margin: 20px 0px 0px 0px;;
 }
+.buy_clone{
+    display: none;
+    color: red;
+    font-size: 14px;
+    padding-left: 30px;
+    padding-top: 10px;
+    border: 1px solid red;
+    height: 50px;
+    position:relative;
+}
 .goumai{
     height: 50px;
     width:170px;
@@ -387,4 +397,29 @@
     width: 260px;
     height: 280px;
     display: block;
+}
+#tt>td{
+    cursor:pointer;
+}
+
+//buy页面的css
+
+.zhuce_head{
+height:48px;
+width:800px;
+margin:0px auto;
+}
+.zhuce_head div,.zhuce_head li{
+float:left;
+height:48px;
+line-height:60px;
+font-size:18px;
+text-align:center;
+padding:0px 20px;
+margin-top: 30px;
+}
+.zhuce_head_self{
+background-color:#03BA8A;
+padding:3px;
+color:#FFFFFF;
 }

@@ -795,6 +795,7 @@ function mOck(thisObj, v){
 	var day = dayContainer.innerHTML;
 	var dayColor = dayContainer.attributes["color"];
 	var dayF = nian+'/'+addZ(yue)+'/'+addZ(day);
+        $('input[name=server_day]').val(dayF);
 	if(dayColor&&dayColor.value=='red'&&getH(dayF)){
 		 lx = '1';
 	}
@@ -1154,3 +1155,6 @@ function initRiliIndex() {
     dateSelection.init();
 
 }
+$(document).ready(function(){
+    $('input[name=server_day]').val('');
+});
