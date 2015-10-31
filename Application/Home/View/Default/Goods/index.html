@@ -251,6 +251,7 @@
             }else{
             $('form[name=buy]').submit();
             }
+            $(this).attr('href','<{:U("Goods/buy")}>');
         }else{
             showOverlay();
         }
