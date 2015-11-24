@@ -61,7 +61,93 @@ class GoodsController extends FontEndController {
     }
 
     public function buy(){
+        $server_day=$_GET['server_day'];
+        $goods_id=$_GET['goods_id'];
+        $this->assign('goods_id',$goods_id);
+        $goodsmodel=D('Goods');
+        $goods=$goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.area,t1.goods_name,t1.price,t3.cat_name,t2.user_name,t1.user_id')->find();
+        $this->assign('goods',$goods);
+        $this->assign('server_day',$server_day);
         $this->display('buy');
+    }
+    
+    public function zhifu(){
+        $user_id=$_SESSION['huiyuan']['user_id'];
+        $server_day=$_GET['server_day'];
+        $goods_id=$_GET['goods_id'];
+        $this->assign('goods_id',$goods_id);
+        $goodsmodel=D('Goods');
+        $goods=$goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.area,t1.goods_name,t1.price,t3.cat_name,t2.user_name,t1.user_id')->find();
+        $this->assign('goods',$goods);
+        $this->assign('server_day',$server_day);
+        $ordermodel=D('Order');
+        //$shop_id=$goods['user_id'];
+        //如果该条订单已被别人付款，提示已经被购买，返回首页
+        $order_qita=$ordermodel->where("goods_id=$goods_id and server_day=$server_day")->find();
+        if(!empty($order_qita)){
+            if($order_qita['pay_status']==1){
+                $this->error('该日期的商品已被购买，请选择其它商品',U('index/index'),3);
+            }
+        }
+        //如果用户自己已经有了该条订单，未付款，转到付款页面，已付款，提示不能重复购买
+        $order_self=$ordermodel->where("user_id=$user_id and goods_id=$goods_id and server_day=$server_day")->find();
+        if(!empty($order_self)){
+            if($order_self['pay_status']==1){
+                $this->error('您已购买该日期的商品，无法重复购买',U('index/index'),3);
+            }
+            $this->assign('order_id',$order_self['order_id']);
+            $this->display('zhifu');
+            exit();
+        }
+
+        $row=array(
+            'user_id'=>$user_id,
+            "order_no"=>getname(),
+            'goods_id'=>$goods_id,
+            'shop_id'=>$goods['user_id'],
+            'shop_name'=>$goods['user_name'],
+            'goods_name'=>$goods['goods_name'],
+            'server_day'=>$server_day,
+            'status'=>1,//生成订单
+            'pay_status'=>0,//支付状态为未支付
+            'created'=> mktime(),
+            'updated'=> mktime(),
+            'price'=>$goods['price']
+                );
+        $result=$ordermodel->add($row);//订单信息写入数据库order表
+        if($result){
+            $this->assign('order_id',$result);
+            $this->display('zhifu');
+        }else{
+            $this->error('订单提交失败，请重新提交',$_SERVER['HTTP_REFERER'],3);
+        }
+    }
+    
+    public function gmcg(){
+        $server_day=$_GET['server_day'];
+        $goods_id=$_GET['goods_id'];
+        $order_id=$_GET['order_id'];
+        $goodsmodel=D('Goods');
+        $goods=$goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.area,t1.goods_name,t1.price,t3.cat_name,t2.user_name,t1.user_id')->find();
+        $this->assign('goods',$goods);
+        $this->assign('server_day',$server_day);
+        $ordermodel=D('Order');
+        //$user_id=$goods['user_id'];
+        //如果该条订单已被别人付款，提示已经被购买，返回首页
+        $order_qita=$ordermodel->where("goods_id=$goods_id and server_day=$server_day")->find();
+        if(!empty($order_qita)){
+            if($order_qita['pay_status']==1){
+                $this->error('该日期的商品已被购买，请选择其它商品',U('index/index'),3);
+            }
+        }
+        
+        $row=array(
+            'pay_status'=>1,//支付状态为支付
+            'updated'=> mktime()
+                );
+        $result=$ordermodel->where("order_id=$order_id")->save($row);
+        $this->display('gmcg');
+
     }
 
 }

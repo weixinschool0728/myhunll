@@ -128,6 +128,12 @@ function pageWidth() {
 
 /* 关闭登录页面 */
 $('#mini_close').bind('click',function(){
+    var url=window.location.href;
+    $.ajax({
+        type:'post',
+        url:url,
+        datatype:'json'
+    });
     hideOverlay();
 });
 

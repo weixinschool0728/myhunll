@@ -23,7 +23,7 @@
         <div class="content">
             <ul>
                 <li>会员名： <{$userdata['user_name']}></li>
-                <li>商家注册时间： <{$userdata['reg_time']|date='Y年m月d日 H：i',###}></li>
+                <li>商家注册时间： <{$userdata['shopman_reg_time']|date='Y年m月d日 H：i',###}></li>
                 <li>性别： <{$userdata['sex']==='0'?'男':'女'}></li>
                 <li>服务形式： <{$userdata['server_form']==='0'?'个人':'工作室'}></li>
                 <li>服务岗位： <{$userdata['server_content']}></li>
@@ -45,6 +45,7 @@
     
     
 </div>
+<iframe height="1" frameborder="0" width="1" style="position:absolute;top:0;left:-9999px;" src="<{:U('index/menu')}>"></iframe>
 </body>
 </html>
         

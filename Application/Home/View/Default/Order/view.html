@@ -1,0 +1,42 @@
+<link rel="stylesheet" type="text/css" href="__PUBLIC_HOME__/Css/member.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC_HOME__/Css/order_view.css">
+<script src="__PUBLIC_COMMON__/Js/jquery.min.js"></script> 
+<script src="__PUBLIC_COMMON__/Js/function.js"></script>
+</head>
+
+<body>
+    <include file='Public/menu'/>
+    <div class="view">
+        <h2 class="view_h2">
+            订单详情
+            <span class="h2_span"><a href='<{:U("Order/index")}>' class="span_a">返回我的订单</a></span>
+        </h2>
+        <div class="view_info">
+            <div>当前订单状态：<span class="red"><{:order_status($order['pay_status'],$order['status'])['status']}></span></div>
+            <div>请及时付款，不然该日期就被别人预订了</div>
+            <div class="d1">
+                <a href="<{:order_status($order['pay_status'],$order['status'],$order['server_day'],$order['goods_id'])['status_url']}>" class="button_a_lvse"><{:order_status($order['pay_status'],$order['status'])['status_button']}></a>
+                <a class="button_a_lvse">删除订单</a>
+            </div>
+        </div>
+        <div class="d2">
+            <div class="d2_title">订单信息</div>
+            <div class="d2_content"><span>订单编号：<{$order['order_no']}></span> <span>创建时间：<{$order['created']|date='Y-m-d H：i',###}> </span><span>更新时间：<{$order['updated']|date='Y-m-d H：i',###}> </span></div>
+            <div class="d2_title">商家信息</div>
+            <div class="d2_content"><span>昵称：<{$order['shop_name']}></span> <span>真实姓名：<{$order['true_name']}> </span><span>城市：<{$order['location']}> </span><span>联系电话：<{$order['mobile_phone']}> </span></div>
+            <div class="d2_title">商品信息</div>
+            <div class="d2_table">
+                <table>
+                    <tr><th class="left">商品图片</th><th class="teshu">商品名称</th><th>价格</th><th>服务日期</th><th>状态</th><th>支付金额</th></tr>
+                    <tr><td class="left"><img src="<{$order['goods_img']}>" class="img_goods" /></td><td class="teshu"><{$order['goods_name']}></td><td>&yen;<{$order['price']}></td><td><{$order['server_day']|date_geshi1=###}></td><td><{:order_status($order['pay_status'],$order['status'])['status']}></td><td>&yen;<{$order['price']}></td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+   
+
+<iframe height="1" frameborder="0" width="1" style="position:absolute;top:0;left:-9999px;" src="<{:U('index/menu')}>"></iframe>
+
+
+

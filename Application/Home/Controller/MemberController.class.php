@@ -4,12 +4,30 @@ use Home\Controller;
 class MemberController extends FontEndController {
     public function index(){
         $this->assign("title","我的婚啦啦");
+        $user_id=$_SESSION['huiyuan']['user_id'];//获取会员id号
+        $user_id=$_SESSION['huiyuan']['user_id'];//获取会员id号
+        $usersmodel=D('Users');
+        if(!empty($user_id)||$user_id===0){
+        $data=$usersmodel->where("user_id={$user_id}")->find();
+        }
+        $this->assign("touxiang_url",$data['head_url']);
+        if(date("H" ,$data['reg_time'])<12){
+            $day_time='上午好';
+        }else if(date("H" ,$data['reg_time'])>=12&&date("H" ,$data['reg_time'])<20){
+            $day_time='下午好';
+        }else{
+            $day_time='晚上好';
+        }
+        $this->assign("day_time",$day_time);
+        $this->assign("userdata",$data);
         $this->display('index');
     }
+    
     public function  hunlirenshangjiaxinxi(){
         if($_SESSION['huiyuan']['shopman_id']==='0'){
             $_SESSION['ref']=CONTROLLER_NAME.'/'.ACTION_NAME;
-            header("location:". U("Zhuce/zhuce4"));
+            $this->error('您不是婚礼人，将转到注册婚礼人页面',U("Zhuce/zhuce4"),3);
+            //header("location:". U("Zhuce/zhuce4"));
             exit();
         }
         $this->assign("title","我是婚礼人");
@@ -33,7 +51,8 @@ class MemberController extends FontEndController {
     }
     public function release_goods(){
         if($_SESSION['huiyuan']['shopman_id']==='0'){
-            header("location:". U("Zhuce/zhuce4"));
+            $this->error('您不是婚礼人，将转到注册婚礼人页面',U("Zhuce/zhuce4"),3);
+            //header("location:". U("Zhuce/zhuce4"));
             exit();
         } 
         $this->assign("title","婚礼人发布商品");
@@ -72,7 +91,6 @@ class MemberController extends FontEndController {
     
     
     public function release_check(){
-        header("content-type:text/html;charset=utf-8");
         $content=$_POST;//获取提交的内容
         $file_info=$this->upload('image/goods/');//获取上传文件信息
         if(count($file_info)<1){
@@ -177,6 +195,11 @@ class MemberController extends FontEndController {
     }
     
     public function goods_list(){
+        if($_SESSION['huiyuan']['shopman_id']==='0'){
+            $this->error('您还不是婚礼人，请先注册成为婚礼人',U("Zhuce/zhuce4"),3);
+            //header("location:". U("Zhuce/zhuce4"));
+            exit();
+        }
         $this->assign('title','商品列表');
         $goodsmodel=D('Goods');
         $user_id=$_SESSION['huiyuan']['user_id'];
@@ -187,8 +210,61 @@ class MemberController extends FontEndController {
         $this->assign('list',$list);
         $this->assign('page_foot',$page_foot);
         
-        
-        
         $this->display('goods_list');
+    }
+    
+    public function order(){
+         $status=$_GET['status'];
+         $this->assign('title','我的订单');
+         $ordermodel=D('Order');
+         $user_id=$_SESSION['huiyuan']['user_id'];
+         $status_count['all']=$ordermodel->where("user_id={$user_id}")->count();//获取全部订单条数
+         $status_count['no_pay']=$ordermodel->where("user_id={$user_id} and pay_status=0")->count();//获取未付款条数
+         $status_count['daiqueren']=$ordermodel->where("user_id={$user_id} and pay_status=1 and status=1")->count();//获取待确认条数
+         $status_count['daipingjia']=$ordermodel->where("user_id={$user_id} and pay_status=1 and status=2")->count();//获取待评价条数
+         $this->assign(status_count,$status_count);
+         if(empty($status)){
+             $selected['all']="selected='selected'";//选中下拉菜单的全部订单
+             $this->assign(selected,$selected);
+             $count=$ordermodel->where("user_id={$user_id}")->count();
+             $this->assign(count,$count);
+             $page=$this->get_page($count, 10);
+             $page_foot=$page->show();//显示页脚信息
+             $list=$ordermodel->table('m_order t1,m_goods t2')->where("t1.user_id={$user_id} and t1.goods_id=t2.goods_id")->field('t1.order_id,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.updated,t2.goods_img,t2.price')->limit($page->firstRow.','.$page->listRows)->select();
+             $this->assign('list',$list);
+             $this->assign('page_foot',$page_foot);
+         }else if($status==='no_pay'){
+             $selected['no_pay']="selected='selected'";//选中下拉菜单的未付款
+             $this->assign(selected,$selected);
+             $selected['all']='selected';
+             $count=$ordermodel->where("user_id={$user_id} and pay_status=0")->count();
+             $page=$this->get_page($count, 10);
+             $page_foot=$page->show();//显示页脚信息
+             $list=$ordermodel->table('m_order t1,m_goods t2')->where("t1.user_id={$user_id} and t1.pay_status=0 and t1.goods_id=t2.goods_id")->field('t1.order_id,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.updated,t2.goods_img,t2.price')->limit($page->firstRow.','.$page->listRows)->select();
+             $this->assign('list',$list);
+             $this->assign('page_foot',$page_foot);
+         }else if($status==='daiqueren'){
+             $selected['daiqueren']="selected='selected'";//选中下拉菜单的待确认
+             $this->assign(selected,$selected);
+             $count=$ordermodel->where("user_id={$user_id} and pay_status=1 and status=1")->count();
+             $page=$this->get_page($count, 10);
+             $page_foot=$page->show();//显示页脚信息
+             $list=$ordermodel->table('m_order t1,m_goods t2')->where("t1.user_id={$user_id} and t1.pay_status=1 and t1.status=1 and t1.goods_id=t2.goods_id")->field('t1.order_id,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.updated,t2.goods_img,t2.price')->limit($page->firstRow.','.$page->listRows)->select();
+             $this->assign('list',$list);
+             $this->assign('page_foot',$page_foot);
+         }else if($status==='daipingjia'){
+             $selected['daipingjia']="selected='selected'";//选中下拉菜单的待评价
+             $this->assign(selected,$selected);
+             $count=$ordermodel->where("user_id={$user_id} and pay_status=1 and status=2")->count();
+             $page=$this->get_page($count, 10);
+             $page_foot=$page->show();//显示页脚信息
+             $list=$ordermodel->table('m_order t1,m_goods t2')->where("t1.user_id={$user_id} and t1.pay_status=1 and t1.status=2 and t1.goods_id=t2.goods_id")->field('t1.order_id,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.updated,t2.goods_img,t2.price')->limit($page->firstRow.','.$page->listRows)->select();
+             $this->assign('list',$list);
+             $this->assign('page_foot',$page_foot);
+         }
+         
+         
+         
+         $this->display('order');
     }
 }

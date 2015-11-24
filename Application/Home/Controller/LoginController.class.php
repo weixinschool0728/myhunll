@@ -3,6 +3,11 @@ namespace Home\Controller;
 use  Home\Controller;
 class LoginController extends FontEndController {
     public function index(){
+        if(isset($_SESSION['huiyuan'])){
+            $index_url=U('index/index');
+            header ( "Location: {$index_url}" ); 
+            exit();
+        }
         $time=gettime();
         $_SESSION['login']=$time;
         $this->assign("title", "用户登录");
@@ -20,6 +25,7 @@ class LoginController extends FontEndController {
         unset($_SESSION['huiyuan']);
         $index_url=U('index/index');
         header ( "Location: {$index_url}" );  
+        exit();
     }
     
     public function login(){
@@ -76,15 +82,25 @@ class LoginController extends FontEndController {
                 unset($_SESSION['login']);
                 if(isset($_SESSION['ref'])){
                     header("location:". U($_SESSION['ref']));
+                    exit();
                 }else{
                     header("location:". U('index/index'));
+                    exit();
                 }
             }else{
                     $this->error('非法进入，将转到主页',U('index/index'),3);
                 }
     }
     
-    
+    public function is_login(){
+        if(isset($_SESSION['huiyuan'])){
+            $data=$_SESSION['huiyuan']['user_name'];
+        }  else {
+            $data=0;
+        }
+        $this->ajaxReturn($data);
+        exit();
+    }
 }
 
 

@@ -148,3 +148,30 @@ function creat_file($dir){
     }
 }
 
+//把20151221转换成2015-12-21格式
+function date_geshi1($date){
+    $y=  substr($date,0,4);
+    $m=  substr($date,4,2);
+    $d=  substr($date,6,2);
+    $date1=$y.'-'.$m.'-'.$d;
+    return $date1;
+}
+
+//获取订单状态
+function order_status($pay_status,$status,$order_id,$server_day,$goods_id){
+    if($pay_status==='0'){
+        return array('status'=>'未支付','status_button'=>'去付款','status_url'=>"/Home/Goods/zhifu/server_day/{$server_day}/goods_id/{$goods_id}.html");
+    }else{
+        if($status==='1'){
+            return array('status'=>'等待买家确认','status_button'=>'确认服务完成','status_url'=>"/Home/Order/queren/order_id/{$order_id}.html");
+        }else if($status==='2'){
+            return array('status'=>'待评价','status_button'=>'去评价');
+        }else if($status==='3'){
+            return array('status'=>'交易成功','status_button'=>'');
+        }else if($status==='4'){
+            return array('status'=>'交易关闭','status_button'=>'');
+        }
+    }
+}
+
+

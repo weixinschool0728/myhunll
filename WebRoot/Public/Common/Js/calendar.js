@@ -696,7 +696,7 @@ function mOvr(thisObj, v) {
         var l = pos.left + d.width() - 150;  // 弹出框的左边位置
 
 
-        <!--
+        
 
         var winWidth = 0;
 
@@ -795,7 +795,8 @@ function mOck(thisObj, v){
 	var day = dayContainer.innerHTML;
 	var dayColor = dayContainer.attributes["color"];
 	var dayF = nian+'/'+addZ(yue)+'/'+addZ(day);
-        $('input[name=server_day]').val(dayF);
+        var server_day=dayF.replace(/\//g,'');
+        $('input[name=server_day]').val(server_day);
 	if(dayColor&&dayColor.value=='red'&&getH(dayF)){
 		 lx = '1';
 	}

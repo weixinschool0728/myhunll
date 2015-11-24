@@ -36,6 +36,7 @@ border:none;
 /*链接样式*/
 a{
 color:#666;
+cursor:pointer;//手形
 }
 a:link,a:visited {
 text-decoration:none;
@@ -68,4 +69,35 @@ color:#2BB8AA;
     border: 1px solid #777;
     padding: 4px 8px;
     margin: 0px 5px;
+}
+/*按钮样式（灰色）*/
+.button_a{
+    height: 33px;
+    border: 1px solid #AAA;
+    background-image: url(../Images/public/button_background1.jpg);
+    display: inline-block;
+    cursor:pointer;//手形
+}
+/*按钮样式鼠标放上*/
+.button_a:hover{
+    background-image: url(../Images/public/button_background2.jpg);
+}
+
+/*按钮样式（绿色按钮）*/
+.button_a_lvse{
+    border: 1px solid #AAA;
+    background-color: #00FFDB;
+    display: inline-block;
+    cursor:pointer;//手形
+}
+/*按钮样式鼠标放上*/
+.button_a_lvse:hover{
+    background-color:#2BB8AA;
+    color: #EEE;
+}
+
+/*超出部分的文字用省略号代替*/
+.shenglue{
+    text-overflow:ellipsis;/*超出部分省略号*/
+    white-space: nowrap;/*强制文本一行输出*/
 }

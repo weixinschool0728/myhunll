@@ -2,10 +2,7 @@
 namespace Home\Controller;
 use Home\Controller;
 class IndexController extends FontEndController {
-    public function index(){
-        header("content-type:text/html;charset=utf-8");  
-        header ( " Expires: Mon, 26 Jul 1970 05:00:00 GMT " );
-        header ( " Last-Modified:" . gmdate ( " D, d M Y H:i:s " ). "GMT " );
+    public function index(){ 
         $this->assign("title","婚啦啦");
         unset($_SESSION['ref']);
         //获取策划类最新的八个商品信息
@@ -70,6 +67,14 @@ class IndexController extends FontEndController {
         $this->assign('a','|');
         
         $this->display('index');
+    }
+    
+    public function menu(){
+        $zhuce_url=U('Zhuce/index');
+        $login_url=U('Login/index');
+        $this->assign('zhuce_url',$zhuce_url);
+        $this->assign('login_url',$login_url);
+        $this->display('menu');
     }
 
 

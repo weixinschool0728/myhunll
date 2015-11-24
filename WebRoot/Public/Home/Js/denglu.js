@@ -3,9 +3,7 @@
 //onblur
 var obj_form=document.zhuce;
 var login;
-$.ajaxSetup({ 
-    async : false 
-});     
+
 obj_form.shoujihao.onfocus=function (){yzshouji_foucs();};
 obj_form.shoujihao.onblur=function (){yzshouji_blur();};
 function yzshouji_foucs(){

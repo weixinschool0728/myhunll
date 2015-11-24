@@ -72,3 +72,22 @@ function check_file_image(obj_file,obj_info,flag){
             obj_info.html("文件类型不允许，请上传正确的图片格式");
             return false;
 	}
+//ajax请求判断用户是否登录
+function check_login(){
+    var data;
+    var url='/Home/login/is_login.html';
+    $.ajax({
+        type:'post',
+        async : false,
+        url:url,
+        datatype:'json',
+        success:function(msg){
+            if(msg===0){
+                data=0;
+            }else{
+                data=msg;
+            }
+        }
+    });
+    return data;
+}

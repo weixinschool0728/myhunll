@@ -1,0 +1,165 @@
+/* CSS Document */
+
+.view{
+    width: 1148px;
+    padding: 25px;
+    border: 1px solid #EEE;
+    min-height: 400px;
+    margin: 15px auto;
+    position: relative;
+}
+
+.view_h2{
+    font-size: 24px;
+    border-bottom: 1px solid #DDD;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    color: #111;
+    font-weight: 800;
+}
+.view_h2 .h2_span{
+    position: absolute;
+    top: 40px;
+    right: 25px;
+    font-size: 14px;
+    font-weight: 400;
+}
+.span_a{
+    color: #03BA8A;
+}
+.span_a:hover{
+    text-decoration: underline;
+}
+
+
+
+
+.d2{
+    border: 1px solid #E5E5E5;
+    overflow: hidden;
+    margin-top: 10px;
+}
+.d2 .d2_title{
+    padding: 5px 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+    background: #EEE;
+}
+.d2 .d2_content{
+    padding: 8px  10px;
+}
+.d2_content div{
+    margin-top: 10px;
+}
+.d2_content span{
+    width: 217px;
+    text-align: left;
+    margin-right: 10px;
+    display: inline-block;
+}
+.d2 .d2_table{
+    padding: 8px 10px;
+}
+.d2_table table{
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+.d2_table table th{
+    text-align: center;
+    font-weight: 700;
+    padding: 3px 5px;
+    font-size: 12px;
+    color: #666;
+    width:180px;
+}
+.d2_table table td{
+    text-align: center;
+    padding: 3px 5px;
+    font-size: 12px;
+    color: #666;
+    width:180px;
+}
+.d2_table .left{
+    text-align: left;
+    width:80px;
+}
+.d2_table .teshu{
+    text-align: left;
+    width: 276px;
+}
+.d2_table .img_goods{
+    width:60px;
+    height: 40px;
+}
+
+.pingjia_title{
+    margin-top: 20px;
+    font-size: 16px;
+    background: #EFEFEF;
+    padding: 5px 50px;
+}
+.pingjia{
+    border: 1px solid #F7E4A5;
+    padding: 40px 0px 100px 100px;
+}
+
+.pingjia_img{
+    width: 150px;
+    height: 100px;
+}
+.pingjia_goodstitle{
+    width: 150px;
+    margin-top: 5px;
+    color: #03BA8A;
+    font-size: 14px;
+}
+.pingjia_top{
+    margin-bottom: 80px;
+}
+.pingjia_top_left{
+    float: left;
+    width: 150px;
+}
+.pingjia_box{
+    margin-left: 50px;
+    border: 1px solid #DAF1FC;
+    padding: 3px;
+    float: left;
+    background: #EEF8FD;
+}
+.pingjia_textarea{
+    padding: 8px;
+    width: 600px;
+    border: 1px solid #CCC;
+    height: 150px;
+    outline: 0px none;
+    display: block;
+    resize: vertical;
+}
+.pingjia_box_szp{
+    padding: 5px;
+}
+.pingjia .hr{
+    position:relative;
+    left: -100px;
+    width: 1148px;
+    border-top:1px dashed ;
+}
+.des_title{
+    padding: 15px 0px;
+    color: #999;
+    background: #F3F3F3;
+    width: 130px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 50px;
+    float: left;
+    /*position: absolute;
+    left: 98px;
+    top: 65px;*/
+}
+.des_ul{
+    float: left;
+    margin: 50px 0px 0px 50px;
+}

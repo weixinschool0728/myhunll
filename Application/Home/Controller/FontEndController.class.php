@@ -8,17 +8,24 @@ class FontEndController extends Controller {
 
     function __construct() {
         parent::__construct();
+        
+        header("content-type:text/html;charset=utf-8"); 
+     
         //权限判断 数组内必须首字母大写
-        $noref=array('Goods/page');
+        $noref=array('Goods/page','Index/menu','Order/yanzheng_zfmm','Order/queren_success');
         $noref_contorller=array('Zhuce','Login');
         if(!in_array(CONTROLLER_NAME.'/'.ACTION_NAME, $noref)&&!in_array(CONTROLLER_NAME, $noref_contorller)){
             $_SESSION['ref']=  str_replace('.html', '',$_SERVER['REQUEST_URI']);
         }
-        $login = array('Member');
-        if (in_array(CONTROLLER_NAME, $login)) {
+        
+        //需要登录的控制器或者方法
+        $login_contorller = array('Member','Order');//需要登录的控制器
+        $login=array('Goods/buy','Goods/zhifu','Goods/gmcg');//需要登录的方法
+        if (in_array(CONTROLLER_NAME, $login_contorller)||in_array(CONTROLLER_NAME.'/'.ACTION_NAME, $login)) {
             if (!isset($_SESSION['huiyuan']) || $_SESSION['huiyuan'] == '') {
                // $_SESSION['ref']=CONTROLLER_NAME.'/'.ACTION_NAME;
                 header("location:". U("Login/index"));
+                exit();
             }
         }
         //判断是否登录
@@ -27,14 +34,14 @@ class FontEndController extends Controller {
              $tuichu_url=U('Login/quit');
              $yonghu_url=U('Userinfo/index');
               $yonghuxinxi=<<<HTML
-                     <a  href="#" class="green huiyuanming" >$huiyuanming</a><a href="$tuichu_url">退出</a>
+                     <a  href="#" class="green huiyuanming" >$huiyuanming</a><a href="$tuichu_url" id='a_2'>退出</a>
 HTML;
              $this->assign("yonghuxinxi", $yonghuxinxi);
          }else{
              $zhuce_url=U('Zhuce/index');
              $login_url=U('Login/index');
              $yonghuxinxi=<<<HTML
-                     <a  href="$login_url" class="red">登录</a><a href="$zhuce_url">注册</a>
+                     <a  href="$login_url" class="red">登录</a><a href="$zhuce_url" id='a_2'>注册</a>
 HTML;
              $this->assign("yonghuxinxi", $yonghuxinxi);
                      }

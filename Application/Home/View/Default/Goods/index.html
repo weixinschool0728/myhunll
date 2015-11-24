@@ -134,9 +134,9 @@
                             </tbody>
                         </table>
        
-        <form name="buy" action="<{:U('Goods/buy')}>" method="post">
-            <input name="server_day" type="hidden" />
+        <form name="buy" action="<{:U('Goods/buy')}>" method="get">
             <input name="goods_id" type="hidden" value="<{$goods_id}>" />
+            <input name="server_day" type="hidden" />
         </form>
         
         
@@ -180,15 +180,17 @@
         <include file="Login:mini_login" />
     </div>
 </div>
+<iframe height="1" frameborder="0" width="1" style="position:absolute;top:0;left:-9999px;" src="<{:U('index/menu')}>"></iframe>
 <script src="__PUBLIC_HOME__/Js/goods.js" type="text/javascript"></script>
 <script type="text/javascript">
     //检测是否登录
-    var is_login='<{$is_login}>';
+    var is_login=check_login();
     //弹出联系方式
     $('#dh').bind('mouseover',function(e){
         var xx=e.pageX+10;
         var yy=e.pageY+10;
-        if(is_login==1){
+        is_login=check_login();
+        if(is_login!=0){
             var dh='<div id="div_tanchu"><button type="button">电话：<{$goods["mobile_phone"]}></button></div>';
         }else{
             var dh='<div id="div_tanchu"><button type="button">点我登录获取电话</button></div>';
@@ -202,7 +204,8 @@
     $('#wx').bind('mouseover',function(e){
         var xx=e.pageX+10;
         var yy=e.pageY+10;
-        if(is_login==1){
+        is_login=check_login();
+        if(is_login!=0){
             var dh='<div id="div_tanchu"><button type="button">微信：<{$goods["weixin"]}></button></div>';
         }else{
             var dh='<div id="div_tanchu"><button type="button">点我登录获取微信</button></div>';
@@ -216,8 +219,8 @@
     $('#em').bind('mouseover',function(e){
         var xx=e.pageX+10;
         var yy=e.pageY+10;
-        
-        if(is_login==1){
+        is_login=check_login();
+        if(is_login!=0){
             var dh='<div id="div_tanchu" style="width:220px;"><button type="button">email：<{$goods["email"]}></button></div>';
         }else{
             var dh='<div id="div_tanchu"><button type="button">点我登录获取email</button></div>';
@@ -241,6 +244,7 @@
         $('.li_last>a').attr('title','给我发QQ消息');
     }
     $('.li_last>a').bind('click',function(event){
+        is_login=is_login();
         if(is_login==0){
             event.preventDefault();
             showOverlay();
@@ -251,10 +255,11 @@
             $('#buy').css('display','none');
             $('#buy_clone').css('display','block');
         }else{
-            if(is_login==1){
+            is_login=check_login();
+            if(is_login!=0){
                 $('form[name=buy]').submit();
                 }else{
-                    var server_day=$('input[name=server_day]').val().replace(/\//g,'');
+                    var server_day=$('input[name=server_day]').val();
                     var url='/Home/Goods/buy/server_day/'+server_day+'/goods_id/'+$('input[name=goods_id]').val()+'.html';
                     $.ajax({
                         type:'post',
@@ -267,4 +272,5 @@
                 }
             }
     });
+
 </script>
