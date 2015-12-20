@@ -1,0 +1,24 @@
+{__NOLAYOUT__}
+<html style="cursor: auto ! important;">
+    <head>
+    <script src="__PUBLIC_COMMON__/Js/function.js"></script>
+    <script src="__PUBLIC_COMMON__/Js/jquery.min.js"></script>
+    <script type="text/javascript">
+        function initEventlog() {
+            var is_login=check_login();
+        	//setTimeout(function(){
+                //根据是否登录 填写menu的内容
+                        if(is_login!=0){
+                            //parent.$(".huiyuanming").html(is_login);
+                        }else{
+                            parent.$(".huiyuanming").html('登录');
+                            parent.$(".huiyuanming").attr('href',"<{$login_url}>");
+                            parent.$("#a_2").html('注册');
+                            parent.$("#a_2").attr('href',"<{$zhuce_url}>");
+                        }
+        	//},50);
+        }
+    </script>
+    </head>
+    <body onLoad="initEventlog()">
+</body></html>
