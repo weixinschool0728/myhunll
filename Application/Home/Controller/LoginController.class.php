@@ -14,13 +14,7 @@ class LoginController extends FontEndController {
         $this->assign("time", $time);
         $this->display('index');
     }
-    public function mini_login(){
-        $time=gettime();
-        $_SESSION['login']=$time;
-        $this->assign("title", "用户登录");
-        $this->assign("time", $time);
-        $this->display('mini_login');
-    }
+
     public function quit(){
         unset($_SESSION['huiyuan']);
         $index_url=U('index/index');
@@ -51,10 +45,11 @@ class LoginController extends FontEndController {
 
     
     public function chenggong() {
-        if(empty($_POST['hidden'])||empty($_SESSION['login'])){
+        $leixing=$_POST['leixing'];
+        if(empty($_POST['hidden'])||empty($_SESSION[$leixing])){
             $this->error('不是从登录页面进入，将转到主页',U('index/index'),3);
         }
-        if($_POST['hidden']==$_SESSION['login']){
+        if($_POST['hidden']==$_SESSION[$leixing]){
                 $dlm=$_POST['shoujihao'];
                 $mima =$_POST['mima'];
                 if(is_feifa($dlm)||is_feifa($mima)){
@@ -79,7 +74,7 @@ class LoginController extends FontEndController {
                     'user_name'=>$hym,
                     'shopman_id'=>$smid
                      );
-                unset($_SESSION['login']);
+                unset($_SESSION[$leixing]);
                 if(isset($_SESSION['ref'])){
                     header("location:". U($_SESSION['ref']));
                     exit();

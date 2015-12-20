@@ -109,7 +109,7 @@ class MemberController extends FontEndController {
        $str_goods_img=serialize($arr_goods_img);
        
        
-        if($content['title']===''||is_feifa($content['title'])){
+        if($content['title']==''||is_feifa($content['title'])){
             $this->error('商品标题为空或者含有非法字符');
             exit();
         }
@@ -161,7 +161,9 @@ class MemberController extends FontEndController {
             'user_id'=>intval($user_id),//所属店铺
             'goods_name'=>$content['title'],//商品名称
             'yuan_price'=>$content['yuan_price'],//原价
-            'price'=>$content['price'],//售价
+            'price'=>$content['price'],//
+            'goods_form'=>$server_form,//商家服务形式(团队还是个人)
+            'goods_sex'=>$content['radio_sex'],//商家性别
             'shuxing'=>$str_shuxing,//属性
             'goods_img'=>'/'.$goods_img,//商品图片
             'goods_img_qita'=>$str_goods_img,//被序列化的其它图片
@@ -266,5 +268,209 @@ class MemberController extends FontEndController {
          
          
          $this->display('order');
+    }
+    
+    public function xiugai_mima(){
+        $time=gettime();
+        $_SESSION['xiugai_mima']=$time;
+        $this->assign("time",$time);
+        $this->assign("title","会员_修改密码");
+        $this->display('xiugai_mima');
+    }
+    
+    public function xiugai_mima_check(){
+        if($_POST['check']=='xiugai_mima'){
+            $user_id=$_SESSION['huiyuan']['user_id'];
+            $mima =$_POST['mima'];
+            if(is_feifa($mima)){
+                exit();
+            }
+            $usersmodel=D('Users');
+            $salt=$usersmodel->where("user_id=$user_id")->getField('salt');
+            $mima_md5=md5($mima.$salt);
+            $data=$usersmodel->where("user_id=$user_id and password='{$mima_md5}'")->count();
+            $this->ajaxReturn($data);
+            exit();
+        }
+    }
+    
+    public function xiugai_mima_success(){
+        if(!empty($_POST['hidden'])&&!empty($_SESSION['xiugai_mima'])){
+            $hidden=$_POST['hidden'];
+            if($hidden==$_SESSION['xiugai_mima']){
+                $user_id=$_SESSION['huiyuan']['user_id'];
+                $mima =$_POST['yuan_mima'];
+                if(is_feifa($mima)){
+                    exit();
+                }
+                $usersmodel=D('Users');
+                $salt=$usersmodel->where("user_id='{$user_id}'")->getField('salt');
+                $mima_md5=md5($mima.$salt);
+                $data=$usersmodel->where("user_id='{$user_id}' and password='{$mima_md5}'")->count();
+                if($data=='1'){
+                     $new_mima_md5=md5($_POST['new_mima'].$salt);
+                     $row=array(
+                         'password'=>$new_mima_md5
+                     );
+                     $usersmodel->where("user_id=$user_id")->save($row);
+                     $this->success('修改成功,将返回会员页面',U('Member/index'),3);
+                }else{
+                    $this->error('原密码错误，修改失败',U('Member/xiugai_mima'),3);
+                }
+            }else{
+                $this->error('您中途打开了另一个修改页面，请重新进入',U('Member/xiugai_mima'),3);
+            }
+        }else{
+            $this->error('非法操作，请从修改密码页面进入',U('index/index'),3);
+
+        }
+    }
+    
+    
+    public function updated_head(){
+        $this->assign("title","会员_更换头像");
+        $this->display('updated_head');
+    }
+    public function getCode(){
+        $config =    array(   
+            'expire'      =>    30,    //验证码有效期
+            'fontSize'    =>    16,    // 验证码字体大小   
+            'length'      =>    4,     // 验证码位数   
+            'imageW'    =>    160, // 验证码宽度 设置为0为自动计算
+            'imageH'    =>    34, // 验证码高度 设置为0为自动计算
+        );
+       $Verify = new \Think\Verify($config);
+       $Verify->entry();
+    }
+    
+    public function cart(){
+        $this->assign("title","一起网_我的购物车");
+        $user_id=$_SESSION['huiyuan']['user_id'];
+        $cartmodel=D('Cart');
+        $count=$cartmodel->where("user_id=$user_id")->count();
+        $this->assign('count',$count);
+        $mycart=$cartmodel->where("user_id=$user_id")->order('join_time desc')->select();
+        $this->assign('mycart',$mycart);
+        $this->display('cart');
+    }
+    public function cart_del(){
+        $cart_id=$_GET[cart_id];
+        $cartmodel=D('Cart');
+        $user_id=$_SESSION['huiyuan']['user_id'];
+        $count=$cartmodel->where("cart_id=$cart_id and user_id=$user_id")->count();
+        if($count==0){
+            $this->error('非法操作',U($_SESSION['ref']),3);
+            exit();
+        }else{
+            $cartmodel->where("cart_id=$cart_id")->delete();
+        }
+    }
+    public function cart_zhifu(){
+        $this->assign("title","一起网_选择支付方式");
+        $cart_item=$_POST['cart_item'];
+        $cartmodel=D('Cart');
+        $user_id=$_SESSION['huiyuan']['user_id'];
+        foreach ($cart_item as $value){
+            $tiaojian['cart_id'][]=array('EQ',$value);
+        }
+        $tiaojian['cart_id'][]='or';
+        $cart_zhifu=$cartmodel->where($tiaojian)->where("user_id=$user_id")->select();
+        $ordermodel=D('Order');
+        $now=time();
+        
+        foreach ($cart_zhifu as $value){
+            //如果该日期已经过去了，返回
+            $server_day=$value['server_day'];
+            $y=(int)substr($server_day, 0,4);
+            $m=(int)substr($server_day, 4,2);
+            $d=(int)substr($server_day, 6,2);
+            $a=mktime(24, 59, 59, $m, $d, $y);
+            if($a<$now){
+                $this->error('存在日期已经过去的商品，请从购物车删除该商品后重新拍今天以后的日期',U('Member/cart'),3);
+            }
+            //如果该条订单已被别人付款，提示已经被购买，返回
+            $goods_id=$value['goods_id'];
+            $order_qita=$ordermodel->where("goods_id=$goods_id and server_day=$server_day")->find();
+            if(!empty($order_qita)){
+                if($order_qita['pay_status']==1){
+                    $goods_name=$value['goods_name'];
+                    $this->error($goods_name.'的日期'.date_geshi1($server_day).'已被购买，请从购物车删除该商品后重新选择其它商品',U('Member/cart'),3);
+                }
+            }          
+        }
+        
+        //订单写入数据库
+        foreach ($cart_zhifu as $value){
+            $server_day=$value['server_day'];
+            $goods_id=$value['goods_id'];
+            //自己已经有的重复订单不再重复写入
+            $order_self=$ordermodel->where("user_id=$user_id and goods_id=$goods_id and server_day=$server_day")->find();
+            if(empty($order_self)){
+                $row=array(
+                'user_id'=>$user_id,
+                "order_no"=>getname(),
+                'goods_id'=>$value['goods_id'],
+                'shop_id'=>$value['shop_id'],
+                'shop_name'=>$value['shop_name'],
+                'goods_name'=>$value['goods_name'],
+                'server_day'=>$server_day,
+                'status'=>1,//生成订单
+                'pay_status'=>0,//支付状态为未支付
+                'created'=> mktime(),
+                'updated'=> mktime(),
+                'price'=>$value['goods_price']
+                );
+                $result[]=$ordermodel->add($row);//订单信息写入数据库order表
+            }
+        }
+        //清空购物车
+        $cartmodel->where($tiaojian)->where("user_id=$user_id")->delete();
+        
+        if(!empty($result)){
+            $_SESSION['cart_order']=$result;
+        }
+        $result=$_SESSION['cart_order'];
+        $tiaojian1['t1.order_id']=array('in',$result);
+        $order=$ordermodel->table("m_order t1,m_goods t2,m_category t3")->where($tiaojian1)->where('t1.goods_id=t2.goods_id and t2.cat_id=t3.cat_id')->field('t1.shop_name,t3.cat_name,t1.goods_name,t2.price,t1.server_day')->select();
+        
+        $price=0.00;
+        foreach ($order as $value){
+            $price+=$value['price'];
+        }
+        $price= sprintf("%.2f",$price);
+        $this->assign('price',$price);
+        $this->assign('order',$order);
+        $this->assign('order_id',$result);
+        $this->display('cart_zhifu');
+    }
+    public function cart_gmcg(){
+        $this->assign("title","一起网_购买成功");
+        $order_id1=$_POST['order_id'];
+        $ordermodel=D('Order');
+        $goodsmodel=D('Goods');
+        $tiaojian['order_id']=array('in',$order_id1);;
+        $order_2=$ordermodel->where($tiaojian)->field('goods_id,server_day,goods_name,shop_name')->select();
+        $this->assign('order_2',$order_2);
+        foreach ($order_id1 as $order_id){
+            $order=$ordermodel->where("order_id=$order_id")->field('goods_id,server_day,goods_name,shop_name')->find();
+            $this->assign('order',$order);
+            $order_user_id=$ordermodel->where("order_id=$order_id")->getField('user_id');//登录用户无该订单权限
+            if($order_user_id!=$_SESSION['huiyuan']['user_id']){//登录用户无该订单权限
+                $this->error('您没有该订单权限');
+            }
+            $row=array(
+            'pay_status'=>1,//支付状态为支付
+            'updated'=> mktime()
+                );
+            $ordermodel->where("order_id=$order_id")->save($row);
+        
+            //商品表里面购买数量加1
+            $row_goods=array(
+                'buy_number'=>$goods['buy_number']+1
+            );
+            $goodsmodel->where("goods_id=$goods_id")->save($row);
+        }
+        
+        $this->display('cart_gmcg');
     }
 }

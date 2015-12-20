@@ -101,7 +101,7 @@
 }
 .pingjia{
     border: 1px solid #F7E4A5;
-    padding: 40px 0px 100px 100px;
+    padding: 40px 0px 0px 100px;
 }
 
 .pingjia_img{
@@ -130,7 +130,7 @@
 }
 .pingjia_textarea{
     padding: 8px;
-    width: 600px;
+    width: 700px;
     border: 1px solid #CCC;
     height: 150px;
     outline: 0px none;
@@ -139,6 +139,7 @@
 }
 .pingjia_box_szp{
     padding: 5px;
+    position:relative;
 }
 .pingjia .hr{
     position:relative;
@@ -153,7 +154,7 @@
     width: 130px;
     text-align: center;
     font-size: 14px;
-    margin-top: 50px;
+    margin-top: 60px;
     float: left;
     /*position: absolute;
     left: 98px;
@@ -161,5 +162,92 @@
 }
 .des_ul{
     float: left;
-    margin: 50px 0px 0px 50px;
+    margin: 50px 0px 0px 80px;
+    padding-bottom: 50px;
+}
+.des_ul ul li{
+    margin: 5px 0px;
+    padding: 0px;
+}
+.des_ul .pingjia_text{
+    font-size: 14px;
+    display: inline-block;
+    height: 23px;
+    line-height: 23px;
+}
+.des_ul .pingjia_xingxing{
+    margin-left: 5px;
+    font-size: 14px;
+    display: inline-block;
+    height: 23px;
+    line-height: 23px;
+    position:relative;
+    top:3px;
+}
+.des_ul .pingjia_last{
+    font-size: 14px;
+    display: inline-block;
+    margin-left: 10px;
+}
+.pingjia_last strong{
+    color: #F60;
+    font-weight:500;
+}
+
+.yingcang{
+    position:absolute;
+    border: 1px solid #03BA8A;
+    width: 180px;
+    padding: 5px;
+    background-color: #ffffff;
+    z-index: 100;
+    display: none;
+}
+.yc_1{
+    top:80px;
+    left: 280px;
+}
+.yc_2{
+    top:110px;
+    left: 280px;
+}
+.yc_3{
+    top:140px;
+    left: 280px;
+}
+.yingcang strong{
+    display: block;
+    color: #F60;
+    font-weight:500;
+}
+
+.file_tr{
+    margin-bottom: 5px;
+}
+.file_img{
+    height: 27px;
+    cursor: pointer;
+}
+
+.file_title{
+    width: 42px;
+    height: 27px;
+    line-height: 25px;
+    color: #000;
+    font-size: 14px;
+    float:left;
+    margin-right: 10px;
+}
+.file_info{
+    display: inline-block;
+    margin-left: 10px;
+    color: #F00;
+}
+.button_jia{
+    position: relative;
+    left: 50px;
+}
+.button_a_lvse{
+    margin:20px 400px;
+    padding: 10px 30px;;
 }

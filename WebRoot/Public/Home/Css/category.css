@@ -17,12 +17,13 @@ margin-bottom:10px;
 margin:0px 15px;
 border-bottom:1px dotted #ddd;
 padding:5px 0px;
+width: 902px;
 }
 .menu_tr_head{
 border:1px solid #03BA8A;
 padding:2px 8px;
 float:left;
-margin:2px 0px;
+margin:2px 5px 2px 0px;
 }
 .jiantou{
 height:25px;
@@ -31,12 +32,12 @@ line-height:25px;
 padding:0px 8px;
 font-size:16px;
 }
+
 .menu_tr_title{
-width:40px;
 text-align:center;
 float:left;
 margin: 3px 5px 0px 0px;
-padding:2px 0px;
+padding:2px 4px;
 background-color: #00FFDB;
 }
 
@@ -44,6 +45,9 @@ background-color: #00FFDB;
 .menu_tr_ul li{
 margin:3px 30px 3px 0px;
 float:left;
+}
+.menu_tr_ul .teshu_li{
+    margin: 3px 5px 0px 0px;
 }
 .menu_tr_ul a{
 display:block;
@@ -86,7 +90,7 @@ width:946px;
 }
 .shopping{
 width:300px;
-height:310px;
+height:350px;
 border:1px solid #ddd;
 margin-right:13px;
 float:left;
@@ -100,7 +104,7 @@ border-bottom: 1px solid #DDD;
 width:300px;
 }
 .shopping_title{
-padding:10px 10px 0px 20px;
+padding:10px 15px 0px 15px;
 font-size:16px;
 color:#000000;
 height: 19px;
@@ -122,7 +126,7 @@ color:#FFFFFF;
 line-height:17px;
 }
 .shopping_tr2{
-padding:10px 10px 0px 20px;
+padding:10px 15px 0px 15px;
 }
 .shopping_tr2 .shopping_title_name{margin-top:0px;}
 .shopping_tr2 span{
@@ -143,26 +147,52 @@ margin-top:2px;
 .shopping_pricepj{
 height:44px;
 line-height:44px;
-margin-top:10px;
-padding:0px 10px 0px 20px;
-background-color:#f9f9f9;
+margin:10px 15px 0px 15px;
+border-bottom: 1px dotted #DDD;
 }
 .shopping_price{
+    width: 190px;
 height:44px;
 line-height:44px;
 font-size:20px;
 color: #F76120;
 float:left;
 }
+.shopping_price .yuan_price{
+    font-size: 12px;
+    color: #999;
+    padding-left: 5px;
+}
+.yuan_price del{
+    padding-left: 3px;
+}
+.shopping_sale{
+    display: inline-block;
+    float: right;
+    color: #999;
+}
 .shopping_pingjia{
-margin-top:2px;
 height:12px;
 width:60px;
-background-image:url(../Images/menu_and_foot/xingxing.png);
+background-image:url(../Images/public/xingxing_kong.png);
 float:right;
-margin-top:16px;
+margin-top:12px;
 }
+.pingjia_limian{
+    background-image:url(../Images/public/xingxing.png);
+    height: 12px;
+}
+
 .shopping_pjrenshu{
-padding-left:3px;
+padding-left:10px;
 color:#999;
-float:right;}
+float:right;
+margin-top: 10px;}
+.submit_sr{
+    box-sizing:content-box;/*content-box盒子模型 border-box 怪异模型 border与padding包含其中*/
+    margin: 0px 0px 0px 5px;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-block;
+    height: 17px;
+}

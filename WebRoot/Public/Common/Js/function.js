@@ -67,6 +67,7 @@ function check_file_image(obj_file,obj_info,flag){
 		}
                 if(flag){
                     alert("文件类型不允许上传，请选择图片格式");
+                    obj_file.val('');
                 }
             obj_info.css('color','red');
             obj_info.html("文件类型不允许，请上传正确的图片格式");

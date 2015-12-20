@@ -165,13 +165,98 @@ function order_status($pay_status,$status,$order_id,$server_day,$goods_id){
         if($status==='1'){
             return array('status'=>'等待买家确认','status_button'=>'确认服务完成','status_url'=>"/Home/Order/queren/order_id/{$order_id}.html");
         }else if($status==='2'){
-            return array('status'=>'待评价','status_button'=>'去评价');
+            return array('status'=>'待评价','status_button'=>'去评价','status_url'=>"/Home/Order/appraise/order_id/{$order_id}.html");
         }else if($status==='3'){
-            return array('status'=>'交易成功','status_button'=>'');
+            return array('status'=>'交易成功','status_button'=>'删除订单');
         }else if($status==='4'){
             return array('status'=>'交易关闭','status_button'=>'');
         }
     }
 }
+//数组取值
+function shuzu($shuzu,$xiabiao){
+    return $shuzu[$xiabiao];
+}
+
+function xingxing_baifenbi($score){
+    $score1=round($score/5,2)*100;
+    return $score1.'%';
+}
+//生成属性参数url(第一个参数是目前url,第二个参数是属性值)
+function shuxing_url($url,$value){
+    $is_shuxing=strpos($url,'/shuxing/');
+    if($is_shuxing!==false){
+        $a=substr($url,0,$is_shuxing+9);
+        $b=substr($url,$is_shuxing+9 );
+        return $a.$value.'+'.$b;
+    }else{
+        return $url.'/shuxing/'.$value;
+    }
+}
+
+//取消属性参数(第一个参数是目前url,第二个参数是属性值)
+function quxiao_shuxing($url,$value){
+    $is_jia=strpos($url,'+');
+    $is_shuxing=strpos($url,'/shuxing/');
+    if($is_jia!==false){
+        $weizhi=strpos($url,urlencode($value));
+        $a=str_replace(urlencode($value),'',$url);
+        if(substr($a,$weizhi-1,1)==='+'){
+            return substr($a,0,$weizhi-1).substr($a,$weizhi);
+        }else{
+            return substr($a,0,$weizhi).substr($a,$weizhi+1);
+        }
+    }else{
+        return str_replace('/shuxing/'.urlencode($value),'',$url);
+    }
+}
 
 
+//根据cat_id得到分类名
+   function get_catname($cat){
+        switch ($cat){
+            case '1':
+                return '策划师';
+                break;
+            case '2':
+                return '司仪';
+                break;
+            case '3':
+                return '布置';
+                break;
+            case '4':
+                return '摄像';
+                break;
+            case '5':
+                return '摄影';
+                break;
+            case '6':
+                return '跟妆';
+                break;
+            case '7':
+                return '车队';
+                break;
+            case '8':
+                return '演艺';
+                break;
+            case '9':
+                return '舞美';
+                break;
+            case '10':
+                return '酒店';
+                break;
+            case '11':
+                return '喜铺';
+                break;       
+        }
+    }
+    
+    //属性参数的除了+号以外的字符序列化
+    function xuliehua_shuxing($shuxing){
+        $arr_shuxing=explode('+',$shuxing);
+        $a='';
+        foreach ($arr_shuxing as $value){
+            $a.=urlencode($value).'+';
+        }
+        return substr($a,0,-1);
+    }

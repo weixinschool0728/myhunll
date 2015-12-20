@@ -148,9 +148,9 @@ function querenmima_blur(){
 		return false;
 		}
 		else if(!(obj_form.querenmima.value==obj_form.shezhimima.value)){
-											obj.innerHTML="两次输入的密码不相同，请重新输入";
-											return false;
-											}
+			obj.innerHTML="两次输入的密码不相同，请重新输入";
+			return false;
+			}
 		else {
 			obj.innerHTML="&radic;";
 			return true;

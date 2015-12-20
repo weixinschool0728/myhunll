@@ -11,8 +11,8 @@ class FontEndController extends Controller {
         
         header("content-type:text/html;charset=utf-8"); 
      
-        //权限判断 数组内必须首字母大写
-        $noref=array('Goods/page','Index/menu','Order/yanzheng_zfmm','Order/queren_success');
+        //判断是否需要记录当前url 数组内必须首字母大写
+        $noref=array('Goods/page','Index/menu','Order/yanzheng_zfmm','Order/queren_success','Goods/zhifu','Member/cart_del');
         $noref_contorller=array('Zhuce','Login');
         if(!in_array(CONTROLLER_NAME.'/'.ACTION_NAME, $noref)&&!in_array(CONTROLLER_NAME, $noref_contorller)){
             $_SESSION['ref']=  str_replace('.html', '',$_SERVER['REQUEST_URI']);

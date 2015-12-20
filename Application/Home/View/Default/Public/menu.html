@@ -8,16 +8,16 @@
     <a id="noborder" href="#">手机婚拉拉</a>
 </span>
 <span class="span2">
-    <a  href="<{:U('Order/index')}>">我的订单</a><a   href="<{:U('Member/index')}>">我的婚拉拉</a><a  href="#">购物车</a><a  href="<{:U('Member/hunlirenshangjiaxinxi')}>">我是婚礼人</a><a href="#">最近浏览</a><a href="#">联系客服</a><a id="noborder" href="#">最近浏览</a>
+    <a  href="<{:U('Order/index')}>">我的订单</a><a   href="<{:U('Member/index')}>">我的婚拉拉</a><a  href="<{:U('Member/cart')}>">购物车</a><a  href="<{:U('Member/hunlirenshangjiaxinxi')}>">我是婚礼人</a><a href="#">最近浏览</a><a href="#">联系客服</a><a id="noborder" href="#">最近浏览</a>
 </span>
 </div>
 </div><!--//顶部-->
 <div class="logo"><!--logo-->
 <div class="logol"></div>
 <div class="serch">
-<form name="searchform" action="serch.php" method="get">
-<input class="inputsr" type="text" name="sp" value="" placeholder="摄像 500 岳麓区" maxlength="100" />
-<input class="submitsr" type="submit" name="sr" value="搜索" />
+    <form name="searchform" action="<{:U('Index/search')}>" method="get">
+        <input class="inputsr" type="text" name="sp" value="<{$get['sp']}>" placeholder="摄像 500 岳麓区" maxlength="100" />
+<input class="submitsr" type="submit" id='sr' value="搜索" />
 </form>
 </div>
 <div class="logor">
@@ -47,3 +47,11 @@
 </ul>
 </div>
 </div><!--//导航-->
+<script type="text/javascript">
+    $('#sr').bind('click',function(){
+        if($('input[name=sp]').val()==''){
+            var a=$('input[name=sp]').attr('placeholder');
+            $('input[name=sp]').val(a);
+        }
+    });
+</script>

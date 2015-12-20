@@ -9,10 +9,10 @@
     <include file='Public/member_left' />
     <div class="release">
         <select class="order_select">
-            <option value="<{:U('Order/index')}>" <{$selected['all']}>>全部状态</option>
-            <option value="<{:U('Order/index?status=no_pay')}>" <{$selected['no_pay']}>>未付款</option>
-            <option value="<{:U('Order/index?status=daiqueren')}>" <{$selected['daiqueren']}>>待确认</option>
-            <option value="<{:U('Order/index?status=daipingjia')}>" <{$selected['daipingjia']}>>待评价</option>
+            <option value="<{:U('Order/index')}>" <{$selected['all']}> >全部状态</option>
+            <option value="<{:U('Order/index?status=no_pay')}>" <{$selected['no_pay']}> >未付款</option>
+            <option value="<{:U('Order/index?status=daiqueren')}>" <{$selected['daiqueren']}> >待确认</option>
+            <option value="<{:U('Order/index?status=daipingjia')}>" <{$selected['daipingjia']}> >待评价</option>
         </select>
         <div class="kuaijietishi">快捷提示：您有
             <a href="<{:U('Order/index')}>" class="em">全部状态（<{$status_count['all']}>）</a>

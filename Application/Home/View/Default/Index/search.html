@@ -11,8 +11,11 @@
 <div class="box_l">
 <div class="box_l_menu">
 <div class="box_l_menu_tr">
-<div class="menu_tr_head" style='margin-right: 0px;border: none;'><{$cat_name}></div>
+<div class="menu_tr_head" style='margin-right: 0px;border: none;'>全部</div>
 <div class="jiantou">&gt;</div>
+<if  condition="$get['cid'] neq null">
+    <div class="menu_tr_head"><a href="<{:str_replace('/shuxing/'.xuliehua_shuxing($get['shuxing']),'',str_replace('/cid/'.$get['cid'],'',$url['full']))}>">分类: <{$get['cid']|get_catname}> &nbsp;<span class="guanbi">×</span></a></div>
+</if>
 <if  condition="$get['sex'] neq null">
     <div class="menu_tr_head"><a href="<{$url['full']|str_replace='/sex/'.$get['sex'],'',###}>">性别: <{$get['sex']==0?'男性':'女性'}> &nbsp;<span class="guanbi">×</span></a></div>
 </if>
@@ -31,9 +34,23 @@
     </volist>
 
 </div>
-    <if  condition="$sex_and_form eq 1">
+    
+<if  condition="$get['cid'] eq null">
+<div class="box_l_menu_tr" >
+<div class="menu_tr_title">分类&nbsp;:</div>
+<ul class="menu_tr_ul">
+    <volist name='arr_cat_id' id='vo'>
+    <li><a href="<{:U($url['teshu'].'/cid/'.$vo)}><{$url['houmian']}>"><{$vo|get_catname}></a></li>
+    </volist>
+</ul>
+</div>
         <else />
-<div class="box_l_menu_tr">
+    </if>  
+    
+    
+    <if  condition="$sex_and_form eq 1">
+        <else />    
+<div class="box_l_menu_tr">  
     <if  condition="$get['sex'] eq null">
 <div class="menu_tr_title">性别&nbsp;:</div>
 <ul class="menu_tr_ul" style="width:auto;">
@@ -52,7 +69,9 @@
     </if>
 </div>
     </if>
-    <div class="box_l_menu_tr" style="border-bottom: none;">
+
+<if  condition="$get['cid'] neq null">    
+<div class="box_l_menu_tr" style="border-bottom: none;">
 <ul class="menu_tr_ul">
 <volist name="arr_shuxing[0]" id="vo">
     <li class="menu_tr_title teshu_li"><{$key}> :</li>
@@ -74,6 +93,7 @@
 </ul>
 </div>
     </volist>
+</if>    
     <if  condition="$get['location'] eq null">
     <div class="box_l_menu_tr" style="border-top: 1px dotted #DDD;">
 <div class="menu_tr_title">区域&nbsp;:</div>
@@ -95,15 +115,16 @@
 <div class="box_l_menu_tr">
 <div class="menu_tr_title">价格&nbsp;:</div>
 <ul class="menu_tr_ul">
-    <li><a href="<{:U($url['teshu'].'/price/400元以下')}>">400元以下</a></li>
-<li><a href="<{:U($url['teshu'].'/price/400-600元')}>">400-600元</a></li>
-<li><a href="<{:U($url['teshu'].'/price/600-800元')}>">600-800元</a></li>
-<li><a href="<{:U($url['teshu'].'/price/800-1000元')}>">800-1000元</a></li>
-<li><a href="<{:U($url['teshu'].'/price/1000元以上')}>">1000元以上</a></li>
+    <li><a href="<{:U($url['teshu'].'/price/400元以下').'?sp='.$get['sp']}>">400元以下</a></li>
+<li><a href="<{:U($url['teshu'].'/price/400-600元').'?sp='.$get['sp']}>">400-600元</a></li>
+<li><a href="<{:U($url['teshu'].'/price/600-800元').'?sp='.$get['sp']}>">600-800元</a></li>
+<li><a href="<{:U($url['teshu'].'/price/800-1000元').'?sp='.$get['sp']}>">800-1000元</a></li>
+<li><a href="<{:U($url['teshu'].'/price/1000元以上').'?sp='.$get['sp']}>">1000元以上</a></li>
 <li><span>价格区间：</span>
-    <form style="display:inline;" action="<{$url['full']}>" >
+    <form style="display:inline;"action="<{$url['full']}>" >
         <input type="text" name="price_s" value="" placeholder="&yen;" style="padding:0px 2px;"/><span style="padding:0px 2px;">-</span>
 <input type="text" name="price_b" value="" placeholder="&yen;" style="padding:0px 2px;"/>
+<input type="hidden" name="sp" value="<{$get['sp']}>" />
 <input type="submit" class="submit_sr" value="确定" />
 </form>
 </li>

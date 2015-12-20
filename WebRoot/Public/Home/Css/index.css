@@ -244,7 +244,7 @@ width:1216px;}
 
 .shopping{
 width:286px;
-height:302px;
+height:342px;
 border:1px solid #ddd;
 margin-right:16px;
 float:left;
@@ -258,7 +258,7 @@ border-bottom: 1px solid #DDD;
 width:286px;
 }
 .shopping_title{
-padding:10px 10px 0px 20px;
+padding:10px 15px 0px 15px;
 font-size:16px;
 color:#000000;
 height: 19px;
@@ -282,7 +282,7 @@ color:#FFFFFF;
 line-height:17px;
 }
 .shopping_tr2{
-padding:10px 10px 0px 20px;
+padding:10px 15px 0px 15px;
 }
 .shopping_tr2 .shopping_title_name{margin-top:0px;}
 .shopping_tr2 span{
@@ -307,9 +307,8 @@ margin-top:2px;
 .shopping_pricepj{
 height:44px;
 line-height:44px;
-margin-top:10px;
-padding:0px 10px 0px 20px;
-background-color:#f9f9f9;
+margin:10px 15px 0px 15px;
+border-bottom: 1px dotted #DDD;
 }
 .shopping_price{
 height:44px;
@@ -317,22 +316,42 @@ line-height:44px;
 font-size:20px;
 color: #F76120;
 float:left;
-width: 150px;
+width: 190px;
 text-overflow:ellipsis;/*超出部分省略号*/
 white-space: nowrap;/*强制文本一行输出*/
 }
+.shopping_price .yuan_price{
+    font-size: 12px;
+    color: #999;
+    padding-left: 5px;
+}
+.yuan_price del{
+    padding-left: 3px;
+}
+.shopping_sale{
+    display: inline-block;
+    float: right;
+    color: #999;
+}
 .shopping_pingjia{
-margin-top:2px;
 height:12px;
 width:60px;
-background-image:url(../Images/menu_and_foot/xingxing.png);
+background-image:url(../Images/public/xingxing_kong.png);
 float:right;
-margin-top:16px;
+margin-top:12px;
 }
+
+.pingjia_limian{
+    background-image:url(../Images/public/xingxing.png);
+    height: 12px;
+}
+
 .shopping_pjrenshu{
-padding-left:3px;
+padding-left:10px;
 color:#999;
-float:right;}
+float:right;
+margin-top: 10px;
+}
 
 .shangpin_foot a{
 width:1198px;

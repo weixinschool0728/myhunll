@@ -306,12 +306,21 @@
 }
 .content_title{
     margin-top: 20px;
-    width: 955px;
+    width: 975px;
     height: 40px;
     line-height: 40px;
     border: 1px solid #E3E3E3;
     font-size: 14px;
-    padding-left: 20px;
+    background-color: #F6F6F6;
+}
+.content_title ul li{
+    float: left;
+    border-right: 1px solid #E5E5E5;
+    padding: 0px 30px;
+    cursor: pointer;
+}
+.content_title .spxq{
+    background-color: #FFF;
 }
 .goods_shuxing{
     width: 975px;
@@ -422,4 +431,197 @@ margin-top: 30px;
 background-color:#03BA8A;
 padding:3px;
 color:#FFFFFF;
+}
+.pinglun{
+    width: 977px;
+}
+.zhengtifenshu {
+    font-size: 16px;
+    padding: 20px 0px 20px 20px;
+    width: 955px;
+    border-bottom: 1px solid #E3E3E3;
+}
+.zhengtifenshu strong{
+    color: #F76120;
+    padding: 0px 5px;
+}
+.zhengtipingjia{
+    font-size: 20px;
+    color: #333;
+    font-weight: 700;
+}
+.fen{
+    font-size: 16px;
+    font-weight: 700;
+}
+.score{
+    padding-left: 20px;
+    padding-right: 3px;
+    font-weight: 700;
+    color: #F76120;
+    font-size: 32px;
+    line-height: 40px;
+}
+.shopping_pingjia{
+    margin: 0px 50px;
+    height:16px;
+    width:80px;
+    background-image:url(../Images/public/xingxing_kong_big.png);
+    display: inline-block;
+}
+
+.pingjia_limian{
+    background-image:url(../Images/public/xingxing_big.png);
+    height: 16px;
+    display: inline-block;
+}
+.leijipinglun ul li{
+    padding: 20px 0px;
+    border-bottom: 1px solid #DDD;
+}
+.pinglun_left{
+    width: 90px;
+    float: left;
+}
+.pinglun_left .img{
+    width: 50px;
+    height: 50px;
+    margin: 0px 0px 10px 20px;;
+}
+
+.user_name{
+    width: 90px;
+    text-align: center;
+}
+.xingxing_div{
+    padding: 10px;
+}
+.pingjia_xiao{
+    margin-right:10px;
+    height:12px;
+    width:60px;
+    background-image:url(../Images/public/xingxing_kong.png);
+    display: inline-block;
+}
+.pingjia_xiao_limian{
+    background-image:url(../Images/public/xingxing.png);
+    height: 12px;
+    display: inline-block;
+}
+.pinglun_text{
+    padding: 0px 10px;
+}
+.pinglun_img{
+    padding: 0px 10px;
+}
+.pinglun_img a{
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    overflow: hidden;
+    margin-right: 20px;
+}
+.pinglun_img img{
+    width:100px;
+}
+.pinglun{
+    display: none;
+}
+
+#pinglun_fangda{
+    max-height: 300px;
+    margin: 10px;
+}
+
+/*购物车的css*/
+
+.gouwuche_join{
+    height: 200px;
+    position:absolute;
+    width:590px;
+    border:6px solid  #BBB;;
+    background-color:#FFF;
+    left:100px;
+    z-index: 1000;
+    display: none;
+}
+.gouwuche_guanbi{
+    background-image: url("../Images/public/icon-3.png");
+    background-position: 0px 0px;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    line-height: 10px;
+    font-weight: 400;
+    cursor: pointer;
+    top: 15px;
+    right: 15px;
+    z-index: 1;
+}
+.gouwuche_body{
+    width:580px;
+    height: 380px;
+    padding: 30px;
+    /*overflow: hidden;*/
+}
+.gouwuche_top{
+    padding: 0px 0px 15px;
+}
+
+.gouwuche_top_left{
+    float: left;
+    position: relative;
+    width: 160px;
+    min-height: 50px;
+    margin: 10px auto;
+    padding-left: 60px;
+}
+.gouwuche_top_left h5{
+    font-size: 20px;
+    line-height: 30px;
+    color: #333;
+    font-weight: 700;
+}
+.gouwuche_top_left i{
+    background-position: 0px -266px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 50px;
+    height: 50px;
+    background-image: url("../Images/public/icon-3.png");
+    background-repeat: no-repeat;
+}
+.gouwuche_top_right{
+    float: right;
+    margin: 23px 50px 23px 0px;
+}
+.gouwuche_top_right_a1{
+    margin-right: 10px;
+    color: #FFF;
+    background-color: #2DB3A6;
+    padding: 10px 20px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+}
+.gouwuche_top_right_a1:hover{
+    background-color: #00FFDB;
+    color:#FFF;
+}
+.gouwuche_top_right_a2{
+    margin-right: 10px;
+    color: #FFF;
+    background-color: #F76120;
+    border-color: #DA3F02;
+    padding: 10px 20px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+}
+.gouwuche_top_right_a2:hover{
+    background-color: #f0ad4e;
+    color:#FFF;
 }

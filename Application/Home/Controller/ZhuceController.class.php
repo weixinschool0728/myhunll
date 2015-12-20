@@ -63,7 +63,7 @@ class ZhuceController extends FontEndController {
                     'zhifu_password'=>$password_md5,//初始支付密码等于登录密码
                     'last_login'=>mktime(),
                     'salt'=>$salt,
-                    'head_url'=>'/Public/Uploads/image/hunliren/20151025/14457851079231529239.jpg',//给个默认的头像
+                    'head_url'=>'/Public/Home/Images/public/man.png',//给个默认的头像
                     'reg_time'=>  mktime()
                 );
                 if($_SERVER['REMOTE_ADDR']){

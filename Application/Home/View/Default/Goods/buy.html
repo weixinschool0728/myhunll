@@ -27,7 +27,7 @@
 <table class="buy_table" cellspacing="0">
 <tr class="buy_table_head">
     <th class="shangjia">商家</th>
-    <th class="desc">项目</th>
+    <th class="desc">商品</th>
     <th class="price">价格</th>
     <th class="daijin">日期</th>
     <th class="yingfu">应付</th>
@@ -36,7 +36,7 @@
     <td class="shangjia"><{$goods['user_name']}></td>
     <td class="desc">[<{$goods['cat_name']}>]<{$goods['goods_name']}></td>
     <td class="price">&yen <{$goods['price']}></td>
-    <td class="daijin"><{$server_day}></td>
+    <td class="daijin"><{$server_day|date_geshi1}></td>
     <td class="yingfu">&yen <{$goods['price']}></td>
 </tr>
 <tr class="buy_table_head buy_table_content">

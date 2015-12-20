@@ -142,7 +142,7 @@
         
         <div class="buy" id="buy">
             <a href="javascript:void(0)" class="goumai">立即购买 </a>
-            <a href="javascript:void(0)" class="gouwuche" title="加入购物车"> </a>
+            <a href="javascript:void(0)" class="gouwuche" title="加入购物车" id="gouwuche"> </a>
             <a href="javascript:void(0)" class="shoucang">收藏商品（10000）</a>
               <a href="javascript:void(0)" class="shoucang">分享</a>
         </div>
@@ -157,9 +157,14 @@
                  </li>
                  <div id="div_li">   </div>
          </ul>
-         <div class="page_foot"><{$page_foot}></div>
+         <div class="page_foot" id="page_foot_1"><{$page_foot}></div>
      </div>
-    <div class="content_title">商品详情</div>
+    <a name='maodian_pingjia' id='maodian_pingjia'>&nbsp;</a>
+    <div class="content_title"><ul>
+            <li class="spxq">商品详情</li>
+            <li class="ljpj">累计评价</li>
+        </ul></div>
+    <div id="spxq">
     <div class="goods_shuxing">
         <div>商家：<{$goods['user_name']}></div>
         <div class="shuxing_title">产品属性：</div>
@@ -172,6 +177,38 @@
         </div>
     </div>
     <div class="goodscontent"><{$goods['goods_desc']}></div>
+    </div>
+    <div class="pinglun">
+        <div class="zhengtifenshu">
+            <span class="zhengtipingjia">整体评价:</span>
+            <span class="score"><{$goods['score']}></span><span class="fen">分</span><span class="shopping_pingjia"><span class="pingjia_limian" style="width: <{$goods['score']|xingxing_baifenbi}>;"></span></span>共<strong><{$goods['comment_number']}></strong>人评价
+        </div>
+        <div class="leijipinglun">
+            <ul>
+                <volist name="list_pinglun" id="vo">
+                <li>
+                    <div class="pinglun_left">
+                        <img src="<{$vo['head_url']}>" class="img">
+                        <p class="user_name"><{$vo['user_name']}></p>
+                    </div>
+                    <div class="pinglun_right">
+                        <div class="xingxing_div">
+                            <span class="pingjia_xiao"><span class="pingjia_xiao_limian" style="width:<{$vo['score']|xingxing_baifenbi}>;"></span></span>
+                            <span><{$vo['updated']|date='Y-m-d',###}></span>
+                        </div>
+                        <div class="pinglun_text"><{$vo['appraise']}></div>
+                        <div class="pinglun_img">
+                            <volist name="vo['appraise_img']" id='vo1'>
+                                <a><img src="<{$vo1}>" /></a>
+                            </volist>
+                        </div>
+                    </div>
+                </li>
+                </volist>
+            </ul>
+            <div class="page_foot"><{$page_foot_pinglun}></div>
+        </div>
+    </div>
 </div>
 <div id="overlay"></div><!--遮罩层div-->
 <div class="mini_login" id="mini_login">
@@ -180,6 +217,29 @@
         <include file="Login:mini_login" />
     </div>
 </div>
+
+
+<div class="gouwuche_join" id="gouwuche_join">
+    <a  id="gouwuche_guanbi" class="gouwuche_guanbi" hidefocus="true"></a>
+<div class="gouwuche_body">
+	<div id="gouwuche_top" class="gouwuche_top">
+            
+		<div class="gouwuche_top_left">
+                    <i></i>
+			<h5>成功加入购物车</h5>
+
+			<p>购物车内共有<strong>1</strong>种商品</p>
+
+		</div>
+
+		<div class="gouwuche_top_right">
+			<a href="javascript:void(0);"  class="gouwuche_top_right_a1"><<继续浏览</a>
+                        <a href="<{:U('Member/cart')}>"  class="gouwuche_top_right_a2">去购物车结算>></a>
+		</div>
+
+ 	</div>     
+</div>
+    </div>
 <iframe height="1" frameborder="0" width="1" style="position:absolute;top:0;left:-9999px;" src="<{:U('index/menu')}>"></iframe>
 <script src="__PUBLIC_HOME__/Js/goods.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -250,6 +310,7 @@
             showOverlay();
         }
     });
+    //点击购买
     $('.goumai').bind('click',function(){
         if($('input[name=server_day]').val()==''){
             $('#buy').css('display','none');
@@ -259,6 +320,7 @@
             if(is_login!=0){
                 $('form[name=buy]').submit();
                 }else{
+                    //通过请求让控制器记录$_SESSION['ref']
                     var server_day=$('input[name=server_day]').val();
                     var url='/Home/Goods/buy/server_day/'+server_day+'/goods_id/'+$('input[name=goods_id]').val()+'.html';
                     $.ajax({
@@ -268,9 +330,49 @@
                          datatype:'json'
                     });
                     
-                    showOverlay();  
+                    showOverlay('mini_login');  
                 }
             }
     });
-
+//点击加入购物车
+$('#gouwuche').bind('click',function(){
+    var is_success=true;
+        if($('input[name=server_day]').val()==''){
+            $('#buy').css('display','none');
+            $('#buy_clone').css('display','block');
+        }else{
+            is_login=check_login();
+            if(is_login!=0){
+                 var server_day=$('input[name=server_day]').val();
+                    var url='/Home/Goods/cart_join.html';
+                    var data={
+                        server_day:server_day,
+                        goods_id:$('input[name=goods_id]').val(),
+                        check:"cart_join"
+                    };
+                    $.ajax({
+                        type:'post',
+                        async : false,
+                        url:url,
+                        data:data,
+                        datatype:'json',
+                        success:function(msg){
+                            if(msg=='9'){
+                                is_success=false;
+                                alert('该商品的该日期你已经加入购物车，请重新选择日期');                                
+                            }
+                            if(msg=='-1'){
+                                is_success=false;
+                                alert('加入购物车失败，请重新加入');                                
+                            }
+                        }
+                    });
+                    if(is_success){
+                        showOverlay('gouwuche_join');  
+                    }
+                }else{ 
+                    showOverlay('mini_login');  
+                }
+            }
+    });
 </script>
