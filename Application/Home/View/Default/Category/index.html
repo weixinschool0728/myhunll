@@ -11,7 +11,7 @@
 <div class="box_l">
 <div class="box_l_menu">
 <div class="box_l_menu_tr">
-<div class="menu_tr_head" style='margin-right: 0px;border: none;'><{$cat_name}></div>
+<div class="menu_tr_head" style='margin-right: 0px;border: none;font-weight: 900;'><{$cat_name}></div>
 <div class="jiantou">&gt;</div>
 <if  condition="$get['sex'] neq null">
     <div class="menu_tr_head"><a href="<{$url['full']|str_replace='/sex/'.$get['sex'],'',###}>">性别: <{$get['sex']==0?'男性':'女性'}> &nbsp;<span class="guanbi">×</span></a></div>
@@ -35,41 +35,49 @@
         <else />
 <div class="box_l_menu_tr">
     <if  condition="$get['sex'] eq null">
+        <div class="first_div">
 <div class="menu_tr_title">性别&nbsp;:</div>
 <ul class="menu_tr_ul" style="width:auto;">
     <li><a href="<{:U($url['teshu'].'/sex/0')}><{$url['houmian']}>">男性</a></li>
 <li><a href="<{:U($url['teshu'].'/sex/1')}><{$url['houmian']}>">女性</a></li>
 </ul>
+        </div>
 <else />
     </if>
     <if  condition="$get['form'] eq null">
+        <div class="first_div">
     <div class="menu_tr_title">形式 :</div>
 <ul class="menu_tr_ul" style="width:auto;">
 <li><a href="<{:U($url['teshu'].'/form/1')}><{$url['houmian']}>">团队</a></li>
 <li><a href="<{:U($url['teshu'].'/form/0')}><{$url['houmian']}>">个人</a></li>
 </ul>
+        </div>
     <else />
     </if>
 </div>
     </if>
     <div class="box_l_menu_tr" style="border-bottom: none;">
-<ul class="menu_tr_ul">
+<ul class="menu_tr_ul menu_tr_ul_shuxing">
 <volist name="arr_shuxing[0]" id="vo">
+    <div class="first_div">
     <li class="menu_tr_title teshu_li"><{$key}> :</li>
     <foreach name="vo" item="value" key='k'>
         <li class="shuxing_jq"><a href="<{:U(shuxing_url($url['teshu'],$key.'-'.$value))}><{$url['houmian']}>"><{$value}></a></li>
     </foreach>
+    </div>
 </volist>
 </ul>
 </div>
     <volist name='arr_shuxing' id='first' offset='1'>
         <div class="box_l_menu_tr" style="border-bottom: none;padding-top: 0px;">
-<ul class="menu_tr_ul">
+<ul class="menu_tr_ul menu_tr_ul_shuxing">
 <volist name="first" id="vo">
+    <div class="first_div">
     <li class="menu_tr_title teshu_li"><{$key}> :</li>
     <foreach name="vo" item="value" key='k'>
 <li class="shuxing_jq"><a href="<{:U(shuxing_url($url['teshu'],$key.'-'.$value))}><{$url['houmian']}>"><{$value}></a></li>
     </foreach>
+    </div>
 </volist>
 </ul>
 </div>
