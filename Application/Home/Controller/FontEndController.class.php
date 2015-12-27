@@ -12,7 +12,7 @@ class FontEndController extends Controller {
         header("content-type:text/html;charset=utf-8"); 
      
         //判断是否需要记录当前url 数组内必须首字母大写
-        $noref=array('Goods/page','Index/menu','Order/yanzheng_zfmm','Order/queren_success','Goods/zhifu','Member/cart_del');
+        $noref=array('Goods/page','Index/menu','Order/yanzheng_zfmm','Order/queren_success','Goods/zhifu','Member/cart_del','Member/goods_del');
         $noref_contorller=array('Zhuce','Login');
         if(!in_array(CONTROLLER_NAME.'/'.ACTION_NAME, $noref)&&!in_array(CONTROLLER_NAME, $noref_contorller)){
             $_SESSION['ref']=  str_replace('.html', '',$_SERVER['REQUEST_URI']);
@@ -48,7 +48,7 @@ HTML;
          
         $this->assign("date",date('Y'));//给日期赋值 
         $this->assign("copy","1234567");//给备案号赋值
-        $this->assign("title","婚啦啦");//给标题赋值
+        $this->assign("title","一起网");//给标题赋值
         $this->assign("keywords","婚啦啦 长沙婚庆");//给关键字赋值
         $this->assign("description","婚啦啦 长沙婚庆");//给描述赋值
         $ismobile = ismobile();//检查客户端是否是手机

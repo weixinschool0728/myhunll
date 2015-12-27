@@ -14,9 +14,12 @@
         }
     });
     
-    //网页一开始就需要获取ajax信息
+    //网页一开始就需要获取其它商品ajax信息
     var url_y=window.location.href;
     var url=url_y.replace('index','page');
+    //if(url.lastIndexOf('/p/')!==-1){
+        //url=url.substring(0,url.indexOf('/p/'))+'.html';
+    //}
     $.ajax({
             type:'post',
             async : true,
@@ -40,7 +43,7 @@
         });
     
     //动态生成的必须用$('body').on('click','.num',function()｛｝）添加事件
-$('body').on('click','.page_foot a',function(event){
+$('body').on('click','.other .page_foot a',function(event){
     event.preventDefault();
     var url=$(this).attr('href');
     $.ajax({
@@ -236,8 +239,76 @@ $('.ljpj').bind('click',function(){
     $('.ljpj').css('background-color','#FFF');
     $('.spxq').css('background-color','#F6F6F6');
 });
-//鼠标点击评论区的图片放大  再点击 收回
-$('.pinglun_img img').bind('mouseover',function(){
+
+    
+//如果url存在maodian_pingjia那么显示评价
+var url_dangqian=window.location.href;
+if(url_dangqian.lastIndexOf('#maodian_pingjia')!='-1'||url_dangqian.lastIndexOf('/p/')!='-1'){
+    $('#spxq').css('display','none');
+    $('.pinglun').css('display','block');
+    $('.ljpj').css('background-color','#FFF');
+    $('.spxq').css('background-color','#F6F6F6');
+}
+
+//网页一开始就需要获取累计评论ajax信息
+    var url_pinglun=url_y.replace('index','pinglun');
+    $.ajax({
+            type:'post',
+            async : true,
+            url:url_pinglun,
+            datatype:'json',
+            success:function(msg){
+                var str="";
+                $(msg.li).each(function(i,item){
+                    var newtime=new Date(item.updated*1000);  
+                    str+='<li><div class="pinglun_left"><img src="'+item.head_url+'" class="img"><p class="user_name">'+item.user_name+'</p></div>';
+                    str+='<div class="pinglun_right"><div class="xingxing_div"><span class="pingjia_xiao"><span class="pingjia_xiao_limian" style="width:'+xingxing_baifenbi(item.score)+';"></span></span>';
+                    str+='<span>'+newtime.getFullYear()+'-'+newtime.getMonth()+'-'+newtime.getDate()+'&nbsp;&nbsp;&nbsp;&nbsp;'+newtime.toLocaleTimeString()+'</span></div><div class="pinglun_text">'+item.appraise+'</div><div class="pinglun_img">';
+                    $(item.appraise_img).each(function(i1,item1){
+                        str+='<a><img src="'+item1+'" /></a>';
+                    });
+                    str+='</div></div></li>';
+                });
+                
+                
+                
+                $('#leijipinglun').html(str);
+                    $('#page_foot_pinglun').html(msg.page_foot);
+            }
+        });
+        
+//动态生成的必须用$('body').on('click','.num',function()｛｝）添加事件
+$('body').on('click','#page_foot_pinglun a',function(event){
+    event.preventDefault();
+    var url=$(this).attr('href');
+    $.ajax({
+            type:'post',
+            async : true,
+            url:url,
+            datatype:'json',
+            success:function(msg){
+                var str='';
+                $(msg.li).each(function(i,item){
+                    var newtime=new Date(item.updated*1000); 
+                    str+='<li><div class="pinglun_left"><img src="'+item.head_url+'" class="img"><p class="user_name">'+item.user_name+'</p></div>';
+                    str+='<div class="pinglun_right"><div class="xingxing_div"><span class="pingjia_xiao"><span class="pingjia_xiao_limian" style="width:'+xingxing_baifenbi(item.score)+';"></span></span>';
+                    str+='<span>'+newtime.getFullYear()+'-'+newtime.getMonth()+'-'+newtime.getDate()+'&nbsp;&nbsp;&nbsp;&nbsp;'+newtime.toLocaleTimeString()+'</span></div><div class="pinglun_text">'+item.appraise+'</div><div class="pinglun_img">';
+                    $(item.appraise_img).each(function(i1,item1){
+                        str+='<a><img src="'+item1+'" /></a>';
+                    });
+                    str+='</div></div></li>';
+                });
+                
+                
+                
+                $('#leijipinglun').html(str);
+                $('#page_foot_pinglun').html(msg.page_foot);
+                }
+        });
+    });
+    
+//鼠标点击评论区的图片放大  再点击 收回  同样必须用 动态生成的元素绑定
+$('body').on('mouseover','.pinglun_img img',function(){
     var img_src=$(this).attr('src');
     //var img_eq=$('.pinglin_img img').index($(this));
     //var img_id="#pinglun_fangda_"+img_eq;
@@ -245,16 +316,6 @@ $('.pinglun_img img').bind('mouseover',function(){
     $(this).parent().parent().after(img_fangda);
     $("#pinglun_fangda").attr('src',img_src);
 });
-$('.pinglun_img img').bind('mouseout',function(){
+$('body').on('mouseout','.pinglun_img img',function(){
     $('#pinglun_fangda').remove();
     });
-    
-//如果url存在maodian_pingjia那么显示评价
-var url_dangqian=window.location.href;
-if(url_dangqian.lastIndexOf('#maodian_pingjia')!='-1'){
-    $('#spxq').css('display','none');
-    $('.pinglun').css('display','block');
-    $('.ljpj').css('background-color','#FFF');
-    $('.spxq').css('background-color','#F6F6F6');
-}
-

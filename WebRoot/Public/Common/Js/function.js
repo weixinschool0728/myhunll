@@ -92,3 +92,11 @@ function check_login(){
     });
     return data;
 }
+
+
+//星星分数变成百分数
+function xingxing_baifenbi(score){
+    var score1=score/5;
+    score1=score1.toFixed(2)*100;
+    return score1+'%';
+}

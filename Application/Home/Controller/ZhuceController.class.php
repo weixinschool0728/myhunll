@@ -148,9 +148,10 @@ class ZhuceController extends FontEndController {
         $qq=$_POST['contact_qq'];//获取QQ号码
         $weixin=$_POST['contact_weixin'];//获取微信号码
         $email=$_POST['contact_email'];//获取邮箱
+        $shop_introduce=$_POST['shop_introduce'];//获取店铺介绍
         $fuwuneirong=$_POST['fuwuneirong'];//获取服务内容
         //服务内容未选择时，提示并退出
-        if(empty($fuwuneirong)||empty($email)||empty($fuwuneirong)||empty($weixin)||empty($qq)||empty($address)||empty($name)){
+        if(empty($fuwuneirong)||empty($email)||empty($fuwuneirong)||empty($weixin)||empty($qq)||empty($address)||empty($name)||empty($shop_introduce)){
             $this->error('有内容未填写');
             exit();
         }
@@ -161,7 +162,7 @@ class ZhuceController extends FontEndController {
             exit();
         }
         //任何文本框如果含有非法字符，提示并退出
-        if(is_feifa($weixin)||is_feifa($qq)||is_feifa($address)||is_feifa($name)){
+        if(is_feifa($weixin)||is_feifa($qq)||is_feifa($address)||is_feifa($name)||is_feifa($shop_introduce)){
             $this->error('有内容含有非法字符');
             exit();
         }
@@ -183,6 +184,7 @@ class ZhuceController extends FontEndController {
             'email'=>$email,
             'server_content'=>$fuwuneirong,
             'shopman_id'=>1,
+            '$shop_introduce'=>$shop_introduce,
             'shopman_reg_time'=>  mktime()
         );
         //如果上传了营业执照照片，写进数组

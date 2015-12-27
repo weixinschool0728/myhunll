@@ -3,7 +3,7 @@ namespace Home\Controller;
 use Home\Controller;
 class IndexController extends FontEndController {
     public function index(){ 
-        $this->assign("title","婚啦啦");
+        $this->assign("title","一起网");
         unset($_SESSION['ref']);
         //获取策划类最新的八个商品信息
         $goodsmodel=D('Goods');

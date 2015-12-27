@@ -148,7 +148,45 @@
         </div>
         <div class="buy buy_clone" id="buy_clone">请选择日期<a class="mini_close" id="tishi_close" href="javascript:void(0)">×</a></div>
     </div>
-     <div class="jianjie">商家简介,服务承诺等</div>
+     <div class="dianpujieshao">
+         <div class="jianjie" >
+         商家承诺
+         <div class="chengnuo_content">
+             <a href="#">
+             <i class="peifu"></i>
+             双倍赔付
+             </a>
+             <a href="#">
+             <i class="tui"></i>
+             随时退
+             </a>
+             <a href="#" style="margin-right: 0px;">
+                 <i class="baozhengjin">
+                     保
+                 </i>
+                 保证金
+             </a>
+         </div>
+         </div>
+         <ul class="dianpujieshao_pingfen">
+             <li>
+                 <div>描述</div>
+                 <div class="pingfen_jt"><{$pingfen_fl[0]}></div>
+             </li>
+             <li>
+                 <div>服务</div>
+                 <div class="pingfen_jt"><{$pingfen_fl[1]}></div>
+             </li>
+             <li style="border-right: none;">
+                 <div>专业</div>
+                 <div  class="pingfen_jt"><{$pingfen_fl[2]}></div>
+             </li>
+         </ul>
+         <div class="jianjie">
+         商家介绍
+         <div><a href="#" class="jianjie_content">&nbsp;&nbsp;&nbsp;&nbsp;<{$goods['shop_introduce']|substr=###,0,600}><{:strlen($goods['shop_introduce'])>600 ? '……':''}></a></div>
+         </div>
+     </div>
      </div>
      <div class="other">
          <ul>
@@ -184,7 +222,8 @@
             <span class="score"><{$goods['score']}></span><span class="fen">分</span><span class="shopping_pingjia"><span class="pingjia_limian" style="width: <{$goods['score']|xingxing_baifenbi}>;"></span></span>共<strong><{$goods['comment_number']}></strong>人评价
         </div>
         <div class="leijipinglun">
-            <ul>
+            <ul id='leijipinglun'>
+                <!--
                 <volist name="list_pinglun" id="vo">
                 <li>
                     <div class="pinglun_left">
@@ -205,8 +244,10 @@
                     </div>
                 </li>
                 </volist>
+                -->
             </ul>
-            <div class="page_foot"><{$page_foot_pinglun}></div>
+            <!--<div class="page_foot" id='page_foot_pinglun'><{$page_foot_pinglun}></div>-->
+            <div class="page_foot" id='page_foot_pinglun'></div>
         </div>
     </div>
 </div>

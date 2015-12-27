@@ -178,6 +178,7 @@ function shuzu($shuzu,$xiabiao){
     return $shuzu[$xiabiao];
 }
 
+//星星分数变成百分数
 function xingxing_baifenbi($score){
     $score1=round($score/5,2)*100;
     return $score1.'%';

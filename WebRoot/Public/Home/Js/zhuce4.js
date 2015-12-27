@@ -386,9 +386,18 @@ function xiayibu_onclick(){
 	var c7=name_onblur();
 	var c8=check_seleck();
 	var c9=check_checkbox();
+        var c10=text_blue($('#shop_introduce'),$('#infor_shop_introduce'));
 
-        if(c1&&c2&&c4&&c5&&c6&&c7&&c8&&c9){
+        if(c1&&c2&&c4&&c5&&c6&&c7&&c8&&c9&&c10){
             obj_form.submit();
         }
         return false;
     }
+    
+$('#shop_introduce').bind('focus',function(){
+    $('#infor_shop_introduce').html('（请填写详细的店铺介绍，将显示在商品页面右侧）');
+    $('#infor_shop_introduce').css('color','#666');
+});
+$('#shop_introduce').bind('blur',function(){
+    return text_blue($('#shop_introduce'),$('#infor_shop_introduce'));
+});
