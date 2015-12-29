@@ -123,20 +123,18 @@
 <div class="box_l_menu">
 <div>
 <ul class="menu_tr_ul menu_tr_ul2">
-<li><a href="#">默认</a></li>
-<li><a href="#">销量</a></li>
-<li><a href="#">价格</a></li>
-<li><a href="#">好评</a></li>
-<li><a href="#">发布时间</a></li>
+    <li id="moren"><a href="<{:U('Category/index',array('cid'=>$get['cid']))}>">默认</a></li>
+    <li id="number"><a href="<{:U('Category/index',array('cid'=>$get['cid'],'order'=>'number_desc'))}>">销量<span class="jiantou"></span></a></li>
+    <li id="price"><a href="<{:U('Category/index',array('cid'=>$get['cid'],'order'=>'price_desc'))}>">价格<span class="jiantou"></span></a></li>
+    <li id="pinglun"><a href="<{:U('Category/index',array('cid'=>$get['cid'],'order'=>'pinglun_desc'))}>">好评<span class="jiantou"></span></a></li>
+    <li id="update"><a href="<{:U('Category/index',array('cid'=>$get['cid'],'order'=>'update_desc'))}>">发布时间<span class="jiantou"></span></a></li>
 </ul>
 </div>
 <div>
-<a href="#" class="menu_tr_check"><span class="icon_check"></span>
+    <a href="#" class="menu_tr_check" id="daijinquan"><span class="icon_check"></span>
 <span>代金券</span></a>
-<a href="#" class="menu_tr_check"><span class="icon_check"></span>
-<span>提前见面</span></a>
-<a href="#" class="menu_tr_check"><span class="icon_check"></span>
-<span>返现</span></a>
+<a href="#" class="menu_tr_check" id="fanxian"><span class="icon_check"></span>
+<span>评价返现</span></a>
 </div>
 </div><!--左边选项菜单2-->
 <div class="shopping_table">
@@ -147,7 +145,14 @@
     <div class="shopping_img"><a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><img src="<{$vo['goods_img']}>"/></a></div>
 <div class="shopping_title">
 <div class="shopping_title_name">商品</div>
-<a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><{$vo['goods_name']}></a></div>
+<a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><{$vo['goods_name']}></a>
+<if  condition="$vo['daijinquan'] eq '1'">
+<span class="daijinquan" style="margin-right: 5px;">券</span>
+</if>
+<if  condition="$vo['fanxian'] neq '0'">
+    <span class="daijinquan">返</span>
+</if>
+</div>
 <div class="shopping_tr2">
 <div class="shopping_title_name"><{$cat_name}></div>
 <span><{$vo['user_name']}></span>
@@ -183,5 +188,42 @@
         $('input[name=price_s]').val(price_s);
         $('input[name=price_b]').val(price_b);
     })
+    var order = "<{$get['order']}>";
+    if(order===''){
+        $('#moren a').css('color','#03BA8A');
+    }else if(order==='number_desc'){
+        $('#number a').css('color','#03BA8A');
+        $('#number .jiantou').css('background-position','0px -810px');
+    }else if(order==='price_desc'){
+        $('#price a').css('color','#03BA8A');
+        $('#price .jiantou').css('background-position','0px -810px');
+        $('#price a').attr('href','<{:U('Category/index',array('cid'=>$get['cid'],'order'=>'price_asc'))}>');
+    }else if(order==='price_asc'){
+        $('#price a').css('color','#03BA8A');
+        $('#price .jiantou').css('background-position','0px -11px');
+        $('#price a').attr('href',"<{:U('Category/index',array('cid'=>$get['cid'],'order'=>'price_desc'))}>");
+    }else if(order==='pinglun_desc'){
+        $('#pinglun a').css('color','#03BA8A');
+        $('#pinglun .jiantou').css('background-position','0px -810px');
+    }else if(order==='update_desc'){
+        $('#update a').css('color','#03BA8A');
+        $('#update .jiantou').css('background-position','0px -810px');
+    };
 
+    var daijinquan = "<{$get['daijinquan']}>";
+    if(daijinquan=='1'){
+        $('#daijinquan').children('.icon_check').css('background-position','-435px -151px');
+        $('#daijinquan').attr('href',"<{:U('Category/index',$get_cs['no_daijinquan'])}>");
+    }else{
+        $('#daijinquan').children('.icon_check').css('background-position','-435px -128px');
+        $('#daijinquan').attr('href',"<{:U('Category/index',$get_cs['daijinquan'])}>");
+    }
+    var fanxian = "<{$get['fanxian']}>";
+    if(fanxian=='1'){
+        $('#fanxian').children('.icon_check').css('background-position','-435px -151px');
+        $('#fanxian').attr('href',"<{:U('Category/index',$get_cs['no_fanxian'])}>");
+    }else{
+        $('#fanxian').children('.icon_check').css('background-position','-435px -128px');
+        $('#fanxian').attr('href',"<{:U('Category/index',$get_cs['fanxian'])}>");
+    }
 </script>

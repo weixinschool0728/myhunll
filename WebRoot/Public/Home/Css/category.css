@@ -39,18 +39,18 @@ float:left;
 margin: 3px 5px 0px 0px;
 padding:2px 4px;
 color: #999;
-width: 100px;
+width: 90px;
 }
 
 .box_l_menu_tr .menu_tr_ul_shuxing{
     width:900px;
 }
 .first_div{
-    min-width: 440px;
+    /*min-width: 440px;*/
 }
 .menu_tr_ul{
     float:left;
-    width:780px;
+    width:790px;
 }
 .menu_tr_ul li{
 margin:3px 30px 3px 0px;
@@ -64,8 +64,7 @@ display:block;
 padding:2px 4px;
 }
 .menu_tr_ul a:hover {
-background-color:#03BA8A;
-color:#FFFFFF;
+color:#03BA8A;
 }
 .menu_tr_ul input {
 width:40px;
@@ -76,6 +75,7 @@ width:auto;
 .menu_tr_ul2 li{
 margin:0px;
 border-right:1px solid #ddd;
+position:relative;
 }
 .menu_tr_ul2 a{
 padding:8px 20px;
@@ -121,7 +121,7 @@ height: 19px;
 }
 .shopping_title a{
 line-height:19px;
-width: 220px;
+width: 185px;
 display:inline-block;
 text-overflow:ellipsis;/*超出部分省略号*/
 white-space: nowrap;/*强制文本一行输出*/
@@ -205,4 +205,29 @@ margin-top: 10px;}
     cursor: pointer;
     display: inline-block;
     height: 17px;
+}
+.jiantou{
+    display: inline-block;
+    position: absolute;
+    left:48px;
+    top:13px;
+    width: 7px;
+    height: 8px;
+    background-image: url(../Images/public/jiantou.png);
+    background-position: 0px -820px;
+}
+#update .jiantou{
+    left:72px;
+}
+.daijinquan{
+    width: 19px;
+    height: 19px;
+    background-color: #F76120;
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    text-align: center;
+    line-height: 19px;
+    position:relative;
+    top:-6px;
 }
