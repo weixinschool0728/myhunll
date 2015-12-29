@@ -17,7 +17,12 @@ class GoodsController extends FontEndController {
         $this->assign('goods_id',$goods_id);
         $goodsmodel=D('Goods');
         $goods=$goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.goods_id,t1.area,t1.goods_name,t1.price,t1.yuan_price,t1.goods_img,t1.goods_img_qita,t1.goods_sex,t1.goods_desc,t1.comment_number,t1.shuxing,t1.score,t3.cat_name,t2.user_name,t1.user_id,t2.weixin,t2.qq,t2.mobile_phone,t2.email,t1.comment_number,t2.shop_introduce')->find();
+        $goods['shop_introduce']=str_replace("\r", "", $goods['shop_introduce']);
+        $goods['shop_introduce']=str_replace("\n", "", $goods['shop_introduce']);
         $this->assign('goods',$goods);
+        $shop_introduce=strlen($goods['shop_introduce']);
+        $this->assign('shop_introduce',$shop_introduce);
+        
         $img_qita=unserialize($goods['goods_img_qita']);//获取其它展示图数组
         $this->assign('img_qita',$img_qita);
         $shuxing=unserialize($goods['shuxing']);//获取商品属性数组

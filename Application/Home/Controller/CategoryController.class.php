@@ -23,14 +23,51 @@ class CategoryController extends FontEndController {
             $this->assign("url",$url);
             $get=$_GET;
             $this->assign('get',$get);//get赋值给模板
+            //order的url
+            $get_cs['order_moren']=$get;
+            unset($get_cs['order_moren']['order']);
+            
+            $get_cs['order_xiaoliang']=$get;
+            $get_cs['order_xiaoliang']['order']='number_desc';
+            
+            $get_cs['order_price_desc']=$get;
+            $get_cs['order_price_desc']['order']='price_desc';
+            $get_cs['order_price_asc']=$get;
+            $get_cs['order_price_asc']['order']='price_asc';
+            
+            $get_cs['order_pinglun']=$get;
+            $get_cs['order_pinglun']['order']='pinglun_desc';
+            
+            $get_cs['order_update']=$get;
+            $get_cs['order_update']['order']='update_desc';
+            //代金券url
             $get_cs['daijinquan']=$get;
+            $get_cs['daijinquan']['daijinquan']='1';
             $get_cs['no_daijinquan']=$get;
+            unset($get_cs['no_daijinquan']['daijinquan']);
+            
+            //返现url
             $get_cs['fanxian']=$get;
+            $get_cs['fanxian']['fanxian']='1';
             $get_cs['no_fanxian']=$get;
             unset($get_cs['no_fanxian']['fanxian']);
-            unset($get_cs['no_daijinquan']['daijinquan']);
-            $get_cs['daijinquan']['daijinquan']='1';
-            $get_cs['fanxian']['fanxian']='1';
+            
+            //性别url
+            $get_cs['sex_1']=$get;
+            $get_cs['sex_1']['sex']='1';
+            $get_cs['sex_0']=$get;
+            $get_cs['sex_0']['sex']='0';
+            $get_cs['no_sex']=$get;
+            unset($get_cs['no_sex']['sex']);
+            
+            //形式url
+            $get_cs['form_1']=$get;
+            $get_cs['form_1']['form']='1';
+            $get_cs['form_0']=$get;
+            $get_cs['form_0']['form']='0';
+            $get_cs['no_form']=$get;
+            unset($get_cs['no_form']['form']);
+            
             
             $this->assign('get_cs',$get_cs);//get_cs赋值给模板
             

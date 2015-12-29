@@ -14,10 +14,10 @@
 <div class="menu_tr_head" style='margin-right: 0px;border: none;font-weight: 900;'><{$cat_name}></div>
 <div class="jiantou">&gt;</div>
 <if  condition="$get['sex'] neq null">
-    <div class="menu_tr_head"><a href="<{$url['full']|str_replace='/sex/'.$get['sex'],'',###}>">性别: <{$get['sex']==0?'男性':'女性'}> &nbsp;<span class="guanbi">×</span></a></div>
+    <div class="menu_tr_head"><a href="<{:U('Category/index',$get_cs['no_sex'])}>">性别: <{$get['sex']==0?'男性':'女性'}> &nbsp;<span class="guanbi">×</span></a></div>
 </if>
 <if  condition="$get['form'] neq null">
-    <div class="menu_tr_head"><a href="<{$url['full']|str_replace='/form/'.$get['form'],'',###}>">形式: <{$get['form']==0?'个人':'团队'}> &nbsp;<span class="guanbi">×</span></a></div>
+    <div class="menu_tr_head"><a href="<{:U('Category/index',$get_cs['no_form'])}>">形式: <{$get['form']==0?'个人':'团队'}> &nbsp;<span class="guanbi">×</span></a></div>
 </if>
 <if  condition="$get['location'] neq null">
     <div class="menu_tr_head"><a href="<{:str_replace('/location/'.urlencode($get['location']),'',$url['full'])}>">区域: <{$get['location']}> &nbsp;<span class="guanbi">×</span></a></div>
@@ -38,8 +38,8 @@
         <div class="first_div">
 <div class="menu_tr_title">性别&nbsp;:</div>
 <ul class="menu_tr_ul" style="width:auto;">
-    <li><a href="<{:U($url['teshu'].'/sex/0')}><{$url['houmian']}>">男性</a></li>
-<li><a href="<{:U($url['teshu'].'/sex/1')}><{$url['houmian']}>">女性</a></li>
+    <li><a href="<{:U('Category/index',$get_cs['sex_0'])}>">男性</a></li>
+<li><a href="<{:U('Category/index',$get_cs['sex_1'])}>">女性</a></li>
 </ul>
         </div>
 <else />
@@ -48,8 +48,8 @@
         <div class="first_div">
     <div class="menu_tr_title">形式 :</div>
 <ul class="menu_tr_ul" style="width:auto;">
-<li><a href="<{:U($url['teshu'].'/form/1')}><{$url['houmian']}>">团队</a></li>
-<li><a href="<{:U($url['teshu'].'/form/0')}><{$url['houmian']}>">个人</a></li>
+<li><a href="<{:U('Category/index',$get_cs['form_1'])}>">团队</a></li>
+<li><a href="<{:U('Category/index',$get_cs['form_0'])}>">个人</a></li>
 </ul>
         </div>
     <else />
@@ -123,11 +123,11 @@
 <div class="box_l_menu">
 <div>
 <ul class="menu_tr_ul menu_tr_ul2">
-    <li id="moren"><a href="<{:U('Category/index',array('cid'=>$get['cid']))}>">默认</a></li>
-    <li id="number"><a href="<{:U('Category/index',array('cid'=>$get['cid'],'order'=>'number_desc'))}>">销量<span class="jiantou"></span></a></li>
-    <li id="price"><a href="<{:U('Category/index',array('cid'=>$get['cid'],'order'=>'price_desc'))}>">价格<span class="jiantou"></span></a></li>
-    <li id="pinglun"><a href="<{:U('Category/index',array('cid'=>$get['cid'],'order'=>'pinglun_desc'))}>">好评<span class="jiantou"></span></a></li>
-    <li id="update"><a href="<{:U('Category/index',array('cid'=>$get['cid'],'order'=>'update_desc'))}>">发布时间<span class="jiantou"></span></a></li>
+    <li id="moren"><a href="<{:U('Category/index',$get_cs['order_moren'])}>">默认</a></li>
+    <li id="number"><a href="<{:U('Category/index', $get_cs['order_xiaoliang'])}>">销量<span class="jiantou"></span></a></li>
+    <li id="price"><a href="<{:U('Category/index', $get_cs['order_price_desc'])}>">价格<span class="jiantou"></span></a></li>
+    <li id="pinglun"><a href="<{:U('Category/index', $get_cs['order_pinglun'])}>">好评<span class="jiantou"></span></a></li>
+    <li id="update"><a href="<{:U('Category/index', $get_cs['order_update'])}>">发布时间<span class="jiantou"></span></a></li>
 </ul>
 </div>
 <div>
@@ -197,11 +197,11 @@
     }else if(order==='price_desc'){
         $('#price a').css('color','#03BA8A');
         $('#price .jiantou').css('background-position','0px -810px');
-        $('#price a').attr('href','<{:U('Category/index',array('cid'=>$get['cid'],'order'=>'price_asc'))}>');
+        $('#price a').attr('href',"<{:U('Category/index', $get_cs['order_price_asc'])}>");
     }else if(order==='price_asc'){
         $('#price a').css('color','#03BA8A');
         $('#price .jiantou').css('background-position','0px -11px');
-        $('#price a').attr('href',"<{:U('Category/index',array('cid'=>$get['cid'],'order'=>'price_desc'))}>");
+        $('#price a').attr('href',"<{:U('Category/index', $get_cs['order_price_desc'])}>");
     }else if(order==='pinglun_desc'){
         $('#pinglun a').css('color','#03BA8A');
         $('#pinglun .jiantou').css('background-position','0px -810px');

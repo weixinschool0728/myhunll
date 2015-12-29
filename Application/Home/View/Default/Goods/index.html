@@ -99,8 +99,8 @@
                                         </div>
                                         <div id="dateSelectionFooter"></div>
                                     </div>
-                                    <a href="#" id="nianjia" title="下一年" class="ymNaviBtn rsArrow" style="float:right;"></a>
-                                    <a href="#" id="yuejia" title="下一月" class="ymNaviBtn rArrow" style="float:right;"></a>
+                                    <a href="javascript:void(0)" id="nianjia" title="下一年" class="ymNaviBtn rsArrow" style="float:right;"></a>
+                                    <a href="javascript:void(0)" id="yuejia" title="下一月" class="ymNaviBtn rArrow" style="float:right;"></a>
     
                                 </td>
                             </tr>
@@ -148,6 +148,7 @@
         </div>
         <div class="buy buy_clone" id="buy_clone">请选择日期<a class="mini_close" id="tishi_close" href="javascript:void(0)">×</a></div>
     </div>
+     <div class="jianjie_more_div"><a href="javascript:void(0)" class="mini_close">×</a></div>
      <div class="dianpujieshao">
          <div class="jianjie" >
          商家承诺
@@ -184,7 +185,12 @@
          </ul>
          <div class="jianjie">
          商家介绍
-         <div><a href="#" class="jianjie_content">&nbsp;&nbsp;&nbsp;&nbsp;<{$goods['shop_introduce']|substr=###,0,600}><{:strlen($goods['shop_introduce'])>600 ? '……':''}></a></div>
+         <div><span class="jianjie_content">
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<{$goods['shop_introduce']|substr=###,0,600}>
+                 <if  condition="$shop_introduce gt 600">
+                 <a class='jianjie_more'>更多......</a>
+                 </if>
+             </span></div>
          </div>
      </div>
      </div>
@@ -223,28 +229,6 @@
         </div>
         <div class="leijipinglun">
             <ul id='leijipinglun'>
-                <!--
-                <volist name="list_pinglun" id="vo">
-                <li>
-                    <div class="pinglun_left">
-                        <img src="<{$vo['head_url']}>" class="img">
-                        <p class="user_name"><{$vo['user_name']}></p>
-                    </div>
-                    <div class="pinglun_right">
-                        <div class="xingxing_div">
-                            <span class="pingjia_xiao"><span class="pingjia_xiao_limian" style="width:<{$vo['score']|xingxing_baifenbi}>;"></span></span>
-                            <span><{$vo['updated']|date='Y-m-d',###}></span>
-                        </div>
-                        <div class="pinglun_text"><{$vo['appraise']}></div>
-                        <div class="pinglun_img">
-                            <volist name="vo['appraise_img']" id='vo1'>
-                                <a><img src="<{$vo1}>" /></a>
-                            </volist>
-                        </div>
-                    </div>
-                </li>
-                </volist>
-                -->
             </ul>
             <!--<div class="page_foot" id='page_foot_pinglun'><{$page_foot_pinglun}></div>-->
             <div class="page_foot" id='page_foot_pinglun'></div>
@@ -415,5 +399,15 @@ $('#gouwuche').bind('click',function(){
                     showOverlay('mini_login');  
                 }
             }
+    });
+    
+    //点击商店介绍的更多
+    $('.jianjie_more').bind('click',function(){
+        var a='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+"<{$goods['shop_introduce']}>";
+        $('.jianjie_more_div').prepend(a);
+        $('.jianjie_more_div').css('display','block');
+    });
+    $('.jianjie_more_div .mini_close').bind('click',function(){
+        $('.jianjie_more_div').css('display','none');
     });
 </script>
