@@ -36,7 +36,14 @@
     <div class="info">
         <div class="price">
             <div class="price1"><div class="span">价格:</div><div class="span1">&yen;&nbsp;<s><{$goods['yuan_price']}></s></div></div>
-            <div class="price2"><div class="span">婚啦啦价:</div><div class="span2">&yen;&nbsp;<{$goods['price']}></div></div>
+            <div class="price2"><div class="span">婚啦啦价:</div><div class="span2">&yen;&nbsp;<{$goods['price']}></div>
+                <if  condition="$goods['daijinquan'] eq '1'">
+                    <span class="daijinquan" style="margin-left: 5px;">券</span>
+                </if>
+                <if  condition="$goods['fanxian'] neq '0'">
+                        <span class="daijinquan">返</span>
+                </if>
+            </div>
         </div>
         <div class="about">
             <div><a href="#">已售：<span>10</span></a></div>

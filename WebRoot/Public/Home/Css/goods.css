@@ -121,6 +121,7 @@
 }
 .price2{
     margin: 0px 0px 0px 10px;
+    padding-right: 20px;
 }
 .price2 .span{
     width: 80px;
@@ -714,4 +715,18 @@ color:#FFFFFF;
     background-color:#FFF;
     color: #888;
     display: none;
+}
+
+.daijinquan{
+    width: 19px;
+    height: 19px;
+    background-color: #F76120;
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    text-align: center;
+    line-height: 19px;
+    float: right;
+    margin-top: 10px;
+    
 }

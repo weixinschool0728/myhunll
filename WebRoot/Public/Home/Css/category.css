@@ -228,6 +228,5 @@ margin-top: 10px;}
     font-size: 12px;
     text-align: center;
     line-height: 19px;
-    position:relative;
-    top:-6px;
+    float: right;
 }
