@@ -155,7 +155,7 @@
         </div>
         <div class="buy buy_clone" id="buy_clone">请选择日期<a class="mini_close" id="tishi_close" href="javascript:void(0)">×</a></div>
     </div>
-     <div class="jianjie_more_div"><a href="javascript:void(0)" class="mini_close">×</a></div>
+     <div class="jianjie_more_div">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<{$goods['shop_introduce']}><a href="javascript:void(0)" class="mini_close">×</a></div>
      <div class="dianpujieshao">
          <div class="jianjie" >
          商家承诺
@@ -417,8 +417,6 @@ $('#gouwuche').bind('click',function(){
     
     //点击商店介绍的更多
     $('.jianjie_more').bind('click',function(){
-        var a='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+"<{$goods['shop_introduce']}>";
-        $('.jianjie_more_div').prepend(a);
         $('.jianjie_more_div').css('display','block');
     });
     $('.jianjie_more_div .mini_close').bind('click',function(){
