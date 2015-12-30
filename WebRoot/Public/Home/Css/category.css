@@ -230,3 +230,42 @@ margin-top: 10px;}
     line-height: 19px;
     float: right;
 }
+.box_r{
+    border: 1px solid #DDD;
+    float:left;
+    width:215px;
+    margin-left:10px;
+    padding: 10px 20px;
+}
+.box_r h3{
+    padding-tpp: 3px;
+    font-size: 16px;
+    color:#333;
+    font-weight: bolder;
+}
+.box_r_shopping{
+    border-bottom: 1px solid #DDD;
+    padding: 20px 0px;
+}
+.box_r_shopping img{
+    width: 215px;
+    max-height: 215px;
+}
+.box_r_shopping h4{
+    margin: 10px 0px 5px 0px;
+}
+.box_r_shopping h4 a{
+    color: #333;
+    font-weight: bolder;
+}
+.box_r_shopping h4 a:hover{
+    color: #00FFDB;
+}
+.box_r_shopping .guanggao_price{
+    max-width: 95px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    color: #F76120;
+    margin-right: 10px;
+}

@@ -155,7 +155,9 @@ class CategoryController extends FontEndController {
             $this->assign('list',$list);
             $this->assign('page_foot',$page_foot);
 
-        
+            //获取广告商品列表
+            $guanggao=$goodsmodel->where("cat_id={$cat_id} and guanggao='1'")->field('goods_id,goods_name,goods_img,price,buy_number')->select();
+            $this->assign('guanggao',$guanggao);
             $this->display(index);
         }
     }

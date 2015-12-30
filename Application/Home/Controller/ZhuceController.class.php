@@ -188,7 +188,7 @@ class ZhuceController extends FontEndController {
             'email'=>$email,
             'server_content'=>$fuwuneirong,
             'shopman_id'=>1,
-            '$shop_introduce'=>$shop_introduce,
+            'shop_introduce'=>$shop_introduce,
             'weixin_erweima'=>'/'.$weixin_erweima,
             'shopman_reg_time'=>  mktime()
         );
