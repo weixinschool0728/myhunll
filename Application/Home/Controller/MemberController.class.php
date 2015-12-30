@@ -167,7 +167,7 @@ class MemberController extends FontEndController {
             'shuxing'=>$str_shuxing,//属性
             'goods_img'=>'/'.$goods_img,//商品图片
             'goods_img_qita'=>$str_goods_img,//被序列化的其它图片
-            'fanxian'=>$content['radio_fanxian'],
+            'fanxian'=>$content['select_fanxian'],
             'daijinquan'=>$content['radio_daijinquan'],
             'goods_desc'=>$goods_desc,//商品描述
             'add_time'=>time(),             //添加时间
@@ -210,7 +210,7 @@ class MemberController extends FontEndController {
         $count=$goodsmodel->where("user_id={$user_id} and is_delete=0")->count();
         $page=$this->get_page($count, 5);
         $page_foot=$page->show();//显示页脚信息
-        $list=$goodsmodel->where("user_id={$user_id} and is_delete=0")->limit($page->firstRow.','.$page->listRows)->select();
+        $list=$goodsmodel->where("user_id={$user_id} and is_delete=0")->limit($page->firstRow.','.$page->listRows)->order('last_update desc')->select();
         $this->assign('list',$list);
         $this->assign('page_foot',$page_foot);
         
