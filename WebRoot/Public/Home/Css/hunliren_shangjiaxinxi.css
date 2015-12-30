@@ -76,3 +76,13 @@
     width:50px;
     height: 50px;
 }
+.content .erweima{
+    height: 120px;
+}
+.erweima span{
+    position: relative;
+    bottom: 50px;
+}
+.erweima img{
+    height: 120px;
+}

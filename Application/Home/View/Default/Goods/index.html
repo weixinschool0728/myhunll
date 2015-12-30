@@ -299,6 +299,10 @@
         is_login=check_login();
         if(is_login!=0){
             var dh='<div id="div_tanchu"><button type="button">微信：<{$goods["weixin"]}></button></div>';
+            var erweima='<{$goods["weixin_erweima"]}>';
+            if(erweima!==''){
+                var img_erweima='<img class="erweima" src="'+erweima+'" />';
+            }
         }else{
             var dh='<div id="div_tanchu"><button type="button">点我登录获取微信</button></div>';
             $('#wx').bind('click',function(e){
@@ -306,7 +310,9 @@
             });
         }
         $('body').append(dh);
+        $('body').append(img_erweima);
         $('#div_tanchu').css({top: yy, left: xx});
+        $('.erweima').css({top: yy, left: xx-130});
     });
     $('#em').bind('mouseover',function(e){
         var xx=e.pageX+10;
@@ -327,6 +333,7 @@
     //鼠标移开 删除弹出
     $('#dh,#wx,#em,.li_last').bind('mouseout',function(){
         $('#div_tanchu').remove();
+        $('.erweima').remove();
     });
     
     //如果没登录 点击QQ弹出请先登录,并且title内容改变

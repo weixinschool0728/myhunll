@@ -121,10 +121,13 @@ class ZhuceController extends FontEndController {
         //获取上传文件信息
         $file_info=$this->upload('image/hunliren/');
         //当有文件没有上传时，提示并返回
-        if(count($file_info)<2){
-            $this->error('存在未选择的文件');
-            exit();
+        if(empty($file_info['file_touxiang'])){
+            $this->error('未选择上传头像');
         }
+        if(empty($file_info['file_shenfenzheng'])){
+            $this->error('未选择上传身份证照片');
+        }
+            
         $serverform=intval($_POST['radio_fuwuxingshi']);//获取服务形式
         //当服务形式为公司，至少必须上传3个图片文件，否则提示并且返回
        //if($serverform===2){
@@ -169,6 +172,7 @@ class ZhuceController extends FontEndController {
         //获取上传文件信息
         $head_url=UPLOAD.$file_info['file_touxiang']['savepath'].$file_info['file_touxiang']['savename'];
         $shenfenzheng_url=UPLOAD.$file_info['file_shenfenzheng']['savepath'].$file_info['file_shenfenzheng']['savename'];
+        $weixin_erweima=UPLOAD.$file_info['file_weixin_erweima']['savepath'].$file_info['file_weixin_erweima']['savename'];
         //准备需要写进数据库的数组
         $user_id=intval($_SESSION['huiyuan']['user_id']);//获取会员id号
         $row=array(
@@ -185,6 +189,7 @@ class ZhuceController extends FontEndController {
             'server_content'=>$fuwuneirong,
             'shopman_id'=>1,
             '$shop_introduce'=>$shop_introduce,
+            'weixin_erweima'=>'/'.$weixin_erweima,
             'shopman_reg_time'=>  mktime()
         );
         //如果上传了营业执照照片，写进数组

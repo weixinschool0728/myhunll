@@ -167,6 +167,8 @@ class MemberController extends FontEndController {
             'shuxing'=>$str_shuxing,//属性
             'goods_img'=>'/'.$goods_img,//商品图片
             'goods_img_qita'=>$str_goods_img,//被序列化的其它图片
+            'fanxian'=>$content['radio_fanxian'],
+            'daijinquan'=>$content['radio_daijinquan'],
             'goods_desc'=>$goods_desc,//商品描述
             'add_time'=>time(),             //添加时间
             'last_update'=>time()            //更新时间初始等于添加时间

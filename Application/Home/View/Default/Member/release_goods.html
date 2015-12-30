@@ -60,7 +60,7 @@
             <div class="tr" style="<{$css}>">
                 <div class="tr_td1">性别</div>
                 <div class="tr_td2">
-                    <input name="radio_sex" type="radio" class="radio" value="0" />男
+                    <input name="radio_sex" type="radio" class="radio" value="0" checked="checked" />男
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input name="radio_sex" type="radio" class="radio" value="1" />女
                 </div>
@@ -95,6 +95,25 @@
             </volist>
             <div style="width:400px;height:0px;border-top:1px dashed #666;"></div>
             
+            <div class="tr">
+                <div class="tr_td1">参加代金券</div>
+                <div class="tr_td2">
+                    <input name="radio_daijinquan" type="radio" class="radio" value="0" checked="checked" />是
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input name="radio_daijinquan" type="radio" class="radio" value="1" />否
+                    <a href="javascript:void(0)" id="daijinquan_help" style="margin-left: 30px;border: 1px solid #888;padding:1px 5px;font-size: 12px;position: relative;bottom:2px;">查看详情</a>
+                </div>
+            </div>
+            
+            <div class="tr">
+                <div class="tr_td1">参加返现</div>
+                <div class="tr_td2">
+                    <input name="radio_fanxian" type="radio" class="radio" value="0" checked="checked" />是
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input name="radio_fanxian" type="radio" class="radio" value="1" />否
+                    <a href="javascript:void(0)" id="fanxian_help" style="margin-left: 30px;border: 1px solid #888;padding:1px 5px;font-size: 12px;position: relative;bottom:2px;">查看详情</a>
+                </div>
+            </div>
             
             <div class="tr">
                 <div class="tr_td1">商品描述</div>
