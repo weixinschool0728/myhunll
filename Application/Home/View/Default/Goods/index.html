@@ -50,7 +50,7 @@
             <div><a href="#"><span>5</span>分</a></div>
             <div id="pingjia"><a href="#"><span><{$goods['comment_number']}></span>人评价</a></div>
         </div>
-        <div class="xzrq">选择日期：  绿色：已选  白色：未选</div>
+        <div class="xzrq">选择日期：  绿色：选中 &nbsp; &nbsp; &nbsp; &nbsp; 白色：未选 &nbsp; &nbsp; &nbsp; &nbsp; 灰色：不可选</div>
     <table class="biao" width="500px" style="table-layout: fixed; ">
                             <tbody>
                             <tr>
@@ -440,4 +440,90 @@ $('#gouwuche').bind('click',function(){
     $('.jianjie_more_div .mini_close').bind('click',function(){
         $('.jianjie_more_div').css('display','none');
     });
+    
+    //日历js的主函数，循环填写每天的日期
+    function drawCld(SY, SM) {
+        var buy_server_day=new Array();
+        var x=0;
+        <volist name='buy_server_day' id='vo'>
+            buy_server_day[x]=<{$vo}>;
+            x++;
+        </volist>
+    var jinri=addZ(today.getFullYear())+addZ(today.getMonth()+1)+addZ(today.getDate());
+    var i,sD,s,size;
+    cld = new calendar(SY, SM);
+
+
+    $("#GZ")[0].innerHTML = '  农历' + cyclical(SY - 1900 + 36) + '年&nbsp;【' + Animals[(SY - 4) % 12] + '年】';
+
+    for (i = 0; i < 42; i++) {
+        sObj = $("#SD" + i)[0];
+
+        lObj = $("#LD" + i)[0];
+
+        sObj.className = '';
+
+        sD = i - cld.firstWeek;
+
+        if (sD > -1 && sD < cld.length) {  //日期内
+            sObj.innerHTML = sD + 1;
+            //wly 注册点击事件
+						$("#GD" + i).unbind('click').click(function(){mOck(this,sD + 1);});
+						var nowDays = SY+''+addZ((SM+1))+addZ((sD+1));
+                                                //如果是过去的日期，显示灰色 并且取消点击事件，并加入点击事件，弹出对话框提示
+                                                if(jinri>nowDays){
+                                                    $("#GD" + i).addClass("unover");
+                                                    $("#GD" + i).unbind('click').click(function(){alert('该日期已经过去，请选择今天以后的日期');});
+                                                }
+                                                var y=0;
+                                                for(y in buy_server_day){
+                                                        if(nowDays==buy_server_day[y]){
+                                                        $("#GD" + i).addClass("unover");
+                                                        $("#GD" + i).unbind('click').click(function(){alert('商品的该日期已被购买，请选择其它商品');});
+                                                    }
+                                                }
+                                                
+						var hstr = hDays.join();
+						if(hstr.indexOf(nowDays)>-1){
+							 $("#GD" + i).addClass("selday");
+							}
+            if (cld[sD].isToday)  $("#GD" + i).addClass("jinri");  //今日颜色
+
+            sObj.style.color = cld[sD].color;  //国定假日颜色
+
+            if (cld[sD].lDay == 1)  //显示农历月
+                lObj.innerHTML = '<b>' + (cld[sD].isLeap ? '闰' : '') + cld[sD].lMonth + '月' + (monthDays(cld[sD].lYear, cld[sD].lMonth) == 29 ? '小' : '大') + '</b>';
+            else  //显示农历日
+                lObj.innerHTML = cDay(cld[sD].lDay);
+
+            s = cld[sD].lunarFestival;
+            if (s.length > 0) {  //农历节日
+                if (s.length > 8)  s = s.substr(0, 5) + '...';
+                s = s.fontcolor('red');
+            }
+            else {  //国历节日
+                s = cld[sD].solarFestival;
+                if (s.length > 0) {
+                    if (s.length > 8)  s = s.substr(0, 5) + '...';
+                    s = (s == '黑色星期五') ? s.fontcolor('black') : s.fontcolor('#0066FF');
+                }
+                else {  //廿四节气
+                    s = cld[sD].solarTerms;
+                    if (s.length > 0)  s = s.fontcolor('limegreen');
+                }
+            }
+            if (cld[sD].solarTerms == '清明') s = '清明节'.fontcolor('red');
+            if (cld[sD].solarTerms == '芒种') s = '芒种'.fontcolor('red');
+            if (cld[sD].solarTerms == '夏至') s = '夏至'.fontcolor('red');
+            if (cld[sD].solarTerms == '冬至') s = '冬至'.fontcolor('red');
+
+            if (s.length > 0)  lObj.innerHTML = s;
+
+        }
+        else {  //非日期
+            $("#GD" + i).addClass("unover");
+
+        }
+    }
+}
 </script>

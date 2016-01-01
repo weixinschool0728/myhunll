@@ -3,6 +3,7 @@
 *作者：王立岩
 *时间：2013年8月6日
 */
+var today=new Date();
 var lunarInfo = new Array(
         0x4bd8, 0x4ae0, 0xa570, 0x54d5, 0xd260, 0xd950, 0x5554, 0x56af, 0x9ad0, 0x55d2,
         0x4ae0, 0xa5b6, 0xa4d0, 0xd250, 0xd255, 0xb54f, 0xd6a0, 0xada2, 0x95b0, 0x4977,
@@ -310,7 +311,6 @@ function cyclical(num) {
 
 //============================== 阴历属性
 function calElement(sYear, sMonth, sDay, week, lYear, lMonth, lDay, isLeap, cYear, cMonth, cDay) {
-
     this.isToday = false;
     //瓣句
     this.sYear = sYear;   //公元年4位数字
@@ -530,8 +530,9 @@ function cDay(d) {
 var cld;
 //存放节假日
 var hDays = [];
+/* 写入了html里面
 function drawCld(SY, SM) {
-
+    var jinri=addZ(today.getFullYear())+addZ(today.getMonth()+1)+addZ(today.getDate());
     var i,sD,s,size;
     cld = new calendar(SY, SM);
 
@@ -552,6 +553,11 @@ function drawCld(SY, SM) {
             //wly 注册点击事件
 						$("#GD" + i).unbind('click').click(function(){mOck(this,sD + 1);});
 						var nowDays = SY+''+addZ((SM+1))+addZ((sD+1));
+                                                //如果是过去的日期，显示灰色 并且取消点击事件，并加入点击事件，弹出对话框提示
+                                                if(jinri>nowDays){
+                                                    $("#GD" + i).addClass("unover");
+                                                    $("#GD" + i).unbind('click').click(function(){alert('该日期已经过去，请选择今天以后的日期');});
+                                                }
 						var hstr = hDays.join();
 						if(hstr.indexOf(nowDays)>-1){
 							 $("#GD" + i).addClass("selday");
@@ -596,7 +602,7 @@ function drawCld(SY, SM) {
     }
 }
 
-
+*/
 /*清除数据*/
 function clear() {
     for (i = 0; i < 42; i++) {
@@ -783,36 +789,38 @@ function mOvr(thisObj, v) {
 //------王立岩------start------
 //日期点击函数
 function mOck(thisObj, v){
-        $('#tt td').attr('on','0');
-        $('#tt td').removeClass("selday");
-	var onoff = thisObj.attributes["on"].value;
-	var dayContainer = thisObj.getElementsByTagName("font")[0];
-	//记录是否为周末
-	var lx='0';
-	var nian = $('#nian').text();
-	var yue = $('#yue').text();
-	var dayJson = "";
-	var day = dayContainer.innerHTML;
-	var dayColor = dayContainer.attributes["color"];
-	var dayF = nian+'/'+addZ(yue)+'/'+addZ(day);
-        var server_day=dayF.replace(/\//g,'');
-        $('input[name=server_day]').val(server_day);
-	if(dayColor&&dayColor.value=='red'&&getH(dayF)){
-		 lx = '1';
-	}
-	dayJson = '{holiday:'+nian+addZ(yue)+addZ(day)+',lx:'+lx+'}';
-	if(onoff == '0'){
-		//thisObj.style.background='#FBBB67';
-		//thisObj.setAttribute("class", "selday"); 
-                $(thisObj).addClass("selday");
-		thisObj.attributes["on"].value='1';
-		hDays.push(dayJson);
-   }else{
-   	//thisObj.style.background='';
-   	//thisObj.setAttribute("class", "");
-   	//thisObj.attributes["on"].value='0';
-   	//delArry(hDays,dayJson);
-	}
+        var dayContainer = thisObj.getElementsByTagName("font")[0];
+        var day = dayContainer.innerHTML;
+        if(day!=''){
+            $('#tt td').attr('on','0');
+            $('#tt td').removeClass("selday");
+            var onoff = thisObj.attributes["on"].value;	
+            //记录是否为周末
+            var lx='0';
+            var nian = $('#nian').text();
+            var yue = $('#yue').text();
+            var dayJson = "";
+            var dayColor = dayContainer.attributes["color"];
+            var dayF = nian+'/'+addZ(yue)+'/'+addZ(day);
+            var server_day=dayF.replace(/\//g,'');
+            $('input[name=server_day]').val(server_day);
+            if(dayColor&&dayColor.value=='red'&&getH(dayF)){
+                    lx = '1';
+            }
+            dayJson = '{holiday:'+nian+addZ(yue)+addZ(day)+',lx:'+lx+'}';
+            if(onoff == '0'){
+                    //thisObj.style.background='#FBBB67';
+                    //thisObj.setAttribute("class", "selday"); 
+                    $(thisObj).addClass("selday");
+                    thisObj.attributes["on"].value='1';
+                    hDays.push(dayJson);
+            }else{
+                    //thisObj.style.background='';
+                    //thisObj.setAttribute("class", "");
+                    //thisObj.attributes["on"].value='0';
+                    //delArry(hDays,dayJson);
+            }
+        }
 }
 //删除数组指定元素
 function delArry(arr,obj){

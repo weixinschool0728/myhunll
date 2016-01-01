@@ -52,13 +52,19 @@ class GoodsController extends FontEndController {
         $this->assign('list_pinglun',$list_pinglun);
         $this->assign('page_foot_pinglun',$page_foot_pinglun);
         
-        
-        $this->assign("title","一起网—".$goods['user_name'].'—'.$goods['goods_name']);//给标题赋值
+
         //获取广告商品列表
         $guanggao=$goodsmodel->where("cat_id={$goods['cat_id']} and guanggao='1'")->field('goods_id,goods_name,goods_img,price,buy_number')->select();
         $this->assign('guanggao',$guanggao);
+        
+        $ordermodel=D('Order');
+        //$shop_id=$goods['user_id'];
+        //找出该商品的已被付款的日期，js标注背景色，并加事件点击的话提示已经被购买，
+        $buy_server_day=$ordermodel->where("goods_id=$goods_id")->getField('server_day',true);
+        $this->assign('buy_server_day',$buy_server_day);
+        
+        $this->assign("title","一起网—".$goods['user_name'].'—'.$goods['goods_name']);//给标题赋值
         $this->display('index');
- 
     }
     public function pinglun(){
         $goods_id=$_GET['goods_id'];
