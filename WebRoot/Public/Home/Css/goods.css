@@ -231,6 +231,7 @@
 }
 .other{
     width: 975px;
+    float: left;
 }
 .other_title {
     position: relative;
@@ -307,7 +308,7 @@
 }
 .content_title{
     margin-top: 20px;
-    width: 975px;
+    width: 973px;
     height: 40px;
     line-height: 40px;
     border: 1px solid #E3E3E3;
@@ -324,7 +325,7 @@
     background-color: #FFF;
 }
 .goods_shuxing{
-    width: 975px;
+    width: 973px;
     border: 1px solid #E3E3E3;
     padding-top: 20px;
 }
@@ -347,7 +348,7 @@
 }
 .goodscontent{
     margin-top: 10px;
-    width: 975px;
+    width: 973px;
     border: 1px solid #E3E3E3;
 }
 
@@ -733,4 +734,51 @@ color:#FFFFFF;
     width:120px;
     height: 120px;
     position: absolute;
+}
+.box_r {
+    float: left;
+    width: 200px;
+}
+.guanggao{
+    margin-top: 20px;
+    width: 158px;
+    border: 1px solid #DDD;
+    padding: 10px 20px;
+}
+.box_bl{
+    width: 975px;
+    float: left;
+    margin-right: 25px;
+}
+.guanggao h3{
+    padding-top: 3px;
+    font-size: 16px;
+    color:#333;
+    font-weight: bolder;
+}
+.box_r_shopping{
+    border-bottom: 1px solid #DDD;
+    padding: 20px 0px;
+}
+.box_r_shopping img{
+    width: 158px;
+    max-height: 158px;
+}
+.box_r_shopping h4{
+    margin: 10px 0px 5px 0px;
+}
+.box_r_shopping h4 a{
+    color: #333;
+    font-weight: bolder;
+}
+.box_r_shopping h4 a:hover{
+    color: #00FFDB;
+}
+.box_r_shopping .guanggao_price{
+    max-width: 95px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    color: #F76120;
+    margin-right: 10px;
 }

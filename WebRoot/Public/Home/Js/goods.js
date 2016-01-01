@@ -319,3 +319,6 @@ $('body').on('mouseover','.pinglun_img img',function(){
 $('body').on('mouseout','.pinglun_img img',function(){
     $('#pinglun_fangda').remove();
     });
+    
+$('.box_r_shopping:last').css('border','none');//广告商品最后一个取消边框
+$('.goodscontent img').css('max-width','970px;');//设置商品描述里面图片的最大宽度

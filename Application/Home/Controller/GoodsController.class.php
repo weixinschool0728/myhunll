@@ -16,7 +16,7 @@ class GoodsController extends FontEndController {
         $goods_id=$_GET['goods_id'];
         $this->assign('goods_id',$goods_id);
         $goodsmodel=D('Goods');
-        $goods=$goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.goods_id,t1.area,t1.goods_name,t1.price,t1.yuan_price,t1.goods_img,t1.goods_img_qita,t1.goods_sex,t1.goods_desc,t1.comment_number,t1.shuxing,t1.score,t3.cat_name,t2.user_name,t1.user_id,t2.weixin,t2.qq,t2.mobile_phone,t2.email,t1.comment_number,t2.shop_introduce,t1.daijinquan,t1.fanxian,t2.weixin_erweima')->find();
+        $goods=$goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.goods_id,t1.area,t1.goods_name,t1.price,t1.yuan_price,t1.goods_img,t1.goods_img_qita,t1.goods_sex,t1.goods_desc,t1.comment_number,t1.shuxing,t1.score,t3.cat_name,t2.user_name,t1.user_id,t2.weixin,t2.qq,t2.mobile_phone,t2.email,t1.comment_number,t2.shop_introduce,t1.daijinquan,t1.fanxian,t2.weixin_erweima,t1.cat_id')->find();
         $goods['shop_introduce']=str_replace("\r", "", $goods['shop_introduce']);
         $goods['shop_introduce']=str_replace("\n", "", $goods['shop_introduce']);
         $this->assign('goods',$goods);
@@ -54,6 +54,9 @@ class GoodsController extends FontEndController {
         
         
         $this->assign("title","一起网—".$goods['user_name'].'—'.$goods['goods_name']);//给标题赋值
+        //获取广告商品列表
+        $guanggao=$goodsmodel->where("cat_id={$goods['cat_id']} and guanggao='1'")->field('goods_id,goods_name,goods_img,price,buy_number')->select();
+        $this->assign('guanggao',$guanggao);
         $this->display('index');
  
     }
