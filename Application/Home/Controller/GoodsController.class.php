@@ -68,6 +68,8 @@ class GoodsController extends FontEndController {
         if($is_login==1){
             $user_id=$_SESSION['huiyuan']['user_id'];
             $is_sellect=$sellectionmodel->where("goods_id=$goods_id and user_id=$user_id")->find();
+            $sellection_count=$sellectionmodel->where("user_id=$user_id")->count();
+            $this->assign('sellection_count',$sellection_count);
         }else{
             $is_sellect=NULL;
         }
@@ -75,6 +77,7 @@ class GoodsController extends FontEndController {
         //该商品被收藏了多少次
         $sellection_count=$sellectionmodel->where("goods_id=$goods_id")->count();
         $this->assign('sellection_count',$sellection_count);
+        
         
         $this->assign("title","一起网—".$goods['user_name'].'—'.$goods['goods_name']);//给标题赋值
         $this->display('index');
