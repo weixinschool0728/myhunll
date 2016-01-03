@@ -1,0 +1,116 @@
+/* CSS Document */
+
+.release{
+width:935px;
+margin-left: 20px;
+float: left;
+}
+
+
+.release .title{
+    background-color: #00FFDB;
+}
+.title div{
+    float: left;
+    font-size: 14px;
+    color: #000;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid #EEE;
+}
+.td1{
+    width: 445px;
+    text-align: center;
+}
+.td2{
+    width: 100px;
+}
+.td3{
+    width: 140px;
+}
+.td4{
+    width: 120px;
+    text-align: center;
+}
+.td5{
+    width: 120px;
+    text-align: center;
+}
+
+.release .content{
+    margin-top: 15px;
+}
+.content .order_title{
+    line-height: 24px;
+    color: #999;
+}
+.order_title a{
+    margin-right: 20px;
+}
+.content .order_row{
+    padding: 20px 20px;
+    background: #F9F9F9;
+}
+.content .order_row>div{
+    float: left;
+    /*border:1px solid #EEE;*/
+    font-size: 12px;
+    text-align: center;
+    padding: 0px 1px;
+}
+.content .order_row .td1{
+    width: 425px;
+}
+.content .order_row .td5{
+    width: 100px;
+}
+.content .order_row .td4 a{
+    width: 70px;
+    margin: 0px auto;
+    padding: 2px 0px;
+}
+.content .order_row .td5 a{
+    width: 70px;
+    margin-left: 25px;
+    padding: 2px 0px;
+}
+.td1 .picture{
+    float: left;
+    width: 150px;
+    margin-right: 20px;
+}
+.picture img{
+    width:150px;
+    height: 100px;
+}
+.td1 .info{
+    float: left;
+    width: 235px;
+    text-align: left;
+    font-size: 12px;
+    padding-right: 20px;
+}
+.order_row a,.order_row p{
+    display: block;
+    line-height: 20px;
+}
+.color_999{
+    color: #999;
+}
+.color_2BB8AA{
+    color: #2BB8AA;
+}
+.order_row .button_a_lvse{
+    border: 1px solid #AAA;
+    background-color: #00FFDB;
+    cursor:pointer;//手形
+}
+.order_row .button_a_lvse:hover{
+    background-color:#2BB8AA;
+    color: #EEE;
+}
+.content .img_zst{
+    height: 100px;
+}
+

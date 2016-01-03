@@ -355,6 +355,34 @@ class MemberController extends FontEndController {
         $this->assign('mycart',$mycart);
         $this->display('cart');
     }
+    //收藏列表
+    public function sellection(){
+        $this->assign("title","一起网_我的收藏");
+        $user_id=$_SESSION['huiyuan']['user_id'];
+        $sellectionmodel=D('Sellection');
+        $count=$sellectionmodel->where("user_id=$user_id")->count();
+        $page=$this->get_page($count, 10);
+        $page_foot=$page->show();//显示页脚信息
+        $this->assign('count',$count);
+        $list=$sellectionmodel->table('m_sellection t1,m_goods t2,m_users t3')->where("t1.user_id=$user_id and t1.goods_id=t2.goods_id and t2.user_id=t3.user_id")->order('t1.add_time desc')->limit($page->firstRow.','.$page->listRows)->field('t1.sellection_id,t1.server_day,t1.goods_id,t1.add_time,t2.goods_name,t2.goods_img,t2.price,t3.user_name')->select();
+        $this->assign('list',$list);
+        $this->assign('page_foot',$page_foot);
+        $this->display('sellection');
+    }
+    //删除收藏
+    public function sellection_del(){
+        $sellection_id=$_GET['sellection_id'];
+        $sellectionmodel=D('Sellection');
+        $user_id=$_SESSION['huiyuan']['user_id'];
+        $count=$sellectionmodel->where("sellection_id=$sellection_id and user_id=$user_id")->count();
+        if($count==0){
+            $this->error('非法操作',U($_SESSION['ref']),3);
+            exit();
+        }else{
+            $sellectionmodel->where("sellection_id=$sellection_id")->delete();
+        }
+    }
+
     public function cart_del(){
         $cart_id=$_GET[cart_id];
         $cartmodel=D('Cart');
