@@ -63,6 +63,19 @@ class GoodsController extends FontEndController {
         $buy_server_day=$ordermodel->where("goods_id=$goods_id")->getField('server_day',true);
         $this->assign('buy_server_day',$buy_server_day);
         
+        //找出该商品是否被用户收藏了
+        $sellectionmodel=D('Sellection');
+        if($is_login==1){
+            $user_id=$_SESSION['huiyuan']['user_id'];
+            $is_sellect=$sellectionmodel->where("goods_id=$goods_id and user_id=$user_id")->find();
+        }else{
+            $is_sellect=NULL;
+        }
+        $this->assign('is_sellect',$is_sellect);
+        //该商品被收藏了多少次
+        $sellection_count=$sellectionmodel->where("goods_id=$goods_id")->count();
+        $this->assign('sellection_count',$sellection_count);
+        
         $this->assign("title","一起网—".$goods['user_name'].'—'.$goods['goods_name']);//给标题赋值
         $this->display('index');
     }
@@ -261,4 +274,31 @@ class GoodsController extends FontEndController {
         exit();
     }
 
+    public function sellection_join(){
+        if($_POST['check']!=='sellection_join'){
+            exit();
+        }
+        $user_id=$_SESSION['huiyuan']['user_id'];
+        $server_day=$_POST['server_day'];
+        $goods_id=$_POST['goods_id'];
+        $sellectionmodel=D('Sellection');
+        $count=$sellectionmodel->where("user_id=$user_id and goods_id=$goods_id")->count();
+        if($count!='0'){
+            exit();
+        }
+        $row=array(
+            'user_id'=>$user_id,
+            'goods_id'=>$goods_id,
+            'server_day'=>$server_day,
+            'add_time'=>mktime()
+        );
+        $result=$sellectionmodel->add($row);//信息写入数据库
+        if($result){
+            $data='1';
+        }else{
+            $data='-1';
+        }
+        $this->ajaxReturn($data);
+        exit();
+    }
 }

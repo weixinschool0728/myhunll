@@ -144,8 +144,16 @@ $('#gouwuche_guanbi').bind('click',function(){
     hideOverlay('gouwuche_join');
 });
 /*点击加入购物车成功后的继续浏览*/
-$('.gouwuche_top_right_a1').bind('click',function(){
+$('#gouwuche_jxll').bind('click',function(){
     hideOverlay('gouwuche_join');
+});
+/* 关闭收藏页面 */
+$('#shoucang_guanbi').bind('click',function(){
+    hideOverlay('shoucang_join');
+});
+/*点击加入收藏成功后的继续浏览*/
+$('#shoucang_jxll').bind('click',function(){
+    hideOverlay('shoucang_join');
 });
 
 /* 定位到页面中心 */
@@ -197,6 +205,9 @@ $(window).bind('scroll',function(){
     }
     if($("#gouwuche_join").css('display')!='none'){
         adjust("#gouwuche_join");
+    }
+    if($("#fenxiang_qq_div").css('display')!='none'){
+        adjust("#fenxiang_qq_div");
     }
 });
 /* 关闭提示选择日期div */
@@ -322,3 +333,14 @@ $('body').on('mouseout','.pinglun_img img',function(){
     
 $('.box_r_shopping:last').css('border','none');//广告商品最后一个取消边框
 $('.goodscontent img').css('max-width','970px;');//设置商品描述里面图片的最大宽度
+
+
+//点击分享到QQ
+$('#fenxiang_qq_a').bind('click',function(){
+    $('#fenxiang_qq_url').attr('value',window.location.href);
+    showOverlay('fenxiang_qq_div');  
+});
+//关闭分享到QQ
+$('#fenxiang_qq_close').bind('click',function(){
+    hideOverlay('fenxiang_qq_div');
+});

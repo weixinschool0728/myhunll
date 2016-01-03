@@ -150,8 +150,14 @@
         <div class="buy" id="buy">
             <a href="javascript:void(0)" class="goumai">立即购买 </a>
             <a href="javascript:void(0)" class="gouwuche" title="加入购物车" id="gouwuche"> </a>
-            <a href="javascript:void(0)" class="shoucang">收藏商品（10000）</a>
-              <a href="javascript:void(0)" class="shoucang">分享</a>
+            <i class="i_shoucang"></i>
+            <if condition="$is_sellect eq null">
+                <a  class="shoucang" id="shoucang">收藏商品（<strong><{$sellection_count}></strong>）</a>
+            <else />
+                <span  class="shoucang">已收藏（<strong><{$sellection_count}></strong>）</span>
+            </if>
+            <i class="i_fenxiang"></i>
+              <a href="javascript:void(0)" class="shoucang fenxiang" id="fenxiang">分享</a>
         </div>
         <div class="buy buy_clone" id="buy_clone">请选择日期<a class="mini_close" id="tishi_close" href="javascript:void(0)">×</a></div>
     </div>
@@ -264,7 +270,7 @@
         
 <div id="overlay"></div><!--遮罩层div-->
 <div class="mini_login" id="mini_login">
-    <div class="mini_head">账号登录<a class="mini_close" id="mini_close" href="javascript:void(0)" title="关闭此窗口">×</a></div>
+    <div class="mini_head">账号登录<a  class="a_zhuce" href="<{:U('Zhuce/index')}>" style="width: 60px;">免费注册</a><a class="mini_close" id="mini_close" href="javascript:void(0)" title="关闭此窗口">×</a></div>
     <div class="mini_div">
         <include file="Login:mini_login" />
     </div>
@@ -284,13 +290,72 @@
 		</div>
 
 		<div class="gouwuche_top_right">
-			<a href="javascript:void(0);"  class="gouwuche_top_right_a1"><<继续浏览</a>
+			<a href="javascript:void(0);"  class="gouwuche_top_right_a1" id="gouwuche_jxll"><<继续浏览</a>
                         <a href="<{:U('Member/cart')}>"  class="gouwuche_top_right_a2">去购物车结算>></a>
 		</div>
 
  	</div>     
     </div>
 </div>
+<div class="gouwuche_join" id="shoucang_join">
+    <a  id="shoucang_guanbi" class="gouwuche_guanbi" hidefocus="true"></a>
+    <div class="gouwuche_body">
+	<div id="gouwuche_top" class="gouwuche_top">
+            
+		<div class="gouwuche_top_left">
+                    <i></i>
+			<h5>成功加入收藏</h5>
+
+			<p>共收藏了<strong>1</strong>种商品</p>
+
+		</div>
+
+		<div class="gouwuche_top_right">
+			<a href="javascript:void(0);"  class="gouwuche_top_right_a1" id="shoucang_jxll"><<继续浏览</a>
+                        <a href="<{:U('Member/sellection')}>"  class="gouwuche_top_right_a2">去看我的收藏>></a>
+		</div>
+
+ 	</div>     
+    </div>
+</div>
+
+<!--分享的弹出div-->
+<div  class="fenxiang_tanchu_div" id="fenxiang_tanchu_div">
+    <div >
+        <div>
+            <div class="deal-share">
+                <ul>
+                    <li><a class="im deal-share-im" href="javascript:void(0);" id="fenxiang_qq_a" ><i class="icon-share"></i><span>QQ/MSN</span></a></li>
+                    <li><a id="weibo_a" galabel="default" href1="http://v.t.sina.com.cn/share/share.php?url=http%3A%2F%2Fld.meituan.com%2Fdeal%2F31236836.html;title=%23%E5%A8%84%E5%BA%95%23+%40%E7%BE%8E%E5%9B%A2++%E4%BB%85%E5%94%AE3.89%E5%85%83%EF%BC%81%E6%9C%80%E9%AB%98%E4%BB%B7%E5%80%BC7%E5%85%83%E7%9A%84%E8%82%A0%E7%B2%895%E9%80%891%EF%BC%8C%E6%8F%90%E4%BE%9B%E5%85%8D%E8%B4%B9WiFi%E3%80%82&amp;pic=http%3A%2F%2Fp1.meituan.net%2Fdeal%2Ff9f3122d75f7864355c96d530697c93f80985.jpg" target="_blank" ><i class="icon-share icon-share--sina"></i><span>微博</span></a></li>
+                    <li><a galabel="default" href1="http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;title=%E7%BC%A4%E6%9E%9C%E6%97%B6%E5%85%89%C2%B7%E5%B9%BF%E4%B8%9C%E7%9F%B3%E7%A3%A8%E8%82%A0%E7%B2%89%E8%82%A0%E7%B2%89%E4%BB%85%E5%94%AE%C2%A53.89%EF%BC%8C5.6%E6%8A%98%E4%BB%85%E5%94%AE3.89%E5%85%83%EF%BC%81%E6%9C%80%E9%AB%98%E4%BB%B7%E5%80%BC7%E5%85%83%E7%9A%84%E8%82%A0%E7%B2%895%E9%80%891%EF%BC%8C%E6%8F%90%E4%BE%9B%E5%85%8D%E8%B4%B9WiFi%E3%80%82&amp;url=http%3A%2F%2Fld.meituan.com%2Fdeal%2F31236836.html%3Fr%3Dq&amp;appkey=51d04b4824744e71bd1e55baceb42562&amp;pic=http%3A%2F%2Fp1.meituan.net%2Fdeal%2Ff9f3122d75f7864355c96d530697c93f80985.jpg&amp;line1=%E4%BB%85%E5%94%AE%C2%A53.89%EF%BC%8C5.6%E6%8A%98&amp;line2=%E4%BB%85%E5%94%AE3.89%E5%85%83%EF%BC%81%E6%9C%80%E9%AB%98%E4%BB%B7%E5%80%BC7%E5%85%83%E7%9A%84%E8%82%A0%E7%B2%895%E9%80%891%EF%BC%8C%E6%8F%90%E4%BE%9B%E5%85%8D%E8%B4%B9WiFi%E3%80%82" target="_blank" gaevent="content/main/share/qqt"><i class="icon-share icon-share--qq"></i><span>腾讯微博</span></a></li>
+                    <li><a galabel="default" href1="http://share.renren.com/share/buttonshare.do?link=http%3A%2F%2Fld.meituan.com%2Fdeal%2F31236836.html%3Fr%3Dr&amp;title=%E7%BE%8E%E5%9B%A2%E5%A8%84%E5%BA%95+%E4%BB%85%E5%94%AE3.89%E5%85%83%EF%BC%81%E6%9C%80%E9%AB%98%E4%BB%B7%E5%80%BC7%E5%85%83%E7%9A%84%E8%82%A0%E7%B2%895%E9%80%891%EF%BC%8C%E6%8F%90%E4%BE%9B%E5%85%8D%E8%B4%B9WiFi%E3%80%82" target="_blank" gaevent="content/main/share/renren"><i class="icon-share icon-share--renren"></i><span>人人</span></a></li>
+                    <li><a galabel="default" href1="http://www.douban.com/recommend/?url=http%3A%2F%2Fld.meituan.com%2Fdeal%2F31236836.html%3Fr%3Dd&amp;title=%E7%BE%8E%E5%9B%A2%E5%A8%84%E5%BA%95+%E8%82%A0%E7%B2%895%E9%80%891%EF%BC%8C%E6%8F%90%E4%BE%9B%E5%85%8D%E8%B4%B9WiFi%EF%BC%8C%E5%B0%BD%E4%BA%AB%E7%B2%BE%E8%87%B4%E7%BE%8E%E5%91%B3" target="_blank" gaevent="content/main/share/douban"><i class="icon-share icon-share--douban"></i><span>豆瓣</span></a></li>
+                    <li><a galabel="default" href1="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?title=%E7%BE%8E%E5%9B%A2%E5%A8%84%E5%BA%95+%E4%BB%85%E5%94%AE3.89%E5%85%83%EF%BC%81%E6%9C%80%E9%AB%98%E4%BB%B7%E5%80%BC7%E5%85%83%E7%9A%84%E8%82%A0%E7%B2%895%E9%80%891%EF%BC%8C%E6%8F%90%E4%BE%9B%E5%85%8D%E8%B4%B9WiFi%E3%80%82&amp;url=http%3A%2F%2Fld.meituan.com%2Fdeal%2F31236836.html%3Fr%3Dz&amp;pics=http%3A%2F%2Fp1.meituan.net%2Fdeal%2Ff9f3122d75f7864355c96d530697c93f80985.jpg" target="_blank" gaevent="content/main/share/qzone"><i class="icon-share icon-share--qzone"></i><span>QQ空间</span></a></li>
+                </ul>
+            </div>
+</div></div></div>
+
+<!--分享到QQ的弹出div-->
+<div  class="fenxiang_qq_div" id="fenxiang_qq_div">
+    <div class="yui3-overlay-content yui3-widget-stdmod" id="yui_3_16_0_1_1451799391828_2921">
+        <div id="yui_3_16_0_1_1451799391828_3030" class="yui3-widget-bd">
+            <div id="yui_3_16_0_1_1451799391828_3029" class="mt-dialog">
+                <h3 id="yui_3_16_0_1_1451799391828_3028" class="head">分享给QQ好友
+                    <span id="fenxiang_qq_close" class="close"></span>
+                </h3>
+                <div class="body">
+                    <p class="error" style="display:none">&nbsp;</p>
+                    <div>通过QQ、电子邮件发送链接给你的朋友</div>
+                    <input class="deal-share-qq-input" value="" maxlength="40" type="text" id="fenxiang_qq_url">
+                    <input class="deal-share-qq-copy" value="复制"  type="button" id="fenxiang_qq_copy" style="display: none" >
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-overlay-underlay"></div>
+</div>
+
+
 <iframe height="1" frameborder="0" width="1" style="position:absolute;top:0;left:-9999px;" src="<{:U('index/menu')}>"></iframe>
 <script src="__PUBLIC_HOME__/Js/goods.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -473,15 +538,25 @@ $('#gouwuche').bind('click',function(){
                                                 //如果是过去的日期，显示灰色 并且取消点击事件，并加入点击事件，弹出对话框提示
                                                 if(jinri>nowDays){
                                                     $("#GD" + i).addClass("unover");
-                                                    $("#GD" + i).unbind('click').click(function(){alert('该日期已经过去，请选择今天以后的日期');});
+                                                    $("#GD" + i).unbind('click').click(function(){
+                                                        alert('该日期已经过去，请选择今天以后的日期');
+                                                        $('input[name=server_day]').val('');
+                                                        $('td[class=selday]').attr('on','0');
+                                                        $('td[class=selday]').removeClass('selday');
+                                                    });
                                                 }
                                                 var y=0;
                                                 for(y in buy_server_day){
                                                         if(nowDays==buy_server_day[y]){
                                                         $("#GD" + i).addClass("unover");
-                                                        $("#GD" + i).unbind('click').click(function(){alert('商品的该日期已被购买，请选择其它商品');});
+                                                        $("#GD" + i).unbind('click').click(function(){
+                                                            alert('商品的该日期已被购买，请选择其它商品');
+                                                            $('input[name=server_day]').val('');
+                                                            $('td[class=selday]').attr('on','0');
+                                                            $('td[class=selday]').removeClass('selday');
+                                                        });
                                                     }
-                                                }
+                                               }
                                                 
 						var hstr = hDays.join();
 						if(hstr.indexOf(nowDays)>-1){
@@ -526,4 +601,60 @@ $('#gouwuche').bind('click',function(){
         }
     }
 }
+
+
+//点击加入收藏
+$('#shoucang').bind('click',function(){
+    var is_success=false;
+        if($('input[name=server_day]').val()===''){
+            $('#buy').css('display','none');
+            $('#buy_clone').css('display','block');
+        }else{
+            is_login=check_login();
+            if(is_login!=0){
+                var server_day=$('input[name=server_day]').val();
+                var url='/Home/Goods/sellection_join.html';
+                var data={
+                    server_day:server_day,
+                    goods_id:$('input[name=goods_id]').val(),
+                    check:"sellection_join"
+                };
+                $.ajax({
+                    type:'post',
+                    async : false,
+                    url:url,
+                    data:data,
+                    datatype:'json',
+                    success:function(msg){
+                        if(msg=='-1'){
+                            alert('加入收藏失败，请重新加入');                                
+                        }
+                        if(msg=='1'){
+                            is_success=true;                               
+                        }
+                    }
+                });
+                if(is_success){
+                    $('#shoucang').replaceWith('<span  class="shoucang">已收藏（<strong><{$sellection_count+1}></strong>）</span>');
+                    showOverlay('shoucang_join');  
+                }
+            }else{
+                showOverlay('mini_login');  
+            }
+        }    
+    });
+    
+    //点击分享按钮
+    $('#fenxiang').bind('click',function(){
+    if($('#fenxiang_tanchu_div').css('display')==='none'){
+        //给分享到微博等的a添加url
+        var self_url_escape=escape(window.location.href);
+        var title_escape=escape('一起网:www.17each.com '+" [<{$goods['cat_name']}>]<{$goods['goods_name']}>");
+        var weibo_url="http://v.t.sina.com.cn/share/share.php?appkey=579809138&amp;url="+self_url_escape+";title="+title_escape;
+        //$('#weibo_a').attr('href',weibo_url);
+        $('#fenxiang_tanchu_div').css('display','block');
+    }else{
+        $('#fenxiang_tanchu_div').css('display','none');
+    }
+});
 </script>

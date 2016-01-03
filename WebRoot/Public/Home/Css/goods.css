@@ -215,12 +215,13 @@
 
 .shoucang{
     height: 50px;
-    width:110px;
+    width:130px;
     line-height: 50px;
     font-size:12px;
-    text-align: center;
+    text-align: left;
     display: block;
     float: left;
+    margin-left: 5px;
 }
 
 .dianpujieshao {
@@ -384,6 +385,14 @@
     font-weight: 700;
     font-size: 14px;
     background-color: #F2F2F2;
+}
+.mini_head .a_zhuce{
+    float:right;
+    margin-right: 40px;
+    color: #03BA8A;
+}
+.mini_head .a_zhuce:hover{
+    color: #00FFDB;
 }
 .mini_close{
     font-size: 22px;
@@ -781,4 +790,111 @@ color:#FFFFFF;
     font-size: 20px;
     color: #F76120;
     margin-right: 10px;
+}
+.buy i{
+    float: left;
+    display: block;
+    width: 16px;
+    height: 18px;
+    position: relative;
+    top:15px;
+}
+.i_shoucang{
+    background-image: url('../Images/public/shoucang.png');
+}
+.i_fenxiang{
+    background-image: url('../Images/public/fenxiang.png');
+}
+.fenxiang{
+    width: 50px;
+}
+.fenxiang_tanchu_div{
+    width: 118px;
+    position: absolute;
+    border: 2px solid #ddd;
+    background-color: #FFF;
+    top:740px;
+    left: 970px;
+    display: none;
+}
+.deal-share{
+    margin-top: 10px;
+    padding: 0px 10px 3px;
+}
+.deal-share a{
+    float: left;
+    clear: left;
+    color: #666;
+    line-height: 16px;
+    height: 24px;
+    text-decoration: none;
+}
+.deal-share a .icon-share {
+    float: left;
+}
+.icon-share {
+    display: block;
+    width: 16px;
+    height: 16px;
+    text-indent: -9999px;
+    outline: 0px none;
+    overflow: hidden;
+    background-position: 0px -36px;
+    background-image: url('../Images/public/fenxiang_icon.png');
+}
+.deal-share a span {
+    margin-left: 10px;
+    font-size: 12px;
+}
+.deal-share a .icon-share--sina {
+    background-position: 0px -72px;
+}
+.deal-share a .icon-share--qq {
+    background-position: 0px -90px;
+}
+.deal-share a .icon-share--renren {
+    background-position: 0px -54px;
+}
+.deal-share a .icon-share--douban {
+    background-position: 0px 0px;
+}
+.deal-share a .icon-share--qzone {
+    background-position: 0px -18px;
+}
+/*分享QQdiv*/
+.fenxiang_qq_div{
+    width: 500px;
+    z-index: 102;
+    position: absolute;
+    display: none;
+}
+.mt-dialog {
+    border: 1px solid #CCC;
+    background: #FFF none repeat scroll 0% 0%;
+}
+.mt-dialog .head {
+    position: relative;
+    padding: 0px 15px;
+    height: 40px;
+    line-height: 40px;
+    background: #F7F7F7 none repeat scroll 0% 0%;
+    color: #333;
+}
+.mt-dialog .body {
+    padding: 30px;
+    overflow: hidden;
+}
+.mt-dialog .head .close {
+    background-position: 0px -24px;
+    width: 13px;
+    height: 13px;
+    line-height: 13px;
+    cursor: pointer;
+    background-image: url("../Images/public/icon-3.png");
+    float:right;
+    margin-top: 12px;
+}
+.deal-share-qq-input {
+    margin-top: 10px;
+    width: 280px;
 }
