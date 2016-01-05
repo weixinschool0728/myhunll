@@ -92,23 +92,27 @@ class MemberController extends FontEndController {
     
     public function release_check(){
         $content=$_POST;//获取提交的内容
-        $file_info=$this->upload('image/goods/');//获取上传文件信息
-        if(count($file_info)<1){
-            $this->error('未选择商品头像图片');
+        if($content['goods_img']===''){
+            $this->error('未选择商品图片');
             exit();
         }
-        //获取图片URL
-        $goods_img=UPLOAD.$file_info['file_img']['savepath'].$file_info['file_img']['savename'];
-       //先建立一个去掉第一张图片了的info
-       $file_info_new=$file_info;
-       unset($file_info_new['file_img']);
-       //获取其它图片url 放到数组中
-       foreach ($file_info_new as $value){
-           $arr_goods_img[]='/'.UPLOAD.$value['savepath'].$value['savename'];
-       }
+        //获取图片URL,分割成数组
+        $arr_goods_img=explode('+img+',$content['goods_img']);
+        //移动文件 并且改变url
+        foreach ($arr_goods_img as &$value) {
+            $today=substr($value,26,8);//获取到文件夹名  如20150101
+            creat_file(UPLOAD.'image/goods/'.$today);//创建文件夹（如果存在不会创建）
+            $a=rename($value, str_replace('Public/Uploads/image/temp', UPLOAD.'image/goods',$value));//移动文件
+            $value=str_replace('Public/Uploads/image/temp', '/'.UPLOAD.'image/goods',$value);
+        }
+
+        
+        //获取第一张图片URL
+        $goods_img=$arr_goods_img[0];
+       //建立一个去掉第一张图片了的数组并序列化
+       array_splice($arr_goods_img,0,1);
        $str_goods_img=serialize($arr_goods_img);
-       
-       
+
         if($content['title']==''||is_feifa($content['title'])){
             $this->error('商品标题为空或者含有非法字符');
             exit();
@@ -138,7 +142,7 @@ class MemberController extends FontEndController {
         foreach ($result[1] as $value){
             $today=substr($value,26,8);//获取到文件夹名  如20150101
             creat_file(UPLOAD.'image/goods/'.$today);//创建文件夹（如果存在不会创建）
-            $a=rename($value, str_replace('Public/Uploads/image/temp', UPLOAD.'image/goods', $value));
+            rename($value, str_replace('Public/Uploads/image/temp', UPLOAD.'image/goods', $value));//移动文件
         }
         $goods_desc=str_replace('Public/Uploads/image/temp', UPLOAD.'image/goods', $content['content']);
         //得到商品分类id
@@ -165,7 +169,7 @@ class MemberController extends FontEndController {
             'goods_form'=>$server_form,//商家服务形式(团队还是个人)
             'goods_sex'=>$content['radio_sex'],//商家性别
             'shuxing'=>$str_shuxing,//属性
-            'goods_img'=>'/'.$goods_img,//商品图片
+            'goods_img'=>$goods_img,//商品图片
             'goods_img_qita'=>$str_goods_img,//被序列化的其它图片
             'fanxian'=>$content['select_fanxian'],
             'daijinquan'=>$content['radio_daijinquan'],
@@ -179,8 +183,14 @@ class MemberController extends FontEndController {
         }
     }
     
+    public function file_jia(){
+        $file_info=$this->upload('image/temp/');//获取上传文件信息
+        //获取图片URL
+        $data=UPLOAD.$file_info['file_img']['savepath'].$file_info['file_img']['savename'];
+        $this->ajaxReturn($data);
+    }
 
-    
+
     public function editor_check(){
         $file_info=$this->upload('image/temp/');
         //当有文件没有上传时，提示并返回

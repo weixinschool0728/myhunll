@@ -1,6 +1,7 @@
 <link rel="stylesheet" type="text/css" href="__PUBLIC_HOME__/Css/member.css">
 <link rel="stylesheet" type="text/css" href="__PUBLIC_HOME__/Css/release_goods.css">
 <script src="__PUBLIC_COMMON__/Js/jquery.min.js"></script> 
+<script src="__PUBLIC_COMMON__/Js/jquery.form.js"></script> 
 <script src="__PUBLIC_COMMON__/Js/function.js"></script>
 <script src="__PUBLIC_COMMON__/Js/kindeditor/kindeditor.js"></script>
 <script src="__PUBLIC_COMMON__/Js/kindeditor/lang/zh_CN.js"></script>
@@ -32,6 +33,7 @@
         
         <form name="release_goods" method="post" enctype="multipart/form-data" action="<{:U('Member/release_check')}>" onsubmit="editor.sync()">
             <input name="server_content" value="<{$server_content}>" type="hidden"/> 
+            <input name="goods_img" value="" type="hidden"/> 
             <div class="tr">
                 <div class="tr_td1">商品标题</div>
                 <input name="title" type="text" class="text"  />
@@ -41,14 +43,13 @@
         
         
             <div  class="tr" id="insert_img">
-                <div class="tr_td1">展示图</div>
-                <input name="file_img" type="file" class="tr_td2"/>
-                <span id="span_touxiang">请上传3：2的图片，最高5M，建议分辨率296*198</span>
+                <div class="tr_td1" style="height: 35px;line-height: 35px;">展示图<i style="margin-left: 3px;">(<i id="img_count">0</i>/4)</i></div>
+                <div class="file_jia" id="file_jia">+</div>                
+                <span id="span_touxiang"></span>
+                <span>(请上传3：2的图片，最高5M，建议分辨率296*198)</span>
             </div>
-            
-           
-            
-            <input type="button" value="继续添加" id="button_jia" class="button_jia"/>
+
+            <input type="button" value="继续添加" id="button_jia" class="button_jia" style="display:none;"/>
             <div style="width:400px;height:0px;border-top:1px dashed #666;"></div>
                
             
@@ -130,8 +131,9 @@
     </div>
     
     
-    
-
+    <form id = "form_file_jia" enctype="multipart/form-data" action="<{:U('Member/file_jia')}>" method="post">   
+<input name="file_img" type="file" class="tr_td2" style="visibility:hidden; width:0px; height: 0px;"/>
+ </form>
 <iframe height="1" frameborder="0" width="1" style="position:absolute;top:0;left:-9999px;" src="<{:U('index/menu')}>"></iframe>
 <script src="__PUBLIC_HOME__/Js/release_goods.js" type="text/javascript"></script>
 
