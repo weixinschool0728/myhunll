@@ -18,7 +18,6 @@ $(':text[name=yuan_price]').bind('focus',function(){text_focus($('#info_yuan_pri
 $(':text[name=yuan_price]').bind('blur',function(){price_blue($(this),$('#info_yuan_price'));});
 $('#xiayibu').bind('click',function(){fabu();});
 //动态生成的元素添加事件
-//$('body').on('change','.input_img1',function(){check_file_image($(this),$(this).next('span'),true);});
 $('body').on('mouseover','.div_goods_img',function(){$(this).children('a').css('display','block');});
 $('body').on('mouseout','.div_goods_img',function(){$(this).children('a').css('display','none');});
 $('body').on('click','.div_goods_img a',function(){
@@ -137,7 +136,7 @@ function creat_img(obj,img_url){
     obj.before(str);
     $('#img_count').html($('.goods_img').length);
     if($('.goods_img').length>3){
-        $('#file_jia').css('display','none');//隐藏添加图片按钮
+        obj.css('display','none');//隐藏添加图片按钮
     }
     if(goods_img===''){
         goods_img+=img_url;

@@ -102,7 +102,7 @@ class MemberController extends FontEndController {
         foreach ($arr_goods_img as &$value) {
             $today=substr($value,26,8);//获取到文件夹名  如20150101
             creat_file(UPLOAD.'image/goods/'.$today);//创建文件夹（如果存在不会创建）
-            $a=rename($value, str_replace('Public/Uploads/image/temp', UPLOAD.'image/goods',$value));//移动文件
+            rename($value, str_replace('Public/Uploads/image/temp', UPLOAD.'image/goods',$value));//移动文件
             $value=str_replace('Public/Uploads/image/temp', '/'.UPLOAD.'image/goods',$value);
         }
 

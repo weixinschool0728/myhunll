@@ -118,15 +118,32 @@ class ZhuceController extends FontEndController {
             header("location:". U("Member/hunlirenshangjiaxinxi"));
             exit();
         }
-        //获取上传文件信息
-        $file_info=$this->upload('image/hunliren/');
         //当有文件没有上传时，提示并返回
-        if(empty($file_info['file_touxiang'])){
+        if(empty($_POST['member_file_touxiang'])){
             $this->error('未选择上传头像');
         }
-        if(empty($file_info['file_shenfenzheng'])){
+        if(empty($_POST['member_file_shenfenzheng'])){
             $this->error('未选择上传身份证照片');
         }
+        //移动文件 并且改变url
+        $today=substr($_POST['member_file_touxiang'],26,8);//获取到文件夹名  如20150101
+        creat_file(UPLOAD.'image/member/'.$today);//创建文件夹（如果存在不会创建）
+        rename($_POST['member_file_touxiang'], str_replace('Public/Uploads/image/temp', UPLOAD.'image/member',$_POST['member_file_touxiang']));//移动文件
+        $head_url='/'.str_replace('Public/Uploads/image/temp', UPLOAD.'image/member',$_POST['member_file_touxiang']);
+       
+        $today=substr($_POST['member_file_shenfenzheng'],26,8);//获取到文件夹名  如20150101
+        creat_file(UPLOAD.'image/hunliren/'.$today);//创建文件夹（如果存在不会创建）
+        rename($_POST['member_file_shenfenzheng'], str_replace('Public/Uploads/image/temp', UPLOAD.'image/hunliren',$_POST['member_file_shenfenzheng']));//移动文件
+        $shenfenzheng_url='/'.str_replace('Public/Uploads/image/temp', UPLOAD.'image/hunliren',$_POST['member_file_shenfenzheng']);
+        if(!empty($_POST['member_file_erweima'])){
+            $today=substr($_POST['member_file_erweima'],26,8);//获取到文件夹名  如20150101
+            creat_file(UPLOAD.'image/hunliren/'.$today);//创建文件夹（如果存在不会创建）
+            rename($_POST['member_file_erweima'], str_replace('Public/Uploads/image/temp', UPLOAD.'image/hunliren',$_POST['member_file_erweima']));//移动文件
+            $weixin_erweima='/'.str_replace('Public/Uploads/image/temp', UPLOAD.'image/hunliren',$_POST['member_file_erweima']);
+        }else{
+            $weixin_erweima='';
+        }
+        
             
         $serverform=intval($_POST['radio_fuwuxingshi']);//获取服务形式
         //当服务形式为公司，至少必须上传3个图片文件，否则提示并且返回
@@ -169,15 +186,13 @@ class ZhuceController extends FontEndController {
             $this->error('有内容含有非法字符');
             exit();
         }
-        //获取上传文件信息
-        $head_url=UPLOAD.$file_info['file_touxiang']['savepath'].$file_info['file_touxiang']['savename'];
-        $shenfenzheng_url=UPLOAD.$file_info['file_shenfenzheng']['savepath'].$file_info['file_shenfenzheng']['savename'];
-        $weixin_erweima=UPLOAD.$file_info['file_weixin_erweima']['savepath'].$file_info['file_weixin_erweima']['savename'];
+
+        
         //准备需要写进数据库的数组
         $user_id=intval($_SESSION['huiyuan']['user_id']);//获取会员id号
         $row=array(
-            'head_url'=>'/'.$head_url,
-            'shenfenzheng_url'=>'/'.$shenfenzheng_url,
+            'head_url'=>$head_url,
+            'shenfenzheng_url'=>$shenfenzheng_url,
             'sex'=>$sex,
             'server_form'=>$serverform,
             'true_name'=>$name,
@@ -189,7 +204,7 @@ class ZhuceController extends FontEndController {
             'server_content'=>$fuwuneirong,
             'shopman_id'=>1,
             'shop_introduce'=>$shop_introduce,
-            'weixin_erweima'=>'/'.$weixin_erweima,
+            'weixin_erweima'=>$weixin_erweima,
             'shopman_reg_time'=>  mktime()
         );
         //如果上传了营业执照照片，写进数组
@@ -210,7 +225,16 @@ class ZhuceController extends FontEndController {
         }
     }
 
-
+    public function file_jia(){
+        $file_info=$this->upload('image/temp/');//获取上传文件信息
+        //获取图片URL
+        $data=array(
+            'file_touxiang'=>UPLOAD.$file_info['file_touxiang']['savepath'].$file_info['file_touxiang']['savename'],
+            'file_shenfenzheng'=>UPLOAD.$file_info['file_shenfenzheng']['savepath'].$file_info['file_shenfenzheng']['savename'],
+            'file_erweima'=>UPLOAD.$file_info['file_erweima']['savepath'].$file_info['file_erweima']['savename']
+        );
+        $this->ajaxReturn($data,'JSON');
+    }
 
 
 
