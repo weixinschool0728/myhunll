@@ -21,6 +21,7 @@ $('#xiayibu').bind('click',function(){fabu();});
 $('body').on('mouseover','.div_goods_img',function(){$(this).children('a').css('display','block');});
 $('body').on('mouseout','.div_goods_img',function(){$(this).children('a').css('display','none');});
 $('body').on('click','.div_goods_img a',function(){
+    $('#file_jia').css('display','block');
     $(this).parent().remove();
     var img_url=$(this).prev().attr('src').substr(1);
     goods_img=goods_img.replace(img_url+'+img+','');
@@ -41,18 +42,24 @@ $('input[name=radio_sex]:eq(0)').attr('checked','checked');
         'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
         'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
         'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
-        'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
+        'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image','multiimage',
         'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
         'anchor', 'link', 'unlink', '|', 'about'
 ],
-            uploadJson:"/Home/Member/editor_check",
+            uploadJson:"/Home/Kindeditor/editor_check",
             allowMediaUpload:false,//true时显示视音频上传按钮。
             allowFlashUpload:false,//true时显示Flash上传按钮。
             allowFileUpload:false,//true时显示文件上传按钮。
             allowFileManager:false,//true时显示浏览远程服务器按钮。
+            //autoHeightMode : true,//允许自动高度
+            //afterCreate : function() {
+                //this.loadPlugin('autoheight');
+            //},//自动高度
+            height:'500px',
             fontSizeTable:['9px', '10px', '12px', '14px', '16px', '18px', '24px', '32px']//指定文字大小。
         };
         editor = K.create('textarea[name="content"]',options);
+       
     });
 
 
@@ -145,3 +152,4 @@ function creat_img(obj,img_url){
     }
     $('input[name=goods_img]').attr('value',goods_img);
 };
+
