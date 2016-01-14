@@ -124,3 +124,12 @@ span{
 .tr_td1 i{
     font-size: 12px;
 }
+
+
+.ke-dialog-default{
+    overflow:inherit;
+}
+
+.ke-dialog-default div{
+    overflow:inherit;
+} 
