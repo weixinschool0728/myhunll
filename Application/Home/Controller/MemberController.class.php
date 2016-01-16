@@ -5,7 +5,6 @@ class MemberController extends FontEndController {
     public function index(){
         $this->assign("title","我的婚啦啦");
         $user_id=$_SESSION['huiyuan']['user_id'];//获取会员id号
-        $user_id=$_SESSION['huiyuan']['user_id'];//获取会员id号
         $usersmodel=D('Users');
         if(!empty($user_id)||$user_id===0){
         $data=$usersmodel->where("user_id={$user_id}")->find();
@@ -326,7 +325,27 @@ class MemberController extends FontEndController {
     
     public function updated_head(){
         $this->assign("title","会员_更换头像");
+        $user_id=$_SESSION['huiyuan']['user_id'];//获取会员id号
+        $usersmodel=D('Users');
+        if(!empty($user_id)||$user_id===0){
+            $data=$usersmodel->where("user_id={$user_id}")->getField('head_url');
+        }
+        $this->assign("touxiang_url",$data);
         $this->display('updated_head');
+    }
+    public function updated_head_queren(){
+        $user_id=$_SESSION['huiyuan']['user_id'];//获取会员id号
+        $value=$_POST['head_img'];
+        $today=substr($value,26,8);//获取到文件夹名  如20150101
+        creat_file(UPLOAD.'image/member/'.$today);//创建文件夹（如果存在不会创建）
+        rename($value, str_replace('Public/Uploads/image/temp', UPLOAD.'image/member',$value));//移动文件
+        $value=str_replace('Public/Uploads/image/temp', '/'.UPLOAD.'image/member',$value);
+        $usersmodel=D('Users');
+        $row=array(
+            'head_url'=>$value
+        );
+        $usersmodel->where("user_id=$user_id")->save($row);
+        $this->success('修改成功,将返回会员页面',U('Member/index'),3);
     }
     public function getCode(){
         $config =    array(   
@@ -531,6 +550,7 @@ class MemberController extends FontEndController {
         //获取商品服务类型
         $goodsmodel=D('Goods');
         $goods=$goodsmodel->where("goods_id=$goods_id and user_id=$user_id")->find();//商品信息列表
+        $goods['goods_img_qita']=unserialize($goods['goods_img_qita']);
         $this->assign('goods',$goods);
         if(empty($goods)){
             $this->error('非法操作',U($_SESSION['ref']),3);
@@ -592,24 +612,30 @@ class MemberController extends FontEndController {
     public function bianji_check(){
         $goods_id=$_GET['goods_id'];
         $content=$_POST;//获取提交的内容
-        /*
-        $file_info=$this->upload('image/goods/');//获取上传文件信息
-        if(count($file_info)<1){
-            $this->error('未选择商品头像图片');
+        if($content['goods_img']===''){
+            $this->error('未选择商品图片');
             exit();
         }
-        //获取图片URL
-        $goods_img=UPLOAD.$file_info['file_img']['savepath'].$file_info['file_img']['savename'];
-       //先建立一个去掉第一张图片了的info
-       $file_info_new=$file_info;
-       unset($file_info_new['file_img']);
-       //获取其它图片url 放到数组中
-       foreach ($file_info_new as $value){
-           $arr_goods_img[]='/'.UPLOAD.$value['savepath'].$value['savename'];
-       }
+        //获取图片URL,分割成数组
+        $arr_goods_img=explode('+img+',$content['goods_img']);
+        //移动文件 并且改变url
+        foreach ($arr_goods_img as &$value) {
+            $today=substr($value,26,8);//获取到文件夹名  如20150101
+            creat_file(UPLOAD.'image/goods/'.$today);//创建文件夹（如果存在不会创建）
+            if(substr($value, 21,4)==='temp'){
+                rename($value, str_replace('Public/Uploads/image/temp', UPLOAD.'image/goods',$value));//移动文件
+                $value=str_replace('Public/Uploads/image/temp', '/'.UPLOAD.'image/goods',$value);
+            }
+        }
+
+        
+        //获取第一张图片URL
+        $goods_img=$arr_goods_img[0];
+       //建立一个去掉第一张图片了的数组并序列化
+       array_splice($arr_goods_img,0,1);
        $str_goods_img=serialize($arr_goods_img);
-       */
-       
+        
+        
         if($content['title']==''||is_feifa($content['title'])){
             $this->error('商品标题为空或者含有非法字符');
             exit();
@@ -661,13 +687,15 @@ class MemberController extends FontEndController {
             'area'=>$content['area'],     //地区
             'user_id'=>intval($user_id),//所属店铺
             'goods_name'=>$content['title'],//商品名称
+            'goods_img'=>$goods_img,//商品图片
+            'goods_img_qita'=>$str_goods_img,//被序列化的其它图片
             'yuan_price'=>$content['yuan_price'],//原价
             'price'=>$content['price'],//
             'goods_form'=>$server_form,//商家服务形式(团队还是个人)
             'goods_sex'=>$content['radio_sex'],//商家性别
             'shuxing'=>$str_shuxing,//属性
-            //'goods_img'=>'/'.$goods_img,//商品图片
-            //'goods_img_qita'=>$str_goods_img,//被序列化的其它图片
+            'fanxian'=>$content['select_fanxian'],
+            'daijinquan'=>$content['radio_daijinquan'],
             'goods_desc'=>$goods_desc,//商品描述
             //'add_time'=>time(),             //添加时间
             'last_update'=>time()            //更新时间初始等于添加时间

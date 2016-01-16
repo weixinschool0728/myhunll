@@ -6,16 +6,30 @@
 $('select[name=server_content]').bind('change',function(){sc_change();});
 $(':text[name=title]').bind('focus',function(){text_focus($('#info_title'),'商品标题可以尽量多包含关键字');});
 $(':text[name=title]').bind('blur',function(){text_blue($(this),$('#info_title'));});
-//$('input[name=file_img]').bind('change',function(){check_file_image($(this),$('#span_touxiang'),true);;});
-//$('#button_jia').bind('click',function(){tianjia($(this));});
+$('input[name=file_img]').bind('change',function(){
+    if(check_file_image($(this),$('#span_touxiang'),true)){
+        file_jia_change();
+    };
+});
 $(':text[name=price]').bind('focus',function(){text_focus($('#info_price'),'填写售价');});
 $(':text[name=price]').bind('blur',function(){price_blue($(this),$('#info_price'));});
 $(':text[name=yuan_price]').bind('focus',function(){text_focus($('#info_yuan_price'),'填写原价');});
 $(':text[name=yuan_price]').bind('blur',function(){price_blue($(this),$('#info_yuan_price'));});
 $('#xiayibu').bind('click',function(){fabu();});
 //动态生成的元素添加事件
-$('body').on('click','.bt_delete',function(){delete_file($(this));});
-$('body').on('change','.input_img1',function(){check_file_image($(this),$(this).next('span'),true);});
+$('body').on('mouseover','.div_goods_img',function(){$(this).children('a').css('display','block');});
+$('body').on('mouseout','.div_goods_img',function(){$(this).children('a').css('display','none');});
+$('body').on('click','.div_goods_img a',function(){
+    $('#file_jia').css('display','block');
+    $(this).parent().remove();
+    var img_url=$(this).prev().attr('src').substr(1);
+    goods_img=goods_img.replace('/'+img_url+'+img+','');
+    goods_img=goods_img.replace(img_url+'+img+','');
+    goods_img=goods_img.replace('/'+img_url,'');
+    goods_img=goods_img.replace(img_url,'');
+    $('input[name=goods_img]').attr('value',goods_img);
+    $('#img_count').html($('.goods_img').length);
+});
 
 //给性别radio一个默认值
 $('input[name=radio_sex]:eq(0)').attr('checked','checked');
@@ -30,7 +44,7 @@ $('input[name=radio_sex]:eq(0)').attr('checked','checked');
         'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
         'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
         'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
-        'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
+        'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image','multiimage',
         'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
         'anchor', 'link', 'unlink', '|', 'about'
 ],
@@ -39,6 +53,7 @@ $('input[name=radio_sex]:eq(0)').attr('checked','checked');
             allowFlashUpload:false,//true时显示Flash上传按钮。
             allowFileUpload:false,//true时显示文件上传按钮。
             allowFileManager:false,//true时显示浏览远程服务器按钮。
+            height:'800px',
             fontSizeTable:['9px', '10px', '12px', '14px', '16px', '18px', '24px', '32px']//指定文字大小。
         };
         editor = K.create('textarea[name="content"]',options);
@@ -86,10 +101,44 @@ function delete_file(obj){
 */
 
 
+//添加商品图片点击+
+$('#file_jia').bind('click',function(){
+    $('input[name=file_img]').trigger('click');
+});
 
+//文件上传控件内容改变时的ajax上传函数
+function file_jia_change(){
+    $("#form_file_jia").ajaxSubmit({  
+                    type: 'post',  
+                    dataType:"json",
+                    async : false,
+                    success: function(msg){  
+                        var img_url=msg;
+                        creat_img($('#file_jia'),img_url);
+                        return true; 
+                    },  
+                    error: function(){  
+                        alert('上传文件出错');
+                        return false;
+                    }  
+                });  
+}
 
-
-
+//创建个img标签并且插入obj前面
+function creat_img(obj,img_url){
+    var str='<div class="div_goods_img"><img src="" class="empty_img" /><img class="goods_img" src=/'+img_url+' /><a title="删除"></a></div>';
+    obj.before(str);
+    $('#img_count').html($('.goods_img').length);
+    if($('.goods_img').length>3){
+        obj.css('display','none');//隐藏添加图片按钮
+    }
+    if(goods_img===''){
+        goods_img+=img_url;
+    }else{
+        goods_img+='+img+'+img_url;
+    }
+    $('input[name=goods_img]').attr('value',goods_img);
+};
 
 
 

@@ -27,6 +27,7 @@ $('body').on('click','.div_goods_img a',function(){
     goods_img=goods_img.replace(img_url+'+img+','');
     goods_img=goods_img.replace(img_url,'');
     $('input[name=goods_img]').attr('value',goods_img);
+    $('#img_count').html($('.goods_img').length);
 });
 
 //给性别radio一个默认值
@@ -55,7 +56,7 @@ $('input[name=radio_sex]:eq(0)').attr('checked','checked');
             //afterCreate : function() {
                 //this.loadPlugin('autoheight');
             //},//自动高度
-            height:'500px',
+            height:'800px',
             fontSizeTable:['9px', '10px', '12px', '14px', '16px', '18px', '24px', '32px']//指定文字大小。
         };
         editor = K.create('textarea[name="content"]',options);
@@ -85,17 +86,7 @@ function price_blue(obj,obj_info){
 
 
 
-var i=1;
-function tianjia(obj){
-    var str=' <div  class="tr" id="insert_img"><div class="tr_td1"><input type="button" value="删除" class="bt_delete" /></div><input name="file_imgi" type="file" class="tr_td2 input_img1" /><span id="span_touxiang2"></span></div>';
-    if($('input[type=file]').length>3){
-        alert('最多添加4张图片作为商品展示图');
-        return false;
-    }
-    obj.before(str);
-    $('input[name=file_imgi]').attr('name','file_img'+i);
-    i++;
-}
+
 
 
 
