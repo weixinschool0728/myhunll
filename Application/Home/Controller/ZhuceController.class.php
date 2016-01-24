@@ -171,7 +171,7 @@ class ZhuceController extends FontEndController {
         $shop_introduce=$_POST['shop_introduce'];//获取店铺介绍
         $fuwuneirong=$_POST['fuwuneirong'];//获取服务内容
         //服务内容未选择时，提示并退出
-        if(empty($fuwuneirong)||empty($email)||empty($fuwuneirong)||empty($weixin)||empty($qq)||empty($address)||empty($name)||empty($shop_introduce)){
+        if(empty($email)||empty($fuwuneirong)||empty($weixin)||empty($qq)||empty($address)||empty($name)||empty($shop_introduce)){
             $this->error('有内容未填写');
             exit();
         }

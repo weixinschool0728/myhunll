@@ -705,6 +705,118 @@ class MemberController extends FontEndController {
             $this->success('商品编辑成功！',U('Member/goods_list'),3);
         }
     }
+    
+    public function hunliren_bianji(){
+        if($_SESSION['huiyuan']['shopman_id']==='0'){
+            $_SESSION['ref']=CONTROLLER_NAME.'/'.ACTION_NAME;
+            $this->error('您不是婚礼人，将转到注册婚礼人页面',U("Zhuce/zhuce4"),3);
+            //header("location:". U("Zhuce/zhuce4"));
+            exit();
+        }
+        $this->assign("title","婚礼人信息编辑");
+        $user_id=$_SESSION['huiyuan']['user_id'];//获取会员id号
+        $usersmodel=D('Users');
+        if(!empty($user_id)||$user_id===0){
+        $data=$usersmodel->where("user_id={$user_id}")->find();
+        }
+        $this->assign('data',$data);
+        
+        $this->display('hunliren_bianji');
+    }
+    public function hunliren_bianji_check(){
+       
+        
+        $province=$_POST['address_province'];//获取省份
+        //如果没选择省份，提示并退出
+        if($province==='请选择省市'||empty($province)){
+            $this->error('未选择所在省市');
+            exit();
+        }else{//获取城市和县城
+            $city=$_POST['address_city'];
+            $county=$_POST['address_county'];
+        }
+        $address=$_POST['address_juti'];//获取详细地址
+        $qq=$_POST['contact_qq'];//获取QQ号码
+        $weixin=$_POST['contact_weixin'];//获取微信号码
+        $email=$_POST['contact_email'];//获取邮箱
+        $shop_introduce=$_POST['shop_introduce'];//获取店铺介绍
+        $fuwuneirong=$_POST['fuwuneirong'];//获取服务内容
+        //服务内容未选择时，提示并退出
+        if(empty($email)||empty($fuwuneirong)||empty($weixin)||empty($qq)||empty($address)||empty($shop_introduce)){
+            $this->error('有内容未填写');
+            exit();
+        }
+        $fuwuneirong=  implode('|', $fuwuneirong);//把服务内容数组变成字符串
+        //邮箱是否正确
+        if(is_youxiang($email)){
+            $this->error('邮箱不正确');
+            exit();
+        }
+        //任何文本框如果含有非法字符，提示并退出
+        if(is_feifa($weixin)||is_feifa($qq)||is_feifa($address)||is_feifa($name)||is_feifa($shop_introduce)){
+            $this->error('有内容含有非法字符');
+            exit();
+        }
+
+        
+        //准备需要写进数据库的数组
+        $user_id=intval($_SESSION['huiyuan']['user_id']);//获取会员id号
+        $row=array(
+            'location'=>$province.'|'.$city.'|'.$county,
+            'address'=>$address,
+            'qq'=>$qq,
+            'weixin'=>$weixin,
+            'email'=>$email,
+            'server_content'=>$fuwuneirong,
+            'shopman_id'=>1,
+            'shop_introduce'=>$shop_introduce,
+            'shopman_reg_time'=>  mktime()
+        );
+         //移动文件 并且改变url
+        if($_POST['member_file_touxiang']!==''){      
+            $today=substr($_POST['member_file_touxiang'],26,8);//获取到文件夹名  如20150101
+            creat_file(UPLOAD.'image/member/'.$today);//创建文件夹（如果存在不会创建）
+            rename($_POST['member_file_touxiang'], str_replace('Public/Uploads/image/temp', UPLOAD.'image/member',$_POST['member_file_touxiang']));//移动文件
+            $head_url='/'.str_replace('Public/Uploads/image/temp', UPLOAD.'image/member',$_POST['member_file_touxiang']);
+            $row['head_url']=$head_url;
+        }
+        
+        if($_POST['member_file_shenfenzheng']!==''){
+            $today=substr($_POST['member_file_shenfenzheng'],26,8);//获取到文件夹名  如20150101
+            creat_file(UPLOAD.'image/hunliren/'.$today);//创建文件夹（如果存在不会创建）
+            rename($_POST['member_file_shenfenzheng'], str_replace('Public/Uploads/image/temp', UPLOAD.'image/hunliren',$_POST['member_file_shenfenzheng']));//移动文件
+            $shenfenzheng_url='/'.str_replace('Public/Uploads/image/temp', UPLOAD.'image/hunliren',$_POST['member_file_shenfenzheng']);
+            $row['shenfenzheng_url']=$shenfenzheng_url;
+        }
+       
+        if($_POST['member_file_erweima']!==''){
+            $today=substr($_POST['member_file_erweima'],26,8);//获取到文件夹名  如20150101
+            creat_file(UPLOAD.'image/hunliren/'.$today);//创建文件夹（如果存在不会创建）
+            rename($_POST['member_file_erweima'], str_replace('Public/Uploads/image/temp', UPLOAD.'image/hunliren',$_POST['member_file_erweima']));//移动文件
+            $weixin_erweima='/'.str_replace('Public/Uploads/image/temp', UPLOAD.'image/hunliren',$_POST['member_file_erweima']);
+            $row['weixin_erweima']=$weixin_erweima;
+        }
+        //如果上传了营业执照照片，写进数组
+        //if(isset($file_info['file_yingyezhizhao'])){
+            //$yingyezhizhao_url=UPLOAD.$file_info['file_yingyezhizha']['savepath'].$file_info['file_yingyezhizha']['savename'];
+            //$row['yingyezhizhao_url']='/'.$yingyezhizhao_url;
+        //}
+        //写入数据库
+        $usersmodel=D('Users');
+        $result=$usersmodel->where("user_id={$user_id}")->save($row);
+        if($result!==false){
+            $_SESSION['huiyuan']['shopman_id']='1';
+            $this->success('会员信息编辑成功！',U('Member/hunlirenshangjiaxinxi'),3);
+            exit();
+        }else{
+            $this->error('更新数据库失败');
+            exit();
+        }
+       
+        
+        
+    }
+    
 }
 
 

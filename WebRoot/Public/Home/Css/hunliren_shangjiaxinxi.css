@@ -38,7 +38,7 @@
     margin-left: 30px;
     font-size: 16px;
 }
-.right a{
+.right .right_head a{
     width: 120px;
     height: 50px;
     line-height: 50px;
@@ -59,7 +59,13 @@
 .right .title{
     font-size: 16px;
     font-weight: 800;
-    margin: 20px 0px 5px 0px;
+    margin: 15px 0px 5px 0px;
+    padding: 5px 15px;
+}
+.right .title .bianji_a{
+    color: #FFFFFF;
+    padding: 5px 15px;
+    margin-left: 150px;
 }
 .right .content{
     background-color: #f6f6f6;
