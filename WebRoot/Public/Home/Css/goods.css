@@ -121,6 +121,7 @@
 }
 .price2{
     margin: 0px 0px 0px 10px;
+    padding-right: 20px;
 }
 .price2 .span{
     width: 80px;
@@ -214,22 +215,24 @@
 
 .shoucang{
     height: 50px;
-    width:110px;
+    width:130px;
     line-height: 50px;
     font-size:12px;
-    text-align: center;
+    text-align: left;
     display: block;
     float: left;
+    margin-left: 5px;
 }
 
-.jianjie {
+.dianpujieshao {
     float: left;
     width: 198px;
     height: 502px;
-    border: 1px solid red;
+    border: 1px solid #DDD;
 }
 .other{
     width: 975px;
+    float: left;
 }
 .other_title {
     position: relative;
@@ -306,7 +309,7 @@
 }
 .content_title{
     margin-top: 20px;
-    width: 975px;
+    width: 973px;
     height: 40px;
     line-height: 40px;
     border: 1px solid #E3E3E3;
@@ -323,7 +326,7 @@
     background-color: #FFF;
 }
 .goods_shuxing{
-    width: 975px;
+    width: 973px;
     border: 1px solid #E3E3E3;
     padding-top: 20px;
 }
@@ -346,10 +349,12 @@
 }
 .goodscontent{
     margin-top: 10px;
-    width: 975px;
+    width: 973px;
     border: 1px solid #E3E3E3;
 }
-
+.goodscontent img{
+    max-width: 973px;
+}
 /*遮罩层css*/
 #overlay {
     background: #000;
@@ -382,6 +387,14 @@
     font-weight: 700;
     font-size: 14px;
     background-color: #F2F2F2;
+}
+.mini_head .a_zhuce{
+    float:right;
+    margin-right: 40px;
+    color: #03BA8A;
+}
+.mini_head .a_zhuce:hover{
+    color: #00FFDB;
 }
 .mini_close{
     font-size: 22px;
@@ -624,4 +637,266 @@ color:#FFFFFF;
 .gouwuche_top_right_a2:hover{
     background-color: #f0ad4e;
     color:#FFF;
+}
+
+.jianjie{
+    font-size: 12px;
+    text-align: center;
+    color: #000;
+    margin-top: 10px;
+}
+.jianjie_content{
+    width: 178px;
+    margin-left: 10px;
+    max-height: 270px;
+    padding: 10px 0px;
+    border-bottom: 1px solid #DDD;
+    color: #888;
+    display: block;
+}
+.chengnuo_content{
+    height: 60px;
+    width: 178px;
+    padding: 10px 0px;
+    margin-left: 10px;
+    border-bottom: 1px solid #DDD;
+}
+.chengnuo_content .peifu{
+    display: block;
+    height: 22px;
+    width: 22px;
+    background-image: url("../Images/public/peifu.png");
+    margin: 0px auto;
+}
+.chengnuo_content a{
+    display: inline-block;
+    font-size: 12px;
+    color: #999;
+    margin-right: 20px;
+}
+.chengnuo_content .tui{
+    display: block;
+    height: 22px;
+    width: 22px;
+    background-image: url("../Images/public/tui.png");
+    margin: 0px auto;
+}
+.chengnuo_content .baozhengjin{
+    display: block;
+    height: 22px;
+    width: 22px;
+    margin: 0px auto;
+    background-color: #2BB8AA;
+    font-size: 16px;
+    color: #FFF;
+    text-align: center;
+    line-height: 22px;
+    font-weight:bolder;
+}
+.dianpujieshao_pingfen{
+    height: 30px;
+    padding: 20px 10px;
+    margin-left: 10px;
+    border-bottom: 1px solid #DDD;
+    margin-right: 10px;
+}
+.dianpujieshao_pingfen li{
+    float: left;
+    padding: 0px 13px;
+    border-right: 1px solid #DDD;
+}
+.pingfen_jt{
+    padding-left: 3px;
+    color: #DA3F02;
+}
+.jianjie_more{
+    font-size: 10px;
+    border: 1px #999 solid;
+    color: #999;
+    padding: 1px 3px;
+}
+.jianjie_more_div{
+    width: 300px;
+    border: 1px solid #888;
+    position: absolute;
+    z-index: 100;
+    left:942px;
+    top:440px;
+    padding: 35px 20px;
+    background-color:#FFF;
+    color: #888;
+    display: none;
+}
+
+.daijinquan{
+    width: 19px;
+    height: 19px;
+    background-color: #F76120;
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    text-align: center;
+    line-height: 19px;
+    float: right;
+    margin-top: 10px;
+    
+}
+.erweima{
+    width:120px;
+    height: 120px;
+    position: absolute;
+}
+.box_r {
+    float: left;
+    width: 200px;
+}
+.guanggao{
+    margin-top: 20px;
+    width: 158px;
+    border: 1px solid #DDD;
+    padding: 10px 20px;
+}
+.box_bl{
+    width: 975px;
+    float: left;
+    margin-right: 25px;
+}
+.guanggao h3{
+    padding-top: 3px;
+    font-size: 16px;
+    color:#333;
+    font-weight: bolder;
+}
+.box_r_shopping{
+    border-bottom: 1px solid #DDD;
+    padding: 20px 0px;
+}
+.box_r_shopping img{
+    width: 158px;
+    max-height: 158px;
+}
+.box_r_shopping h4{
+    margin: 10px 0px 5px 0px;
+}
+.box_r_shopping h4 a{
+    color: #333;
+    font-weight: bolder;
+}
+.box_r_shopping h4 a:hover{
+    color: #00FFDB;
+}
+.box_r_shopping .guanggao_price{
+    max-width: 95px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    color: #F76120;
+    margin-right: 10px;
+}
+.buy i{
+    float: left;
+    display: block;
+    width: 16px;
+    height: 18px;
+    position: relative;
+    top:15px;
+}
+.i_shoucang{
+    background-image: url('../Images/public/shoucang.png');
+}
+.i_fenxiang{
+    background-image: url('../Images/public/fenxiang.png');
+}
+.fenxiang{
+    width: 50px;
+}
+.fenxiang_tanchu_div{
+    width: 118px;
+    position: absolute;
+    border: 2px solid #ddd;
+    background-color: #FFF;
+    top:740px;
+    left: 970px;
+    display: none;
+}
+.deal-share{
+    margin-top: 10px;
+    padding: 0px 10px 3px;
+}
+.deal-share a{
+    float: left;
+    clear: left;
+    color: #666;
+    line-height: 16px;
+    height: 24px;
+    text-decoration: none;
+}
+.deal-share a .icon-share {
+    float: left;
+}
+.icon-share {
+    display: block;
+    width: 16px;
+    height: 16px;
+    text-indent: -9999px;
+    outline: 0px none;
+    overflow: hidden;
+    background-position: 0px -36px;
+    background-image: url('../Images/public/fenxiang_icon.png');
+}
+.deal-share a span {
+    margin-left: 10px;
+    font-size: 12px;
+}
+.deal-share a .icon-share--sina {
+    background-position: 0px -72px;
+}
+.deal-share a .icon-share--qq {
+    background-position: 0px -90px;
+}
+.deal-share a .icon-share--renren {
+    background-position: 0px -54px;
+}
+.deal-share a .icon-share--douban {
+    background-position: 0px 0px;
+}
+.deal-share a .icon-share--qzone {
+    background-position: 0px -18px;
+}
+/*分享QQdiv*/
+.fenxiang_qq_div{
+    width: 500px;
+    z-index: 102;
+    position: absolute;
+    display: none;
+}
+.mt-dialog {
+    border: 1px solid #CCC;
+    background: #FFF none repeat scroll 0% 0%;
+}
+.mt-dialog .head {
+    position: relative;
+    padding: 0px 15px;
+    height: 40px;
+    line-height: 40px;
+    background: #F7F7F7 none repeat scroll 0% 0%;
+    color: #333;
+}
+.mt-dialog .body {
+    padding: 30px;
+    overflow: hidden;
+}
+.mt-dialog .head .close {
+    background-position: 0px -24px;
+    width: 13px;
+    height: 13px;
+    line-height: 13px;
+    cursor: pointer;
+    background-image: url("../Images/public/icon-3.png");
+    float:right;
+    margin-top: 12px;
+}
+.deal-share-qq-input {
+    margin-top: 10px;
+    width: 280px;
 }

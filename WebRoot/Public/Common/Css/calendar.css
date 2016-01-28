@@ -100,7 +100,7 @@ table.biao{border-collapse:collapse;font-family:"Times New Roman","宋体"}
 .rArrow:hover{background-image:url(../../Home/Images/goods/tool-sprites.gif);background-position:15px 240px}
 .cadTable thead tr{background-color:#99BBE8}
 .cadTable tbody td{border:1px solid #99BBE8}
-.calTit{background-image:url(calTit.jpg)}
+/*.calTit{background-image:url(calTit.jpg)}*/
 .calWeekTit{background-color:#2BB8AA;color:#fff}
 .calTit FONT{color:#15428B}
 table.biao td{border:1px solid #ccc}
@@ -109,4 +109,3 @@ table.biao td{border:1px solid #ccc}
 .jinri{background:#cfdff0}
 .cal_next{color:#15428B}
 .selday{background:#00FFDB}
-

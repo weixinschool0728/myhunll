@@ -29,10 +29,10 @@ float: left;
     text-align: center;
 }
 .td2{
-    width: 300px;
+    width: 360px;
 }
 .td3{
-    width: 150px;
+    width: 90px;
 }
 .td4{
     width: 70px;
@@ -46,18 +46,21 @@ float: left;
     width: 193px;
     text-align: center;
 }
+.td6 a{
+    margin: 0px 10px;
+}
 .release .content{
     margin-top: 10px;
 }
 
 .content div{
     float: left;
-    height: 100px;
-    line-height: 100px;
+    height: 60px;
+    line-height: 60px;
     border:1px solid #EEE;
-    font-size: 16px;
+    font-size: 14px;
 }
 .content .img_zst{
-    height: 100px;
+    height: 60px;
 }
 

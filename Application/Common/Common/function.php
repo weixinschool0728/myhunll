@@ -127,7 +127,7 @@ function create_char($length=0){
 
 //得到editor编辑框内的图片文件名（包括地址）
 function get_file($str){
-    $reg='/<img src="\/([^"]+)"/i';
+    $reg='/<img.*?src="\/([^"]+)"[^>]*>/i';
     preg_match_all($reg,$str,$result);
     return $result;
 }
@@ -178,6 +178,7 @@ function shuzu($shuzu,$xiabiao){
     return $shuzu[$xiabiao];
 }
 
+//星星分数变成百分数
 function xingxing_baifenbi($score){
     $score1=round($score/5,2)*100;
     return $score1.'%';

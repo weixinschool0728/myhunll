@@ -8,4 +8,6 @@ window.onload=function(){
         }
     });
   
-}
+};
+
+$('.box_r_shopping:last').css('border','none');

@@ -19,6 +19,7 @@
         </div>
         <div class="title">
             商家资料
+            <a class="bianji_a" href="<{:U('Member/hunliren_bianji')}>">编辑</a>
         </div>
         <div class="content">
             <ul>
@@ -31,6 +32,9 @@
                 <li>地址： <{$userdata['address']}></li>
                 <li>QQ： <{$userdata['qq']}></li>
                 <li>微信： <{$userdata['weixin']}></li>
+                <if condition="$userdata['weixin_erweima'] neq ''">
+                    <li class="erweima"><span>微信二维码：</span><img src="<{$userdata['weixin_erweima']}>"></li>
+                </if>
                 <li>email： <{$userdata['email']}></li>
             </ul>
         </div>

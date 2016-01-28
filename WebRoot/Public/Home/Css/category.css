@@ -34,14 +34,24 @@ font-size:16px;
 }
 
 .menu_tr_title{
-text-align:center;
+text-align:left;
 float:left;
 margin: 3px 5px 0px 0px;
 padding:2px 4px;
-background-color: #00FFDB;
+color: #999;
+width: 90px;
 }
 
-.menu_tr_ul{float:left;width:850px;}
+.box_l_menu_tr .menu_tr_ul_shuxing{
+    width:900px;
+}
+.first_div{
+    /*min-width: 440px;*/
+}
+.menu_tr_ul{
+    float:left;
+    width:790px;
+}
 .menu_tr_ul li{
 margin:3px 30px 3px 0px;
 float:left;
@@ -54,8 +64,7 @@ display:block;
 padding:2px 4px;
 }
 .menu_tr_ul a:hover {
-background-color:#03BA8A;
-color:#FFFFFF;
+color:#03BA8A;
 }
 .menu_tr_ul input {
 width:40px;
@@ -66,6 +75,7 @@ width:auto;
 .menu_tr_ul2 li{
 margin:0px;
 border-right:1px solid #ddd;
+position:relative;
 }
 .menu_tr_ul2 a{
 padding:8px 20px;
@@ -111,7 +121,7 @@ height: 19px;
 }
 .shopping_title a{
 line-height:19px;
-width: 220px;
+width: 185px;
 display:inline-block;
 text-overflow:ellipsis;/*超出部分省略号*/
 white-space: nowrap;/*强制文本一行输出*/
@@ -195,4 +205,67 @@ margin-top: 10px;}
     cursor: pointer;
     display: inline-block;
     height: 17px;
+}
+.jiantou{
+    display: inline-block;
+    position: absolute;
+    left:48px;
+    top:13px;
+    width: 7px;
+    height: 8px;
+    background-image: url(../Images/public/jiantou.png);
+    background-position: 0px -820px;
+}
+#update .jiantou{
+    left:72px;
+}
+.daijinquan{
+    width: 19px;
+    height: 19px;
+    background-color: #F76120;
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    text-align: center;
+    line-height: 19px;
+    float: right;
+}
+.box_r{
+    border: 1px solid #DDD;
+    float:left;
+    width:215px;
+    margin-left:10px;
+    padding: 10px 20px;
+}
+.box_r h3{
+    padding-top: 3px;
+    font-size: 16px;
+    color:#333;
+    font-weight: bolder;
+}
+.box_r_shopping{
+    border-bottom: 1px solid #DDD;
+    padding: 20px 0px;
+}
+.box_r_shopping img{
+    width: 215px;
+    max-height: 215px;
+}
+.box_r_shopping h4{
+    margin: 10px 0px 5px 0px;
+}
+.box_r_shopping h4 a{
+    color: #333;
+    font-weight: bolder;
+}
+.box_r_shopping h4 a:hover{
+    color: #00FFDB;
+}
+.box_r_shopping .guanggao_price{
+    max-width: 95px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    color: #F76120;
+    margin-right: 10px;
 }

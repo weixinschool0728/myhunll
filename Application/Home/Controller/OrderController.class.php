@@ -134,6 +134,13 @@ class OrderController extends FontEndController {
         $this->assign('order',$order);
         $this->display('appraise');
     }
+    public function file_jia(){
+        $file_info=$this->upload('image/temp/');//获取上传文件信息
+        //获取图片URL
+        $data=UPLOAD.$file_info['file_img']['savepath'].$file_info['file_img']['savename'];
+        $this->ajaxReturn($data);
+    }
+    
     public function appraise_success(){
         $this->assign('title','评价成功');
         $order_id=$_GET['order_id'];
@@ -145,14 +152,22 @@ class OrderController extends FontEndController {
         }
         $content=$_POST;//获取提交的内容
         $pinglun=$content['pingjia_text'];
-        if($_FILES['file_img']['name']!=''||$_FILES['file_img1']['name']!=''||$_FILES['file_img2']['name']!=''){
-            $file_info=$this->upload('image/appraise/');//获取上传文件信息
-            //把url 保存到数组中
-            foreach ($file_info as $value){
-                $arr_img[]='/'.UPLOAD.$value['savepath'].$value['savename'];
+
+        //获取图片URL,分割成数组
+        if($content['goods_img']!==''){
+            $arr_img=explode('+img+',$content['goods_img']);
+            //移动文件 并且改变url
+            foreach ($arr_img as &$value) {
+                $today=substr($value,26,8);//获取到文件夹名  如20150101
+                creat_file(UPLOAD.'image/appraise/'.$today);//创建文件夹（如果存在不会创建）
+                rename($value, str_replace('Public/Uploads/image/temp', UPLOAD.'image/appraise',$value));//移动文件
+                $value=str_replace('Public/Uploads/image/temp', '/'.UPLOAD.'image/appraise',$value);
             }
             $str_img=serialize($arr_img);//序列化数组
         }
+        unset($content['goods_img']);//从数组中删除goods_img
+        
+        
         if(is_feifa($pinglun)){
             $this->error('评论含有非法字符');
             exit();

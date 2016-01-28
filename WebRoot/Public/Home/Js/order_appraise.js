@@ -73,7 +73,11 @@
  });
  
  //上传文件必须是图片
-$('.file_img').bind('change',function(){check_file_image($(this),$(this).next('span'),true);;});
+$('input[name=file_img]').bind('change',function(){
+    if(check_file_image($(this),$('#file_img_info'),true)){
+        file_jia_change();
+    };
+});
 
 //添加按钮动作
 $('#button_jia').bind('click',function(){tianjia($(this));});
@@ -119,4 +123,58 @@ $('#fabiao').bind('click',function(){
         $('form[name=m_appraiseform_appraise]').submit();
         return true;
     }
+});
+
+
+//添加商品图片点击+
+$('#file_jia').bind('click',function(){
+    $('input[name=file_img]').trigger('click');
+});
+
+
+//文件上传控件内容改变时的ajax上传函数
+function file_jia_change(){
+    $("#form_file_jia").ajaxSubmit({  
+                    type: 'post',  
+                    dataType:"json",
+                    async : false,
+                    success: function(msg){  
+                        var img_url=msg;
+                        creat_img($('#file_jia'),img_url);
+                        return true; 
+                    },  
+                    error: function(){  
+                        alert('上传文件出错');
+                        return false;
+                    }  
+                });  
+}
+//创建个img标签并且插入obj前面
+var goods_img="";
+function creat_img(obj,img_url){
+    var str='<div class="div_goods_img"><img src="" class="empty_img" /><img class="goods_img" src=/'+img_url+' /><a title="删除"></a></div>';
+    obj.before(str);
+    $('#img_count').html($('.goods_img').length);
+    if($('.goods_img').length>3){
+        obj.css('display','none');//隐藏添加图片按钮
+    }
+    if(goods_img===''){
+        goods_img+=img_url;
+    }else{
+        goods_img+='+img+'+img_url;
+    }
+    $('input[name=goods_img]').attr('value',goods_img);
+};
+
+
+//动态生成的元素添加事件
+$('body').on('mouseover','.div_goods_img',function(){$(this).children('a').css('display','block');});
+$('body').on('mouseout','.div_goods_img',function(){$(this).children('a').css('display','none');});
+$('body').on('click','.div_goods_img a',function(){
+    $('#file_jia').css('display','block');
+    $(this).parent().remove();
+    var img_url=$(this).prev().attr('src').substr(1);
+    goods_img=goods_img.replace(img_url+'+img+','');
+    goods_img=goods_img.replace(img_url,'');
+    $('input[name=goods_img]').attr('value',goods_img);
 });

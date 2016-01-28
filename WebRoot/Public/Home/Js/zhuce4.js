@@ -101,8 +101,8 @@ var arr_county=[
 [["沙依巴克区","新市区","天山区","达坂城区","乌鲁木齐县","水磨沟区","头屯河区"],["克拉玛依区","独山子区","白碱滩区","乌尔禾区"],["吐鲁番市","鄯善县","托克逊县"],["哈密市","伊吾县","巴里坤"],["和田市","和田县","墨玉县","皮山县","洛浦县","策勒县","于田县","民丰县"],["阿克苏市","温宿县","库车县","沙雅县","新和县","拜城县","乌什县","阿瓦提县","柯坪县"],["喀什市","疏附县","疏勒县","英吉沙县","泽普县","莎车县","叶城县","麦盖提县","岳普湖县","伽师县","巴楚县","塔什库尔干"],["阿克陶县","阿合奇县","乌恰县"],["库尔勒市","轮台县","尉犁县","若羌县","且末县","和静县","和硕县","博湖县","焉耆"],["昌吉市","阜康市","米泉市","呼图壁县","玛纳斯县","奇台县","吉木萨尔县","木垒"],["博乐市","精河县","温泉县"],["奎屯市","伊宁县","霍城县","巩留县","新源县","昭苏县","特克斯县","尼勒克县","察布查尔"],["塔城市","乌苏市","额敏县","沙湾县","托里县","裕民县","和布克赛尔"],["阿勒泰市","布尔津县","富蕴县","福海县","哈巴河县","青河县","吉木乃县"]]
 ];
 var obj_form=document.zhuce;
-var obj_file_touxiang=document.zhuce.file_touxiang;
-var obj_file_shenfenzheng=document.zhuce.file_shenfenzheng;
+var obj_file_touxiang=document.form_file_touxiang.file_touxiang;
+var obj_file_shenfenzheng=document.form_file_shenfenzheng.file_shenfenzheng;
 //var obj_file_yingyezhizhao=document.zhuce.file_yingyezhizhao;
 var obj_radio_fuwuxingshi=document.zhuce.radio_fuwuxingshi;
 var obj_zhuce4_checkbox=document.getElementById("zhuce4_checkbox");
@@ -118,8 +118,17 @@ var obj_contact_qq=document.zhuce.contact_qq;
 var obj_contact_weixin=document.zhuce.contact_weixin;
 var obj_contact_email=document.zhuce.contact_email;
 
-obj_file_touxiang.onchange=function(){check_file_image($(this),$("#span_touxiang"),true);};
-obj_file_shenfenzheng.onchange=function(){check_file_image($(this),$("#span_shenfenzheng"),true);};
+obj_file_touxiang.onchange=function(){
+    check_file_image($(this),$("#span_touxiang"),true);
+    file_jia_change($(this));
+};
+obj_file_shenfenzheng.onchange=function(){
+    check_file_image($(this),$("#span_shenfenzheng"),true);
+    file_jia_change($(this));
+};
+$('input[name=file_erweima]').bind('change',function(){
+    file_jia_change($(this));
+});
 //obj_file_yingyezhizhao.onchange=function(){check_file_image(this,1);};
 obj_radio_fuwuxingshi[0].onclick=function(){radio_select(this);};
 obj_radio_fuwuxingshi[1].onclick=function(){radio_select(this);};
@@ -386,9 +395,78 @@ function xiayibu_onclick(){
 	var c7=name_onblur();
 	var c8=check_seleck();
 	var c9=check_checkbox();
+        var c10=text_blue($('#shop_introduce'),$('#infor_shop_introduce'));
 
-        if(c1&&c2&&c4&&c5&&c6&&c7&&c8&&c9){
+        if(c1&&c2&&c4&&c5&&c6&&c7&&c8&&c9&&c10){
             obj_form.submit();
         }
         return false;
     }
+    
+$('#shop_introduce').bind('focus',function(){
+    $('#infor_shop_introduce').html('（请填写详细的店铺介绍，将显示在商品页面右侧）');
+    $('#infor_shop_introduce').css('color','#666');
+});
+$('#shop_introduce').bind('blur',function(){
+    return text_blue($('#shop_introduce'),$('#infor_shop_introduce'));
+});
+
+
+//添加商品图片点击+
+$('#file_touxiang').bind('click',function(){
+    $('input[name=file_touxiang]').trigger('click');
+});
+$('#file_shenfenzheng').bind('click',function(){
+    $('input[name=file_shenfenzheng]').trigger('click');
+});
+$('#file_erweima').bind('click',function(){
+    $('input[name=file_erweima]').trigger('click');
+});
+
+
+//文件上传控件内容改变时的ajax上传函数
+function file_jia_change(obj){
+    var id=obj.attr('name');
+    $("#form_"+id).ajaxSubmit({  
+                    type: 'post',  
+                    dataType:"json",
+                    async : false,
+                    success: function(msg){
+                        var img_url='';
+                        if(id==='file_touxiang'){
+                            img_url=msg.file_touxiang;
+                        }else if(id==='file_shenfenzheng'){
+                            img_url=msg.file_shenfenzheng;
+                        }else{
+                            img_url=msg.file_erweima;
+                        }
+                        creat_img($('#'+id),img_url);
+                        return true; 
+                    },  
+                    error: function(){  
+                        alert('上传文件出错');
+                        return false;
+                    }  
+                });  
+}
+//创建个img标签并且插入obj前面
+
+function creat_img(obj,img_url){
+    var str='<div class="div_goods_img"><img src="" class="empty_img" /><img class="goods_img" src=/'+img_url+' /><a title="删除"></a></div>';
+    obj.before(str);
+    obj.css('display','none');//隐藏添加图片按钮
+
+    
+    $('input[name=member_'+obj.attr('id')+']').attr('value',img_url);
+
+};
+
+//动态生成的元素添加事件
+$('body').on('mouseover','.div_goods_img',function(){$(this).children('a').css('display','block');});
+$('body').on('mouseout','.div_goods_img',function(){$(this).children('a').css('display','none');});
+$('body').on('click','.div_goods_img a',function(){
+    $('input[name=member_'+$(this).parent().next().attr('id')+']').attr('value','');//清空input的value
+    $(this).parent().next().css('display','block');//显示添加图片按钮
+    $(this).parent().remove();
+
+});

@@ -224,30 +224,79 @@
 .file_tr{
     margin-bottom: 5px;
 }
-.file_img{
-    height: 27px;
-    cursor: pointer;
-}
 
-.file_title{
-    width: 42px;
-    height: 27px;
-    line-height: 25px;
-    color: #000;
-    font-size: 14px;
-    float:left;
-    margin-right: 10px;
-}
+
+
 .file_info{
     display: inline-block;
     margin-left: 10px;
     color: #F00;
 }
-.button_jia{
-    position: relative;
-    left: 50px;
-}
+
 .button_a_lvse{
     margin:20px 400px;
     padding: 10px 30px;;
+}
+
+.tr_td1{
+margin:10px 0px;
+height:27px;
+line-height:27px;
+font-size:14px;
+padding:0px 20px 0px 5px;
+color:#333;
+float: left;
+}
+
+.file_jia{
+    padding: 3px 0px;
+    border: 1px dashed #CCC;
+    height: 37px;
+    font-size: 45px;
+    line-height: 37px;
+    text-align: center;
+    color: #CCC;
+    text-shadow: 0px -1px #DDD;
+    cursor: pointer;
+    float: left;
+    width: 43px;
+    margin: 5px;
+}
+.file_tishi{
+    height: 55px;
+    line-height: 55px;
+}
+.div_goods_img{
+    float: left;
+    width: 43px;
+    height: 43px;
+    margin: 5px;
+    border: 1px solid #EEE;
+    text-align: center;
+    position: relative;
+    cursor:pointer;
+}
+.goods_img{
+    display: inline-block;
+    max-width: 43px;
+    max-height: 43px;
+    vertical-align: middle;
+}
+.div_goods_img a{
+    position: absolute;
+    width: 43px;
+    height: 18px;
+    left: 0px;
+    bottom: 0px;
+    background-position: 0px -40px;
+    background-image: url("../Images/public/delete_icon.png");
+    display: none;
+}
+.empty_img{
+    width:0px;
+    height: 100%;
+    vertical-align: middle;
+}
+.tr_td1 i{
+    font-size: 12px;
 }

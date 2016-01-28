@@ -4,7 +4,8 @@
 /* -moz :火狐私有属性；-webkit :chrome、safari私有属性* -ms IE私有属性*/
 body,div,ul,li,a,img,input,form,h1,h2,h3,h4,h5,h6,p,table,tr,td{padding:0px;margin:0px;}
 div,ul,li,a,img,input,form,h1,h2,h3,h4,h5,h6,p{
-overflow:hidden;}
+    overflow:hidden;
+}
 input{box-sizing: content-box;}
 img{border:none;}
 body{
@@ -30,7 +31,7 @@ color:#F76120;
 .warp{
 word-break:break-all;}
 /*去边框*/
-#noborder{
+.noborder{
 border:none;
 }
 /*链接样式*/
@@ -55,7 +56,7 @@ color:#2BB8AA;
     line-height: 30px;
     font-size: 14px;
 }
-.page_foot .num,.page_foot .current{
+.page_foot .num, .page_foot .current{
     padding: 4px 8px;
     border: 1px solid #777;
     margin-left: 3px;
