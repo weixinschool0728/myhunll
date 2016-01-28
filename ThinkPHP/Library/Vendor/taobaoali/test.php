@@ -1,43 +1,5 @@
 <?php
-<<<<<<< HEAD
-	include "TopSdk.php";
-        
-        
-        //实例化TopClient类
-
-$c = new TopClient;
-
-$c->appkey = "test";
-
-$c->secretKey = "test";
-
-$sessionkey= "test";   //如沙箱测试帐号sandbox_c_1授权后得到的sessionkey
-
-//实例化具体API对应的Request类
-
-$req = new UserSellerGetRequest;
-
-$req->setFields("nick,user_id,type");
-
-//$req->setNick("sandbox_c_1");
-
- 
-
-//执行API请求并打印结果
-
-$resp = $c->execute($req,$sessionkey);
-
-echo "result:";
-
-print_r($resp);
-        
-        
-        
-        
-        
-=======
 	include "./TopSdk.php";
->>>>>>> 945d257c7c4dc27047e3d77e9ff88704d636dc21
 	date_default_timezone_set('Asia/Shanghai'); 
 
 $appkey="23304840";
