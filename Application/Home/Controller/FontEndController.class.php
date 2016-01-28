@@ -32,16 +32,16 @@ class FontEndController extends Controller {
          if (isset($_SESSION['huiyuan']) && $_SESSION['huiyuan'] !== '') {
              $huiyuanming=$_SESSION['huiyuan']['user_name'];
              $tuichu_url=U('Login/quit');
-             $yonghu_url=U('Userinfo/index');
+             $yonghu_url=U('Member/index');
               $yonghuxinxi=<<<HTML
-                     <a  href="#" class="green huiyuanming" >$huiyuanming</a><a href="$tuichu_url" id='a_2'>退出</a>
+                     <a  href=" $yonghu_url" class="green" id="a_1" >$huiyuanming</a><a href="$tuichu_url" id='a_2'>退出</a>
 HTML;
              $this->assign("yonghuxinxi", $yonghuxinxi);
          }else{
              $zhuce_url=U('Zhuce/index');
              $login_url=U('Login/index');
              $yonghuxinxi=<<<HTML
-                     <a  href="$login_url" class="red">登录</a><a href="$zhuce_url" id='a_2'>注册</a>
+                     <a  href="$login_url" class="red" id="a_1">登录</a><a href="$zhuce_url" id='a_2'>注册</a>
 HTML;
              $this->assign("yonghuxinxi", $yonghuxinxi);
                      }
@@ -51,6 +51,15 @@ HTML;
         $this->assign("title","一起网");//给标题赋值
         $this->assign("keywords","婚啦啦 长沙婚庆");//给关键字赋值
         $this->assign("description","婚啦啦 长沙婚庆");//给描述赋值
+        
+        //给menu页面中的最近浏览赋值
+        $arr_goodsid=  array_reverse(cookie('distory_goods_id'));
+        $goodsmodel=D('Goods');
+        foreach ($arr_goodsid as $v){
+            $distory_goods[]=$goodsmodel->where("goods_id=$v")->field('goods_id,goods_name,yuan_price,price,goods_img')->find();
+        }
+        $this->assign('distory_goods',$distory_goods);
+        
         $ismobile = ismobile();//检查客户端是否是手机
         if ($ismobile) {
             C("DEFAULT_THEME", "Mobile");

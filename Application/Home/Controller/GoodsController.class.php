@@ -15,6 +15,18 @@ class GoodsController extends FontEndController {
         $this->assign('is_login',$is_login);
         $goods_id=$_GET['goods_id'];
         $this->assign('goods_id',$goods_id);
+        //把商品id赋值给cookie 并且永久保存.
+        $arr_goods_id= cookie('distory_goods_id')==''?array():cookie('distory_goods_id');
+        $is_in=in_array($goods_id,$arr_goods_id);
+        if($is_in===false){
+            if(count($arr_goods_id)>4){
+                array_shift($arr_goods_id);
+            }
+            array_push($arr_goods_id, $goods_id);
+            cookie('distory_goods_id',$arr_goods_id,2419200);//保存到cookie中一个月
+        }
+        
+        
         $goodsmodel=D('Goods');
         $goods=$goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.goods_id,t1.area,t1.goods_name,t1.price,t1.yuan_price,t1.goods_img,t1.goods_img_qita,t1.goods_sex,t1.goods_desc,t1.comment_number,t1.shuxing,t1.score,t3.cat_name,t2.user_name,t1.user_id,t2.weixin,t2.qq,t2.mobile_phone,t2.email,t1.comment_number,t2.shop_introduce,t1.daijinquan,t1.fanxian,t2.weixin_erweima,t1.cat_id')->find();
         $goods['shop_introduce']=str_replace("\r", "", $goods['shop_introduce']);

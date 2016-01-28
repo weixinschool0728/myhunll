@@ -435,7 +435,7 @@ function file_jia_change(obj){
                             img_url=msg.file_erweima;
                         }
                         $('#'+id).attr('src','/'+img_url);
-                        $('input[name=member_'+id+']').attr('value',img_url);
+                        $('input[name=member_'+id+']').attr('value',img_url);  
                         return true; 
                     },  
                     error: function(){  

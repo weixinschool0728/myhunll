@@ -69,6 +69,14 @@ class IndexController extends FontEndController {
     }
     
     public function menu(){
+        if (isset($_SESSION['huiyuan']) && $_SESSION['huiyuan'] !== '') {
+            $huiyuanming=$_SESSION['huiyuan']['user_name'];
+            $tuichu_url=U('Login/quit');
+            $yonghu_url=U('Member/index');
+            $this->assign('yonghu_url',$yonghu_url);
+            $this->assign('tuichu_url',$tuichu_url);
+            $this->assign('huiyuanming',$huiyuanming);
+        }
         $zhuce_url=U('Zhuce/index');
         $login_url=U('Login/index');
         $this->assign('zhuce_url',$zhuce_url);
@@ -159,7 +167,10 @@ class IndexController extends FontEndController {
         $this->display(search);
     }
 
-
+    public function delete_distory(){
+        cookie('distory_goods_id',null);
+        exit();
+    }
     
     
 
