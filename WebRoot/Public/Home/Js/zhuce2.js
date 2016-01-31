@@ -2,16 +2,86 @@
 //var backurl=document.referrer;
 var obj_form=document.zhuce;
 var huiyuanming;
+var i;
+var setit;
+var send_message='';
 document.getElementById("dlm_sjh").style.cssText="background-color:#03BA8A;color:#FFF";
-obj_form.huiyuanming.onfocus=function (){huiyuanming_foucs();}
-obj_form.huiyuanming.onblur=function (){huiyuanming_blur();}
-obj_form.shezhimima.onfocus=function (){shezhimima_foucs();}
-obj_form.shezhimima.onblur=function (){shezhimima_blur();}
-obj_form.shezhimima.onkeyup=function (){shezhimima_keyup();}
-obj_form.querenmima.onfocus=function (){querenmima_foucs();}
-obj_form.querenmima.onblur=function (){querenmima_blur();}
-document.getElementById("zhuce1_xiayibu").onclick=function (){return checkForm(this);}
+obj_form.huiyuanming.onfocus=function (){huiyuanming_foucs();};
+obj_form.huiyuanming.onblur=function (){huiyuanming_blur();};
+obj_form.shezhimima.onfocus=function (){shezhimima_foucs();};
+obj_form.shezhimima.onblur=function (){shezhimima_blur();};
+obj_form.shezhimima.onkeyup=function (){shezhimima_keyup();};
+obj_form.querenmima.onfocus=function (){querenmima_foucs();};
+obj_form.querenmima.onblur=function (){querenmima_blur();};
+document.getElementById("zhuce1_xiayibu").onclick=function (){return checkForm(this);};
 
+$('input[name="shoujiyanzheng"]').bind('focus',function(){
+    if(send_message!==''){
+        $('#infor_shoujiyanzheng').css('color','#666');
+        $('#infor_shoujiyanzheng').html('请输入手机短信动态码');
+    }else{
+        $('#infor_shoujiyanzheng').css('color','red');
+        $('#infor_shoujiyanzheng').html('请先点击:免费获取短信动态码');
+    }
+});
+$('input[name="shoujiyanzheng"]').bind('blur',function(){
+    shoujiyanzheng_blur();
+        
+});
+function shoujiyanzheng_blur(){
+    if(send_message===''){
+        $('#infor_shoujiyanzheng').css('color','red');
+        $('#infor_shoujiyanzheng').html('请先点击:免费获取短信动态码');
+        return false;
+    }else if($('input[name="shoujiyanzheng"]').val()===''){
+        $('#infor_shoujiyanzheng').html('短信动态码为空');
+        $('#infor_shoujiyanzheng').css('color','red');
+        return false;
+    }else if($('input[name="shoujiyanzheng"]').val()==send_message){
+        $('#infor_shoujiyanzheng').html('&radic;');
+        $('#infor_shoujiyanzheng').css('color','#666');
+        return true;
+    }else{
+        $('#infor_shoujiyanzheng').html('短信动态码错误');
+        $('#infor_shoujiyanzheng').css('color','red');
+        return false;
+    }
+}
+
+$('input[name="btn_sjyz"]').bind('click',btn_sjyz_click);
+function btn_sjyz_click(){
+    i=30;
+    setit=setInterval("yanshi_30()",1000);
+    var url='/Home/zhuce/send_message.html';
+    var data={
+            shoujihao:$('#dlm_sjh').html(),
+            check:"send_message921314"
+            };
+                    $.ajax({
+                        type:'post',
+                        url:url,
+                        data:data,
+                        datatype:'json',
+                        async : false ,
+                        success:function(msg){
+                            send_message=msg;
+                        }
+                    });
+}
+
+function yanshi_30(){
+    if(i>-1){
+        $('input[name="btn_sjyz"]').unbind('click');
+        $('input[name="btn_sjyz"]').attr('disabled',true);
+        $('input[name="btn_sjyz"]').val('免费获取短信动态码'+'('+i+')');
+        i--;
+    }else{
+        clearInterval(setit);
+        $('input[name="btn_sjyz"]').val('免费获取短信动态码');
+        $('input[name="btn_sjyz"]').bind('click',btn_sjyz_click);
+        $('input[name="btn_sjyz"]').attr('disabled',false);
+    }
+}
 function huiyuanming_foucs(){
 	var obj=document.getElementById("infor_huiyuanming");
 	obj.style.cssText="color:#666;";
@@ -158,7 +228,8 @@ function querenmima_blur(){
 	}
 function checkForm(obj){
 	shezhimima_blur();
-	if(huiyuanming_blur()&&shezhimima_blur()){
+        shoujiyanzheng_blur();
+	if(huiyuanming_blur()&&shezhimima_blur()&&shoujiyanzheng_blur()){
 		obj_form.submit();
 		return false;
 		}
@@ -166,3 +237,7 @@ function checkForm(obj){
 			return false;
 			}
 	}
+        
+
+
+

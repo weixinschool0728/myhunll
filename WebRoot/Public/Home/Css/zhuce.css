@@ -1,4 +1,14 @@
 /* CSS Document */
+.zhuce1_tr .butttom_sjyz{
+    float: left;
+    margin-top: 20px;
+    margin-left: 10px;
+    height: 28px;
+    line-height: 28px;
+    padding: 0px 5px;
+    cursor:pointer;//手形
+}
+
 .zhuce_top{
 width:1200px;
 height:60px;
@@ -277,3 +287,4 @@ display:inline-block;
 .tr_td1 i{
     font-size: 12px;
 }
+

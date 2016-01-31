@@ -29,9 +29,16 @@
         <input type="hidden" name="hidden" value="<{$time2}>" />
 <div class="zhuce1_box">
 <div class="zhuce1_tr">
-<div class="zhuce1_tr_td1">登陆名</div>
+    <div class="zhuce1_tr_td1">登陆名</div>
 <div class="zhuce1_tr_td2" id="dlm_sjh"><{$dlm}></div>
+<input class="butttom_sjyz" id="butttom_sjyz" type="button" name="btn_sjyz" value="免费获取短信动态码" />
 </div><!--第一行-->
+
+<div class="zhuce1_tr">
+<div class="zhuce1_tr_td1">短信动态码</div>
+<input type="text" name="shoujiyanzheng" class="zhuce1_tr_td2"/>
+<span id="infor_shoujiyanzheng"></span>
+</div><!--第二行-->
 
 <div class="zhuce1_tr">
 <div class="zhuce1_tr_td1">会员名</div>
@@ -59,5 +66,6 @@
 </form>
 </div>
 <script src="__PUBLIC_HOME__/Js/zhuce2.js" type="text/javascript"></script>
-</body>
-</html>
+
+
+
