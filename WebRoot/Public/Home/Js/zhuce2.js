@@ -37,15 +37,40 @@ function shoujiyanzheng_blur(){
         $('#infor_shoujiyanzheng').html('短信动态码为空');
         $('#infor_shoujiyanzheng').css('color','red');
         return false;
-    }else if($('input[name="shoujiyanzheng"]').val()==send_message){
-        $('#infor_shoujiyanzheng').html('&radic;');
-        $('#infor_shoujiyanzheng').css('color','#666');
-        return true;
     }else{
-        $('#infor_shoujiyanzheng').html('短信动态码错误');
-        $('#infor_shoujiyanzheng').css('color','red');
-        return false;
+        var url='/Home/zhuce/send_message.html';
+        var data={
+            yanzhengma:$('input[name="shoujiyanzheng"]').val(),
+            check:"yanzheng_message"
+            };
+        $.ajax({
+            type:'post',
+            url:url,
+            data:data,
+            datatype:'json',
+            async : false, 
+            success:function(msg){
+                if(msg){
+                    $('#infor_shoujiyanzheng').html('&radic;');
+                    $('#infor_shoujiyanzheng').css('color','#666');
+                    return true;
+                }else{
+                    $('#infor_shoujiyanzheng').html('短信动态码错误');
+                    $('#infor_shoujiyanzheng').css('color','red');
+                    return false;
+                }
+            }
+        });
     }
+    //else if($('input[name="shoujiyanzheng"]').val()==send_message){
+        //$('#infor_shoujiyanzheng').html('&radic;');
+        //$('#infor_shoujiyanzheng').css('color','#666');
+        //return true;
+    //}else{
+        //$('#infor_shoujiyanzheng').html('短信动态码错误');
+        //$('#infor_shoujiyanzheng').css('color','red');
+        //return false;
+    //}
 }
 
 $('input[name="btn_sjyz"]').bind('click',btn_sjyz_click);
@@ -55,24 +80,28 @@ function btn_sjyz_click(){
     var url='/Home/zhuce/send_message.html';
     var data={
             shoujihao:$('#dlm_sjh').html(),
-            check:"send_message921314"
+            check:"send_message"
             };
-                    $.ajax({
-                        type:'post',
-                        url:url,
-                        data:data,
-                        datatype:'json',
-                        async : false ,
-                        success:function(msg){
-                            send_message=msg;
-                        }
-                    });
+    $.ajax({
+        type:'post',
+        url:url,
+        data:data,
+        datatype:'json',
+        async : false, 
+        success:function(msg){
+            if(msg){
+                send_message='1';
+                alert('短信已发送成功，请注意查看');
+            }
+        }
+    });
 }
 
 function yanshi_30(){
     if(i>-1){
         $('input[name="btn_sjyz"]').unbind('click');
         $('input[name="btn_sjyz"]').attr('disabled',true);
+        $('input[name="btn_sjyz"]').css('cursor','default');
         $('input[name="btn_sjyz"]').val('免费获取短信动态码'+'('+i+')');
         i--;
     }else{

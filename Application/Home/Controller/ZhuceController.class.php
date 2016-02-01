@@ -279,7 +279,7 @@ class ZhuceController extends FontEndController {
     }
     
     public function send_message(){
-        if($_POST['check']=='send_message921314'){
+        if($_POST['check']=='send_message'){
             $shoujihao=$_POST['shoujihao'];
             vendor('taobaoali.TopSdk');//引入第三方类库
             date_default_timezone_set('Asia/Shanghai'); 
@@ -300,11 +300,19 @@ class ZhuceController extends FontEndController {
             $req->setSmsTemplateCode("SMS_4705353");
             $resp = $c->execute($req);
             //var_dump($resp);
-            $data=$rand;
+            $data=$resp['result']['success'];
             $this->ajaxReturn($data);
             exit();
-       }
-       else{
+       }else if($_POST['check']=='yanzheng_message'){
+           $yanzhengma=$_POST['yanzhengma'];
+           if($yanzhengma===$_SESSION['send_message']){
+               $data=true;
+           }else{
+               $data=false;
+           }
+           $this->ajaxReturn($data);
+           exit();
+       }else{
            exit();
        }
     }
