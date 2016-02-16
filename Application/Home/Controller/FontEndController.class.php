@@ -47,10 +47,12 @@ HTML;
                      }
          
         $this->assign("date",date('Y'));//给日期赋值 
-        $this->assign("copy","1234567");//给备案号赋值
-        $this->assign("title","一起网");//给标题赋值
-        $this->assign("keywords","婚啦啦 长沙婚庆");//给关键字赋值
-        $this->assign("description","婚啦啦 长沙婚庆");//给描述赋值
+        $informodel=D('Admin_infor');
+        $webinfor=$informodel->where("id=1")->find();
+        $this->assign("copy",$webinfor['copy']);//给备案号赋值
+        $this->assign("title",$webinfor['web_name']);//给标题赋值
+        $this->assign("keywords",$webinfor['key_word']);//给关键字赋值
+        $this->assign("description",$webinfor['description']);//给描述赋值
         
         //给menu页面中的最近浏览赋值
         $arr_goodsid=  array_reverse(cookie('distory_goods_id'));

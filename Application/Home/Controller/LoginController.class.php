@@ -66,6 +66,11 @@ class LoginController extends FontEndController {
                 if($data==='0'){
                     $this->error('登录名或密码不正确，请重新登录',U('Login/index'),3);
                 }
+                $row=array(
+                    'last_login'=>mktime(),
+                    'last_ip'=>$_SERVER['REMOTE_ADDR']
+                );
+                $usersmodel->where("mobile_phone='{$dlm}'")->save($row);
                 $id=$usersmodel->where("mobile_phone='{$dlm}'")->getField('user_id');
                 $hym=$usersmodel->where("mobile_phone='{$dlm}'")->getField('user_name');
                 $smid=$usersmodel->where("mobile_phone='{$dlm}'")->getField('shopman_id');

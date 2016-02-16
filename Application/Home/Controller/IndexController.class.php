@@ -5,6 +5,10 @@ class IndexController extends FontEndController {
     public function index(){ 
         $this->assign("title","一起网");
         unset($_SESSION['ref']);
+        $advertmodel=D('admin_advert');
+        $lunbo_shang=$advertmodel->where("position='轮播上'")->field('index,img_url,url')->select();
+        $this->assign('lunbo_shang',$lunbo_shang);
+        
         //获取策划类最新的八个商品信息
         $goodsmodel=D('Goods');
         $cehua=$goodsmodel->table('m_category t1,m_goods t2,m_users t3')->where("t2.cat_id=1 and t2.is_delete=0 and t2.cat_id=t1.cat_id and t2.user_id=t3.user_id")->limit(8)->order('t2.last_update desc')->field('t2.goods_id,t2.area,t2.user_id,t2.goods_name,t2.price,t2.yuan_price,t2.goods_img,t2.comment_number,t1.cat_name,t3.user_name,t2.goods_id,t2.score,t2.buy_number')->select();

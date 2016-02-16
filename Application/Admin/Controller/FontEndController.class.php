@@ -8,36 +8,24 @@ class FontEndController extends Controller {
 
     function __construct() {
         parent::__construct();
+        header("content-type:text/html;charset=utf-8"); 
         //权限判断 数组内必须首字母大写
-        $nologin = array('Index', "Zhuce",'Login');
+        $nologin = array("Zhuce",'Login');
         if (!in_array(CONTROLLER_NAME, $nologin)) {
-            if (!isset($_SESSION['huiyuan']) || $_SESSION['huiyuan'] == '') {
+            if (!isset($_SESSION['admin_huiyuan']) || $_SESSION['admin_huiyuan'] == '') {
                 $_SESSION['ref']=CONTROLLER_NAME.'/'.ACTION_NAME;
                 header("location:". U("Login/index"));
             }
         }
-        //判断是否登录
-         if (isset($_SESSION['huiyuan']) && $_SESSION['huiyuan'] !== '') {
-             $huiyuanming=$_SESSION['huiyuan']['user_name'];
-             $tuichu_url=U('Login/quit');
-             $yonghu_url=U('Userinfo/index');
-              $yonghuxinxi=<<<HTML
-                     <a  href="#" class="green huiyuanming" >$huiyuanming</a><a href="$tuichu_url">退出</a>
-HTML;
-             $this->assign("yonghuxinxi", $yonghuxinxi);
-         }else{
-             $zhuce_url=U('Zhuce/index');
-             $login_url=U('Login/index');
-             $yonghuxinxi=<<<HTML
-                     <a  href="$login_url" class="red">登录</a><a href="$zhuce_url">注册</a>
-HTML;
-             $this->assign("yonghuxinxi", $yonghuxinxi);
-                     }
+        
          
         $this->assign("date",date(Y));//给日期赋值 
-        $this->assign("copy","1234567");//给备案号赋值
-        $this->assign("keywords","婚啦啦 长沙婚庆");//给关键字赋值
-        $this->assign("description","婚啦啦 长沙婚庆");//给描述赋值
+        $informodel=D('Admin_infor');
+        $webinfor=$informodel->where("id=1")->find();
+        $this->assign("copy",$webinfor['copy']);//给备案号赋值
+        $this->assign("title",$webinfor['web_name']);//给标题赋值
+        $this->assign("keywords",$webinfor['key_word']);//给关键字赋值
+        $this->assign("description",$webinfor['description']);//给描述赋值
         $ismobile = ismobile();//检查客户端是否是手机
         if ($ismobile) {
             C("DEFAULT_THEME", "Mobile");

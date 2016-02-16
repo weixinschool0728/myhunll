@@ -3,19 +3,27 @@ namespace Admin\Controller;
 use Admin\Controller;
 class IndexController extends FontEndController {
     public function index(){
-        header ( " Expires: Mon, 26 Jul 1970 05:00:00 GMT " );
-        header ( " Last-Modified:" . gmdate ( " D, d M Y H:i:s " ). "GMT " );
-        $this->assign("title","婚啦啦_后台管理");
-        $arr=array(
-            '风格'=>array('中式','西式','教堂','户外'),
-            '主持形式'=>array('搞笑幽默','优雅大方','大气磅礴','综合多变'),
-            '专业'=>array('播音专业','电台主持','其它')
-            );
-        $arr_se=  serialize($arr);
-        $this->assign('arr_se',$arr_se);
-        $this->display('index');
- 
+        //header ( " Expires: Mon, 26 Jul 1970 05:00:00 GMT " );
+        //header ( " Last-Modified:" . gmdate ( " D, d M Y H:i:s " ). "GMT " );
+        $this->assign("title","一起网_后台管理");
+        $this->display();
     }
+    public function top(){
+        $admin_hym=$_SESSION['admin_huiyuan'];
+        $this->assign('admin_hym',$admin_hym);
+        $this->display();
+    }
+    public function drag(){
+        $this->display();
+    }
+    public function menu(){
+        $this->display();
+    }
+    public function main(){
+        $this->display();
+    }
+ 
+
 
 
 }

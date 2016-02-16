@@ -1,6 +1,6 @@
 <?php
-namespace Home\Controller;
-use  Home\Controller;
+namespace Admin\Controller;
+use  Admin\Controller;
 class LoginController extends FontEndController {
     public function index(){
         $time=gettime();
@@ -18,9 +18,10 @@ class LoginController extends FontEndController {
     }
 
     public function quit(){
-        unset($_SESSION['huiyuan']);
-        $index_url=U('index/index');
-        header ( "Location: {$index_url}" );  
+        unset($_SESSION['admin_huiyuan']);
+        $index_url=U('Index/index');
+        header ( "Location: {$index_url}" ); 
+        exit();
     }
     
     public function login(){
@@ -30,10 +31,10 @@ class LoginController extends FontEndController {
             if(is_feifa($dlm)||is_feifa($mima)){
                 exit();
             }
-            $usersmodel=D('Users');
+            $usersmodel=D('Admin_user');
             $is_cunzai=$usersmodel->where("mobile_phone='{$dlm}'")->count();
             if($is_cunzai!=='0'){
-                $salt=$usersmodel->where("mobile_phone='{$dlm}'")->getField('salt');
+                $salt=$usersmodel->where("mobile_phone='{$dlm}'")->getField('ad_salt');
                 $mima_md5=md5($mima.$salt);
                 $data=$usersmodel->where("mobile_phone='{$dlm}' and password='{$mima_md5}'")->count();
 
@@ -52,27 +53,30 @@ class LoginController extends FontEndController {
                      exit();
                  }
                 $dlm=$_POST['shoujihao'];
-                $usersmodel=D('Users');
+                $usersmodel=D('Admin_user');
+                $row=array(
+                    'last_login'=>mktime(),
+                    'last_ip'=>$_SERVER['REMOTE_ADDR']
+                );
+                $usersmodel->where("mobile_phone='{$dlm}'")->save($row);
                 $id=$usersmodel->where("mobile_phone='{$dlm}'")->getField('user_id');
                 $hym=$usersmodel->where("mobile_phone='{$dlm}'")->getField('user_name');
-                $smid=$usersmodel->where("mobile_phone='{$dlm}'")->getField('shopman_id');
-                $_SESSION['huiyuan']=array(
+                $last_login=$usersmodel->where("mobile_phone='{$dlm}'")->getField('last_login');
+                $_SESSION['admin_huiyuan']=array(
                     'user_id'=>$id,
                     'user_name'=>$hym,
-                    'shopman_id'=>$smid
+                    'last_login'=>$last_login
                      );
-                
-                
-                
-                header("location:". U($_SESSION['ref']));
+  
+                header("location:". U('index/index'));
                 
                 unset($_SESSION['login']);
                 exit();
                 }
-                $this->error('非法进入，将转到主页',U('index/index'),3);
+                $this->error('非法进入，将转到登录页面',U('login/index'),3);
                 exit();
          }
-         $this->error('非法进入，将转到主页',U('index/index'),3);
+         $this->error('非法进入，将转到主页',U('login/index'),3);
          exit();
     }
 }

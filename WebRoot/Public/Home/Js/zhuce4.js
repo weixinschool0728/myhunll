@@ -119,15 +119,20 @@ var obj_contact_weixin=document.zhuce.contact_weixin;
 var obj_contact_email=document.zhuce.contact_email;
 
 obj_file_touxiang.onchange=function(){
-    check_file_image($(this),$("#span_touxiang"),true);
-    file_jia_change($(this));
+    if(check_file_image($(this),$("#span_touxiang"),true)){
+        file_jia_change($(this));
+    };
 };
 obj_file_shenfenzheng.onchange=function(){
-    check_file_image($(this),$("#span_shenfenzheng"),true);
-    file_jia_change($(this));
+    if(check_file_image($(this),$("#span_shenfenzheng"),true)){
+        file_jia_change($(this));
+    };
+    
 };
 $('input[name=file_erweima]').bind('change',function(){
-    file_jia_change($(this));
+    if(check_file_image($(this),$("#span_erweima"),true)){
+        file_jia_change($(this));
+    };
 });
 //obj_file_yingyezhizhao.onchange=function(){check_file_image(this,1);};
 obj_radio_fuwuxingshi[0].onclick=function(){radio_select(this);};

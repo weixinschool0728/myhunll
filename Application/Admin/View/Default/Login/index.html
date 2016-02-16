@@ -1,38 +1,34 @@
-
-<link rel="stylesheet" type="text/css" href="__PUBLIC_HOME__/Css/zhuce.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC_HOME__/Css/login.css">
 <script src="__PUBLIC_COMMON__/Js/jquery.min.js"></script> 
 <script src="__PUBLIC_COMMON__/Js/function.js"></script> 
 </head>
 
 <body>
 <div class="zhuce_top">
-<a href="#"><img src="__PUBLIC_HOME__/Images/menu_and_foot/logo.jpg"/></a>
-<span class="zhuce_top_spanl">账户注册</span>
-<div class="zhuce_top_r">
-<div class="zhuce_top_divr">还没有账号？</div>
-<a  class="a_dl" href="<{:U('Zhuce/index')}>" style="width: 60px;">免费注册</a>
+    <a href="<{:U('Index/index')}>"><img src="__PUBLIC_HOME__/Images/menu_and_foot/logo.png"/></a>
+<span class="zhuce_top_spanl">后台登录</span>
+
 </div>
-</div>
-<div class="zhuce_head">
-<div>欢迎登录:</div>
-<ul>
-<li><span class="zhuce_head_self">账号登录</span></li>
-</ul>
-</div>
+
 <hr class="zhuce_hr" />
 <div class="zhuce1_div_form">
-    <form name="zhuce"  method="post" action="<{$url_to}>" id="form1" >
+    <div class="login_left">
+        <img src="__PUBLIC_COMMON__/Images/login_back.png" />
+    </div>
+    <form name="zhuce"  method="post" action="<{:U('Login/chenggong')}>" id="form1" >
         <input type="hidden" name="hidden" value="<{$time}>" />
+        <input type="hidden" name="leixing" value="login" />
 <div class="zhuce1_box">
+    <div class="login_head">账号登录</div>
 <div class="zhuce1_tr">
-<div class="zhuce1_tr_td1">手机号码</div>
-<input type="text" name="shoujihao" class="zhuce1_tr_td2" />
+        <i class="icon icon-user"></i>
+<input type="text" name="shoujihao" class="zhuce1_tr_td2" placeholder="手机号" />
 <span id="infor_shoujihao"></span>
 </div><!--第一行-->
 
 <div class="zhuce1_tr">
-<div class="zhuce1_tr_td1">密码</div>
-<input type="password" name="mima" class="zhuce1_tr_td2"/>
+    <i class="icon icon-password"></i>
+<input type="password" name="mima" class="zhuce1_tr_td2" placeholder="密码"/>
 <span id="infor_mima"><{$infor_mima}></span>
 </div><!--第二行-->
 <a href="javascript:void(0)" id="zhuce1_xiayibu" class="a_xyb" onClick="return login(this)" style="float: left;" >登录</a>
@@ -43,6 +39,4 @@
 </div>
 
 
-<script src="__PUBLIC_HOME__/Js/denglu.js" type="text/javascript"></script>
-
-</html>
+<script src="__PUBLIC_ADMIN__/Js/denglu.js" type="text/javascript"></script>

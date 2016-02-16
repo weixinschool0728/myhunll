@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC_HOME__/Css/public.css"/>
+<link type="text/css" rel="stylesheet" href="__PUBLIC_ADMIN__/Css/general.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC_ADMIN__/Css/menu.css" />
+<script src="__PUBLIC_COMMON__/Js/jquery.min.js"></script> 
+<script src="__PUBLIC_COMMON__/Js/function.js"></script> 
+
+
+</head>
+<body>
+<div id="tabbar-div">
+<p>
+  <span class="tab-front" id="menu-tab">菜单</span>
+</p>
+</div>
+<div id="main-div">
+<div id="menu-list">
+<ul id="menu-ul">
+  <li class="explode" key="01_webinfor" name="menu">
+      <a class="jibie_1">网站管理</a>        
+      <ul>
+          <li class="menu-item"><a href="<{:U('Webinfor/index')}>" target="main-frame">网站信息</a></li>
+      </ul>
+  </li>
+  <li class="explode" key="02_guanggao" name="menu">
+        <a class="jibie_1">广告管理</a>
+        <ul>
+            <li class="menu-item"><a href="<{:U('Advert/lunbo_up')}>" target="main-frame">轮播广告（上）</a></li>
+            <li class="menu-item"><a href="<{:U('Advert/lunbo_down')}>" target="main-frame">轮播广告（下）</a></li>
+            <li class="menu-item"><a href="<{:U('Advert/shouye_right')}>" target="main-frame">首页右侧</a></li>
+        </ul>
+  </li>
+  <li class="explode" key="06_stats" name="menu">
+    <a class="jibie_1">报表统计</a>
+      </li>
+  <li class="explode" key="07_content" name="menu">
+    <a class="jibie_1">文章管理</a>
+      </li>
+  <li class="explode" key="08_members" name="menu">
+    <a class="jibie_1">会员管理</a>
+      </li>
+  <li class="explode" key="10_priv_admin" name="menu">
+    <a class="jibie_1">权限管理</a>
+      </li>
+  <li class="explode" key="11_system" name="menu">
+    <a class="jibie_1">系统设置</a>
+      </li>
+  <li class="explode" key="12_template" name="menu">
+    <a class="jibie_1">模板管理</a>
+      </li>
+  <li class="explode" key="13_backup" name="menu">
+    <a class="jibie_1">数据库管理</a>
+      </li>
+  <li class="explode" key="14_sms" name="menu">
+    <a class="jibie_1">短信管理</a>
+      </li>
+  <li class="explode" key="15_rec" name="menu">
+    <a class="jibie_1">推荐管理</a>
+      </li>
+  <li class="explode" key="16_email_manage" name="menu">
+    <a class="jibie_1">邮件群发管理</a>
+      </li>
+
+</ul>
+</div>
+<div id="help-div" style="display:none">
+<h1 id="help-title"></h1>
+<div id="help-content"></div>
+</div>
+</div>
+    
+    
+<script src="__PUBLIC_ADMIN__/Js/menu.js"></script> 
+</body>
+</html>

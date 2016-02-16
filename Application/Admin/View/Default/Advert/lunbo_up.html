@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC_HOME__/Css/public.css"/>
+<link type="text/css" rel="stylesheet" href="__PUBLIC_ADMIN__/Css/advert.css" />
+<script src="__PUBLIC_COMMON__/Js/jquery.min.js"></script> 
+<script src="__PUBLIC_COMMON__/Js/function.js"></script> 
+<script src="__PUBLIC_COMMON__/Js/jquery.form.js"></script> 
+</head>
+<body>
+    <div class="inof_div">
+        <form name="qrsc_1"  method="post" enctype="multipart/form-data"  action="<{:U('Advert/shangchuang')}>" id="form1">
+            <input name="text_file_1" value="" type="hidden"/> 
+        </form>
+        <form name="qrsc_2"  method="post" enctype="multipart/form-data"  action="<{:U('Advert/shangchuang')}>" id="form2">
+            <input name="text_file_2" value="" type="hidden"/>  
+        </form>
+        <form name="qrsc_3"  method="post" enctype="multipart/form-data"  action="<{:U('Advert/shangchuang')}>" id="form3">
+            <input name="text_file_3" value="" type="hidden"/> 
+        </form>
+        
+            <div class="title">网站首页轮播广告（上）管理</div>
+            <volist name="data" id="vo">  
+        <div class="zhuce1_tr">
+            <div class="zhuce4_tr_td1" >轮播图片(<{$vo['index']}>)</div>
+            <div class="div_goods_img"><img src="" class="empty_img" /><img class="goods_img" id="file_<{$vo['index']}>"  src="<{$vo['img_url']}>" /></div> 
+            <span class="file_tishi">(分辨率735*300)</span>
+            <input type="button" value="确认上传" class="qrsc" id="qrsc_<{$vo['index']}>"  />
+            <input type="button" value="详情编辑" class="xqbj" id="<{$vo['index']}>"  />
+        </div>
+            </volist>
+
+     
+  </div>
+    <img src="/Public/Home/Images/index/sylb/sylbs-1.jpg" class="fangda" />
+
+    
+    <form id = "form_file_1" enctype="multipart/form-data" action="<{:U('Advert/file_jia')}>" method="post" name="form_file_1">   
+        <input name="file_1" type="file"  style="visibility:hidden; width:0px; height: 0px;"/>
+    </form>
+    <form id = "form_file_2" enctype="multipart/form-data" action="<{:U('Advert/file_jia')}>" method="post" name="form_file_2">   
+        <input name="file_2" type="file" style="visibility:hidden; width:0px; height: 0px;" />
+    </form>
+    <form id = "form_file_3" enctype="multipart/form-data" action="<{:U('Advert/file_jia')}>" method="post" name="form_file_3">   
+        <input name="file_3" type="file" style="visibility:hidden; width:0px; height: 0px;" />
+    </form>
+    <script src="__PUBLIC_ADMIN__/Js/advert.js"></script> 
+    
+    <script>
+        $('.xqbj').bind('click',function(){
+            var id=$(this).attr('id');
+            self.location="/admin/advert/xqbj?id="+id; 
+        });
+    </script>
+    
+});   
+</body>
+</html>
