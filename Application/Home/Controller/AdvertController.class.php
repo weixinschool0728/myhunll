@@ -2,14 +2,14 @@
 namespace Home\Controller;
 use Home\Controller;
 class AdvertController extends FontEndController {
-    public function lunbo_up(){
+    public function lunbo(){
         $id=$_GET['id'];
         $advertmodel=D('admin_advert');
-        $lunbo_shang=$advertmodel->where("id='$id'")->field('index,advert_desc')->find();
-        $this->assign('lunbo_shang',$lunbo_shang);
+        $lunbo=$advertmodel->where("id='$id'")->field('xuhao,advert_desc')->find();
+        $this->assign('lunbo',$lunbo);
         $this->display();
     }
-    
+
 
 
 

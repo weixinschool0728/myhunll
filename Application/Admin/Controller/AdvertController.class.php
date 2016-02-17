@@ -3,12 +3,21 @@ namespace Admin\Controller;
 use Admin\Controller;
 class AdvertController extends FontEndController {
    
-    public function lunbo_up(){
+    public function lunbo(){
         $advertmodel=D('Admin_advert');
-        $data=$advertmodel->where("position='轮播上'")->select();
+        if($_GET['id']==='1'){
+            $data=$advertmodel->where("position='轮播上'")->select();
+            $a='上';
+        }else if($_GET['id']==='2'){
+            $data=$advertmodel->where("position='轮播下'")->select();
+            $a='下';
+        }
         $this->assign('data',$data);
+        $this->assign('a',$a);
         $this->display();
     }
+    
+
     
     
     public function file_jia(){
@@ -18,37 +27,49 @@ class AdvertController extends FontEndController {
         $data=array(
             'file_1'=>UPLOAD.$file_info['file_1']['savepath'].$file_info['file_1']['savename'],
             'file_2'=>UPLOAD.$file_info['file_2']['savepath'].$file_info['file_2']['savename'],
-            'file_3'=>UPLOAD.$file_info['file_3']['savepath'].$file_info['file_3']['savename']
+            'file_3'=>UPLOAD.$file_info['file_3']['savepath'].$file_info['file_3']['savename'],
+            'file_11'=>UPLOAD.$file_info['file_11']['savepath'].$file_info['file_11']['savename'],
+            'file_12'=>UPLOAD.$file_info['file_12']['savepath'].$file_info['file_12']['savename'],
+            'file_13'=>UPLOAD.$file_info['file_13']['savepath'].$file_info['file_13']['savename'],
+            'file_14'=>UPLOAD.$file_info['file_14']['savepath'].$file_info['file_14']['savename'],
+            'file_15'=>UPLOAD.$file_info['file_15']['savepath'].$file_info['file_15']['savename'],
+            'file_21'=>UPLOAD.$file_info['file_21']['savepath'].$file_info['file_21']['savename'],
+            'file_22'=>UPLOAD.$file_info['file_22']['savepath'].$file_info['file_22']['savename'],
+            'file_23'=>UPLOAD.$file_info['file_23']['savepath'].$file_info['file_23']['savename'],
+            'file_24'=>UPLOAD.$file_info['file_24']['savepath'].$file_info['file_24']['savename'],
+            'file_25'=>UPLOAD.$file_info['file_25']['savepath'].$file_info['file_25']['savename']
         );
         $this->ajaxReturn($data,'JSON');
     }
     
     
     public function shangchuang(){
+        $arr=array(
+            0=>'11',
+            1=>'12',
+            2=>'13',
+            3=>'14',
+            4=>'15',
+            5=>'21',
+            6=>'22',
+            7=>'23',
+            8=>'24',
+            9=>'25',
+            10=>'1',
+            11=>'2',
+            12=>'3'
+        );
         //移动文件 并且改变url
-        if(!$_POST['text_file_1']==''){
-            $today=substr($_POST['text_file_1'],26,8);//获取到文件夹名  如20150101
-            creat_file(UPLOAD.'image/admin/'.$today);//创建文件夹（如果存在不会创建）
-            rename($_POST['text_file_1'], str_replace('Public/Uploads/image/temp', UPLOAD.'image/admin',$_POST['text_file_1']));//移动文件
-            $img_url='/'.str_replace('Public/Uploads/image/temp', UPLOAD.'image/admin',$_POST['text_file_1']);
-            $id=1;
+        foreach ($arr as $value){
+            if(!$_POST['text_file_'.$value]==''){
+                $today=substr($_POST['text_file_'.$value],26,8);//获取到文件夹名  如20150101
+                creat_file(UPLOAD.'image/admin/'.$today);//创建文件夹（如果存在不会创建）
+                rename($_POST['text_file_'.$value], str_replace('Public/Uploads/image/temp', UPLOAD.'image/admin',$_POST['text_file_'.$value]));//移动文件
+                $img_url='/'.str_replace('Public/Uploads/image/temp', UPLOAD.'image/admin',$_POST['text_file_'.$value]);
+                $xuhao=$value;
+            };
         };
-        
-        if(!$_POST['text_file_2']==''){
-            $today=substr($_POST['text_file_2'],26,8);//获取到文件夹名  如20150101
-            creat_file(UPLOAD.'image/admin/'.$today);//创建文件夹（如果存在不会创建）
-            rename($_POST['text_file_2'], str_replace('Public/Uploads/image/temp', UPLOAD.'image/admin',$_POST['text_file_2']));//移动文件
-            $img_url='/'.str_replace('Public/Uploads/image/temp', UPLOAD.'image/admin',$_POST['text_file_2']);
-            $id=2;
-        };
-        
-        if(!$_POST['text_file_3']==''){
-            $today=substr($_POST['text_file_3'],26,8);//获取到文件夹名  如20150101
-            creat_file(UPLOAD.'image/admin/'.$today);//创建文件夹（如果存在不会创建）
-            rename($_POST['text_file_3'], str_replace('Public/Uploads/image/temp', UPLOAD.'image/admin',$_POST['text_file_3']));//移动文件
-            $img_url='/'.str_replace('Public/Uploads/image/temp', UPLOAD.'image/admin',$_POST['text_file_3']);
-            $id=3;
-        };
+       
         $advertmodel=D('Admin_advert');
         $row=array(
             'img_url'=>$img_url,
@@ -56,9 +77,17 @@ class AdvertController extends FontEndController {
             'add_user_name'=>$_SESSION['admin_huiyuan']['user_name'],
             'add_time'=>mktime()
         );
-        $result=$advertmodel->where("id='{$id}'")->save($row);
+        $result=$advertmodel->where("xuhao=$xuhao")->save($row);
+        $position=$advertmodel->where("xuhao=$xuhao")->getField('position');
         if($result!==false){
-            header("location:". U("Advert/lunbo_up"));
+            if($position==='轮播上'){
+                //$url = "/admin/advert/lunbo?id=1";  
+            }elseif($position==='轮播下'){
+                $url = "/admin/advert/lunbo?id=2"; 
+            }
+            echo "<script type='text/javascript'>";  
+            echo "window.self.location.href='$url'";  
+            echo "</script>"; 
             exit();
         }else{
             $this->error('更新数据库失败');
@@ -69,16 +98,16 @@ class AdvertController extends FontEndController {
     
     
     public function xqbj(){
-        $index=$_GET['id'];
-        $this->assign('index',$index);
+        $xuhao=$_GET['xuhao'];
+        $this->assign('xuhao',$xuhao);
         $advertmodel=D('Admin_advert');
-        $data=$advertmodel->where("id='$index'")->field('advert_desc')->find();
+        $data=$advertmodel->where("xuhao='$xuhao'")->field('advert_desc,position')->find();
         $this->assign('data',$data);
         $this->display();
     }
     
     public function xqbj_check(){
-        $index=$_POST['index'];
+        $xuhao=$_POST['xuhao'];
         $content=$_POST['content'];
         $result=get_file($content);//得到编辑框里面的图片文件
          //遍历图片文件，并把图片文件从临时文件夹保存进正式文件夹,并把文件名存储到$file_name数组中
@@ -95,11 +124,16 @@ class AdvertController extends FontEndController {
             'add_user_name'=>$_SESSION['admin_huiyuan']['user_name'],
             'add_time'=>mktime()
         );
-        $result1=$advertmodel->where("id='{$index}'")->save($row);
+        $result1=$advertmodel->where("xuhao='{$xuhao}'")->save($row);
+        $position=$advertmodel->where("xuhao=$xuhao")->getField('position');
         if($result1!==false){
-            $url = "/admin/advert/lunbo_up";  
+            if($position==='轮播上'){
+                //$url = "/admin/advert/lunbo?id=1";  
+            }elseif($position==='轮播下'){
+                $url = "/admin/advert/lunbo?id=2"; 
+            }
             echo "<script type='text/javascript'>";  
-            echo "self.location='$url'";  
+            echo "window.self.location.href='$url'";  
             echo "</script>"; 
             exit();
         }else{
