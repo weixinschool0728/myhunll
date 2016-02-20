@@ -3,13 +3,14 @@ namespace Admin\Controller;
 use Admin\Controller;
 class AdvertController extends FontEndController {
    
-    public function lunbo(){
+    public function advert(){
         $advertmodel=D('Admin_advert');
         if($_GET['id']==='1'){
             $data=$advertmodel->where("position='轮播上'")->select();
-            $a='上';
         }else if($_GET['id']==='2'){
             $data=$advertmodel->where("position='轮播下'")->select();
+        }else if($_GET['id']==='3'){
+            $data=$advertmodel->where("position='首页右'")->select();
             $a='下';
         }
         $this->assign('data',$data);
@@ -17,6 +18,7 @@ class AdvertController extends FontEndController {
         $this->display();
     }
     
+
 
     
     
@@ -37,13 +39,16 @@ class AdvertController extends FontEndController {
             'file_22'=>UPLOAD.$file_info['file_22']['savepath'].$file_info['file_22']['savename'],
             'file_23'=>UPLOAD.$file_info['file_23']['savepath'].$file_info['file_23']['savename'],
             'file_24'=>UPLOAD.$file_info['file_24']['savepath'].$file_info['file_24']['savename'],
-            'file_25'=>UPLOAD.$file_info['file_25']['savepath'].$file_info['file_25']['savename']
+            'file_25'=>UPLOAD.$file_info['file_25']['savepath'].$file_info['file_25']['savename'],
+            'file_61'=>UPLOAD.$file_info['file_61']['savepath'].$file_info['file_61']['savename'],
+            'file_62'=>UPLOAD.$file_info['file_62']['savepath'].$file_info['file_62']['savename'],
+            'file_63'=>UPLOAD.$file_info['file_63']['savepath'].$file_info['file_63']['savename']
         );
         $this->ajaxReturn($data,'JSON');
     }
     
     
-    public function shangchuang(){
+    public function sc(){
         $arr=array(
             0=>'11',
             1=>'12',
@@ -57,7 +62,10 @@ class AdvertController extends FontEndController {
             9=>'25',
             10=>'1',
             11=>'2',
-            12=>'3'
+            12=>'3',
+            13=>'61',
+            14=>'62',
+            15=>'63'
         );
         //移动文件 并且改变url
         foreach ($arr as $value){
@@ -77,17 +85,18 @@ class AdvertController extends FontEndController {
             'add_user_name'=>$_SESSION['admin_huiyuan']['user_name'],
             'add_time'=>mktime()
         );
-        $result=$advertmodel->where("xuhao=$xuhao")->save($row);
+        $advertmodel->where("xuhao=$xuhao")->save($row);
         $position=$advertmodel->where("xuhao=$xuhao")->getField('position');
         if($result!==false){
             if($position==='轮播上'){
-                //$url = "/admin/advert/lunbo?id=1";  
+                $url = "/admin/advert/advert?id=1"; 
             }elseif($position==='轮播下'){
-                $url = "/admin/advert/lunbo?id=2"; 
+                $url = "/admin/advert/advert?id=2"; 
             }
-            echo "<script type='text/javascript'>";  
-            echo "window.self.location.href='$url'";  
-            echo "</script>"; 
+            elseif($position==='首页右'){
+                $url = "/admin/advert/advert?id=3"; 
+            }
+            header("location:$url");
             exit();
         }else{
             $this->error('更新数据库失败');
@@ -128,13 +137,13 @@ class AdvertController extends FontEndController {
         $position=$advertmodel->where("xuhao=$xuhao")->getField('position');
         if($result1!==false){
             if($position==='轮播上'){
-                //$url = "/admin/advert/lunbo?id=1";  
+                $url = "/admin/advert/advert?id=1";
             }elseif($position==='轮播下'){
-                $url = "/admin/advert/lunbo?id=2"; 
+                $url = "/admin/advert/advert?id=2"; 
+            }elseif($position==='首页右'){
+                $url = "/admin/advert/advert?id=3"; 
             }
-            echo "<script type='text/javascript'>";  
-            echo "window.self.location.href='$url'";  
-            echo "</script>"; 
+            header("location:$url");
             exit();
         }else{
             $this->error('更新数据库失败');

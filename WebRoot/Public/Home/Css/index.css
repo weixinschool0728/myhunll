@@ -173,7 +173,8 @@ position:absolute;
 }
 .lunbo_mx_gd a{
 float:left;
-border:none;}
+border:none;
+}
 .iconx{
 z-index:3;
 position: absolute;
@@ -186,12 +187,13 @@ display:none;
 
 
 .lunbo_r{
-width:220px;
-height:500px;
+width:218px;
+height:498px;
 float:left;
 background-color:#F9F9F9;
+border: 1px solid #00FFDB;
 }
-.lunbo_r_lrhl{
+/*.lunbo_r_lrhl{
 width:220px;
 height:190px;
 text-align:center;
@@ -212,17 +214,21 @@ padding-left:5px;
 .lunbo_r_lrhl .lrhlss{
 width:80px;
 margin-left: 5px;
-cursor:pointer;/*鼠标放上手形*/}
+cursor:pointer;
+}*/
 .lunbo_r .guanggao{
-padding:10px 10px 0px 10px;
-height:300px;
-width:220px;
+    padding: 10px 0px;
+    margin-left: 9px;
+    width: 200px;
+    border-bottom: 1px solid #00FFDB;
 }
+
+
 .guanggao span{
 padding:5px 0px;
 display:block;
 width:200px;
-height:40px;}
+height:35px;}
 
 .shangpindkj{width:1200px;}
 .shangpindkj_title{

@@ -113,7 +113,10 @@
 <div class="iconx icon_right" id="iconx_r" ></div>
 </div>                                  <!--轮播下-->
 </div>
-<div class="lunbo_r"><div class="lunbo_r_lrhl">
+    
+<div class="lunbo_r">
+    <!--
+    <div class="lunbo_r_lrhl">
 <div class="lunbo_r_lrhl_t" style="text-align:center; height:50px;"><h1>懒人婚礼</h1><h4>(一键搜索，策划师全程安排)</h4></div>
 <form name="lrhlform" action="lrhl.php" method="get"><table cellspacing="0">
 <tr><td>婚礼预算:</td><td><input class="lrhlys" type="text" name="lrhlys" value="20000"  maxlength="10" /></td></tr>
@@ -122,13 +125,18 @@
 </table>
 <input class="lrhlss" type="submit" name="lrhlss" value="开始定制"  />
 </form>
+</div>-->
+    <volist name="shouye_right" id="vo"> 
+<div class="guanggao">
+    <a href="<{$vo['url']}>">
+    <img src="<{$vo['img_url']}>" />
+    <span>诚邀婚礼人免费入驻，从此不再受婚庆公司制约，自由发展</span>
+    </a>
 </div>
-<div class="guanggao"><img src="__PUBLIC_HOME__/Images/index/shouyeguanggao1.jpg" />
-<span>诚邀婚礼人免费入驻，从此不再受婚庆公司制约，自由发展</span>
-<img src="__PUBLIC_HOME__/Images/index/shouyeguanggao2.jpg" />
-<span>找摄影，找策划，找酒店，一切尽在婚啦啦，让婚礼从此变得简单</span></div>
+    </volist>
+
 </div>
-</div><!--//轮播-->
+</div><!--轮播-->
 
 
 <div class="box"><!--大盒子-->

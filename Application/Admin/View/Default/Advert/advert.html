@@ -12,13 +12,13 @@
 <body>
     <div class="inof_div">
         <volist name="data" id="vo">  
-        <form name="qrsc_<{$vo['xuhao']}>"  method="post" enctype="multipart/form-data"  action="<{:U('Advert/shangchuang')}>">
+        <form name="qrsc_<{$vo['xuhao']}>"  method="post" enctype="multipart/form-data"  action="<{:U('Advert/sc')}>">
             <input name="text_file_<{$vo['xuhao']}>" value="" type="hidden"/> 
         </form>
         </volist>
         
         
-            <div class="title">网站首页轮播广告（<{$a}>）管理</div>
+            <div class="title">网站首页广告（<{$data[0]['position']}>）管理</div>
             <volist name="data" id="vo">  
         <div class="zhuce1_tr">
             <div class="zhuce4_tr_td1" >轮播图片(<{$vo['xuhao']}>)</div>
@@ -40,7 +40,7 @@
     </form>
     </volist>
     
-    <script src="__PUBLIC_ADMIN__/Js/lunbo.js"></script> 
+    <script src="__PUBLIC_ADMIN__/Js/advert.js"></script> 
     
     <script>
         $('.xqbj').bind('click',function(){

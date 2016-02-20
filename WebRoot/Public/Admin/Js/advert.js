@@ -1,6 +1,6 @@
 $('.qrsc').bind('click',function(){
     if(window.confirm('确定要上传网站首页轮播广告吗？')){
-        name=$(this).attr('id');
+        var name=$(this).attr('id');
         if($('form[name='+name+']').children('input').attr('value')===''){
             alert('您没有更改广告图片');
         }else{
@@ -80,6 +80,12 @@ function file_jia_change(obj){
                             img_url=msg.file_24;
                         }else if(id==='file_25'){
                             img_url=msg.file_25;
+                        }else if(id==='file_61'){
+                            img_url=msg.file_61;
+                        }else if(id==='file_62'){
+                            img_url=msg.file_62;
+                        }else if(id==='file_63'){
+                            img_url=msg.file_63;
                         }
                         $('#'+id).attr('src','/'+img_url);
                         $('input[name=text_'+id+']').attr('value',img_url);
