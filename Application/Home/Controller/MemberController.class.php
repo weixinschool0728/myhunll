@@ -72,7 +72,8 @@ class MemberController extends FontEndController {
             $this->assign("css",'');
         }
         //获取服务类型表单提交值
-        if(!empty($_POST['sc_hidden'])&&$_POST['sc_hidden']==="server_content"){
+        if(!empty($_POST['server_content'])){
+        //if(!empty($_POST['sc_hidden'])&&$_POST['sc_hidden']==="server_content"){
             $server_content=$_POST['server_content'];
             $this->assign($server_content,'selected="selected"');
             $this->assign('server_content',$server_content);
