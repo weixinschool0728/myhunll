@@ -62,6 +62,7 @@ float:left;
 .menu_tr_ul a{
 display:block;
 padding:2px 4px;
+color: #000;
 }
 .menu_tr_ul a:hover {
 color:#03BA8A;

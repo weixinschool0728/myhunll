@@ -239,4 +239,19 @@
         $('#fanxian').children('.icon_check').css('background-position','-435px -128px');
         $('#fanxian').attr('href',"<{:U('Category/index',$get_cs['fanxian'])}>");
     }
+    
+    //属性用js控制是否显示
+    var shuxing="<{$get['shuxing']}>";
+    if(shuxing!==''){
+        var arr_shuxing=shuxing.split('+');
+        for(i=0;i<arr_shuxing.length;i++){
+            var arr_1=arr_shuxing[i].split('-');
+            $('li:contains('+arr_1[0]+')').parent().css('display','none');
+        }
+        var shuxing_count=<{$shuxing_count}>;
+        if(arr_shuxing.length==shuxing_count){
+            $('.menu_tr_ul_shuxing').parent().css('display','none');
+        }
+    }
+    
 </script>

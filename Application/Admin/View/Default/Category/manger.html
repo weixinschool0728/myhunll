@@ -22,16 +22,22 @@
             </div>
         </form>
         <form  name="sv_shuxing"  method="post"   action="<{:U('Category/check')}>">
+            <input type="hidden" name="cat_name" value="<{$cat_name}>"/>
+            
             <volist name='arr_shuxing' id='vo' key='k1'>
                 <div class="tr">
-                    <div class="tr_td1 "><input name='shuxing1_<{$k1}>' class="tr_td1_input release_select" type="text" value="<{$key}>" /></div>
+                    <div class="tr_td1 js_div "><input name="shuxing[]" class="tr_td1_input release_select" type="text" value="<{$key}>" /><a class="del_a" title="删除"></a></div>
                     <volist name='vo' id='value' key='k2'>
-                        <input name="shuxing2_<{$k2}>" class="tr_td2 release_select" type="text" value="<{$value}>"/>
+                        <div class="js_div ">
+                            <input name="shuxingzhi[<{$k1-1}>][]" class="tr_td2 release_select" type="text" value="<{$value}>"/>
+                            <a class="del_a del_a1" title="删除"></a>
+                        </div>
                     </volist>
+                    <input class="input_button_sxz" type="button" value="增加属性值" />
                 </div>
             </volist>
         <div class="tr" style="margin-top: 30px;">
-            <input type="button" value='增加属性' class="input_button" /> 
+            <input type="button" value='增加属性' class="input_button" id='add_sx' /> 
             <input type="submit" value='确认修改' style="margin-left: 30px;" class="input_button" id='qrxg' />
         </div>
         </form>

@@ -90,6 +90,8 @@ class CategoryController extends FontEndController {
             $categorymodel=D('category');
             $data_cat=$categorymodel->where("cat_id=$cat_id")->getField('shuxing');
             $arr_shuxing0=unserialize($data_cat);//得到反序列化属性数组
+            $shuxing_count=count($arr_shuxing0);
+            $this->assign(shuxing_count,$shuxing_count);
             $arr_shuxing=  array_chunk($arr_shuxing0, 2,true);
             $this->assign("arr_shuxing",$arr_shuxing);//给模板里面的$arr_shuxing赋值
             $goodsmodel=D('Goods');
