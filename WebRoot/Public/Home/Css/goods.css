@@ -26,15 +26,20 @@
 }
 .datouxiang_div{
     height: 300px;
+    position: relative;
 }
 .datouxiang{
     width:450px;
 }
 .datouxiang_fangda{
     position:absolute;
-    left:540px;
-    width: 675px;
-    height:450px;
+    left:545px;
+    width: 450px;
+    height:300px;
+    display: none;
+    top:245px;
+    z-index: 1000;
+    background-repeat: no-repeat;
 }
 .touxiang .xiangtouxiang_ul{
     text-align: left;
@@ -899,4 +904,15 @@ color:#FFFFFF;
 .deal-share-qq-input {
     margin-top: 10px;
     width: 280px;
+}
+
+.huise_gezi{
+    width: 225px;
+    height: 150px;
+    background-image: url("../Images/public/yinying-2-2.png");
+    position: absolute;
+    cursor: move;
+    left: 0px;
+    top:0px;
+    display: none;
 }

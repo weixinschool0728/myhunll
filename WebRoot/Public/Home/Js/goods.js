@@ -1,7 +1,6 @@
 // JavaScript Document
 
-
-    $('.datouxiang_div>img').each(function(i,item){
+    $('.datouxiang_div>.datouxiang').each(function(i,item){
         if($(item).height()<300){
             $(item).css('height','300px');
             $(item).css('width','auto');
@@ -75,14 +74,57 @@ $('.xiaotouxiang img').bind('mouseover',function(){
 });
 
 //鼠标放到大头像，再放大图片
-$('.datouxiang').bind('mouseover',function(){
-    var img_src=$(this).attr('src');
-    var img_fangda='<img class="datouxiang_fangda" />';
-    $('.touxiang').after(img_fangda);
-    $('.datouxiang_fangda').attr('src',img_src);
+$('.datouxiang_div').bind('mouseover',function(){
+    var img_src=$('.datouxiang').attr('src');
+    $('.datouxiang_fangda').css('background-image','url('+img_src+')');
+    var image=new Image();
+    image.src=img_src;
+    image.onload=function(){
+        var w_bi_h=image.width/image.height;
+        if(w_bi_h>1.5){
+            $('.datouxiang_fangda').css('background-size','auto 600px');
+        }else{
+            $('.datouxiang_fangda').css('background-size','900px auto');
+        }
+    };
+    
 });
-$('.datouxiang').bind('mouseout',function(){
-    $('.datouxiang_fangda').remove();
+$('.datouxiang_div').bind('mousemove',function(e){
+    $('.huise_gezi').css('display','block');
+    var X = $('.datouxiang_div').offset().left;
+    var Y = $('.datouxiang_div').offset().top;
+    var xx=e.pageX;
+    var yy=e.pageY;
+    var xd_x=xx-X;
+    var xd_y=yy-Y;
+    var pos_x,pos_y;
+    if(xd_x<113){
+        $('.huise_gezi').css('left','0px');
+        pos_x='0px';
+    }else if(xd_x>337){
+        $('.huise_gezi').css('left','225px');
+        pos_x='-450px';
+    }else{
+        $('.huise_gezi').css('left',xd_x-112);
+        pos_x=(-(xd_x-112)*2)+'px';
+    }
+    if(xd_y<75){
+        $('.huise_gezi').css('top','0px');
+        pos_y='0px';
+    }else if(xd_y>225){
+        $('.huise_gezi').css('top','150px');
+        pos_y='-300px';
+    }else{
+        $('.huise_gezi').css('top',xd_y-75);
+        pos_y=(-(xd_y-75)*2)+'px';
+    }
+
+    $('.datouxiang_fangda').css('display','block');
+    $('.datouxiang_fangda').css('background-position',pos_x+' '+pos_y);
+});
+$('.datouxiang_div').bind('mouseout',function(){
+    $('.datouxiang_fangda').css('display','none');
+    $('.huise_gezi').css('display','none');
     });
 
 
