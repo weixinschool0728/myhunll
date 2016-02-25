@@ -38,7 +38,7 @@ class GoodsController extends FontEndController {
         $this->assign('goods',$goods);
         $shop_introduce=strlen($goods['shop_introduce']);
         $this->assign('shop_introduce',$shop_introduce);
-        
+
         $img_qita=unserialize($goods['goods_img_qita']);//获取其它展示图数组
         $this->assign('img_qita',$img_qita);
         $shuxing=unserialize($goods['shuxing']);//获取商品属性数组
@@ -94,6 +94,11 @@ class GoodsController extends FontEndController {
         $sellection_count=$sellectionmodel->where("goods_id=$goods_id")->count();
         $this->assign('sellection_count',$sellection_count);
         
+        //其它商品
+        $goods_qita_user=$goodsmodel->where("goods_id=$goods_id")->field('user_id')->find();
+        $qita_user_id=$goods_qita_user['user_id'];
+        $goods_qita=$goodsmodel->where("user_id=$qita_user_id and is_delete=0")->order('last_update desc')->field('goods_id,goods_name,goods_img,price,buy_number')->limit(12)->select();
+        $this->assign('goods_qita',$goods_qita);
         
         $this->assign("title","一起网—".$goods['user_name'].'—'.$goods['goods_name']);//给标题赋值
         $this->display('index');

@@ -313,8 +313,7 @@
     font-weight: 700;
 }
 .content_title{
-    margin-top: 20px;
-    width: 973px;
+    width: 758px;
     height: 40px;
     line-height: 40px;
     border: 1px solid #E3E3E3;
@@ -331,7 +330,7 @@
     background-color: #FFF;
 }
 .goods_shuxing{
-    width: 973px;
+    width: 958px;
     border: 1px solid #E3E3E3;
     padding-top: 20px;
 }
@@ -354,11 +353,11 @@
 }
 .goodscontent{
     margin-top: 10px;
-    width: 973px;
+    width: 958px;
     border: 1px solid #E3E3E3;
 }
 .goodscontent img{
-    max-width: 973px;
+    max-width: 760px;
 }
 /*遮罩层css*/
 #overlay {
@@ -451,12 +450,12 @@ padding:3px;
 color:#FFFFFF;
 }
 .pinglun{
-    width: 977px;
+    width: 760px;
 }
 .zhengtifenshu {
     font-size: 16px;
     padding: 20px 0px 20px 20px;
-    width: 955px;
+    width: 740px;
     border-bottom: 1px solid #E3E3E3;
 }
 .zhengtifenshu strong{
@@ -760,6 +759,7 @@ color:#FFFFFF;
     width: 158px;
     border: 1px solid #DDD;
     padding: 10px 20px;
+    float:left;
 }
 .box_bl{
     width: 975px;
@@ -915,4 +915,9 @@ color:#FFFFFF;
     left: 0px;
     top:0px;
     display: none;
+}
+.shop_div{
+    float: left;
+    width:760px;
+    margin-left: 15px;
 }

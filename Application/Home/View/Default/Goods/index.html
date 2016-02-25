@@ -223,6 +223,22 @@
          <div class="page_foot" id="page_foot_1"><{$page_foot}></div>
      </div>
     <a name='maodian_pingjia' id='maodian_pingjia'>&nbsp;</a>
+    <div class="guanggao" style="margin-top: 15px;">
+             <h3>该商家其它商品</h3>
+            <volist name="goods_qita" id="vo">
+                <div class="box_r_shopping">
+                    <a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>">
+                        <img src="<{$vo['goods_img']}>"/>
+                    </a>
+                    <h4><a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><{$vo['goods_name']}></a></h4>
+                    <p>
+                        <span class="guanggao_price">&yen;<{$vo['price']}></span>
+                        <span>已售 <span class="red"><{$vo['buy_number']}></span></span>
+                    </p>
+                </div>
+            </volist>
+        </div>
+    <div class="shop_div">
     <div class="content_title"><ul>
             <li class="spxq">商品详情</li>
             <li class="ljpj">累计评价</li>
@@ -252,6 +268,7 @@
             <!--<div class="page_foot" id='page_foot_pinglun'><{$page_foot_pinglun}></div>-->
             <div class="page_foot" id='page_foot_pinglun'></div>
         </div>
+    </div>
     </div>
 </div>
         <div class="guanggao">
