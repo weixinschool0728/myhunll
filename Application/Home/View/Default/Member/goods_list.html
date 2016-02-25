@@ -46,7 +46,7 @@
         if(window.confirm('确定要下架商品 ['+name+'] 吗？')){
             var url="/Home/Member/goods_del/goods_id/"+id+".html";
             $.ajax({
-                        type:'post',
+                        type:'get',
                         async : false,
                         url:url,
                         datatype:'json'

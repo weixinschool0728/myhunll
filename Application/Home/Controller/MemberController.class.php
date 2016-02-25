@@ -521,7 +521,7 @@ class MemberController extends FontEndController {
     
     //下架商品
     public function goods_del(){
-        $goods_id=$_GET[goods_id];
+        $goods_id=$_GET['goods_id'];
         $goodsmodel=D('Goods');
         $user_id=$_SESSION['huiyuan']['user_id'];
         $count=$goodsmodel->where("goods_id=$goods_id and user_id=$user_id")->count();

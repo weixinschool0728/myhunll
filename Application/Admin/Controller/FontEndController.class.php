@@ -35,23 +35,31 @@ class FontEndController extends Controller {
     }
     
     public function upload($path){
-    $config=array(
-        'maxSize'=> 2097152,
-        'rootPath'=>UPLOAD,
-        'savePath'=> $path,
-        'saveName'=>'getname',
-        'exts'=> array('jpg', 'gif', 'png', 'jpeg','bmp','swf'),
-        'autoSub'=> true,
-        'subName'=>array('date','Ymd')
-    );
-    $upload = new \Think\Upload($config);// 实例化上传类
-    $info   =   $upload->upload();
-    if(!$info) {
-        $this->error($upload->getError());
-        exit();
-    }else{// 上传成功,返回文件信息
-        return $info;
+        $config=array(
+            'maxSize'=> 2097152,
+            'rootPath'=>UPLOAD,
+            'savePath'=> $path,
+            'saveName'=>'getname',
+            'exts'=> array('jpg', 'gif', 'png', 'jpeg','bmp','swf'),
+            'autoSub'=> true,
+            'subName'=>array('date','Ymd')
+        );
+        $upload = new \Think\Upload($config);// 实例化上传类
+        $info   =   $upload->upload();
+        if(!$info) {
+            $this->error($upload->getError());
+            exit();
+        }else{// 上传成功,返回文件信息
+            return $info;
+        }
     }
-}
+    public function get_page($count,$page_size){
+        $page=new \Think\Page($count,$page_size);//创建一个page类  参数1是数据总条数，参数2是一页显示的条数
+        $page->setConfig('header','<span class="rows">共 %TOTAL_PAGE% 页</span>');
+        $page->setConfig('prev','<上一页');
+        $page->setConfig('next','下一页>');
+        $page->setConfig('theme', '%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% %HEADER%');
+        return $page;
+    }
 
 }

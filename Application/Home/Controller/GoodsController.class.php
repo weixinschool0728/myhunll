@@ -70,7 +70,7 @@ class GoodsController extends FontEndController {
         
 
         //获取广告商品列表
-        $guanggao=$goodsmodel->where("cat_id={$goods['cat_id']} and guanggao='1'")->field('goods_id,goods_name,goods_img,price,buy_number')->select();
+        $guanggao=$goodsmodel->where("cat_id={$goods['cat_id']}")->order('advert_shop_order')->limit(12)->field('goods_id,goods_name,goods_img,price,buy_number')->select();
         $this->assign('guanggao',$guanggao);
         
         $ordermodel=D('Order');
