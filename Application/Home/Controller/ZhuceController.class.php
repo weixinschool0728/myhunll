@@ -310,7 +310,7 @@ class ZhuceController extends FontEndController {
            }else{
                $data=false;
            }
-           //$this->ajaxReturn($data);
+           $this->ajaxReturn($data);
            exit();
        }else{
            exit();
