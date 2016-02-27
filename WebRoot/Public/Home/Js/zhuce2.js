@@ -13,8 +13,6 @@ obj_form.shezhimima.onblur=function (){shezhimima_blur();};
 obj_form.shezhimima.onkeyup=function (){shezhimima_keyup();};
 obj_form.querenmima.onfocus=function (){querenmima_foucs();};
 obj_form.querenmima.onblur=function (){querenmima_blur();};
-document.getElementById("zhuce1_xiayibu").onclick=function (){return checkForm(this);};
-
 $('input[name="shoujiyanzheng"]').bind('focus',function(){
     if(send_message!==''){
         $('#infor_shoujiyanzheng').css('color','#666');
@@ -29,6 +27,7 @@ $('input[name="shoujiyanzheng"]').bind('blur',function(){
         
 });
 function shoujiyanzheng_blur(){
+    var sjyz;
     if(send_message===''){
         $('#infor_shoujiyanzheng').css('color','red');
         $('#infor_shoujiyanzheng').html('请先点击:免费获取短信动态码');
@@ -50,27 +49,22 @@ function shoujiyanzheng_blur(){
             datatype:'json',
             async : false, 
             success:function(msg){
+                sjyz=msg;
                 if(msg){
                     $('#infor_shoujiyanzheng').html('&radic;');
                     $('#infor_shoujiyanzheng').css('color','#666');
-                    return true;
                 }else{
                     $('#infor_shoujiyanzheng').html('短信动态码错误');
                     $('#infor_shoujiyanzheng').css('color','red');
-                    return false;
                 }
             }
         });
+        if(sjyz){
+            return true;
+        }else{
+            return false;
+        }
     }
-    //else if($('input[name="shoujiyanzheng"]').val()==send_message){
-        //$('#infor_shoujiyanzheng').html('&radic;');
-        //$('#infor_shoujiyanzheng').css('color','#666');
-        //return true;
-    //}else{
-        //$('#infor_shoujiyanzheng').html('短信动态码错误');
-        //$('#infor_shoujiyanzheng').css('color','red');
-        //return false;
-    //}
 }
 
 $('input[name="btn_sjyz"]').bind('click',btn_sjyz_click);
@@ -245,27 +239,28 @@ function querenmima_blur(){
 		obj.style.cssText="color:red;";
 		obj.innerHTML="确认密码为空，请再次输入您的密码";
 		return false;
-		}
-		else if(!(obj_form.querenmima.value==obj_form.shezhimima.value)){
+	}else if(!(obj_form.querenmima.value==obj_form.shezhimima.value)){
 			obj.innerHTML="两次输入的密码不相同，请重新输入";
 			return false;
-			}
-		else {
+	}else {
 			obj.innerHTML="&radic;";
 			return true;
-			}
 	}
-function checkForm(obj){
-	shezhimima_blur();
-        shoujiyanzheng_blur();
-	if(huiyuanming_blur()&&shezhimima_blur()&&shoujiyanzheng_blur()){
-		obj_form.submit();
-		return false;
-		}
-		else {
-			return false;
-			}
-	}
+}
+
+        
+$('#zhuce1_xiayibu').bind('click',function(){
+    var a=huiyuanming_blur();
+    var b=shezhimima_blur();
+    var c=shoujiyanzheng_blur();
+    if(a&&b&&c){
+        obj_form.submit();
+        return false;
+    }else{ 
+        return false;
+    }
+});
+
         
 
 
