@@ -330,7 +330,7 @@
     background-color: #FFF;
 }
 .goods_shuxing{
-    width: 958px;
+    width: 758px;
     border: 1px solid #E3E3E3;
     padding-top: 20px;
 }
@@ -353,8 +353,9 @@
 }
 .goodscontent{
     margin-top: 10px;
-    width: 958px;
-    border: 1px solid #E3E3E3;
+    width: 760px;
+    border-top: 1px solid #E3E3E3;
+    border-bottom: 1px solid #E3E3E3;
 }
 .goodscontent img{
     max-width: 760px;

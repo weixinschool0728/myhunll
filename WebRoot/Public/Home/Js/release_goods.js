@@ -56,6 +56,7 @@ $('input[name=radio_sex]:eq(0)').attr('checked','checked');
             //afterCreate : function() {
                 //this.loadPlugin('autoheight');
             //},//自动高度
+            width:'760px',
             height:'800px',
             fontSizeTable:['9px', '10px', '12px', '14px', '16px', '18px', '24px', '32px']//指定文字大小。
         };
