@@ -83,7 +83,7 @@ function btn_sjyz_click(){
         datatype:'json',
         async : false, 
         success:function(msg){
-            if(msg){
+            if(msg===true){
                 send_message='1';
                 alert('短信已发送成功，请注意查看');
             }

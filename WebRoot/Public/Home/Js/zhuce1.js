@@ -9,7 +9,7 @@ $.ajaxSetup({
 obj_form.shoujihao.onfocus=function (){yzshouji_foucs();}
 obj_form.shoujihao.onblur=function (){yzshouji_blur();}
 obj_form.yanzhengma.onfocus=function (){yanzhengma_foucs();}
-obj_form.yanzhengma.onblur=function (){yanzhengma_blur();}
+//obj_form.yanzhengma.onblur=function (){yanzhengma_blur();}
 document.getElementById("tyxy").onclick=function (){tyxy_click();}
 function yzshouji_foucs(){
 	var obj=document.getElementById("infor_shoujihao");
@@ -101,9 +101,19 @@ function yanzhengma_blur(){
     }
 }
 
+$('#zhuce1_xiayibu').bind('click',function(event){
+    event.preventDefault();
+    var a=yanzhengma_blur();
+    var b=yzshouji_blur();
+    if(a&&b){
+	obj_form.submit();
+        return false;
+    }else{
+            return false;
+    }
+});
 function checkForm(obj){
 	yzshouji_blur();
-        //yanzhengma_blur();
 	if(yanzhengma_blur()&&yzshouji_blur()){
 		obj_form.submit();
                 return false;

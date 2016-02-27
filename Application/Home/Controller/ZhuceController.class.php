@@ -277,7 +277,8 @@ class ZhuceController extends FontEndController {
            exit();
        }
     }
-    
+
+     
     public function send_message(){
         if($_POST['check']=='send_message'){
             $shoujihao=$_POST['shoujihao'];
@@ -299,8 +300,7 @@ class ZhuceController extends FontEndController {
             $req->setRecNum($shoujihao);
             $req->setSmsTemplateCode("SMS_4705353");
             $resp = $c->execute($req);
-            //var_dump($resp);
-            $data=$resp['result']['success'];
+            $data=$resp->result->success;
             $this->ajaxReturn($data);
             exit();
        }else if($_POST['check']=='yanzheng_message'){
@@ -310,7 +310,7 @@ class ZhuceController extends FontEndController {
            }else{
                $data=false;
            }
-           $this->ajaxReturn($data);
+           //$this->ajaxReturn($data);
            exit();
        }else{
            exit();
