@@ -1,26 +1,25 @@
 <?php
 
 //z支付宝配置
- 
 //↓↓↓↓↓↓↓↓↓↓请在这里配置您的基本信息↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 //合作身份者id，以2088开头的16位纯数字
-$alipay_config['partner']		= '2088121986917031';
+
+$alipay_config['partner'] = '2088121986917031';
 //收款支付宝账号，一般情况下收款账号就是签约账号
-$alipay_config['seller_email']	= 'www17each@sina.com';
+$alipay_config['seller_email'] = 'www17each@sina.com';
 //安全检验码，以数字和字母组成的32位字符
-$alipay_config['key']			= '8blnpivjesfyl0uysd4t78ddx36s6x60';
+$alipay_config['key'] = '8blnpivjesfyl0uysd4t78ddx36s6x60';
 //↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 //签名方式 不需修改
-$alipay_config['sign_type']    = strtoupper('MD5');
+$alipay_config['sign_type'] = strtoupper('MD5');
 //字符编码格式 目前支持 gbk 或 utf-8
-$alipay_config['input_charset']= strtolower('utf-8');
+$alipay_config['input_charset'] = strtolower('utf-8');
 //ca证书路径地址，用于curl中ssl校验
 //请保证cacert.pem文件在当前文件夹目录中
-$alipay_config['cacert']    = getcwd().'\\cacert.pem';
+$alipay_config['cacert'] = getcwd() . '\\cacert.pem';
 //访问模式,根据自己的服务器是否支持ssl访问，若支持请选择https；若不支持请选择http
-$alipay_config['transport']    = 'http';
-
-
+$alipay_config['transport'] = 'http';
+define("PAY_HOST", "http://" . $_SERVER['HTTP_HOST']);
 
 return array(
 	//'配置项'=>'配置值'
@@ -53,5 +52,8 @@ return array(
     'DB_PARAMS'          	=>  array(), // 数据库连接参数    
     'DB_DEBUG'  			=>  TRUE, // 数据库调试模式 开启后可以记录SQL日志
     'DB_FIELDS_CACHE'       =>  true,        // 启用字段缓存
-    'DB_CHARSET'            =>  'utf8'      // 数据库编码默认采用utf8
+    'DB_CHARSET'            =>  'utf8',      // 数据库编码默认采用utf8
+    
+    
+    'ALIPAY_CONFIG'=>$alipay_config,
 );

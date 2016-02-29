@@ -226,9 +226,9 @@ class GoodsController extends FontEndController {
     public function gmcg(){
         $order_id=$_GET['order_id'];
         $ordermodel=D('Order');
-        $order=$ordermodel->where("order_id=$order_id")->field('goods_id,server_day,goods_name,shop_name')->find();
+        $order=$ordermodel->where("order_id=$order_id")->find();
         $this->assign('order',$order);
-        $order_user_id=$ordermodel->where("order_id=$order_id")->getField('user_id');//登录用户无该订单权限
+        $order_user_id=$order['user_id'];//登录用户无该订单权限
         if($order_user_id!=$_SESSION['huiyuan']['user_id']){//登录用户无该订单权限
             $this->error('您没有该订单权限');
         }
@@ -242,7 +242,15 @@ class GoodsController extends FontEndController {
                 $this->error('该日期的商品已被购买，请选择其它商品',U('index/index'),3);
             }
         }
-        
+        //发起支付
+        $option["show_url"]=PAY_HOST.U("Goods/index",array("goods_id"=>$goods_id));
+        $option['out_trade_no']=$order['order_no'];
+        $option['total_fee']=floatval($order['price']);
+        $option["subject"]=$order['goods_name'];
+        $option['body']=  sprintf("商铺名：%s 商品名：%s 服务时间：%s",$order['shop_name'],$order['goods_name'],$order['server_day']);
+        vendor('create_direct_pay_by_xia.alipayapi');//引入第三方类库
+        $aliPay=new \AlipayOption($option,C("ALIPAY_CONFIG")); 
+        //成功页面应该是在回调汉书里面去写
         $row=array(
             'pay_status'=>1,//支付状态为支付
             'updated'=> mktime()
