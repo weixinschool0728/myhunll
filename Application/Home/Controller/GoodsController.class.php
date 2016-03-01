@@ -273,8 +273,50 @@ class GoodsController extends FontEndController {
         //计算得出通知验证结果
         $alipayNotify = new \AlipayNotify(C("ALIPAY_CONFIG"));
         $verify_result = $alipayNotify->verifyNotify();
-        file_put_contents("./notify.txt", $verify_result);
+//        file_put_contents("./notify.txt", $verify_result);
+        $out_trade_no = (int) $_POST['out_trade_no'];
+        $trade_no = (int) $_POST['trade_no'];
         if ($verify_result) {//验证成功
+            $ordermodel = D('Order');
+            $order = $ordermodel->where("order_no=$out_trade_no")->find();
+            $this->assign('order', $order);
+            $order_user_id = $order['user_id']; //登录用户无该订单权限
+            if ($order_user_id != $_SESSION['huiyuan']['user_id']) {//登录用户无该订单权限
+                $this->error('您没有该订单权限');
+            }
+            $order_id = $order['order_id'];
+            //如果该条订单已被别人付款，提示已经被购买，返回首页
+            $goods_id = $order['goods_id'];
+            $server_day = $order['server_day'];
+            $tianjian['order_id'] = array('neq', $order_id);
+            $order_qita = $ordermodel->where($tiaojian)->where("goods_id=$goods_id and server_day=$server_day")->find();
+            if (!empty($order_qita)) {
+                if ($order_qita['pay_status'] == 1) {
+                    echo "fail";
+                    die;
+                    // $this->error('该日期的商品已被购买，请选择其它商品', U('index/index'), 3);
+                }
+            }
+
+            $row = array(
+                'pay_status' => 1, //支付状态为支付
+                'updated' => mktime(),
+                "pay_type" => 0,
+                "trade_no" => $trade_no,
+                "pay_info" => serialize($_POST),
+            );
+            if (!$ordermodel->where("order_id=$order_id")->save($row)) {
+                echo "fail";
+                die;
+            }
+
+            //商品表里面购买数量加1
+            $row_goods = array(
+                'buy_number' => "buy_number" . "+ 1",
+            );
+            $goodsmodel = D('Goods');
+            $goodsmodel->where("goods_id=$goods_id")->save($row_goods);
+
             echo "success";
         } else {
             //验证失败
@@ -326,21 +368,21 @@ class GoodsController extends FontEndController {
                     }
                 }
 
-                $row = array(
-                    'pay_status' => 1, //支付状态为支付
-                    'updated' => mktime(),
-                    "pay_type" => 0,
-                    "trade_no" => $trade_no,
-                    "pay_info" => serialize($_GET),
-                );
-                $ordermodel->where("order_id=$order_id")->save($row);
-
-                //商品表里面购买数量加1
-                $row_goods = array(
-                    'buy_number' => "buy_number" . "+ 1",
-                );
-                $goodsmodel = D('Goods');
-                $goodsmodel->where("goods_id=$goods_id")->save($row_goods);
+//                $row = array(
+//                    'pay_status' => 1, //支付状态为支付
+//                    'updated' => mktime(),
+//                    "pay_type" => 0,
+//                    "trade_no" => $trade_no,
+//                    "pay_info" => serialize($_GET),
+//                );
+//                $ordermodel->where("order_id=$order_id")->save($row);
+//
+//                //商品表里面购买数量加1
+//                $row_goods = array(
+//                    'buy_number' => "buy_number" . "+ 1",
+//                );
+//                $goodsmodel = D('Goods');
+//                $goodsmodel->where("goods_id=$goods_id")->save($row_goods);
                 $this->display('gmcg');
             } else {
                 $message = "支付遇到问题，请稍后重试！" . "trade_status=" . $_GET['trade_status'];
