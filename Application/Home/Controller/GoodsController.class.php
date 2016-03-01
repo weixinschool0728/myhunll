@@ -272,7 +272,7 @@ class GoodsController extends FontEndController {
         $order = $ordermodel->where("order_id=$order_id")->find();
         $this->assign('order', $order);
 //___________________________________________
-        vendor('create_direct_pay_by_xia.lib.alipay_notify.class'); //引入第三方类库
+        vendor('create_direct_pay_by_xia.lib.alipay_notify'); //引入第三方类库
         //计算得出通知验证结果
         $alipayNotify = new \AlipayNotify(C("ALIPAY_CONFIG"));
         $verify_result = $alipayNotify->verifyReturn();

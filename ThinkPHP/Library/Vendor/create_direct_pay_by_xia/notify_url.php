@@ -16,7 +16,7 @@
  */
 
 require_once("alipay.config.php");
-require_once("lib/alipay_notify.class.php");
+require_once("lib/alipay_notify.php");
 
 //计算得出通知验证结果
 $alipayNotify = new AlipayNotify($alipay_config);
@@ -31,10 +31,12 @@ if($verify_result) {//验证成功
 	
     //获取支付宝的通知返回参数，可参考技术文档中服务器异步通知参数列表
 	
-	//商户订单号
+	//商户订单号
+
 	$out_trade_no = $_POST['out_trade_no'];
 
-	//支付宝交易号
+	//支付宝交易号
+
 	$trade_no = $_POST['trade_no'];
 
 	//交易状态
