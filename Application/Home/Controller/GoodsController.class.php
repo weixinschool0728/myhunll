@@ -273,17 +273,14 @@ class GoodsController extends FontEndController {
         //计算得出通知验证结果
         $alipayNotify = new \AlipayNotify(C("ALIPAY_CONFIG"));
         $verify_result = $alipayNotify->verifyNotify();
-        file_put_contents("./notify.txt", print_r($_POST,true));
+        file_put_contents("./notify.txt", print_r($_POST,true),FILE_APPEND);
         $out_trade_no = $_POST['out_trade_no'];
         $trade_no =  $_POST['trade_no'];
         if ($verify_result) {//验证成功
             $ordermodel = D('Order');
             $order = $ordermodel->where("order_no='{$out_trade_no}'")->find();
             $this->assign('order', $order);
-            $order_user_id = $order['user_id']; //登录用户无该订单权限
-            if ($order_user_id != $_SESSION['huiyuan']['user_id']) {//登录用户无该订单权限
-                $this->error('您没有该订单权限');
-            }
+
             $order_id = $order['order_id'];
             //如果该条订单已被别人付款，提示已经被购买，返回首页
             $goods_id = $order['goods_id'];
