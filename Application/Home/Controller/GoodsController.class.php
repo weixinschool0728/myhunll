@@ -288,10 +288,7 @@ class GoodsController extends FontEndController {
      */
 
     public function gmcg() {
-        $order_id = (int)$_GET['order_id'];
-        $ordermodel = D('Order');
-        $order = $ordermodel->where("order_id=$order_id")->find();
-        $this->assign('order', $order);
+
 //___________________________________________
         vendor('create_direct_pay_by_xia.lib.alipay_notify'); //引入第三方类库
         //计算得出通知验证结果
@@ -303,75 +300,61 @@ class GoodsController extends FontEndController {
             //——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
             //获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表
             //商户订单号
-            $out_trade_no = $_GET['out_trade_no'];
-
+            $out_trade_no = (int) $_GET['out_trade_no'];
             //支付宝交易号
-
             $trade_no = $_GET['trade_no'];
-
             //交易状态
             $trade_status = $_GET['trade_status'];
-
-
-            if ($_GET['trade_status'] == 'TRADE_FINISHED' || $_GET['trade_status'] == 'TRADE_SUCCESS') {
+            if ($trade_status == 'TRADE_FINISHED' || $trade_status == 'TRADE_SUCCESS') {
                 //判断该笔订单是否在商户网站中已经做过处理
                 //如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
                 //如果有做过处理，不执行商户的业务程序
+                $ordermodel = D('Order');
+                $order = $ordermodel->where("order_no=$out_trade_no")->find();
+                $this->assign('order', $order);
+                 $order_user_id = $order['user_id']; //登录用户无该订单权限
+                if ($order_user_id != $_SESSION['huiyuan']['user_id']) {//登录用户无该订单权限
+                    $this->error('您没有该订单权限');
+                }
+                $order_id=$order['order_id'];
+                //如果该条订单已被别人付款，提示已经被购买，返回首页
+                $goods_id = $order['goods_id'];
+                $server_day = $order['server_day'];
+                $tianjian['order_id'] = array('neq', $order_id);
+                $order_qita = $ordermodel->where($tiaojian)->where("goods_id=$goods_id and server_day=$server_day")->find();
+                if (!empty($order_qita)) {
+                    if ($order_qita['pay_status'] == 1) {
+                        $this->error('该日期的商品已被购买，请选择其它商品', U('index/index'), 3);
+                    }
+                }
+
+                $row = array(
+                    'pay_status' => 1, //支付状态为支付
+                    'updated' => mktime(),
+                    "pay_type"=>0,
+                    "trade_no"=>$trade_no,
+                    "pay_info"=>  serialize($_GET),
+                );
+                $ordermodel->where("order_id=$order_id")->save($row);
+
+                //商品表里面购买数量加1
+                $row_goods = array(
+                    'buy_number' => "buy_number" ."+ 1",
+                );
+                $goodsmodel = D('Goods');
+                $goodsmodel->where("goods_id=$goods_id")->save($row_goods);
+                $this->display('gmcg');
             } else {
-                echo "trade_status=" . $_GET['trade_status'];
+                $message= "支付遇到问题，请稍后重试！"."trade_status=" . $_GET['trade_status'];
+                $this->error($message,  U('Order/index'), 3);
             }
-
-            echo "验证成功<br />";
-
-            //——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
-            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         } else {
             //验证失败
-            //如要调试，请看alipay_notify.php页面的verifyReturn函数
-            echo "验证失败";
+            $message= "支付遇到问题，请稍后重试！";
+             $this->error($message,  U('Order/index'), 3);
         }
 
-        var_dump($_GET);
-        echo "这是同步回调过来的链接";
-        die;
 //---------------------------------------------------------------
-
-        $order_user_id = $order['user_id']; //登录用户无该订单权限
-        if ($order_user_id != $_SESSION['huiyuan']['user_id']) {//登录用户无该订单权限
-            $this->error('您没有该订单权限');
-        }
-        //如果该条订单已被别人付款，提示已经被购买，返回首页
-        $goods_id = $order['goods_id'];
-        $server_day = $order['server_day'];
-        $tianjian['order_id'] = array('neq', $order_id);
-        $order_qita = $ordermodel->where($tiaojian)->where("goods_id=$goods_id and server_day=$server_day")->find();
-        if (!empty($order_qita)) {
-            if ($order_qita['pay_status'] == 1) {
-                $this->error('该日期的商品已被购买，请选择其它商品', U('index/index'), 3);
-            }
-        }
-        //发起支付
-        $option["show_url"] = PAY_HOST . U("Goods/index", array("goods_id" => $goods_id));
-        $option['out_trade_no'] = $order['order_no'];
-        $option['total_fee'] = floatval($order['price']);
-        $option["subject"] = $order['goods_name'];
-        $option['body'] = sprintf("商铺名：%s 商品名：%s 服务时间：%s", $order['shop_name'], $order['goods_name'], $order['server_day']);
-        vendor('create_direct_pay_by_xia.alipayapi'); //引入第三方类库
-        $aliPay = new \AlipayOption($option, C("ALIPAY_CONFIG"));
-        //成功页面应该是在回调汉书里面去写
-        $row = array(
-            'pay_status' => 1, //支付状态为支付
-            'updated' => mktime()
-        );
-        $ordermodel->where("order_id=$order_id")->save($row);
-
-        //商品表里面购买数量加1
-        $row_goods = array(
-            'buy_number' => $goods['buy_number'] + 1
-        );
-        $goodsmodel = D('Goods');
-        $goodsmodel->where("goods_id=$goods_id")->save($row);
-        $this->display('gmcg');
     }
 
     public function cart_join() {
