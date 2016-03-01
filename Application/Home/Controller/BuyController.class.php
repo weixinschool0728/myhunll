@@ -6,6 +6,11 @@ class BuyController extends FontEndController {
         $this->display(index);
  
     }
+    public function pay(){
+        
+        
+        
+    }
 
 
 }
