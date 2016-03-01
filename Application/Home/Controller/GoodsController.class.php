@@ -269,13 +269,14 @@ class GoodsController extends FontEndController {
      */
 
     public function notify() {
+        error_reporting(0);
         vendor('create_direct_pay_by_xia.lib.alipay_notify'); //引入第三方类库
         //计算得出通知验证结果
         $alipayNotify = new \AlipayNotify(C("ALIPAY_CONFIG"));
         $verify_result = $alipayNotify->verifyNotify();
-        file_put_contents("./notify.txt", print_r($_POST,true),FILE_APPEND);
+//        file_put_contents("./notify.txt", print_r($_POST,true),FILE_APPEND);
         $out_trade_no = $_POST['out_trade_no'];
-        $trade_no =  $_POST['trade_no'];
+        $trade_no = $_POST['trade_no'];
         if ($verify_result) {//验证成功
             $ordermodel = D('Order');
             $order = $ordermodel->where("order_no='{$out_trade_no}'")->find();
@@ -308,11 +309,8 @@ class GoodsController extends FontEndController {
             }
 
             //商品表里面购买数量加1
-            $row_goods = array(
-                'buy_number' => "buy_number" . "+ 1",
-            );
             $goodsmodel = D('Goods');
-            $goodsmodel->where("goods_id=$goods_id")->save($row_goods);
+            $goodsmodel->where("goods_id=$goods_id")->setInc('buy_number');
 
             echo "success";
         } else {
