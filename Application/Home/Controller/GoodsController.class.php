@@ -273,7 +273,7 @@ class GoodsController extends FontEndController {
         //计算得出通知验证结果
         $alipayNotify = new \AlipayNotify(C("ALIPAY_CONFIG"));
         $verify_result = $alipayNotify->verifyNotify();
-//        file_put_contents("./notify.txt", $verify_result);
+        file_put_contents("./notify.txt", print_r($_POST,true));
         $out_trade_no = $_POST['out_trade_no'];
         $trade_no =  $_POST['trade_no'];
         if ($verify_result) {//验证成功
