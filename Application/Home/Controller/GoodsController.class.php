@@ -254,7 +254,7 @@ class GoodsController extends FontEndController {
         $option['return_url'] = PAY_HOST . U("Goods/gmcg");
         $option['notify_url'] = PAY_HOST . U("Goods/notify");
         $option['out_trade_no'] = $order['order_no'];
-        $option['total_fee'] = floatval($order['price']);
+        $option['total_fee'] = $order['price'];
         $option["subject"] = $order['goods_name'];
         $option['body'] = sprintf("商铺名：%s 商品名：%s 服务时间：%s", $order['shop_name'], $order['goods_name'], $order['server_day']);
         vendor('create_direct_pay_by_xia.alipayapi'); //引入第三方类库
@@ -282,7 +282,7 @@ class GoodsController extends FontEndController {
             $order = $ordermodel->where("order_no='{$out_trade_no}'")->find();
             //验证交易金额是否为订单的金额;
             if (!empty($_POST['total_fee'])) {
-                if ($_POST['total_fee'] != floatval($order['price'])) {
+                if ($_POST['total_fee'] != $order['price']) {
                     echo "fail";
                     die;
                 }
@@ -362,7 +362,7 @@ class GoodsController extends FontEndController {
                 $ordermodel = D('Order');
                 $order = $ordermodel->where("order_no='{$out_trade_no}'")->find();
                 $this->assign('order', $order);
-                if ($_GET['total_fee'] != floatval($order['price'])) {
+                if ($_GET['total_fee'] != $order['price']) {
                     $this->error('订单的金额有问题，可能与提交时的不符', U('Order/index'), 3);
                 }
                 //验证收款人邮箱
