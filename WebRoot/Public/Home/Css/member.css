@@ -28,3 +28,10 @@
     padding: 5px 0px 5px 100px;
 }
 
+.content .tixian_text{
+    padding: 3px 10px;
+    width: 60px;
+}
+.content .tixian_submit{
+    margin-left: 20px;
+}

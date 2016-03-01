@@ -195,7 +195,7 @@ class CategoryController extends FontEndController {
                 return '演艺';
                 break;
             case '9':
-                return '舞美';
+                return '婚纱';
                 break;
             case '10':
                 return '酒店';
