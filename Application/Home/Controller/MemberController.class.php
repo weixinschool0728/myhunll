@@ -188,7 +188,7 @@ class MemberController extends FontEndController {
         //获取图片URL
         $data=array();
         $data['src']=UPLOAD.$file_info['file_img']['savepath'].$file_info['file_img']['savename'];
-        $this->ajaxReturn($data);
+        $this->ajaxReturn($file_info);
     }
 
 
