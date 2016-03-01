@@ -286,7 +286,7 @@ class GoodsController extends FontEndController {
             //如果该条订单已被别人付款，提示已经被购买，返回首页
             $goods_id = $order['goods_id'];
             $server_day = $order['server_day'];
-            $tianjian['order_id'] = array('neq', $order_id);
+            $tiaojian['order_id'] = array('neq', $order_id);
             $order_qita = $ordermodel->where($tiaojian)->where("goods_id=$goods_id and server_day=$server_day")->find();
             if (!empty($order_qita)) {
                 if ($order_qita['pay_status'] == 1) {
@@ -355,7 +355,7 @@ class GoodsController extends FontEndController {
                 //如果该条订单已被别人付款，提示已经被购买，返回首页
                 $goods_id = $order['goods_id'];
                 $server_day = $order['server_day'];
-                $tianjian['order_id'] = array('neq', $order_id);
+                $tiaojian['order_id'] = array('neq', $order_id);
                 $order_qita = $ordermodel->where($tiaojian)->where("goods_id=$goods_id and server_day=$server_day")->find();
                 if (!empty($order_qita)) {
                     if ($order_qita['pay_status'] == 1) {
