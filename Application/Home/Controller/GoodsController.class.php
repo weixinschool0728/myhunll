@@ -251,7 +251,7 @@ class GoodsController extends FontEndController {
         }
         //发起支付
         $option["show_url"] = PAY_HOST . U("Goods/index", array("goods_id" => $goods_id));
-        $option['return_url'] = PAY_HOST . U("Goods/gmcg", array("order_id" => $order['order_id']));
+        $option['return_url'] = PAY_HOST . U("Goods/gmcg");
         $option['notify_url'] = PAY_HOST . U("Goods/notify");
         $option['out_trade_no'] = $order['order_no'];
         $option['total_fee'] = floatval($order['price']);
@@ -288,7 +288,7 @@ class GoodsController extends FontEndController {
      */
 
     public function gmcg() {
-        $order_id = $_GET['order_id'];
+        $order_id = (int)$_GET['order_id'];
         $ordermodel = D('Order');
         $order = $ordermodel->where("order_id=$order_id")->find();
         $this->assign('order', $order);
