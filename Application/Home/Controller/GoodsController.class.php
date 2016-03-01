@@ -208,7 +208,7 @@ class GoodsController extends FontEndController {
 
         $row = array(
             'user_id' => $user_id,
-            "order_no" => getname(),
+            "order_no" => $this->getUniqueOrderNo(),
             'goods_id' => $goods_id,
             'shop_id' => $goods['user_id'],
             'shop_name' => $goods['user_name'],
@@ -229,11 +229,25 @@ class GoodsController extends FontEndController {
         }
     }
 
+    /**
+     * 生成唯一的订单号 会查询订单表来保证唯一性
+     * 
+     */
+    public function getUniqueOrderNo() {
+        $code = getname();
+        $OrderModel = D("Order");
+        $res = $OrderModel->where("order_no='{$code}' and deleted=0")->find();
+        if ($res) {
+            $this->getUniqueOrderNo();
+        }
+        return $code;
+    }
+
     //生成支付宝订单
     public function alipay() {
         $order_id = $_GET['order_id'];
         $ordermodel = D('Order');
-        $order = $ordermodel->where("order_id=$order_id")->find();
+        $order = $ordermodel->where("order_id=$order_id and deleted=0 ")->find();
         $this->assign('order', $order);
         $order_user_id = $order['user_id']; //登录用户无该订单权限
         if ($order_user_id != $_SESSION['huiyuan']['user_id']) {//登录用户无该订单权限
@@ -254,7 +268,7 @@ class GoodsController extends FontEndController {
         $option['return_url'] = PAY_HOST . U("Goods/gmcg");
         $option['notify_url'] = PAY_HOST . U("Goods/notify");
         $option['out_trade_no'] = $order['order_no'];
-        $option['total_fee'] = $order['price'];
+        $option['total_fee'] = floatval($order['price']);
         $option["subject"] = $order['goods_name'];
         $option['body'] = sprintf("商铺名：%s 商品名：%s 服务时间：%s", $order['shop_name'], $order['goods_name'], $order['server_day']);
         vendor('create_direct_pay_by_xia.alipayapi'); //引入第三方类库
@@ -279,7 +293,7 @@ class GoodsController extends FontEndController {
         $trade_no = $_POST['trade_no'];
         if ($verify_result) {//验证成功
             $ordermodel = D('Order');
-            $order = $ordermodel->where("order_no='{$out_trade_no}'")->find();
+            $order = $ordermodel->where("order_no='{$out_trade_no}' and deleted=0 ")->find();
             //验证交易金额是否为订单的金额;
             if (!empty($_POST['total_fee'])) {
                 if ($_POST['total_fee'] != $order['price']) {
@@ -360,7 +374,7 @@ class GoodsController extends FontEndController {
                 //如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
                 //如果有做过处理，不执行商户的业务程序
                 $ordermodel = D('Order');
-                $order = $ordermodel->where("order_no='{$out_trade_no}'")->find();
+                $order = $ordermodel->where("order_no='{$out_trade_no}' and deleted=0 ")->find();
                 $this->assign('order', $order);
                 if ($_GET['total_fee'] != $order['price']) {
                     $this->error('订单的金额有问题，可能与提交时的不符', U('Order/index'), 3);
