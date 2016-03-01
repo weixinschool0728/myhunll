@@ -53,11 +53,12 @@ class AlipayOption {
     var $_input_charset;
     var $alipay_config;
     var $parameter;
+
     //非局域网的外网IP地址，如：221.0.0.1
     function __construct(array $option, $alipay_conf) {
 
         $this->alipay_config = $alipay_conf;
-        $this->alipay_config['cacert']=dirname(__FILE__).DIRECTORY_SEPARATOR.'cacert.pem';
+        $this->alipay_config['cacert'] = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'cacert.pem';
         $this->payment_type = $option["payment_type"] ? $option["payment_type"] : $this->payment_type;
         $this->notify_url = $option["notify_url"] ? $option["notify_url"] : PAY_HOST . "/create_direct_pay_by_xia/notify_url.php";
         $this->return_url = $option["return_url"] ? $option["return_url"] : $this->return_url;
@@ -86,13 +87,12 @@ class AlipayOption {
             "exter_invoke_ip" => $this->exter_invoke_ip,
             "_input_charset" => $this->_input_charset
         );
-        
     }
-    public function alipaySubmit(){
+
+    public function alipaySubmit() {
         $alipaySubmit = new AlipaySubmit($this->alipay_config);
         $html_text = $alipaySubmit->buildRequestForm($this->parameter, "get", "确认");
         return $html_text;
     }
-   
 
 }
