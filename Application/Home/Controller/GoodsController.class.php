@@ -274,11 +274,11 @@ class GoodsController extends FontEndController {
         $alipayNotify = new \AlipayNotify(C("ALIPAY_CONFIG"));
         $verify_result = $alipayNotify->verifyNotify();
 //        file_put_contents("./notify.txt", $verify_result);
-        $out_trade_no = (int) $_POST['out_trade_no'];
-        $trade_no = (int) $_POST['trade_no'];
+        $out_trade_no = $_POST['out_trade_no'];
+        $trade_no =  $_POST['trade_no'];
         if ($verify_result) {//验证成功
             $ordermodel = D('Order');
-            $order = $ordermodel->where("order_no=$out_trade_no")->find();
+            $order = $ordermodel->where("order_no='{$out_trade_no}'")->find();
             $this->assign('order', $order);
             $order_user_id = $order['user_id']; //登录用户无该订单权限
             if ($order_user_id != $_SESSION['huiyuan']['user_id']) {//登录用户无该订单权限
@@ -340,7 +340,7 @@ class GoodsController extends FontEndController {
             //——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
             //获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表
             //商户订单号
-            $out_trade_no = (int) $_GET['out_trade_no'];
+            $out_trade_no = $_GET['out_trade_no'];
             //支付宝交易号
             $trade_no = $_GET['trade_no'];
             //交易状态
@@ -350,7 +350,7 @@ class GoodsController extends FontEndController {
                 //如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
                 //如果有做过处理，不执行商户的业务程序
                 $ordermodel = D('Order');
-                $order = $ordermodel->where("order_no=$out_trade_no")->find();
+                $order = $ordermodel->where("order_no='{$out_trade_no}'")->find();
                 $this->assign('order', $order);
                 $order_user_id = $order['user_id']; //登录用户无该订单权限
                 if ($order_user_id != $_SESSION['huiyuan']['user_id']) {//登录用户无该订单权限
