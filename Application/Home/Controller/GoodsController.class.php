@@ -280,7 +280,21 @@ class GoodsController extends FontEndController {
         if ($verify_result) {//验证成功
             $ordermodel = D('Order');
             $order = $ordermodel->where("order_no='{$out_trade_no}'")->find();
-            $this->assign('order', $order);
+            //验证交易金额是否为订单的金额;
+            if (!empty($_POST['total_fee'])) {
+                if ($_POST['total_fee'] != floatval($order['price'])) {
+                    echo "fail";
+                    die;
+                }
+            }
+            //验证收款人邮箱
+            if (!empty($_POST['seller_email'])) {
+                $alipayconfig = C("ALIPAY_CONFIG");
+                if ($_POST['seller_email'] != $alipayconfig['seller_email']) {
+                    echo "fail";
+                    die;
+                }
+            }
 
             $order_id = $order['order_id'];
             //如果该条订单已被别人付款，提示已经被购买，返回首页
@@ -340,6 +354,7 @@ class GoodsController extends FontEndController {
             $trade_no = $_GET['trade_no'];
             //交易状态
             $trade_status = $_GET['trade_status'];
+
             if ($trade_status == 'TRADE_FINISHED' || $trade_status == 'TRADE_SUCCESS') {
                 //判断该笔订单是否在商户网站中已经做过处理
                 //如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
@@ -347,6 +362,16 @@ class GoodsController extends FontEndController {
                 $ordermodel = D('Order');
                 $order = $ordermodel->where("order_no='{$out_trade_no}'")->find();
                 $this->assign('order', $order);
+                if ($_GET['total_fee'] != floatval($order['price'])) {
+                    $this->error('订单的金额有问题，可能与提交时的不符', U('Order/index'), 3);
+                }
+                //验证收款人邮箱
+                if (!empty($_GET['seller_email'])) {
+                    $alipayconfig = C("ALIPAY_CONFIG");
+                    if ($_GET['seller_email'] != $alipayconfig['seller_email']) {
+                        $this->error('订单的收款人存在问题', U('Order/index'), 3);
+                    }
+                }
                 $order_user_id = $order['user_id']; //登录用户无该订单权限
                 if ($order_user_id != $_SESSION['huiyuan']['user_id']) {//登录用户无该订单权限
                     $this->error('您没有该订单权限');
