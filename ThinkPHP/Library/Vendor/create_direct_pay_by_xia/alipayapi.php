@@ -52,7 +52,7 @@ class AlipayOption {
     private $exter_invoke_ip = "";
     var $_input_charset;
     var $alipay_config;
-
+    var $parameter;
     //非局域网的外网IP地址，如：221.0.0.1
     function __construct(array $option, $alipay_conf) {
 
@@ -70,7 +70,7 @@ class AlipayOption {
         $this->exter_invoke_ip = $option["exter_invoke_ip"] ? $option["exter_invoke_ip"] : $this->exter_invoke_ip;
         $this->_input_charset = $option["_input_charset"] ? trim(strtolower($option["_input_charset"])) : trim(strtolower($this->alipay_config['input_charset']));
 
-        $parameter = array(
+        $this->parameter = array(
             "service" => "create_direct_pay_by_user",
             "partner" => trim($this->alipay_config['partner']),
             "seller_email" => trim($this->alipay_config['seller_email']),
@@ -86,9 +86,13 @@ class AlipayOption {
             "exter_invoke_ip" => $this->exter_invoke_ip,
             "_input_charset" => $this->_input_charset
         );
-        $alipaySubmit = new AlipaySubmit($this->alipay_config);
-        $html_text = $alipaySubmit->buildRequestForm($parameter, "get", "确认");
-        echo $html_text;
+        
     }
+    public function alipaySubmit(){
+        $alipaySubmit = new AlipaySubmit($this->alipay_config);
+        $html_text = $alipaySubmit->buildRequestForm($this->parameter, "get", "确认");
+        return $html_text;
+    }
+   
 
 }

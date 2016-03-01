@@ -222,12 +222,60 @@ class GoodsController extends FontEndController {
             $this->error('订单提交失败，请重新提交',$_SERVER['HTTP_REFERER'],3);
         }
     }
+    //生成支付宝订单
+    public function alipay(){
+        $order_id=$_GET['order_id'];
+        $ordermodel=D('Order');
+        $order=$ordermodel->where("order_id=$order_id")->find();
+        $this->assign('order',$order);
+        $order_user_id=$order['user_id'];//登录用户无该订单权限
+        if($order_user_id!=$_SESSION['huiyuan']['user_id']){//登录用户无该订单权限
+            $this->error('您没有该订单权限');
+        }
+        //如果该条订单已被别人付款，提示已经被购买，返回首页
+        $goods_id=$order['goods_id'];
+        $server_day=$order['server_day'];
+        $tianjian['order_id']=array('neq',$order_id);
+        $order_qita=$ordermodel->where($tiaojian)->where("goods_id=$goods_id and server_day=$server_day")->find();
+        if(!empty($order_qita)){
+            if($order_qita['pay_status']==1){
+                $this->error('该日期的商品已被购买，请选择其它商品',U('index/index'),3);
+            }
+        }
+        //发起支付
+        $option["show_url"]=PAY_HOST.U("Goods/index",array("goods_id"=>$goods_id));
+        $option['return_url']=PAY_HOST.U("Goods/gmcg",array("order_id"=>$order['order_id']));
+        $option['out_trade_no']=$order['order_no'];
+        $option['total_fee']=floatval($order['price']);
+        $option["subject"]=$order['goods_name'];
+        $option['body']=  sprintf("商铺名：%s 商品名：%s 服务时间：%s",$order['shop_name'],$order['goods_name'],$order['server_day']);
+        vendor('create_direct_pay_by_xia.alipayapi');//引入第三方类库
+        $aliPay=new \AlipayOption($option,C("ALIPAY_CONFIG")); 
+        echo $aliPay->alipaySubmit();
+        //成功页面应该是在回调汉书里面去写
+//        $row=array(
+//            'pay_status'=>1,//支付状态为支付
+//            'updated'=> mktime()
+//                );
+//        $ordermodel->where("order_id=$order_id")->save($row);
+//        
+//        //商品表里面购买数量加1
+//        $row_goods=array(
+//            'buy_number'=>$goods['buy_number']+1
+//        );
+//        $goodsmodel=D('Goods');
+//        $goodsmodel->where("goods_id=$goods_id")->save($row);
+//        $this->display('gmcg');
+    }
     
     public function gmcg(){
         $order_id=$_GET['order_id'];
         $ordermodel=D('Order');
         $order=$ordermodel->where("order_id=$order_id")->find();
         $this->assign('order',$order);
+        var_dump($_GET);
+        echo "这是同步回调过来的链接";
+        die;
         $order_user_id=$order['user_id'];//登录用户无该订单权限
         if($order_user_id!=$_SESSION['huiyuan']['user_id']){//登录用户无该订单权限
             $this->error('您没有该订单权限');
