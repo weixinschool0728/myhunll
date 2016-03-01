@@ -252,6 +252,7 @@ class GoodsController extends FontEndController {
         //发起支付
         $option["show_url"] = PAY_HOST . U("Goods/index", array("goods_id" => $goods_id));
         $option['return_url'] = PAY_HOST . U("Goods/gmcg", array("order_id" => $order['order_id']));
+        $option['notify_url'] = PAY_HOST . U("Goods/notify");
         $option['out_trade_no'] = $order['order_no'];
         $option['total_fee'] = floatval($order['price']);
         $option["subject"] = $order['goods_name'];
@@ -262,8 +263,28 @@ class GoodsController extends FontEndController {
     }
 
     /*     * *
+     * 后台异步处理
      * 支付成功的同步页面采用同步通知即可 
-     * 将结果显示给用户同时更新数据库状态
+     * 更新数据库状态
+     */
+
+    public function notify() {
+        vendor('create_direct_pay_by_xia.lib.alipay_notify'); //引入第三方类库
+        //计算得出通知验证结果
+        $alipayNotify = new \AlipayNotify(C("ALIPAY_CONFIG"));
+        $verify_result = $alipayNotify->verifyNotify();
+        file_put_contents("./notify.txt", $verify_result);
+        if ($verify_result) {//验证成功
+            echo "success";
+        } else {
+            //验证失败
+            echo "fail";
+        }
+    }
+
+    /*     * *
+     * 支付成功的同步页面采用同步通知即可 
+     * 将结果显示给用户
      */
 
     public function gmcg() {
@@ -272,10 +293,9 @@ class GoodsController extends FontEndController {
         $order = $ordermodel->where("order_id=$order_id")->find();
         $this->assign('order', $order);
 //___________________________________________
-        echo vendor('create_direct_pay_by_xia.lib.alipay_notify'); //引入第三方类库
+        vendor('create_direct_pay_by_xia.lib.alipay_notify'); //引入第三方类库
         //计算得出通知验证结果
         $alipayNotify = new \AlipayNotify(C("ALIPAY_CONFIG"));
-        var_dump($alipayNotify);
         $verify_result = $alipayNotify->verifyReturn();
         if ($verify_result) {//验证成功
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
