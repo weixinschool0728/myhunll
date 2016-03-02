@@ -56,11 +56,19 @@ HTML;
         
         //给menu页面中的最近浏览赋值
         $arr_goodsid=  array_reverse(cookie('distory_goods_id'));
-        $goodsmodel=D('Goods');
-        foreach ($arr_goodsid as $v){
-            $distory_goods[]=$goodsmodel->where("goods_id=$v")->field('goods_id,goods_name,yuan_price,price,goods_img')->find();
+        if(!empty($arr_goodsid)){
+            $goodsmodel=D('Goods');
+            foreach ($arr_goodsid as $v){
+                if(is_shuzi($v)){
+                    $distory_goods[]=$goodsmodel->where("goods_id=$v")->field('goods_id,goods_name,yuan_price,price,goods_img')->find();
+                }else{
+                    echo '发生错误，商品id为：'.$v;
+                    cookie('distory_goods_id',null);
+                }
+            }
+            $this->assign('distory_goods',$distory_goods);
         }
-        $this->assign('distory_goods',$distory_goods);
+        
         
         $ismobile = ismobile();//检查客户端是否是手机
         if ($ismobile) {

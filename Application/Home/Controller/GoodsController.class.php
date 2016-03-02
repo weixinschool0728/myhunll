@@ -20,15 +20,20 @@ class GoodsController extends FontEndController {
         $goods_id = $_GET['goods_id'];
         $this->assign('goods_id', $goods_id);
         //把商品id赋值给cookie 并且永久保存.
-        $arr_goods_id = cookie('distory_goods_id') == '' ? array() : cookie('distory_goods_id');
-        $is_in = in_array($goods_id, $arr_goods_id);
-        if ($is_in === false) {
-            if (count($arr_goods_id) > 4) {
-                array_shift($arr_goods_id);
+        if(is_shuzi($goods_id)){
+            $arr_goods_id = cookie('distory_goods_id') == '' ? array() : cookie('distory_goods_id');
+            $is_in = in_array($goods_id, $arr_goods_id);
+            if ($is_in === false) {
+                if (count($arr_goods_id) > 4) {
+                    array_shift($arr_goods_id);
+                }
+                array_push($arr_goods_id, $goods_id);
+                cookie('distory_goods_id', $arr_goods_id, 2419200); //保存到cookie中一个月
             }
-            array_push($arr_goods_id, $goods_id);
-            cookie('distory_goods_id', $arr_goods_id, 2419200); //保存到cookie中一个月
+        }else{
+            $this->error('发生错误：商品id不正确!', 'Index/index');
         }
+        
 
 
         $goodsmodel = D('Goods');
