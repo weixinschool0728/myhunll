@@ -44,8 +44,8 @@ function file_jia_change(){
                     dataType:"json",
                     async : false,
                     success: function(msg){
-                        $('#touxiang_img').attr('src','/'+msg);
-                        $('input[name=head_img]').attr('value',msg);
+                        $('#touxiang_img').attr('src','/'+msg.src);
+                        $('input[name=head_img]').attr('value',msg.src);
                         return true; 
                     },  
                     error: function(){  

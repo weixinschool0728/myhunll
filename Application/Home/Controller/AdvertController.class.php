@@ -9,8 +9,9 @@ class AdvertController extends FontEndController {
         $this->assign('lunbo',$lunbo);
         $this->display();
     }
-
-
-
-
+    
+    public function lanrenhunli(){
+        
+        $this->display();
+    }
 }
