@@ -44,7 +44,15 @@
                 <div class='td2'>&yen;<{$vo['price']}></div>
                 <div class='td3'>&yen;<{$vo['price']}></div>
                 <div class='td4'><p><{:order_status($vo['pay_status'],$vo['status'])['status']}></p><a href="<{:U('Order/view',array('order_id'=>$vo['order_id']))}>">订单详情</a></div>
-                <div class='td5'><a href="<{:order_status($vo['pay_status'],$vo['status'],$vo['order_id'],$vo['server_day'],$vo['goods_id'])['status_url']}>" class="button_a_lvse"><{:order_status($vo['pay_status'],$vo['status'])['status_button']}></a></div>
+                <div class='td5'>
+                    <if  condition="$vo['status'] neq '4'">
+                        <a href="<{:order_status($vo['pay_status'],$vo['status'],$vo['order_id'],$vo['server_day'],$vo['goods_id'])['status_url']}>" class="button_a_lvse"><{:order_status($vo['pay_status'],$vo['status'])['status_button']}></a>
+                    </if>
+                    <if  condition="$vo['status'] eq '1'">
+                        <a id='quxiao_order' class="button_a_lvse" name="<{$vo['order_id']}>" style="margin-top: 20px;">取消订单</a>
+                    </if>
+                </div>
+                
             </div>
         </div>
         </volist>
@@ -62,6 +70,54 @@
     $('.order_select').bind('change',function(){
         location.replace(this.value);
     });
+    $('#quxiao_order').bind('click',function(){
+        if(confirm("确定要取消订单吗？")){
+            var url='/Home/Order/quxiao_order.html';
+            var data={
+                    order_id:$(this).attr('name'),
+                    check:"quxiao_order"
+                }
+            $.ajax({
+                    type:'get',
+                    async : false,
+                    url:url,
+                    data:data,
+                    datatype:'json',
+                    success:function(msg){
+                        if(msg){ 
+                            location=location;                        
+                        }else{
+                            alert('取消订单失败'); 
+                        }
+                    }
+                });    
+        }
+    });
+    $('.button_a_lvse:contains("删除订单")').bind('click',function(event){
+        event.preventDefault();
+        if(confirm("确定要删除订单吗？")){
+            var url='/Home/Order/delete_order.html';
+            var data={
+                    order_id:$(this).attr('href'),
+                    check:"delete_order"
+                }
+            $.ajax({
+                    type:'get',
+                    async : false,
+                    url:url,
+                    data:data,
+                    datatype:'json',
+                    success:function(msg){
+                        if(msg){ 
+                            location=location;                        
+                        }else{
+                            alert('删除订单失败'); 
+                        }
+                    }
+                }); 
+        }
+    });
+    
 </script>
 
 

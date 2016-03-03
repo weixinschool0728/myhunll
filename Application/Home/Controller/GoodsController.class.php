@@ -84,8 +84,8 @@ class GoodsController extends FontEndController {
 
         $ordermodel = D('Order');
         //$shop_id=$goods['user_id'];
-        //找出该商品的已被付款的日期，js标注背景色，并加事件点击的话提示已经被购买，
-        $buy_server_day = $ordermodel->where("goods_id=$goods_id")->getField('server_day', true);
+        //找出该商品的已被下单的日期，js标注背景色，并加事件点击的话提示已经被购买，
+        $buy_server_day = $ordermodel->where("goods_id=$goods_id and status<>'4'")->getField('server_day', true);
         $this->assign('buy_server_day', $buy_server_day);
 
         //找出该商品是否被用户收藏了
@@ -164,10 +164,10 @@ class GoodsController extends FontEndController {
         $this->assign('server_day', $server_day);
         $ordermodel = D('Order');
         //$shop_id=$goods['user_id'];
-        //如果该条订单已被别人付款，提示已经被购买，返回首页
+        //如果该条订单已被别人下单并且没取消，提示已经被购买，返回首页
         $order_qita = $ordermodel->where("goods_id=$goods_id and server_day=$server_day")->find();
         if (!empty($order_qita)) {
-            if ($order_qita['pay_status'] == 1) {
+            if ($order_qita['status'] !== '4') {
                 $this->error('该日期的商品已被购买，请选择其它商品', U('Goods/index', "goods_id=$goods_id"), 3);
             }
         }
@@ -197,14 +197,14 @@ class GoodsController extends FontEndController {
         $this->assign('server_day', $server_day);
         $ordermodel = D('Order');
         //如果该条订单已被别人付款，提示已经被购买，返回
-        $order_qita = $ordermodel->where("goods_id=$goods_id and server_day=$server_day")->find();
+        $order_qita = $ordermodel->where("goods_id=$goods_id and server_day=$server_day and user_id<>$user_id")->find();
         if (!empty($order_qita)) {
-            if ($order_qita['pay_status'] == 1) {
+            if ($order_qita['status'] !== 4) {
                 $this->error('该日期的商品已被购买，请选择其它商品', U($_SESSION['ref']), 3);
             }
         }
         //如果用户自己已经有了该条订单，未付款，转到付款页面，已付款，提示不能重复购买
-        $order_self = $ordermodel->where("user_id=$user_id and goods_id=$goods_id and server_day=$server_day")->find();
+        $order_self = $ordermodel->where("user_id=$user_id and goods_id=$goods_id and server_day=$server_day and status<>'4'")->find();
         if (!empty($order_self)) {
             $this->assign('order_id', $order_self['order_id']);
             $this->display('zhifu');
