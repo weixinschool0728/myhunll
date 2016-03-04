@@ -118,7 +118,7 @@ function file_jia_change(){
                     dataType:"json",
                     async : false,
                     success: function(msg){  
-                        var img_url=msg;
+                        var img_url=msg.src;
                         creat_img($('#file_jia'),img_url);
                         return true; 
                     },  
