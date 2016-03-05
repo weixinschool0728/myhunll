@@ -126,3 +126,7 @@ float: left;
     height: 100px;
 }
 
+#div_tanchu{
+    width: 180px;
+    position: absolute;
+}

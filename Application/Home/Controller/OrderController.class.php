@@ -29,7 +29,7 @@ class OrderController extends FontEndController {
              $count=$ordermodel->where("user_id={$user_id} and pay_status=0 and deleted=0")->count();
              $page=$this->get_page($count, 10);
              $page_foot=$page->show();//显示页脚信息
-             $list=$ordermodel->table('m_order t1,m_goods t2')->where("t1.deleted=0 t1.user_id={$user_id} and t1.pay_status=0 and t1.goods_id=t2.goods_id")->order('t1.created desc')->field('t1.order_id,t1.order_no,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.updated,t2.goods_img,t2.price')->limit($page->firstRow.','.$page->listRows)->select();
+             $list=$ordermodel->table('m_order t1,m_goods t2')->where("t1.deleted=0 and t1.user_id={$user_id} and t1.pay_status=0 and t1.goods_id=t2.goods_id")->order('t1.created desc')->field('t1.order_id,t1.order_no,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.updated,t2.goods_img,t2.price')->limit($page->firstRow.','.$page->listRows)->select();
              $this->assign('list',$list);
              $this->assign('page_foot',$page_foot);
          }else if($status==='daiqueren'){
@@ -38,7 +38,7 @@ class OrderController extends FontEndController {
              $count=$ordermodel->where("user_id={$user_id} and pay_status=1 and status=1 and deleted=0")->count();
              $page=$this->get_page($count, 10);
              $page_foot=$page->show();//显示页脚信息
-             $list=$ordermodel->table('m_order t1,m_goods t2')->where("t1.deleted=0 t1.user_id={$user_id} and t1.pay_status=1 and t1.status=1 and t1.goods_id=t2.goods_id")->order('t1.created desc')->field('t1.order_id,t1.order_no,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.updated,t2.goods_img,t2.price')->limit($page->firstRow.','.$page->listRows)->select();
+             $list=$ordermodel->table('m_order t1,m_goods t2')->where("t1.deleted=0 and t1.user_id={$user_id} and t1.pay_status=1 and t1.status=1 and t1.goods_id=t2.goods_id")->order('t1.created desc')->field('t1.order_id,t1.order_no,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.updated,t2.goods_img,t2.price')->limit($page->firstRow.','.$page->listRows)->select();
              $this->assign('list',$list);
              $this->assign('page_foot',$page_foot);
          }else if($status==='daipingjia'){
@@ -47,7 +47,7 @@ class OrderController extends FontEndController {
              $count=$ordermodel->where("user_id={$user_id} and pay_status=1 and status=2 and deleted=0")->count();
              $page=$this->get_page($count, 10);
              $page_foot=$page->show();//显示页脚信息
-             $list=$ordermodel->table('m_order t1,m_goods t2')->where("t1.deleted=0 t1.user_id={$user_id} and t1.pay_status=1 and t1.status=2 and t1.goods_id=t2.goods_id")->order('t1.created desc')->field('t1.order_id,t1.order_no,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.updated,t2.goods_img,t2.price')->limit($page->firstRow.','.$page->listRows)->select();
+             $list=$ordermodel->table('m_order t1,m_goods t2')->where("t1.deleted=0 and t1.user_id={$user_id} and t1.pay_status=1 and t1.status=2 and t1.goods_id=t2.goods_id")->order('t1.created desc')->field('t1.order_id,t1.order_no,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.updated,t2.goods_img,t2.price')->limit($page->firstRow.','.$page->listRows)->select();
              $this->assign('list',$list);
              $this->assign('page_foot',$page_foot);
          }
@@ -94,11 +94,16 @@ class OrderController extends FontEndController {
     
     public function view(){
         $this->assign('title','我的订单');
-        $order_id=$_GET['order_id'];
         $user_id=$_SESSION['huiyuan']['user_id'];
+        $this->assign('user_id',$user_id);
+        $order_id=$_GET['order_id'];
         $ordermodel=D('Order');
-        $order=$ordermodel->table('m_order t1,m_users t2,m_goods t3')->where("t1.user_id=$user_id and t1.order_id={$order_id} and t1.shop_id=t2.user_id and t1.goods_id=t3.goods_id")->field('t1.order_id,t1.order_no,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.created,t1.updated,t1.deleted,t2.true_name,t2.location,t2.mobile_phone,t3.goods_img,t3.price')->find();
-        if($order){
+        $order=$ordermodel->table('m_order t1,m_users t2,m_goods t3')->where("t1.order_id={$order_id} and t1.shop_id=t2.user_id and t1.goods_id=t3.goods_id")->field('t1.user_id,t1.shop_id,t1.order_id,t1.order_no,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.created,t1.updated,t1.deleted,t2.true_name,t2.location,t2.mobile_phone,t3.goods_img,t3.price')->find();
+        $maijia_id=$order['user_id'];
+        $usermodel=D('Users');
+        $maijia=$usermodel->where("user_id=$maijia_id")->field('user_name,mobile_phone')->find();
+        $this->assign('maijia',$maijia);
+        if($order['user_id']===$user_id||$order['shop_id']===$user_id){
             $this->assign('order',$order);
             $this->display('view');
         }else{
