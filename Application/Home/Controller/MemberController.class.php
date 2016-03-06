@@ -879,7 +879,7 @@ class MemberController extends FontEndController {
              $this->assign(count,$count);
              $page=$this->get_page($count, 10);
              $page_foot=$page->show();//显示页脚信息
-             $list=$ordermodel->table('m_order t1,m_goods t2,m_users t3')->where("t1.deleted=0 and t1.shop_id={$user_id} and t1.goods_id=t2.goods_id and t1.user_id=t3.user_id")->order('t1.created desc')->field('t1.user_id,t1.order_id,t1.order_no,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.updated,t2.goods_img,t2.price,t3.mobile_phone,t3.user_name')->limit($page->firstRow.','.$page->listRows)->select();
+             $list=$ordermodel->table('m_order t1,m_goods t2,m_users t3')->where("t1.shop_id={$user_id} and t1.goods_id=t2.goods_id and t1.user_id=t3.user_id and t1.deleted=0")->order('t1.created desc')->field('t1.user_id,t1.order_id,t1.order_no,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.updated,t2.goods_img,t2.price,t3.mobile_phone,t3.user_name')->limit($page->firstRow.','.$page->listRows)->select();
              $this->assign('list',$list);
              $this->assign('page_foot',$page_foot);
          }else if($status==='no_pay'){
@@ -889,7 +889,7 @@ class MemberController extends FontEndController {
              $count=$ordermodel->where("shop_id={$user_id} and pay_status=0 and deleted=0")->count();
              $page=$this->get_page($count, 10);
              $page_foot=$page->show();//显示页脚信息
-             $list=$ordermodel->table('m_order t1,m_goods t2,m_users t3')->where("t1.deleted=0 and t1.shop_id={$user_id} and t1.pay_status=0 and t1.goods_id=t2.goods_id and t1.user_id=t3.user_id")->order('t1.created desc')->field('t1.user_id,t1.order_id,t1.order_no,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.updated,t2.goods_img,t2.price,t3.mobile_phone,t3.user_name')->limit($page->firstRow.','.$page->listRows)->select();
+             $list=$ordermodel->table('m_order t1,m_goods t2,m_users t3')->where("t1.shop_id={$user_id} and t1.pay_status=0 and t1.goods_id=t2.goods_id and t1.user_id=t3.user_id and t1.deleted=0")->order('t1.created desc')->field('t1.user_id,t1.order_id,t1.order_no,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.updated,t2.goods_img,t2.price,t3.mobile_phone,t3.user_name')->limit($page->firstRow.','.$page->listRows)->select();
              $this->assign('list',$list);
              $this->assign('page_foot',$page_foot);
          }else if($status==='daiqueren'){
@@ -898,7 +898,7 @@ class MemberController extends FontEndController {
              $count=$ordermodel->where("shop_id={$user_id} and pay_status=1 and status=1 and deleted=0")->count();
              $page=$this->get_page($count, 10);
              $page_foot=$page->show();//显示页脚信息
-             $list=$ordermodel->table('m_order t1,m_goods t2,m_users t3')->where("t1.deleted=0 and t1.shop_id={$user_id} and t1.pay_status=1 and t1.status=1 and t1.goods_id=t2.goods_id and t1.user_id=t3.user_id")->order('t1.created desc')->field('t1.user_id,t1.order_id,t1.order_no,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.updated,t2.goods_img,t2.price,t3.mobile_phone,t3.user_name')->limit($page->firstRow.','.$page->listRows)->select();
+             $list=$ordermodel->table('m_order t1,m_goods t2,m_users t3')->where("t1.shop_id={$user_id} and t1.pay_status=1 and t1.status=1 and t1.goods_id=t2.goods_id and t1.user_id=t3.user_id and t1.deleted=0")->order('t1.created desc')->field('t1.user_id,t1.order_id,t1.order_no,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.updated,t2.goods_img,t2.price,t3.mobile_phone,t3.user_name')->limit($page->firstRow.','.$page->listRows)->select();
              $this->assign('list',$list);
              $this->assign('page_foot',$page_foot);
          }else if($status==='daipingjia'){
@@ -907,7 +907,7 @@ class MemberController extends FontEndController {
              $count=$ordermodel->where("shop_id={$user_id} and pay_status=1 and status=2 and deleted=0")->count();
              $page=$this->get_page($count, 10);
              $page_foot=$page->show();//显示页脚信息
-             $list=$ordermodel->table('m_order t1,m_goods t2,m_users t3')->where("t1.deleted=0 and t1.shop_id={$user_id} and t1.pay_status=1 and t1.status=2 and t1.goods_id=t2.goods_id and t1.user_id=t3.user_id")->order('t1.created desc')->field('t1.user_id,t1.order_id,t1.order_no,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.updated,t2.goods_img,t2.price,t3.mobile_phone,t3.user_name')->limit($page->firstRow.','.$page->listRows)->select();
+             $list=$ordermodel->table('m_order t1,m_goods t2,m_users t3')->where("t1.shop_id={$user_id} and t1.pay_status=1 and t1.status=2 and t1.goods_id=t2.goods_id and t1.user_id=t3.user_id and t1.deleted=0")->order('t1.created desc')->field('t1.user_id,t1.order_id,t1.order_no,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.updated,t2.goods_img,t2.price,t3.mobile_phone,t3.user_name')->limit($page->firstRow.','.$page->listRows)->select();
              $this->assign('list',$list);
              $this->assign('page_foot',$page_foot);
          }

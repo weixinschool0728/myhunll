@@ -9,16 +9,16 @@
     <include file='Public/member_left' />
     <div class="release">
         <select class="order_select">
-            <option value="<{:U('Order/index')}>" <{$selected['all']}> >全部状态</option>
-            <option value="<{:U('Order/index?status=no_pay')}>" <{$selected['no_pay']}> >未付款</option>
-            <option value="<{:U('Order/index?status=daiqueren')}>" <{$selected['daiqueren']}> >待确认</option>
-            <option value="<{:U('Order/index?status=daipingjia')}>" <{$selected['daipingjia']}> >待评价</option>
+            <option value="<{:U('Member/goods_sold')}>" <{$selected['all']}> >全部状态</option>
+            <option value="<{:U('Member/goods_sold?status=no_pay')}>" <{$selected['no_pay']}> >未付款</option>
+            <option value="<{:U('Member/goods_sold?status=daiqueren')}>" <{$selected['daiqueren']}> >待确认</option>
+            <option value="<{:U('Member/goods_sold?status=daipingjia')}>" <{$selected['daipingjia']}> >待评价</option>
         </select>
         <div class="kuaijietishi">快捷提示：您有
-            <a href="<{:U('Order/index')}>" class="em">全部状态（<{$status_count['all']}>）</a>
-            <a href="<{:U('Order/index?status=no_pay')}>" class="em">待付款（<{$status_count['no_pay']}>）</a>
-            <a href="<{:U('Order/index?status=daiqueren')}>" class="em">待确认（<{$status_count['daiqueren']}>）</a>
-            <a href="<{:U('Order/index?status=daipingjia')}>" class="em">待评价（<{$status_count['daipingjia']}>）</a>
+            <a href="<{:U('Member/goods_sold')}>" class="em">全部状态（<{$status_count['all']}>）</a>
+            <a href="<{:U('Member/goods_sold?status=no_pay')}>" class="em">待付款（<{$status_count['no_pay']}>）</a>
+            <a href="<{:U('Member/goods_sold?status=daiqueren')}>" class="em">待确认（<{$status_count['daiqueren']}>）</a>
+            <a href="<{:U('Member/goods_sold?status=daipingjia')}>" class="em">待评价（<{$status_count['daipingjia']}>）</a>
         </div>
 
         <div class="title"><!--标题行-->
