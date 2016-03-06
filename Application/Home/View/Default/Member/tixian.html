@@ -46,5 +46,26 @@
 </div>
 <iframe height="1" frameborder="0" width="1" style="position:absolute;top:0;left:-9999px;" src="<{:U('index/menu')}>"></iframe>
 <script src="__PUBLIC_HOME__/Js/tixian.js"></script> 
+<script type="text/javascript">
+    function yanzheng_tixian(obj){
+    var str=obj.val();
+    var yu_e="<{$userdata['credit_line']}>";
+    if(is_tixian(parseFloat(str))){
+        if(parseFloat(str)>parseFloat(yu_e)){
+            $('#tixian_tishi').html('您输入的金额大于账户余额，请重新输入');
+            $('#tixian_tishi').css('color','red');
+            return false;
+        }else{
+            $('#tixian_tishi').html('您将提现: &yen;'+parseFloat(str).toFixed(2));
+            $('#tixian_tishi').css('color','#666');
+            return true;
+        }
+    }else{
+        $('#tixian_tishi').html('您输入的金额不符合规范，请重新输入');
+        $('#tixian_tishi').css('color','red');
+        return false;
+    }
+}
+</script> 
     </body>
 </html>

@@ -187,7 +187,8 @@ class OrderController extends FontEndController {
     public function file_jia(){
         $file_info=$this->upload('image/temp/');//获取上传文件信息
         //获取图片URL
-        $data=UPLOAD.$file_info['file_img']['savepath'].$file_info['file_img']['savename'];
+        $data=array();
+        $data['src']=UPLOAD.$file_info['file_img']['savepath'].$file_info['file_img']['savename'];
         $this->ajaxReturn($data);
     }
     
