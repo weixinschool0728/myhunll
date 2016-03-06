@@ -199,7 +199,7 @@ class GoodsController extends FontEndController {
         //如果该条订单已被别人付款，提示已经被购买，返回
         $order_qita = $ordermodel->where("goods_id=$goods_id and server_day=$server_day and user_id<>$user_id")->find();
         if (!empty($order_qita)) {
-            if ($order_qita['status'] !== 4) {
+            if ($order_qita['status'] !== '4') {
                 $this->error('该日期的商品已被购买，请选择其它商品', U($_SESSION['ref']), 3);
             }
         }
