@@ -65,17 +65,16 @@ function sc_change(){
 }
 
 function price_blue(obj,obj_info){
-    if(!text_blue(obj,obj_info)){
-        return false;
-    }
-    var reg = /^\d+$/gi;
+    var reg=/^\d+\.?\d{0,2}$/gi;
     var result= reg.test(obj.val());
     if(result){
         obj_info.html('&radic;');
+        obj_info.css('color','#666');
+        obj.val(parseFloat(obj.val()).toFixed(2));
         return true;
     }else{
         obj_info.css('color','red');
-        obj_info.html('含有非数字字符，请填入正确价格');
+        obj_info.html('不符合规范，请填入正确价格，如100.00');
         return false;
     }
 }

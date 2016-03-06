@@ -22,7 +22,7 @@ function is_ip(str){
 
 //验证是否含有非法字符，含有非法返回true，否则返回false
 function is_feifa(str){
-    var reg = /[=!;:@#&\\\/\^\$\(\)\[\]\{\}\*\+\?\-\"\']+/gi;
+    var reg = /[=!;:@#&\.\\\/\^\$\(\)\[\]\{\}\*\+\?\-\"\']+/gi;
     var result= reg.test(str);
     return result;
 }
