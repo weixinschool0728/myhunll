@@ -82,7 +82,16 @@ function is_feifa($str){
         return false;
     }
 }
-
+//验证是否价格
+function is_price($str){
+    $reg='/^\d+\.?\d{0,2}$/i';
+    $result=preg_match($reg,$str);
+    if($result!==0) {
+        return true;
+    }else{
+        return false;
+    }
+}
 
 //得到微秒数
 function gettime(){

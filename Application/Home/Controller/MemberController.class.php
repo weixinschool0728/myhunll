@@ -117,12 +117,12 @@ class MemberController extends FontEndController {
             $this->error('商品标题为空或者含有非法字符');
             exit();
         }
-        if(!is_shuzi($content['price'])||is_feifa($content['price'])){
-            $this->error('价格为空或者含有非法字符');
+        if(!is_price($content['price'])){
+            $this->error('价格为空或者不合规范，请输入100.00');
             exit();
         }
-        if(!is_shuzi($content['yuan_price'])||is_feifa($content['yuan_price'])){
-            $this->error('原价为空或者含有非法字符');
+        if(!is_price($content['yuan_price'])){
+            $this->error('原价为空或者不合规范，请输入100.00');
             exit();
         }
         $usersmodel=D('Users');
@@ -642,12 +642,12 @@ class MemberController extends FontEndController {
             $this->error('商品标题为空或者含有非法字符');
             exit();
         }
-        if(!is_shuzi($content['price'])||is_feifa($content['price'])){
-            $this->error('价格为空或者含有非法字符');
+        if(!is_price($content['price'])){
+            $this->error('价格为空或者不规范,请输入如100.00');
             exit();
         }
-        if(!is_shuzi($content['yuan_price'])||is_feifa($content['yuan_price'])){
-            $this->error('原价为空或者含有非法字符');
+        if(!is_price($content['yuan_price'])){
+            $this->error('原价为空或者不规范,请输入如100.00');
             exit();
         }
         $usersmodel=D('Users');
