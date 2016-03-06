@@ -155,16 +155,23 @@ class OrderController extends FontEndController {
         $data=$usersmodel->where("user_id='{$user_id}' and zhifu_password='{$mima_md5}'")->count();
         if($data==='1'){
             $row=array(
-            'status'=>2,//确认完成
-            'updated'=> mktime()
+                'status'=>2,//确认完成
+                'updated'=> mktime()
                 );
             $ordermodel->where("order_id=$order_id")->save($row);
-            $this->redirect('Order/appraise',array('order_id'=>$order_id),0);
             
             //婚礼人账户余额增加
             $order=$ordermodel->where("order_id=$order_id")->find();
             $shop_id=$order['shop_id'];
             $price=$order['price'];
+            $usersmodel=D('Users');
+            $row_users=array(
+                'credit_line'=>$price//账户余额
+                );
+            $ordermodel->where("users_id=$shop_id")->save($row_users);
+            
+            $this->redirect('Order/appraise',array('order_id'=>$order_id),0);
+
         }else{
             $this->error('非法进入，将转到主页',U('index/index'),3);
         }

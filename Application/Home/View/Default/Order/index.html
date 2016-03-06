@@ -48,7 +48,7 @@
                     <if  condition="$vo['status'] neq '4'">
                         <a href="<{:order_status($vo['pay_status'],$vo['status'],$vo['order_id'],$vo['server_day'],$vo['goods_id'])['status_url']}>" class="button_a_lvse"><{:order_status($vo['pay_status'],$vo['status'])['status_button']}></a>
                     </if>
-                    <if  condition="$vo['status'] eq '1'">
+                    <if  condition="$vo['pay_status'] eq '0'">
                         <a id='quxiao_order' class="button_a_lvse" name="<{$vo['order_id']}>" style="margin-top: 20px;">取消订单</a>
                     </if>
                 </div>
