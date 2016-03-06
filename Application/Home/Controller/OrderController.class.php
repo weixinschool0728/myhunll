@@ -168,7 +168,7 @@ class OrderController extends FontEndController {
             $row_users=array(
                 'credit_line'=>$price//账户余额
                 );
-            $ordermodel->where("users_id=$shop_id")->save($row_users);
+            $usersmodel->where("user_id=$shop_id")->save($row_users);
             
             $this->redirect('Order/appraise',array('order_id'=>$order_id),0);
 
