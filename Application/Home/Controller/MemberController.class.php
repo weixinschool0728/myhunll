@@ -742,13 +742,13 @@ class MemberController extends FontEndController {
         $weixin=$_POST['contact_weixin'];//获取微信号码
         $email=$_POST['contact_email'];//获取邮箱
         $shop_introduce=$_POST['shop_introduce'];//获取店铺介绍
-        $fuwuneirong=$_POST['fuwuneirong'];//获取服务内容
+        //$fuwuneirong=$_POST['fuwuneirong'];//获取服务内容
         //服务内容未选择时，提示并退出
-        if(empty($email)||empty($fuwuneirong)||empty($weixin)||empty($qq)||empty($address)||empty($shop_introduce)){
+        if(empty($email)||empty($weixin)||empty($qq)||empty($address)||empty($shop_introduce)){
             $this->error('有内容未填写');
             exit();
         }
-        $fuwuneirong=  implode('|', $fuwuneirong);//把服务内容数组变成字符串
+        //$fuwuneirong=  implode('|', $fuwuneirong);//把服务内容数组变成字符串
         //邮箱是否正确
         if(is_youxiang($email)){
             $this->error('邮箱不正确');
@@ -769,7 +769,7 @@ class MemberController extends FontEndController {
             'qq'=>$qq,
             'weixin'=>$weixin,
             'email'=>$email,
-            'server_content'=>$fuwuneirong,
+            //'server_content'=>$fuwuneirong,
             'shopman_id'=>1,
             'shop_introduce'=>$shop_introduce,
             'shopman_reg_time'=>  mktime()

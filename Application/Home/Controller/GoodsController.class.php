@@ -13,6 +13,8 @@ class GoodsController extends FontEndController {
         //判断是否登录
         if (isset($_SESSION['huiyuan'])) {
             $is_login = 1;
+            $user_id=$_SESSION['huiyuan']['user_id'];
+            $this->assign('user_id',$user_id);
         } else {
             $is_login = 0;
         }
@@ -37,7 +39,7 @@ class GoodsController extends FontEndController {
 
 
         $goodsmodel = D('Goods');
-        $goods = $goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.goods_id,t1.area,t1.goods_name,t1.price,t1.yuan_price,t1.goods_img,t1.goods_img_qita,t1.goods_sex,t1.goods_desc,t1.comment_number,t1.shuxing,t1.score,t3.cat_name,t2.user_name,t1.user_id,t2.weixin,t2.qq,t2.mobile_phone,t2.email,t1.comment_number,t2.shop_introduce,t1.daijinquan,t1.fanxian,t2.weixin_erweima,t1.cat_id')->find();
+        $goods = $goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.user_id,t1.goods_id,t1.area,t1.goods_name,t1.price,t1.yuan_price,t1.goods_img,t1.goods_img_qita,t1.goods_sex,t1.goods_desc,t1.comment_number,t1.shuxing,t1.score,t3.cat_name,t2.user_name,t1.user_id,t2.weixin,t2.qq,t2.mobile_phone,t2.email,t1.comment_number,t2.shop_introduce,t1.daijinquan,t1.fanxian,t2.weixin_erweima,t1.cat_id')->find();
         $goods['shop_introduce'] = str_replace("\r", "", $goods['shop_introduce']);
         $goods['shop_introduce'] = str_replace("\n", "", $goods['shop_introduce']);
         $goods['url']['url'] = urlencode('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
@@ -147,6 +149,7 @@ class GoodsController extends FontEndController {
     }
 
     public function buy() {
+        $user_id=$_SESSION['huiyuan']['user_id'];
         $server_day = $_GET['server_day'];
         $y = (int) substr($server_day, 0, 4);
         $m = (int) substr($server_day, 4, 2);
@@ -159,7 +162,10 @@ class GoodsController extends FontEndController {
         }
         $this->assign('goods_id', $goods_id);
         $goodsmodel = D('Goods');
-        $goods = $goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.area,t1.goods_name,t1.price,t3.cat_name,t2.user_name,t1.user_id')->find();
+        $goods = $goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.user_id,t1.area,t1.goods_name,t1.price,t3.cat_name,t2.user_name,t1.user_id')->find();
+        if ($user_id===$goods['user_id']) {
+            $this->error('不能购买自己的商品', U('Goods/index', "goods_id=$goods_id"), 3);
+        }
         $this->assign('goods', $goods);
         $this->assign('server_day', $server_day);
         $ordermodel = D('Order');

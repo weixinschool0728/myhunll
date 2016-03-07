@@ -461,7 +461,13 @@
         }else{
             is_login=check_login();
             if(is_login!=0){
-                $('form[name=buy]').submit();
+                var user_id="<{$user_id}>";
+                var goods_user_id="<{$goods['user_id']}>";
+                if(user_id===goods_user_id){
+                    alert('不能购买自己的商品');
+                }else{
+                    $('form[name=buy]').submit();
+                }
                 }else{
                     //通过请求让控制器记录$_SESSION['ref']
                     var server_day=$('input[name=server_day]').val();

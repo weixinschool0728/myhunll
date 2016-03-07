@@ -105,8 +105,8 @@ var obj_file_touxiang=document.form_file_touxiang.file_touxiang;
 var obj_file_shenfenzheng=document.form_file_shenfenzheng.file_shenfenzheng;
 //var obj_file_yingyezhizhao=document.zhuce.file_yingyezhizhao;
 
-var obj_zhuce4_checkbox=document.getElementById("zhuce4_checkbox");
-var arr_obj=obj_zhuce4_checkbox.getElementsByTagName("input");
+//var obj_zhuce4_checkbox=document.getElementById("zhuce4_checkbox");
+//var arr_obj=obj_zhuce4_checkbox.getElementsByTagName("input");
 var t=0;
 var select_province=document.zhuce.address_province;
 var select_city=document.zhuce.address_city;
@@ -164,14 +164,14 @@ for(var i=0;i<arr_county[0][0].length;i++){
 
 
 
-for(var i=0;i<arr_obj.length;i++){
-	arr_obj[i].onclick=function(){return checkbox(this);};
-	}
+//for(var i=0;i<arr_obj.length;i++){
+	//arr_obj[i].onclick=function(){return checkbox(this);};
+	//}
 
 
-for(var i=0;i<arr_obj.length;i++){
-		arr_obj[i].checked=false;
-		}
+//for(var i=0;i<arr_obj.length;i++){
+		//arr_obj[i].checked=false;
+		//}
 
 
 
@@ -225,22 +225,22 @@ function radio_select(obj){
 		//break;
 		}
 	}
-function checkbox(obj){
-	var obj1=document.getElementById("span_checkbox");
-	obj1.innerHTML="";
-	t=0;
-	for(var i=0;i<arr_obj.length;i++){
-		if(arr_obj[i].checked==true){
-			t++;
-			}
-		}
-	if(t<3){
-		return true;
-		}
-		else{
-			return false;
-			}
-	}
+//function checkbox(obj){
+	//var obj1=document.getElementById("span_checkbox");
+	//obj1.innerHTML="";
+	//t=0;
+	//for(var i=0;i<arr_obj.length;i++){
+		//if(arr_obj[i].checked==true){
+			//t++;
+			//}
+		//}
+	//if(t<3){
+		//return true;
+		//}
+		//else{
+			//return false;
+			//}
+	//}
 function address_juti_onfocus(){
 	var obj=document.getElementById("infor_address_juti");
 	obj.style.cssText="color:#666;";
@@ -369,29 +369,29 @@ function check_seleck(){
 		return true;
 		}
 	}
-function check_checkbox(){
-	var obj=document.getElementById("span_checkbox");
-	if(t==0){
-		obj.style.cssText="color:red;";
-		obj.innerHTML="未选择服务内容";
-		return false;
-		}
-		else{
-			obj.innerHTML="";
-			return true;
-			}
-	}
+//function check_checkbox(){
+	//var obj=document.getElementById("span_checkbox");
+	//if(t==0){
+		//obj.style.cssText="color:red;";
+		//obj.innerHTML="未选择服务内容";
+		//return false;
+		//}
+		//else{
+			//obj.innerHTML="";
+			//return true;
+			//}
+	//}
 function xiayibu_onclick(){
 	var c4=address_juti_onblur();
 	var c5=contact_qq_onblur();
 	var c6=contact_weixin_onblur();
         var c11=contact_email_onblur();
 	var c8=check_seleck();
-	var c9=check_checkbox();
+	//var c9=check_checkbox();
         var c10=text_blue($('#shop_introduce'),$('#infor_shop_introduce'));
         
 
-        if(c4&&c5&&c6&&c8&&c9&&c10&&c11){
+        if(c4&&c5&&c6&&c8&&c10&&c11){
             obj_form.submit();
         }
         return false;
