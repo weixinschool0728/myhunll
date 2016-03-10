@@ -28,7 +28,7 @@
                     <div>请及时付款，不然该日期就被别人预订了</div>
                     <div class="d1">
                         <a href="<{:order_status($order['pay_status'],$order['status'],$order['server_day'],$order['goods_id'])['status_url']}>" class="button_a_lvse"><{:order_status($order['pay_status'],$order['status'])['status_button']}></a>
-                        <a class="button_a_lvse" href="<{$order['order_id']}>">删除订单</a>
+                        <a class="button_a_lvse" id='quxiao_order' name="<{$vo['order_id']}>">取消订单</a>
                     </div>
                 <elseif condition="($order['status'] eq '1') and ($order['pay_status'] eq '1')"  />
                     <div>请服务完成后再点确认，不然可能货财两空</div>
@@ -92,6 +92,29 @@
                         }
                     }
                 }); 
+        }
+    });
+    $('#quxiao_order').bind('click',function(){
+        if(confirm("确定要取消订单吗？")){
+            var url='/Home/Order/quxiao_order.html';
+            var data={
+                    order_id:$(this).attr('name'),
+                    check:"quxiao_order"
+                }
+            $.ajax({
+                    type:'get',
+                    async : false,
+                    url:url,
+                    data:data,
+                    datatype:'json',
+                    success:function(msg){
+                        if(msg){ 
+                            location=location;                        
+                        }else{
+                            alert('取消订单失败'); 
+                        }
+                    }
+                });    
         }
     });
 </script>
