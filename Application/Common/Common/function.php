@@ -170,7 +170,7 @@ function date_geshi1($date){
 function order_status($pay_status,$status,$order_id,$server_day,$goods_id){
     if($pay_status==='0'){
         if($status==='4'){
-            return array('status'=>'交易关闭','status_button'=>'');
+            return array('status'=>'交易关闭','status_button'=>'删除订单','status_url'=>"$order_id");
         }else{
             return array('status'=>'未支付','status_button'=>'去付款','status_url'=>"/Home/Goods/zhifu/server_day/{$server_day}/goods_id/{$goods_id}.html");
         }  

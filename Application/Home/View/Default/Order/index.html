@@ -45,9 +45,8 @@
                 <div class='td3'>&yen;<{$vo['price']}></div>
                 <div class='td4'><p><{:order_status($vo['pay_status'],$vo['status'])['status']}></p><a href="<{:U('Order/view',array('order_id'=>$vo['order_id']))}>">订单详情</a></div>
                 <div class='td5'>
-                    <if  condition="$vo['status'] neq '4'">
-                        <a href="<{:order_status($vo['pay_status'],$vo['status'],$vo['order_id'],$vo['server_day'],$vo['goods_id'])['status_url']}>" class="button_a_lvse"><{:order_status($vo['pay_status'],$vo['status'])['status_button']}></a>
-                    </if>
+                    <a href="<{:order_status($vo['pay_status'],$vo['status'],$vo['order_id'],$vo['server_day'],$vo['goods_id'])['status_url']}>" class="button_a_lvse"><{:order_status($vo['pay_status'],$vo['status'])['status_button']}></a>
+
                     <if  condition="($vo['pay_status'] eq '0') and ($vo['status'] neq '4')">
                         <a id='quxiao_order' class="button_a_lvse" name="<{$vo['order_id']}>" style="margin-top: 20px;">取消订单</a>
                     </if>
