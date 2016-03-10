@@ -841,12 +841,15 @@ class MemberController extends FontEndController {
     }
     
     public function tixian(){
-        $this->assign("title","我的一起网");
-        $user_id=$_SESSION['huiyuan']['user_id'];//获取会员id号
         $usersmodel=D('Users');
+        $user_id=$_SESSION['huiyuan']['user_id'];//获取会员id号
         if(!empty($user_id)||$user_id===0){
         $data=$usersmodel->where("user_id={$user_id}")->find();
         }
+        if($data['zhifubao']===''){
+            $this->redirect('Member/zhanghushezhi',array(),3,'您还没有设置账户，3秒后将转到账户设置页面，页面跳转中。。。');
+        }
+        $this->assign("title","我的一起网_提现");
         $this->assign("touxiang_url",$data['head_url']);
         if(date("H" ,$data['reg_time'])<12){
             $day_time='上午好';
@@ -918,9 +921,71 @@ class MemberController extends FontEndController {
     }
     
     public function tixian_check(){
-        
+        $tixian=$_POST['tixian'];
+        $user_id=$_SESSION['huiyuan']['user_id'];//获取会员id号
+        $reg='/^\d+\.?\d{0,2}$/i';
+        $result=preg_match($reg,$tixian);
+        if($result){
+            $usersmodel=D('Users');
+            $user=$usersmodel->where("user_id={$user_id}")->field('credit_line,zhifubao')->find();
+            $credit_line=  floatval($user['credit_line']);
+            $tixian=  floatval($tixian);
+            $row=array(
+                'credit_line'=>$credit_line-$tixian
+            );
+            $usersmodel->where("user_id={$user_id}")->save($row);
+            $withdrawmodel=D('Withdraw');
+            $data=array(
+                'user_id'=>$user_id,
+                'account_style'=>'支付宝',
+                'account_number'=>$user['zhifubao'],
+                'withdraw_money'=>$tixian,
+                'time'=>mktime()
+            );
+            $withdraw=$withdrawmodel->add($data);
+            if(withdraw){
+                $this->success('提现成功！将在3个工作日内将钱转入您的账户，请注意查收','/Home/Member/balance');
+            }
+        }
+    }
+    public function zhanghushezhi(){
+        $usersmodel=D('Users');
+        $user_id=$_SESSION['huiyuan']['user_id'];//获取会员id号
+        if(!empty($user_id)||$user_id===0){
+        $data=$usersmodel->where("user_id={$user_id}")->find();
+        }
+        $this->assign("title","我的一起网_设置账户");
+        $this->assign("touxiang_url",$data['head_url']);
+        if(date("H" ,$data['reg_time'])<12){
+            $day_time='上午好';
+        }else if(date("H" ,$data['reg_time'])>=12&&date("H" ,$data['reg_time'])<20){
+            $day_time='下午好';
+        }else{
+            $day_time='晚上好';
+        }
+        $this->assign("day_time",$day_time);
+        $this->assign("userdata",$data);
+        $this->display('zhanghushezhi');
     }
     
+    public function zhanghushezhi_check(){
+        $zhifubao=$_POST['zhifubao'];
+        $user_id=$_SESSION['huiyuan']['user_id'];//获取会员id号
+        if($zhifubao!==''&&!is_feifa($zhifubao)){
+            $usersmodel=D('Users');
+            $row=array(
+                'zhifubao'=>$zhifubao
+            );
+            if(!empty($user_id)||$user_id===0){
+                $result=$usersmodel->where("user_id={$user_id}")->save($row);
+                if($result){
+                    $this->success('账户设置成功！','/Home/Member/zhanghushezhi');
+                }elseif($result===0){
+                    $this->success('账户没有任何变化，请确认是否更改了','/Home/Member/zhanghushezhi');
+                }
+            }
+        }
+    }
 }
 
 
