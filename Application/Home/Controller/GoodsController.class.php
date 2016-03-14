@@ -327,7 +327,9 @@ class GoodsController extends FontEndController {
         
         \Log::DEBUG("begin notify");
         $notify = new \PayNotifyCallBack();
-        $notify->Handle(false);
+        file_put_contents("logs/handle.txt", $notify->Handle(false));
+        
+        file_put_contents("logs/returnpau_data.txt",$notify->getPayReturn());
     }
     
     /*     * *

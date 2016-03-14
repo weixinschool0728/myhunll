@@ -12,7 +12,8 @@ $log = Log::Init($logHandler, 15);
 
 class PayNotifyCallBack extends WxPayNotify
 {
-	//查询订单
+    private $pay_return;
+    //查询订单
 	public function Queryorder($transaction_id)
 	{
 		$input = new WxPayOrderQuery();
@@ -32,7 +33,7 @@ class PayNotifyCallBack extends WxPayNotify
 	//重写回调处理函数
 	public function NotifyProcess($data, &$msg)
 	{
-		Log::DEBUG("call back:" . json_encode($data));
+//		Log::DEBUG("call back:" . json_encode($data));
 		$notfiyOutput = array();
 		
 		if(!array_key_exists("transaction_id", $data)){
@@ -44,7 +45,17 @@ class PayNotifyCallBack extends WxPayNotify
 			$msg = "订单查询失败";
 			return false;
 		}
+        if(WxPayConfig::APPID!=$data["appid"]){
+            return false;
+        }
+        $this->pay_return=$data;
 		return true;
 	}
+    /**
+     * 获取返回的数据
+     */
+   public function getPayReturn(){
+       return $this->pay_return;
+   } 
 }
 
