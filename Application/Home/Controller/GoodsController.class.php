@@ -328,8 +328,61 @@ class GoodsController extends FontEndController {
         \Log::DEBUG("begin notify");
         $notify = new \PayNotifyCallBack();
         file_put_contents("logs/handle.txt", $notify->Handle(false));
-        
-        file_put_contents("logs/returnpau_data.txt",$notify->getPayReturn());
+        $returnPay=$notify->getPayReturn();
+        file_put_contents("logs/returnpau_data".time().".txt",  print_r($returnPay,true));
+        if(!$returnPay||$returnPay[""]){
+            echo "FAIL";die;
+        }
+        if(array_key_exists("return_code", $returnPay)
+			&& array_key_exists("result_code", $returnPay)
+			&& $returnPay["return_code"] == "SUCCESS"
+            && $returnPay["result_code"] == "SUCCESS"){
+                        $ordermodel = D('Order');
+            $order = $ordermodel->where("order_no='{$returnPay["out_trade_no"]}' and deleted=0 ")->find();
+            //验证交易金额是否为订单的金额;
+            if (!empty($returnPay['total_fee'])) {
+                if ($returnPay['total_fee'] != $order['price']*100) {
+                    echo "fail";
+                    die;
+                }
+            }
+            
+
+            $order_id = $order['order_id'];
+            //如果该条订单已被别人付款，提示已经被购买，返回首页
+            $goods_id = $order['goods_id'];
+            $server_day = $order['server_day'];
+            $tiaojian['order_id'] = array('neq', $order_id);
+            $order_qita = $ordermodel->where($tiaojian)->where("goods_id=$goods_id and server_day=$server_day")->find();
+            if (!empty($order_qita)) {
+                if ($order_qita['pay_status'] == 1) {
+                    echo "fail";
+                    die;
+                    // $this->error('该日期的商品已被购买，请选择其它商品', U('index/index'), 3);
+                }
+            }
+
+            $row = array(
+                'pay_status' => 1, //支付状态为支付
+                'updated' => mktime(),
+                "pay_type" => 2,
+                "trade_no" => $returnPay['transaction_id'],
+                "pay_info" => serialize($returnPay),
+            );
+            if (!$ordermodel->where("order_id=$order_id")->save($row)) {
+                echo "fail";
+                die;
+            }
+
+            //商品表里面购买数量加1
+            $goodsmodel = D('Goods');
+            $goodsmodel->where("goods_id=$goods_id")->setInc('buy_number');
+
+            echo "success";
+            
+            
+            
+        }
     }
     
     /*     * *
@@ -383,7 +436,7 @@ class GoodsController extends FontEndController {
             $row = array(
                 'pay_status' => 1, //支付状态为支付
                 'updated' => mktime(),
-                "pay_type" => 0,
+                "pay_type" => 1,
                 "trade_no" => $trade_no,
                 "pay_info" => serialize($_POST),
             );
