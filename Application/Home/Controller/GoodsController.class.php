@@ -325,11 +325,10 @@ class GoodsController extends FontEndController {
         
         vendor('wxp.notify'); //引入第三方类库
         
-        \Log::DEBUG("begin notify");
         $notify = new \PayNotifyCallBack();
-        file_put_contents("logs/handle.txt", $notify->Handle(false));
+        $notify->Handle(false);
         $returnPay=$notify->getPayReturn();
-        file_put_contents("logs/returnpau_data".time().".txt",  print_r($returnPay,true));
+//        file_put_contents("logs/returnpau_data".time().".txt",  print_r($returnPay,true));
         if(!$returnPay||$returnPay[""]){
             echo "FAIL";die;
         }
