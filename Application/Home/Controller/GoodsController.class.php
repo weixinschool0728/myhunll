@@ -13,8 +13,8 @@ class GoodsController extends FontEndController {
         //判断是否登录
         if (isset($_SESSION['huiyuan'])) {
             $is_login = 1;
-            $user_id=$_SESSION['huiyuan']['user_id'];
-            $this->assign('user_id',$user_id);
+            $user_id = $_SESSION['huiyuan']['user_id'];
+            $this->assign('user_id', $user_id);
         } else {
             $is_login = 0;
         }
@@ -22,7 +22,7 @@ class GoodsController extends FontEndController {
         $goods_id = $_GET['goods_id'];
         $this->assign('goods_id', $goods_id);
         //把商品id赋值给cookie 并且永久保存.
-        if(is_shuzi($goods_id)){
+        if (is_shuzi($goods_id)) {
             $arr_goods_id = cookie('distory_goods_id') == '' ? array() : cookie('distory_goods_id');
             $is_in = in_array($goods_id, $arr_goods_id);
             if ($is_in === false) {
@@ -32,10 +32,10 @@ class GoodsController extends FontEndController {
                 array_push($arr_goods_id, $goods_id);
                 cookie('distory_goods_id', $arr_goods_id, 2419200); //保存到cookie中一个月
             }
-        }else{
+        } else {
             $this->error('发生错误：商品id不正确!', 'Index/index');
         }
-        
+
 
 
         $goodsmodel = D('Goods');
@@ -149,7 +149,7 @@ class GoodsController extends FontEndController {
     }
 
     public function buy() {
-        $user_id=$_SESSION['huiyuan']['user_id'];
+        $user_id = $_SESSION['huiyuan']['user_id'];
         $server_day = $_GET['server_day'];
         $y = (int) substr($server_day, 0, 4);
         $m = (int) substr($server_day, 4, 2);
@@ -163,7 +163,7 @@ class GoodsController extends FontEndController {
         $this->assign('goods_id', $goods_id);
         $goodsmodel = D('Goods');
         $goods = $goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.user_id,t1.area,t1.goods_name,t1.price,t3.cat_name,t2.user_name,t1.user_id')->find();
-        if ($user_id===$goods['user_id']) {
+        if ($user_id === $goods['user_id']) {
             $this->error('不能购买自己的商品', U('Goods/index', "goods_id=$goods_id"), 3);
         }
         $this->assign('goods', $goods);
@@ -197,7 +197,7 @@ class GoodsController extends FontEndController {
         }
         $goods_id = $_GET['goods_id'];
         $this->assign('goods_id', $goods_id);
-        $this->assign("pay_method",C("PAY_METHOD"));
+        $this->assign("pay_method", C("PAY_METHOD"));
         $goodsmodel = D('Goods');
         $goods = $goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.area,t1.goods_name,t1.price,t3.cat_name,t2.user_name,t1.user_id')->find();
         $this->assign('goods', $goods);
@@ -258,8 +258,8 @@ class GoodsController extends FontEndController {
     //生成支付宝订单
     public function alipay() {
         $order_id = $_GET['order_id'];
-        $pay_method=$_GET['pay_method'];
-        $pay_method= array_key_exists($pay_method,C("PAY_METHOD"))?$pay_method:1;
+        $pay_method = $_GET['pay_method'];
+        $pay_method = array_key_exists($pay_method, C("PAY_METHOD")) ? $pay_method : 1;
         $ordermodel = D('Order');
         $order = $ordermodel->where("order_id=$order_id and deleted=0 ")->find();
         $this->assign('order', $order);
@@ -278,7 +278,7 @@ class GoodsController extends FontEndController {
             }
         }
         //发起支付
-        if($pay_method==1){
+        if ($pay_method == 1) {
             //支付宝
             $option["show_url"] = PAY_HOST . U("Goods/index", array("goods_id" => $goods_id));
             $option['return_url'] = PAY_HOST . U("Goods/gmcg");
@@ -290,8 +290,7 @@ class GoodsController extends FontEndController {
             vendor('create_direct_pay_by_xia.alipayapi'); //引入第三方类库
             $aliPay = new \AlipayOption($option, C("ALIPAY_CONFIG"));
             echo $aliPay->alipaySubmit();
-            
-        }else if($pay_method==2){
+        } else if ($pay_method == 2) {
             //微信
             vendor('wxp.native'); //引入第三方类库
             $notify = new \NativePay();
@@ -299,7 +298,7 @@ class GoodsController extends FontEndController {
             $input->SetBody(sprintf("商铺名：%s 商品名：%s 服务时间：%s", $order['shop_name'], $order['goods_name'], $order['server_day']));
             $input->SetAttach($order['shop_name']);
             $input->SetOut_trade_no($order['order_no']);
-            $input->SetTotal_fee($order['price']*100);
+            $input->SetTotal_fee($order['price'] * 100);
             $input->SetTime_start(date("YmdHis"));
             $input->SetTime_expire(date("YmdHis", time() + 600));
             $input->SetGoods_tag($order['shop_name']);
@@ -309,10 +308,10 @@ class GoodsController extends FontEndController {
             $result = $notify->GetPayUrl($input);
             $url2 = urlencode($result["code_url"]);
             file_put_contents("url.txt", $url2);
-            $this->assign("goods",$order);
-            $this->assign("payurl",$url2);
+            $this->assign("goods", $order);
+            $this->assign("payurl", $url2);
             $this->display("zhifuweixin");
-        }else{
+        } else {
             
         }
     }
@@ -321,31 +320,29 @@ class GoodsController extends FontEndController {
      * 微信支付的 异步回调
      * 
      */
-    public function notifyweixin(){
-        
+    public function notifyweixin() {
+
         vendor('wxp.notify'); //引入第三方类库
-        
+
         $notify = new \PayNotifyCallBack();
         $notify->Handle(false);
-        $returnPay=$notify->getPayReturn();
+        $returnPay = $notify->getPayReturn();
 //        file_put_contents("logs/returnpau_data".time().".txt",  print_r($returnPay,true));
-        if(!$returnPay||$returnPay[""]){
-            echo "FAIL";die;
+        if (!$returnPay || $returnPay[""]) {
+            echo "FAIL";
+            die;
         }
-        if(array_key_exists("return_code", $returnPay)
-			&& array_key_exists("result_code", $returnPay)
-			&& $returnPay["return_code"] == "SUCCESS"
-            && $returnPay["result_code"] == "SUCCESS"){
-                        $ordermodel = D('Order');
+        if (array_key_exists("return_code", $returnPay) && array_key_exists("result_code", $returnPay) && $returnPay["return_code"] == "SUCCESS" && $returnPay["result_code"] == "SUCCESS") {
+            $ordermodel = D('Order');
             $order = $ordermodel->where("order_no='{$returnPay["out_trade_no"]}' and deleted=0 ")->find();
             //验证交易金额是否为订单的金额;
             if (!empty($returnPay['total_fee'])) {
-                if ($returnPay['total_fee'] != $order['price']*100) {
+                if ($returnPay['total_fee'] != $order['price'] * 100) {
                     echo "fail";
                     die;
                 }
             }
-            
+
 
             $order_id = $order['order_id'];
             //如果该条订单已被别人付款，提示已经被购买，返回首页
@@ -378,12 +375,9 @@ class GoodsController extends FontEndController {
             $goodsmodel->where("goods_id=$goods_id")->setInc('buy_number');
 
             echo "success";
-            
-            
-            
         }
     }
-    
+
     /*     * *
      * 后台异步处理
      * 支付成功的同步页面采用同步通知即可 
