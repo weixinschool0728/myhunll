@@ -11,6 +11,12 @@ class BuyController extends FontEndController {
         
         
     }
+    
+    public function getQRPHP(){
+         vendor('wxp.example.phpqrcode.phpqrcode'); //引入第三方类库
+         $url = urldecode($_GET["data"]);
+        \QRcode::png($url);
+    }
 
 
 }

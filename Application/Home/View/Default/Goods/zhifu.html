@@ -25,6 +25,7 @@
 </div>
 </div>
 
+    <form name="qufukuang" method="get" action="<{:U('Goods/alipay')}>">
 <table class="buy_table" cellspacing="0">
 <tr class="buy_table_head">
     <th class="shangjia">商家</th>
@@ -46,11 +47,12 @@
 <tr class="buy_table_head buy_table_content">
     <td colspan="5" class="yingfu">应付金额：&yen <{$goods['price']}></td>
 </tr>
-<tr class="buy_table_head buy_table_content">
-    <td colspan="5" class="yingfu">支付方式：支付宝</td>
-</tr>
+<volist name="pay_method" key="key" id="vopay">
+    <tr class="buy_table_head buy_table_content">
+        <td colspan="5" class="yingfu"><label><input name="pay_method" type="radio" value="<{$vopay.id}>"><{$vopay.name}></label></td>
+    </tr>
+</volist>
 </table>
-    <form name="qufukuang" method="get" action="<{:U('Goods/alipay')}>">
         <input type="hidden" name="order_id" value="<{$order_id}>" />
     </form>
     <a href="javascript:void(0)" class="a_tjdd" >去付款</a>

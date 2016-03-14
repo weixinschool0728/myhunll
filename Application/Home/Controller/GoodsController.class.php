@@ -197,6 +197,7 @@ class GoodsController extends FontEndController {
         }
         $goods_id = $_GET['goods_id'];
         $this->assign('goods_id', $goods_id);
+        $this->assign("pay_method",C("PAY_METHOD"));
         $goodsmodel = D('Goods');
         $goods = $goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.area,t1.goods_name,t1.price,t3.cat_name,t2.user_name,t1.user_id')->find();
         $this->assign('goods', $goods);
@@ -257,6 +258,8 @@ class GoodsController extends FontEndController {
     //生成支付宝订单
     public function alipay() {
         $order_id = $_GET['order_id'];
+        $pay_method=$_GET['pay_method'];
+        $pay_method= array_key_exists($pay_method,C("PAY_METHOD"))?$pay_method:1;
         $ordermodel = D('Order');
         $order = $ordermodel->where("order_id=$order_id and deleted=0 ")->find();
         $this->assign('order', $order);
@@ -275,18 +278,58 @@ class GoodsController extends FontEndController {
             }
         }
         //发起支付
-        $option["show_url"] = PAY_HOST . U("Goods/index", array("goods_id" => $goods_id));
-        $option['return_url'] = PAY_HOST . U("Goods/gmcg");
-        $option['notify_url'] = PAY_HOST . U("Goods/notify");
-        $option['out_trade_no'] = $order['order_no'];
-        $option['total_fee'] = floatval($order['price']);
-        $option["subject"] = $order['goods_name'];
-        $option['body'] = sprintf("商铺名：%s 商品名：%s 服务时间：%s", $order['shop_name'], $order['goods_name'], $order['server_day']);
-        vendor('create_direct_pay_by_xia.alipayapi'); //引入第三方类库
-        $aliPay = new \AlipayOption($option, C("ALIPAY_CONFIG"));
-        echo $aliPay->alipaySubmit();
+        if($pay_method==1){
+            //支付宝
+            $option["show_url"] = PAY_HOST . U("Goods/index", array("goods_id" => $goods_id));
+            $option['return_url'] = PAY_HOST . U("Goods/gmcg");
+            $option['notify_url'] = PAY_HOST . U("Goods/notify");
+            $option['out_trade_no'] = $order['order_no'];
+            $option['total_fee'] = floatval($order['price']);
+            $option["subject"] = $order['goods_name'];
+            $option['body'] = sprintf("商铺名：%s 商品名：%s 服务时间：%s", $order['shop_name'], $order['goods_name'], $order['server_day']);
+            vendor('create_direct_pay_by_xia.alipayapi'); //引入第三方类库
+            $aliPay = new \AlipayOption($option, C("ALIPAY_CONFIG"));
+            echo $aliPay->alipaySubmit();
+            
+        }else if($pay_method==2){
+            //微信
+            vendor('wxp.native'); //引入第三方类库
+            $notify = new \NativePay();
+            $input = new \WxPayUnifiedOrder();
+            $input->SetBody(sprintf("商铺名：%s 商品名：%s 服务时间：%s", $order['shop_name'], $order['goods_name'], $order['server_day']));
+            $input->SetAttach($order['shop_name']);
+            $input->SetOut_trade_no($order['order_no']);
+            $input->SetTotal_fee($order['price']*100);
+            $input->SetTime_start(date("YmdHis"));
+            $input->SetTime_expire(date("YmdHis", time() + 600));
+            $input->SetGoods_tag($order['shop_name']);
+            $input->SetNotify_url(PAY_HOST . U("Goods/notifyweixin"));
+            $input->SetTrade_type("NATIVE");
+            $input->SetProduct_id("123456789");
+            $result = $notify->GetPayUrl($input);
+            $url2 = urlencode($result["code_url"]);
+            file_put_contents("url.txt", $url2);
+            $this->assign("goods",$order);
+            $this->assign("payurl",$url2);
+            $this->display("zhifuweixin");
+        }else{
+            
+        }
     }
 
+    /**
+     * 微信支付的 异步回调
+     * 
+     */
+    public function notifyweixin(){
+        
+        vendor('wxp.notify'); //引入第三方类库
+        
+        \Log::DEBUG("begin notify");
+        $notify = new \PayNotifyCallBack();
+        $notify->Handle(false);
+    }
+    
     /*     * *
      * 后台异步处理
      * 支付成功的同步页面采用同步通知即可 
