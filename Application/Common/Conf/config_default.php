@@ -55,7 +55,7 @@ return array(
     'DB_CHARSET'            =>  'utf8',      // 数据库编码默认采用utf8
         
     'ALIPAY_CONFIG'=>$alipay_config,
-     'PAY_METHOD'=>array(
+        'PAY_METHOD'=>array(
         1=>array("name"=>"支付宝","id"=>"1","img_url"=>""),
         2=>array("name"=>"微信支付","id"=>"2",'img_url'=>""),
     ),
