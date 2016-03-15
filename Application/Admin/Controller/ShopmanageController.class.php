@@ -42,8 +42,8 @@ class ShopmanageController extends FontEndController {
         $data=$categorymodel->field('cat_name')->select();
         $this->assign('data',$data);
         //获取服务类型表单提交值
-        if(!empty($_POST['server_content'])){
-            $server_content=$_POST['server_content'];
+        if(!empty($_GET['server_content'])){
+            $server_content=$_GET['server_content'];
         }else{
             $server_content=$data[0]['cat_name'];
         }
@@ -52,14 +52,15 @@ class ShopmanageController extends FontEndController {
         
         $cat_id=$categorymodel->where("cat_name='$server_content'")->getField('cat_id');
         $goodsmodel=D('Goods');
-        $serch_name=$_POST['serch'];
+        $serch_name=$_GET['serch'];
+        $this->assign('serch_name',$serch_name);
         if(!empty($serch_name)){
             $where['goods_name']=array('like',"%$serch_name%");
             $count=$goodsmodel->where($where)->where("cat_id={$cat_id} and is_delete=0")->count();
         }else{
             $count=$goodsmodel->where("cat_id={$cat_id} and is_delete=0")->count();
         }
-        $page=$this->get_page($count, 10);
+        $page=$this->get_page($count, 2);
         $page_foot=$page->show();//显示页脚信息
         if(!empty($serch_name)){
             $where['goods_name']=array('like',"%$serch_name%");

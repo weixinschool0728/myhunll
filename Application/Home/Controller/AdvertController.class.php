@@ -12,6 +12,6 @@ class AdvertController extends FontEndController {
     
     public function lanrenhunli(){
         
-        $this->display();
+        $this->display('lanrenhunli');
     }
 }

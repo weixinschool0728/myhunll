@@ -151,6 +151,24 @@ class AdvertController extends FontEndController {
         }
     }
 
-
+    public function lanrenhunli(){
+        $combomodel=D('Admin_combo');
+        $data=$combomodel->field('combo_id')->select();
+        $this->assign('data',$data);
+        //获取服务类型表单提交值
+        if(!empty($_GET['combo_id'])){
+            $combo_id=$_GET['combo_id'];
+        }else{
+            $combo_id=$data[0]['combo_id'];
+        }
+        $this->assign('combo_id',$combo_id);
+        $combo_name=$combomodel->where("combo_id=$combo_id")->getField('combo_name');
+        $this->assign('combo_name',$combo_name);
+        $this->display('lanrenhunli');
+    }
+    
+    public function lanrenhunli_edit(){
+        var_dump($_GET);
+    }
 
 }

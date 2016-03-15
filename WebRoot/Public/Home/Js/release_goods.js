@@ -30,6 +30,9 @@ $('body').on('click','.div_goods_img a',function(){
     $('#img_count').html($('.goods_img').length);
 });
 
+
+
+
 //给性别radio一个默认值
 $('input[name=radio_sex]:eq(0)').attr('checked','checked');
 
@@ -44,7 +47,7 @@ $('input[name=radio_sex]:eq(0)').attr('checked','checked');
         'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
         'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
         'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image','multiimage',
-        'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+        'flash', 'media', 'insertfile', 'table', 'hr','emoticons', 'baidumap', 'pagebreak',
         'anchor', 'link', 'unlink', '|', 'about'
 ],
             uploadJson:"/Home/Kindeditor/editor_check",
@@ -92,13 +95,14 @@ function price_blue(obj,obj_info){
 
 
 
-
 function fabu(){
     //text_blue($('input[name=title]'),$('#info_title'));
-    check_file_image($('input[name=file_img]'),$('#span_touxiang'),false);
-    price_blue($('input[name=price]'),$('#info_price'));
-    price_blue($('input[name=yuan_price]'),$('#info_yuan_price'));
-    if(text_blue($('input[name=title]'),$('#info_title'))&&check_file_image($('input[name=file_img]'),$('#span_touxiang'),false)&&price_blue($('input[name=price]'),$('#info_price'))&&price_blue($('input[name=yuan_price]'),$('#info_yuan_price'))){
+    
+    var a=text_blue($('input[name=title]'),$('#info_title'));
+    var b=check_file_image($('input[name=file_img]'),$('#span_touxiang'),false);
+    var c=price_blue($('input[name=price]'),$('#info_price'));
+    var d=price_blue($('input[name=yuan_price]'),$('#info_yuan_price'));
+    if(a&&b&&c&&d){
         $('form[name=release_goods]').submit();
     }
     return false;
