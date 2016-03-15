@@ -286,7 +286,7 @@ class GoodsController extends FontEndController {
             $option['out_trade_no'] = $order['order_no'];
             $option['total_fee'] = floatval($order['price']);
             $option["subject"] = $order['goods_name'];
-            $option['body'] = sprintf("商铺名：%s 商品名：%s 服务时间：%s", $order['shop_name'], $order['goods_name'], $order['server_day']);
+            $option['body'] = sprintf("一起网：商铺名：%s 商品名：%s 服务时间：%s", $order['shop_name'], $order['goods_name'], $order['server_day']);
             vendor('create_direct_pay_by_xia.alipayapi'); //引入第三方类库
             $aliPay = new \AlipayOption($option, C("ALIPAY_CONFIG"));
             echo $aliPay->alipaySubmit();
@@ -295,7 +295,7 @@ class GoodsController extends FontEndController {
             vendor('wxp.native'); //引入第三方类库
             $notify = new \NativePay();
             $input = new \WxPayUnifiedOrder();
-            $input->SetBody(sprintf("商铺名：%s 商品名：%s 服务时间：%s", $order['shop_name'], $order['goods_name'], $order['server_day']));
+            $input->SetBody(sprintf("一起网：商铺名：%s 商品名：%s 服务时间：%s", $order['shop_name'], $order['goods_name'], $order['server_day']));
             $input->SetAttach($order['shop_name']);
             $input->SetOut_trade_no($order['order_no']);
             $input->SetTotal_fee($order['price'] * 100);
@@ -304,7 +304,7 @@ class GoodsController extends FontEndController {
             $input->SetGoods_tag($order['shop_name']);
             $input->SetNotify_url(PAY_HOST . U("Goods/notifyweixin"));
             $input->SetTrade_type("NATIVE");
-            $input->SetProduct_id("123456789");
+            $input->SetProduct_id($order['goods_id']);
             $result = $notify->GetPayUrl($input);
             $url2 = urlencode($result["code_url"]);
             file_put_contents("url.txt", $url2);
