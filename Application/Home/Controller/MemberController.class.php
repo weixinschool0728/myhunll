@@ -145,6 +145,7 @@ class MemberController extends FontEndController {
             rename($value, str_replace('Public/Uploads/image/temp', UPLOAD.'image/goods', $value));//移动文件
         }
         $goods_desc=str_replace('Public/Uploads/image/temp', UPLOAD.'image/goods', $content['content']);
+        $goods_desc=  replace_a($goods_desc);
         //得到商品分类id
         $categorymodel=D('Category');
         $server_content=$content['server_content'];
@@ -670,6 +671,7 @@ class MemberController extends FontEndController {
             $a=copy($value, str_replace('Public/Uploads/image/temp', UPLOAD.'image/goods', $value));
         }
         $goods_desc=str_replace('Public/Uploads/image/temp', UPLOAD.'image/goods', $content['content']);
+        $goods_desc=  replace_a($goods_desc);
         //得到商品分类id
         $categorymodel=D('Category');
         $server_content=$content['server_content'];

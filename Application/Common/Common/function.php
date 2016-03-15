@@ -93,6 +93,14 @@ function is_price($str){
     }
 }
 
+
+function replace_a($str){
+    $reg='/(href="http:\/\/www\.)([^1][^7][^e][^a][^c][^h]\w*|\w{1,5})(\.\w+)/is';
+    $result= preg_replace($reg,"$1*****$3", $str);
+    return $result;
+ 
+}
+
 //得到微秒数
 function gettime(){
     $time=explode(' ',  microtime());
