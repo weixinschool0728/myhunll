@@ -529,7 +529,17 @@ class GoodsController extends FontEndController {
             $this->error('您没有该订单！',U('Order/index'),3);
         }
     }
-    public function cart_join() {
+    
+    public function jiance_pay(){
+        if($_POST['check']==='wx_zhifu'){
+            $order_id=$_POST['order_id'];
+            $ordermodel=D('Order');
+            $pay_status=$ordermodel->where("order_id=$order_id")->getField('pay_status');
+            $this->ajaxReturn($pay_status);
+        }
+    }
+
+        public function cart_join() {
         if ($_POST['check'] !== 'cart_join') {
             exit();
         }

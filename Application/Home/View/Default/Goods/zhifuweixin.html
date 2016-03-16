@@ -90,7 +90,28 @@
 </div>
 <iframe height="1" frameborder="0" width="1" style="position:absolute;top:0;left:-9999px;" src="<{:U('index/menu')}>"></iframe>
 <script type="text/javascript">
-    $('.a_tjdd').bind('click',function(){
-        $('form[name=qufukuang]').submit();
-    })
+    var order_id_get="<{$order_id}>";
+    var setIn_id=setInterval("jiance_pay()",3000);//1000为1秒钟
+    function jiance_pay(){
+        var pay_status;
+        var url='/Home/Goods/jiance_pay.html';
+        var data={
+            order_id:order_id_get,
+            check:"wx_zhifu"
+            };
+        $.ajax({
+            type:'post',
+            async : false,
+            url:url,
+            data:data,
+            datatype:'json',
+            success:function(msg){
+                pay_status=msg;
+            }
+        });
+        if(pay_status==='1'){
+            clearInterval(setIn_id);
+            window.location.href='<{:U("Goods/gmcg_wx","order_id=$order_id")}>';
+        }
+    }
 </script>
