@@ -319,6 +319,7 @@ class GoodsController extends FontEndController {
             $url2 = urlencode($result["code_url"]);
             file_put_contents("url.txt", $url2);
             $this->assign("goods", $order);
+            $this->assign('order_id',$order_id);
             $this->assign("payurl", $url2);
             $this->display("zhifuweixin");
         } else {
@@ -481,16 +482,7 @@ class GoodsController extends FontEndController {
                     $this->error('您没有该订单权限');
                 }
                 $order_id = $order['order_id'];
-                //如果该条订单已被别人付款，提示已经被购买，返回首页
-                $goods_id = $order['goods_id'];
-                $server_day = $order['server_day'];
-                $tiaojian['order_id'] = array('neq', $order_id);
-                $order_qita = $ordermodel->where($tiaojian)->where("goods_id=$goods_id and server_day=$server_day")->find();
-                if (!empty($order_qita)) {
-                    if ($order_qita['pay_status'] == 1) {
-                        $this->error('该日期的商品已被购买，请选择其它商品', U('index/index'), 3);
-                    }
-                }
+               
 
 //                $row = array(
 //                    'pay_status' => 1, //支付状态为支付
@@ -518,9 +510,25 @@ class GoodsController extends FontEndController {
             $this->error($message, U('Order/index'), 3);
         }
 
-//---------------------------------------------------------------
     }
-
+    
+    
+    public function gmcg_wx(){
+        $order_id=$_GET['order_id'];
+        $user_id=$_SESSION['huiyuan']['user_id'];
+        $ordermodel=D('Order');
+        $order=$ordermodel->where("order_id=$order_id and deleted=0")->find();
+        if($user_id=$order['user_id']){
+            if($order['pay_status']==='1'){
+                $this->assign('order', $order);
+                $this->display('gmcg');
+            }else{
+                $this->error('未付款成功,将返回付款页面',$_SESSION['ref']);
+            }
+        }else{
+            $this->error('您没有该订单！',U('Order/index'),3);
+        }
+    }
     public function cart_join() {
         if ($_POST['check'] !== 'cart_join') {
             exit();
