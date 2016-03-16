@@ -842,6 +842,28 @@ class MemberController extends FontEndController {
         $this->display('balance');
     }
     
+    public function daijinquan(){
+        $this->assign("title","我的一起网");
+        $user_id=$_SESSION['huiyuan']['user_id'];//获取会员id号
+        $usersmodel=D('Users');
+        if(!empty($user_id)||$user_id===0){
+        $data=$usersmodel->where("user_id={$user_id}")->find();
+        }
+        $this->assign("touxiang_url",$data['head_url']);
+        if(date("H" ,$data['reg_time'])<12){
+            $day_time='上午好';
+        }else if(date("H" ,$data['reg_time'])>=12&&date("H" ,$data['reg_time'])<20){
+            $day_time='下午好';
+        }else{
+            $day_time='晚上好';
+        }
+        $this->assign("day_time",$day_time);
+        $this->assign("userdata",$data);
+        
+        
+        $this->display('daijinquan');
+    }
+    
     public function tixian(){
         $usersmodel=D('Users');
         $user_id=$_SESSION['huiyuan']['user_id'];//获取会员id号

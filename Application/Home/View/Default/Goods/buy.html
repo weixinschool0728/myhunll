@@ -40,10 +40,10 @@
     <td class="yingfu">&yen <{$goods['price']}></td>
 </tr>
 <tr class="buy_table_head buy_table_content">
-    <td colspan="5" class="yingfu">代金卷：0</td>
+    <td colspan="5" class="yingfu">可用代金卷：&yen<{$daijinjuan>$goods['price']/10?$goods['price']/10:$daijinjuan}></td>
 </tr>
 <tr class="buy_table_head buy_table_content">
-    <td colspan="5" class="yingfu">应付金额：&yen <{$goods['price']}></td>
+    <td colspan="5" class="yingfu">应付金额：&yen <{$goods['price']-($daijinjuan>$goods['price']/10?$goods['price']/10:$daijinjuan)}></td>
 </tr>
 </table>
     <div class="shuoming">提交订单后，商家将再次确认订单日期是否有档期，如没有，将全额退款</div>

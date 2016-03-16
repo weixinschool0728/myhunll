@@ -185,6 +185,9 @@ class GoodsController extends FontEndController {
         $goodsmodel = D('Goods');
         $goods = $goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.area,t1.goods_name,t1.price,t3.cat_name,t2.user_name,t1.user_id')->find();
         $this->assign('goods', $goods);
+        $usersmodel=D('Users');
+        $daijinjuan=$usersmodel->where("user_id=$user_id")->getField('daijinjuan');
+        $this->assign('daijinjuan',$daijinjuan);
         $this->assign('server_day', $server_day);
         $this->display('buy');
     }
@@ -206,6 +209,12 @@ class GoodsController extends FontEndController {
         $goodsmodel = D('Goods');
         $goods = $goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.area,t1.goods_name,t1.price,t3.cat_name,t2.user_name,t1.user_id')->find();
         $this->assign('goods', $goods);
+        $usersmodel=D('Users');
+        $daijinjuan=$usersmodel->where("user_id=$user_id")->getField('daijinjuan');
+        $ky_daijinjuan=$daijinjuan>$goods['price']/10?$goods['price']/10:$daijinjuan;
+        $dues=$goods['price']-$ky_daijinjuan;
+        $this->assign('ky_daijinjuan',$ky_daijinjuan);
+        $this->assign('dues',$dues);
         $this->assign('server_day', $server_day);
         $ordermodel = D('Order');
         //如果该条订单已被别人付款，提示已经被购买，返回
@@ -235,7 +244,9 @@ class GoodsController extends FontEndController {
             'pay_status' => 0, //支付状态为未支付
             'created' => mktime(),
             'updated' => mktime(),
-            'price' => $goods['price']
+            'price' => $goods['price'],
+            'daijinjuan'=>$ky_daijinjuan,
+            'dues'=>$dues
         );
         $result = $ordermodel->add($row); //订单信息写入数据库order表
         if ($result) {
@@ -294,7 +305,7 @@ class GoodsController extends FontEndController {
             $option['return_url'] = PAY_HOST . U("Goods/gmcg");
             $option['notify_url'] = PAY_HOST . U("Goods/notify");
             $option['out_trade_no'] = $order['order_no'];
-            $option['total_fee'] = floatval($order['price']);
+            $option['total_fee'] = floatval($order['dues']);
             $option["subject"] = $order['goods_name'];
             $option['body'] = sprintf("一起网：商铺名：%s 商品名：%s 服务时间：%s", $order['shop_name'], $order['goods_name'], $order['server_day']);
             vendor('create_direct_pay_by_xia.alipayapi'); //引入第三方类库
@@ -308,7 +319,7 @@ class GoodsController extends FontEndController {
             $input->SetBody(sprintf("一起网：商铺名：%s 商品名：%s 服务时间：%s", $order['shop_name'], $order['goods_name'], $order['server_day']));
             $input->SetAttach($order['shop_name']);
             $input->SetOut_trade_no($order['order_no']);
-            $input->SetTotal_fee($order['price'] * 100);
+            $input->SetTotal_fee($order['dues'] * 100);
             $input->SetTime_start(date("YmdHis"));
             $input->SetTime_expire(date("YmdHis", time() + 600));
             $input->SetGoods_tag($order['shop_name']);
@@ -348,7 +359,7 @@ class GoodsController extends FontEndController {
             $order = $ordermodel->where("order_no='{$returnPay["out_trade_no"]}' and deleted=0 ")->find();
             //验证交易金额是否为订单的金额;
             if (!empty($returnPay['total_fee'])) {
-                if ($returnPay['total_fee'] != $order['price'] * 100) {
+                if ($returnPay['total_fee'] != $order['dues'] * 100) {
                     echo "fail";
                     die;
                 }
@@ -398,7 +409,7 @@ class GoodsController extends FontEndController {
             $order = $ordermodel->where("order_no='{$out_trade_no}' and deleted=0 ")->find();
             //验证交易金额是否为订单的金额;
             if (!empty($_POST['total_fee'])) {
-                if ($_POST['total_fee'] != $order['price']) {
+                if ($_POST['total_fee'] != $order['dues']) {
                     echo "fail";
                     die;
                 }
@@ -430,7 +441,18 @@ class GoodsController extends FontEndController {
             //商品表里面购买数量加1
             $goodsmodel = D('Goods');
             $goodsmodel->where("goods_id=$goods_id")->setInc('buy_number');
-
+            //用户代金卷更新
+            $order=$ordermodel->where("order_id=$order_id")->field('daijinjuan,user_id')->find();
+            if($order['daijinjuan']!=='0.00'){
+                $usersmodel=D('Users');
+                $user_id=$order['user_id'];
+                $user_daijinjuan=$usersmodel->where("user_id=$user_id")->getField('daijinjuan');
+                $daijinjuan=$user_daijinjuan-$order['daijinjuan'];
+                $users_row=array(
+                    'daijinjuan'=>$daijinjuan
+                );
+                $usersmodel->where("user_id=$user_id")->save($users_row);
+            }
             echo "success";
         } else {
             //验证失败
@@ -467,7 +489,7 @@ class GoodsController extends FontEndController {
                 $ordermodel = D('Order');
                 $order = $ordermodel->where("order_no='{$out_trade_no}' and deleted=0 ")->find();
                 $this->assign('order', $order);
-                if ($_GET['total_fee'] != $order['price']) {
+                if ($_GET['total_fee'] != $order['dues']) {
                     $this->error('订单的金额有问题，可能与提交时的不符', U('Order/index'), 3);
                 }
                 //验证收款人邮箱
