@@ -21,6 +21,12 @@ class GoodsController extends FontEndController {
         $this->assign('is_login', $is_login);
         $goods_id = $_GET['goods_id'];
         $this->assign('goods_id', $goods_id);
+        $goodsmodel = D('Goods');
+        $goods = $goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.user_id,t1.goods_id,t1.area,t1.goods_name,t1.price,t1.yuan_price,t1.goods_img,t1.goods_img_qita,t1.goods_sex,t1.goods_desc,t1.comment_number,t1.shuxing,t1.score,t3.cat_name,t2.user_name,t1.user_id,t2.weixin,t2.qq,t2.mobile_phone,t2.email,t1.comment_number,t2.shop_introduce,t1.daijinquan,t1.fanxian,t2.weixin_erweima,t1.cat_id,t1.is_delete')->find();
+        if($goods['is_delete']==='1'){
+            $this->error('该商品已被删除！', '/Home/Index/index');
+        }
+        
         //把商品id赋值给cookie 并且永久保存.
         if (is_shuzi($goods_id)) {
             $arr_goods_id = cookie('distory_goods_id') == '' ? array() : cookie('distory_goods_id');
@@ -38,8 +44,7 @@ class GoodsController extends FontEndController {
 
 
 
-        $goodsmodel = D('Goods');
-        $goods = $goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.user_id,t1.goods_id,t1.area,t1.goods_name,t1.price,t1.yuan_price,t1.goods_img,t1.goods_img_qita,t1.goods_sex,t1.goods_desc,t1.comment_number,t1.shuxing,t1.score,t3.cat_name,t2.user_name,t1.user_id,t2.weixin,t2.qq,t2.mobile_phone,t2.email,t1.comment_number,t2.shop_introduce,t1.daijinquan,t1.fanxian,t2.weixin_erweima,t1.cat_id')->find();
+        
         $goods['shop_introduce'] = str_replace("\r", "", $goods['shop_introduce']);
         $goods['shop_introduce'] = str_replace("\n", "", $goods['shop_introduce']);
         $goods['url']['url'] = urlencode('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
@@ -262,6 +267,11 @@ class GoodsController extends FontEndController {
         $pay_method = array_key_exists($pay_method, C("PAY_METHOD")) ? $pay_method : 1;
         $ordermodel = D('Order');
         $order = $ordermodel->where("order_id=$order_id and deleted=0 ")->find();
+        $goodsmodel=D('Goods');
+        $goods_id=$order['goods_id'];
+        $cat_id=$goodsmodel->where("goods_id=$goods_id")->getField('cat_id');
+        $categorymodel=D('Category');
+        $order['cat_name']=$categorymodel->where("cat_id=$cat_id")->getField('cat_name');
         $this->assign('order', $order);
         $order_user_id = $order['user_id']; //登录用户无该订单权限
         if ($order_user_id != $_SESSION['huiyuan']['user_id']) {//登录用户无该订单权限
@@ -345,18 +355,7 @@ class GoodsController extends FontEndController {
 
 
             $order_id = $order['order_id'];
-            //如果该条订单已被别人付款，提示已经被购买，返回首页
-            $goods_id = $order['goods_id'];
-            $server_day = $order['server_day'];
-            $tiaojian['order_id'] = array('neq', $order_id);
-            $order_qita = $ordermodel->where($tiaojian)->where("goods_id=$goods_id and server_day=$server_day")->find();
-            if (!empty($order_qita)) {
-                if ($order_qita['pay_status'] == 1) {
-                    echo "fail";
-                    die;
-                    // $this->error('该日期的商品已被购买，请选择其它商品', U('index/index'), 3);
-                }
-            }
+            
 
             $row = array(
                 'pay_status' => 1, //支付状态为支付
@@ -413,18 +412,7 @@ class GoodsController extends FontEndController {
             }
 
             $order_id = $order['order_id'];
-            //如果该条订单已被别人付款，提示已经被购买，返回首页
-            $goods_id = $order['goods_id'];
-            $server_day = $order['server_day'];
-            $tiaojian['order_id'] = array('neq', $order_id);
-            $order_qita = $ordermodel->where($tiaojian)->where("goods_id=$goods_id and server_day=$server_day")->find();
-            if (!empty($order_qita)) {
-                if ($order_qita['pay_status'] == 1) {
-                    echo "fail";
-                    die;
-                    // $this->error('该日期的商品已被购买，请选择其它商品', U('index/index'), 3);
-                }
-            }
+            
 
             $row = array(
                 'pay_status' => 1, //支付状态为支付

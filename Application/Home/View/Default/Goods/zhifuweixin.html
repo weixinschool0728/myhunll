@@ -35,26 +35,58 @@
     <th class="yingfu">应付</th>
 </tr>
 <tr class="buy_table_head buy_table_content">
-    <td class="shangjia"><{$goods['user_name']}></td>
+    <td class="shangjia"><{$goods['shop_name']}></td>
     <td class="desc">[<{$goods['cat_name']}>]<{$goods['goods_name']}></td>
     <td class="price">&yen <{$goods['price']}></td>
-    <td class="daijin"><{$server_day|date_geshi1}></td>
+    <td class="daijin"><{$goods['server_day']|date_geshi1}></td>
     <td class="yingfu">&yen <{$goods['price']}></td>
 </tr>
 <tr class="buy_table_head buy_table_content">
-    <td colspan="5" class="yingfu">代金卷：0</td>
+    <td colspan="3" class="yingfu">代金卷：0</td>
+    <td colspan="2" class="yingfu">应付金额：&yen <{$goods['price']}></td>
 </tr>
-<tr class="buy_table_head buy_table_content">
-    <td colspan="5" class="yingfu">应付金额：&yen <{$goods['price']}></td>
-</tr>
+
 
 </table>
         <input type="hidden" name="order_id" value="<{$order_id}>" />
     </form>
-    <div style='text-align: center;margin-left: auto;margin-right: auto;'>
-        <img width="150" height="150" src="<{:U('Buy/getQRPHP')}>?data=<{$payurl}>">
-        <a href='<{:U("index/index")}>'>支付完了，回首页</a>
+    
+    
+    <div class="wxzhifu_div">
+        <div class="wxzhifu_left">
+            <div class="left_content">
+                <div class="qrcode-header">
+                    <div class="ft-center">扫一扫付款（元）</div>
+                    <div class="ft-center qrcode-header-money"><{$goods['price']}></div>
+                </div>
+                <div class="qrguide-area" id="J_qrguideArea" seed="NewQr_animationClick">
+                    <img style="display: block;" smartracker="on" seed="J_qrguideArea-qrguideAreaImgT1" src="__PUBLIC_HOME__/Images/public/saoyisao_big.jpg" class="qrguide-area-img active">
+                </div>
+                <div class="qrcode-img-wrapper">
+                    <div class="qrcode-img-area">
+                        <div style="position: relative;display: inline-block;">
+                            <img height="190" width="190" src="<{:U('Buy/getQRPHP')}>?data=<{$payurl}>" style="position: relative;left:-10px;" />
+                        </div>
+                    </div>
+                    <div class="qrcode-img-explain fn-clear">
+                        <img smartracker="on" seed="qrcodeImgExplain-tImagesT1bdtfXfdiXXXXXXXX" class="fn-left" src="__PUBLIC_HOME__/Images/public/saoyisao.png" alt="扫一扫标识">
+                        <div class="fn-left">打开手机支付宝<br>扫一扫继续付款</div>
+                    </div>
+                </div>
+                <div class="botton_zhifu"><a class="button_a_lvse" href='<{:U("Order/index")}>'>支付完了，返回订单</a></div>
+            </div>
+        </div>
+        <div class="wxzhifu_right">
+            <div class="right_content">
+                 <p>注意：</p>手机扫码付款成功后，请点击返回订单查看付款状态
+            </div>
+        </div>
     </div>
+    
+    
+    
+    
+
 </div>
 <iframe height="1" frameborder="0" width="1" style="position:absolute;top:0;left:-9999px;" src="<{:U('index/menu')}>"></iframe>
 <script type="text/javascript">
