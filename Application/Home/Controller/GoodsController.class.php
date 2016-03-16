@@ -310,7 +310,9 @@ class GoodsController extends FontEndController {
             $option['body'] = sprintf("一起网：商铺名：%s 商品名：%s 服务时间：%s", $order['shop_name'], $order['goods_name'], $order['server_day']);
             vendor('create_direct_pay_by_xia.alipayapi'); //引入第三方类库
             $aliPay = new \AlipayOption($option, C("ALIPAY_CONFIG"));
-            echo $aliPay->alipaySubmit();
+            $button=$aliPay->alipaySubmit();
+            $this->assign('button',$button);
+            $this->display('zhifu_tiaozhuan');
         } else if ($pay_method == 2) {
             //微信
             vendor('wxp.native'); //引入第三方类库

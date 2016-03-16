@@ -192,3 +192,13 @@ float: right;
     left: 0;
     z-index: -1;
 }
+.tiaozhuan{
+    height: 300px;
+    color: #333;
+    font-size: 16px;
+    padding-top: 30px;
+    text-align: center;
+}
+.tiaozhuan_button{
+    display: inline-block;
+}

@@ -42,8 +42,8 @@
     <td class="yingfu">&yen <{$goods['price']}></td>
 </tr>
 <tr class="buy_table_head buy_table_content">
-    <td colspan="3" class="yingfu">代金卷：0</td>
-    <td colspan="2" class="yingfu">应付金额：&yen <{$goods['price']}></td>
+    <td colspan="3" class="yingfu">代金卷：<{$goods['daijinjuan']}></td>
+    <td colspan="2" class="yingfu">应付金额：&yen <{$goods['dues']}></td>
 </tr>
 
 
@@ -57,7 +57,7 @@
             <div class="left_content">
                 <div class="qrcode-header">
                     <div class="ft-center">扫一扫付款（元）</div>
-                    <div class="ft-center qrcode-header-money"><{$goods['price']}></div>
+                    <div class="ft-center qrcode-header-money"><{$goods['dues']}></div>
                 </div>
                 <div class="qrguide-area" id="J_qrguideArea" seed="NewQr_animationClick">
                     <img style="display: block;" smartracker="on" seed="J_qrguideArea-qrguideAreaImgT1" src="__PUBLIC_HOME__/Images/public/saoyisao_big.jpg" class="qrguide-area-img active">
