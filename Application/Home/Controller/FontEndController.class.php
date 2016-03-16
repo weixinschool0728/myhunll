@@ -20,7 +20,7 @@ class FontEndController extends Controller {
         
         //需要登录的控制器或者方法
         $login_contorller = array('Member','Order');//需要登录的控制器
-        $login=array('Goods/buy','Goods/zhifu','Goods/gmcg');//需要登录的方法
+        $login=array('Goods/buy','Goods/zhifu','Goods/gmcg','Goods/alipay','Goods/gmcg_wx','Goods/sellection_join');//需要登录的方法
         if (in_array(CONTROLLER_NAME, $login_contorller)||in_array(CONTROLLER_NAME.'/'.ACTION_NAME, $login)) {
             if (!isset($_SESSION['huiyuan']) || $_SESSION['huiyuan'] == '') {
                // $_SESSION['ref']=CONTROLLER_NAME.'/'.ACTION_NAME;
