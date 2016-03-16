@@ -47,11 +47,18 @@
 <tr class="buy_table_head buy_table_content">
     <td colspan="5" class="yingfu">应付金额：&yen <{$goods['price']}></td>
 </tr>
-<volist name="pay_method" key="key" id="vopay">
-    <tr class="buy_table_head buy_table_content">
-        <td colspan="5" class="yingfu"><label><input name="pay_method" type="radio" value="<{$vopay.id}>"><{$vopay.name}></label></td>
-    </tr>
-</volist>
+<tr class="buy_table_head buy_table_content">
+    <td colspan="5" class="yingfu">
+        <label>
+            付款方式：
+            <select name="pay_method" >
+                <volist name="pay_method" key="key" id="vopay">
+                    <option value="<{$vopay.id}>" ><{$vopay.name}></option>
+                </volist>
+            </select>
+        </label>
+    </td>
+</tr>
 </table>
         <input type="hidden" name="order_id" value="<{$order_id}>" />
     </form>
