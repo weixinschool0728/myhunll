@@ -163,13 +163,9 @@ class OrderController extends FontEndController {
             //婚礼人账户余额增加
             $order=$ordermodel->where("order_id=$order_id")->find();
             $shop_id=$order['shop_id'];
-            $price=$order['price'];
+            $dues=(float)$order['dues'];
             $usersmodel=D('Users');
-            $row_users=array(
-                'credit_line'=>$price//账户余额
-                );
-            $usersmodel->where("user_id=$shop_id")->save($row_users);
-            
+            $usersmodel->where("user_id=$shop_id")->setInc( 'credit_line',$dues );
             $this->redirect('Order/appraise',array('order_id'=>$order_id),0);
 
         }else{
