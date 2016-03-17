@@ -189,15 +189,15 @@ class GoodsController extends FontEndController {
         if($goods['daijinquan']==='1'){
             $usersmodel=D('Users');
             $daijinjuan=$usersmodel->where("user_id=$user_id")->getField('daijinjuan');
-            $ky_daijinjuan=number_format($daijinjuan>$goods['price']/10?$goods['price']/10:$daijinjuan,2);
+            $ky_daijinjuan=round($daijinjuan>$goods['price']/10?$goods['price']/10:$daijinjuan,2);
         }else{
             $ky_daijinjuan=0.00;
         }
-        $dues=number_format($goods['price']-$ky_daijinjuan,2);
+        $dues=round($goods['price']-$ky_daijinjuan,2);
         $this->assign('ky_daijinjuan',$ky_daijinjuan);
         $this->assign('dues',$dues);
         //返现
-        $fanxian=number_format($dues*$goods['fanxian']*0.01,2);
+        $fanxian=round($dues*$goods['fanxian']*0.01,2);
         $this->assign('fanxian',$fanxian);
 
         $this->assign('server_day', $server_day);
@@ -225,15 +225,15 @@ class GoodsController extends FontEndController {
         if($goods['daijinquan']==='1'){
             $usersmodel=D('Users');
             $daijinjuan=$usersmodel->where("user_id=$user_id")->getField('daijinjuan');
-            $ky_daijinjuan=number_format($daijinjuan>$goods['price']/10?$goods['price']/10:$daijinjuan,2);
+            $ky_daijinjuan=round($daijinjuan>$goods['price']/10?$goods['price']/10:$daijinjuan,2);
         }else{
             $ky_daijinjuan=0.00;
         }
-        $dues=number_format($goods['price']-$ky_daijinjuan,2);
+        $dues=round($goods['price']-$ky_daijinjuan,2);
         $this->assign('ky_daijinjuan',$ky_daijinjuan);
         $this->assign('dues',$dues);
         //返现
-        $fanxian=number_format($dues*$goods['fanxian']*0.01,2);
+        $fanxian=round($dues*$goods['fanxian']*0.01,2);
         $this->assign('fanxian',$fanxian);
         
         $this->assign('server_day', $server_day);
