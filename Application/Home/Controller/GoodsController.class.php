@@ -183,11 +183,23 @@ class GoodsController extends FontEndController {
             }
         }
         $goodsmodel = D('Goods');
-        $goods = $goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.area,t1.goods_name,t1.price,t3.cat_name,t2.user_name,t1.user_id')->find();
+        $goods = $goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.area,t1.goods_name,t1.price,t3.cat_name,t2.user_name,t1.user_id,t1.daijinquan,t1.fanxian')->find();
         $this->assign('goods', $goods);
-        $usersmodel=D('Users');
-        $daijinjuan=$usersmodel->where("user_id=$user_id")->getField('daijinjuan');
-        $this->assign('daijinjuan',$daijinjuan);
+        //代金券
+        if($goods['daijinquan']==='1'){
+            $usersmodel=D('Users');
+            $daijinjuan=$usersmodel->where("user_id=$user_id")->getField('daijinjuan');
+            $ky_daijinjuan=number_format($daijinjuan>$goods['price']/10?$goods['price']/10:$daijinjuan,2);
+        }else{
+            $ky_daijinjuan=0.00;
+        }
+        $dues=number_format($goods['price']-$ky_daijinjuan,2);
+        $this->assign('ky_daijinjuan',$ky_daijinjuan);
+        $this->assign('dues',$dues);
+        //返现
+        $fanxian=number_format($dues*$goods['fanxian']*0.01,2);
+        $this->assign('fanxian',$fanxian);
+
         $this->assign('server_day', $server_day);
         $this->display('buy');
     }
@@ -207,14 +219,23 @@ class GoodsController extends FontEndController {
         $this->assign('goods_id', $goods_id);
         $this->assign("pay_method", C("PAY_METHOD"));
         $goodsmodel = D('Goods');
-        $goods = $goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.area,t1.goods_name,t1.price,t3.cat_name,t2.user_name,t1.user_id')->find();
+        $goods = $goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.area,t1.goods_name,t1.price,t3.cat_name,t2.user_name,t1.user_id,t1.daijinquan,t1.fanxian')->find();
         $this->assign('goods', $goods);
-        $usersmodel=D('Users');
-        $daijinjuan=$usersmodel->where("user_id=$user_id")->getField('daijinjuan');
-        $ky_daijinjuan=$daijinjuan>$goods['price']/10?$goods['price']/10:$daijinjuan;
-        $dues=$goods['price']-$ky_daijinjuan;
+        //代金券
+        if($goods['daijinquan']==='1'){
+            $usersmodel=D('Users');
+            $daijinjuan=$usersmodel->where("user_id=$user_id")->getField('daijinjuan');
+            $ky_daijinjuan=number_format($daijinjuan>$goods['price']/10?$goods['price']/10:$daijinjuan,2);
+        }else{
+            $ky_daijinjuan=0.00;
+        }
+        $dues=number_format($goods['price']-$ky_daijinjuan,2);
         $this->assign('ky_daijinjuan',$ky_daijinjuan);
         $this->assign('dues',$dues);
+        //返现
+        $fanxian=number_format($dues*$goods['fanxian']*0.01,2);
+        $this->assign('fanxian',$fanxian);
+        
         $this->assign('server_day', $server_day);
         $ordermodel = D('Order');
         //如果该条订单已被别人付款，提示已经被购买，返回
@@ -246,7 +267,8 @@ class GoodsController extends FontEndController {
             'updated' => mktime(),
             'price' => $goods['price'],
             'daijinjuan'=>$ky_daijinjuan,
-            'dues'=>$dues
+            'dues'=>$dues,
+            'fanxian'=>$fanxian
         );
         $result = $ordermodel->add($row); //订单信息写入数据库order表
         if ($result) {

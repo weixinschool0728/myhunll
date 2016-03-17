@@ -163,9 +163,10 @@ class OrderController extends FontEndController {
             //婚礼人账户余额增加
             $order=$ordermodel->where("order_id=$order_id")->find();
             $shop_id=$order['shop_id'];
-            $dues=(float)$order['dues'];
+            $dues=(float)($order['dues']-$order['fanxian']);
             $usersmodel=D('Users');
             $usersmodel->where("user_id=$shop_id")->setInc( 'credit_line',$dues );
+            
             $this->redirect('Order/appraise',array('order_id'=>$order_id),0);
 
         }else{
@@ -257,6 +258,15 @@ class OrderController extends FontEndController {
             'updated'=> mktime()
                 );
         $ordermodel->where("order_id=$order_id")->save($row);
+        
+        //评论后购买人的账户余额增加返现金额
+        $order=$ordermodel->where("order_id=$order_id")->find();
+        $fanxian=$order['fanxkian'];
+        if($fanxian!=='0.00'){
+            $fanxian=(float)$fanxian;
+            $usersmodel=D('Users');
+            $usersmodel->where("user_id=$user_id")->setInc( 'credit_line',$fanxian );
+        }
         
         //更新商品表里面的分数和评价人数，存入
         $goods_id=$ordermodel->where("order_id=$order_id")->getField('goods_id');//得到商品id

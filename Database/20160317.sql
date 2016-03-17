@@ -1,0 +1,1 @@
+ALTER TABLE  `m_order` ADD  `fanxian` DECIMAL( 10, 2 ) UNSIGNED NOT NULL DEFAULT  '0.00' AFTER  `dues` ;
