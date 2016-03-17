@@ -21,8 +21,8 @@
             <div class="d2_title">商品信息</div>
             <div class="d2_table">
                 <table>
-                    <tr><th class="left">商品图片</th><th class="teshu">商品名称</th><th>价格</th><th>服务日期</th><th>状态</th><th>支付金额</th></tr>
-                    <tr><td class="left"><img src="<{$order['goods_img']}>" class="img_goods" /></td><td class="teshu"><{$order['goods_name']}></td><td>&yen;<{$order['price']}></td><td><{$order['server_day']|date_geshi1=###}></td><td><{:order_status($order['pay_status'],$order['status'])['status']}></td><td>&yen;<{$order['price']}></td></tr>
+                    <tr><th class="left">商品图片</th><th class="teshu">商品名称</th><th>价格</th><th>服务日期</th><th>状态</th><th>支付金额</th><th>返现</th></tr>
+                    <tr><td class="left"><img src="<{$order['goods_img']}>" class="img_goods" /></td><td class="teshu"><{$order['goods_name']}></td><td>&yen;<{$order['price']}></td><td><{$order['server_day']|date_geshi1=###}></td><td><{:order_status($order['pay_status'],$order['status'])['status']}></td><td>&yen;<{$order['dues']}></td><td>&yen;<{$order['fanxian']}></td></tr>
                 </table>
             </div>
         </div>

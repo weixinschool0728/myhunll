@@ -42,7 +42,7 @@
                     <div class="info"><a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>"><{$vo['goods_name']}></a><p class="color_999">商品日期：<{$vo['server_day']|date_geshi1=###}></p><p class="color_2BB8AA">商家：<{$vo['shop_name']}></p></div>
                 </div>
                 <div class='td2'>&yen;<{$vo['price']}></div>
-                <div class='td3'>&yen;<{$vo['price']}></div>
+                <div class='td3'>&yen;<{$vo['dues']}></div>
                 <div class='td4'><p><{:order_status($vo['pay_status'],$vo['status'])['status']}></p><a href="<{:U('Order/view',array('order_id'=>$vo['order_id']))}>">订单详情</a></div>
                 <div class='td5'>
                     <a href="<{:order_status($vo['pay_status'],$vo['status'],$vo['order_id'],$vo['server_day'],$vo['goods_id'])['status_url']}>" class="button_a_lvse"><{:order_status($vo['pay_status'],$vo['status'])['status_button']}></a>
