@@ -251,3 +251,6 @@ function click_miaodian(obj){
        $('.shopping').bind('mouseout',function(){
            $(this).css('border-color','#DDD');
        });
+
+//右侧广告最后一个取消下边框
+$('.lunbo_r .guanggao:last').css('border','none');
