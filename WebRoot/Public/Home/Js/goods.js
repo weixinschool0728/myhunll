@@ -30,7 +30,7 @@
                     str+='<li class="other_goods"> ';
                     str+='<a href="/Home/Goods/index/goods_id/'+item.goods_id+'.html" class="other_a">';
                     str+='<span class="span1">['+item.cat_name+']'+item.goods_name+'</span>';
-                    str+='<span class="span2 hlljg">&yen; '+item.price+'</span><span class="span2 mdj">&yen; '+item.yuan_price+'</span><span class="span2 ys">200</span>';
+                    str+='<span class="span2 hlljg">&yen; '+item.price+'</span><span class="span2 mdj">&yen; '+item.yuan_price+'</span><span class="span2 ys">'+item.buy_number+'</span>';
                     str+='</a></li>';
                 });
                 
@@ -56,7 +56,7 @@ $('body').on('click','.other .page_foot a',function(event){
                     str+='<li class="other_goods"> ';
                     str+='<a href="/Home/Goods/index/goods_id/'+item.goods_id+'.html" class="other_a">';
                     str+='<span class="span1">['+item.cat_name+']'+item.goods_name+'</span>';
-                    str+='<span class="span2 hlljg">&yen; '+item.price+'</span><span class="span2 mdj">&yen; '+item.yuan_price+'</span><span class="span2 ys">200</span>';
+                    str+='<span class="span2 hlljg">&yen; '+item.price+'</span><span class="span2 mdj">&yen; '+item.yuan_price+'</span><span class="span2 ys">'+item.buy_number+'</span>';
                     str+='</a></li>';
                 });
                 
@@ -302,6 +302,14 @@ if(url_dangqian.lastIndexOf('#maodian_pingjia')!='-1'||url_dangqian.lastIndexOf(
     $('.ljpj').css('background-color','#FFF');
     $('.spxq').css('background-color','#F6F6F6');
 }
+
+//商品页面内的maodian_pingjia点击显示评价
+$('.maodian_pingjia').bind('click',function(){
+    $('#spxq').css('display','none');
+    $('.pinglun').css('display','block');
+    $('.ljpj').css('background-color','#FFF');
+    $('.spxq').css('background-color','#F6F6F6');
+});
 
 //网页一开始就需要获取累计评论ajax信息
     var url_pinglun=url_y.replace('index','pinglun');

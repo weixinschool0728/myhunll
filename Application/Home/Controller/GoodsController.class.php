@@ -22,7 +22,7 @@ class GoodsController extends FontEndController {
         $goods_id = $_GET['goods_id'];
         $this->assign('goods_id', $goods_id);
         $goodsmodel = D('Goods');
-        $goods = $goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.user_id,t1.goods_id,t1.area,t1.goods_name,t1.price,t1.yuan_price,t1.goods_img,t1.goods_img_qita,t1.goods_sex,t1.goods_desc,t1.comment_number,t1.shuxing,t1.score,t3.cat_name,t2.user_name,t1.user_id,t2.weixin,t2.qq,t2.mobile_phone,t2.email,t1.comment_number,t2.shop_introduce,t1.daijinquan,t1.fanxian,t2.weixin_erweima,t1.cat_id,t1.is_delete')->find();
+        $goods = $goodsmodel->table('m_goods t1,m_users t2,m_category t3')->where("t1.user_id=t2.user_id and t1.goods_id=$goods_id and t1.cat_id=t3.cat_id")->field('t1.user_id,t1.goods_id,t1.area,t1.goods_name,t1.price,t1.yuan_price,t1.goods_img,t1.goods_img_qita,t1.goods_sex,t1.goods_desc,t1.comment_number,t1.shuxing,t1.score,t3.cat_name,t2.user_name,t1.user_id,t2.weixin,t2.qq,t2.mobile_phone,t2.email,t1.comment_number,t2.shop_introduce,t1.daijinquan,t1.fanxian,t2.weixin_erweima,t1.cat_id,t1.is_delete,t1.buy_number')->find();
         if($goods['is_delete']==='1'){
             $this->error('该商品已被删除！', '/Home/Index/index');
         }
@@ -147,7 +147,7 @@ class GoodsController extends FontEndController {
         $count = $goodsmodel->where("user_id=$user_id and is_delete=0")->count();
         $page = $this->get_page($count, 5);
         $page_foot = $page->show(); //显示页脚信息
-        $goods_qita = $goodsmodel->table('m_goods t1,m_category t2')->where("t1.cat_id=t2.cat_id and t1.user_id=$user_id  and t1.is_delete=0")->limit($page->firstRow . ',' . $page->listRows)->order('t1.last_update desc')->field('t2.cat_name,t1.goods_name,t1.price,t1.yuan_price,t1.goods_id')->select();
+        $goods_qita = $goodsmodel->table('m_goods t1,m_category t2')->where("t1.cat_id=t2.cat_id and t1.user_id=$user_id  and t1.is_delete=0")->limit($page->firstRow . ',' . $page->listRows)->order('t1.last_update desc')->field('t2.cat_name,t1.goods_name,t1.price,t1.yuan_price,t1.goods_id,t1.buy_number')->select();
         $data['li'] = $goods_qita;
         $data['page_foot'] = $page_foot;
         $this->ajaxReturn($data);
