@@ -35,7 +35,7 @@
                     <form action="<{:U('Order/queren_success')}>" name="form_queren" method="post">
                         <input type="hidden" name="order_id" value="<{$order['order_id']}>" />
                         <input type="password" name="zhifu_password" />
-                        <a href='#' class="wjmm" style='border-right:1px dotted;padding-right: 10px;'>修改支付密码</a>
+                        <a href='<{:U("Member/xiugai_zhifumima")}>' class="wjmm" style='border-right:1px dotted;padding-right: 10px;'>修改支付密码</a>
                         <a href='#' class="wjmm">忘记密码？</a>
                     </form>
                 </div>

@@ -1010,6 +1010,63 @@ class MemberController extends FontEndController {
             }
         }
     }
+    
+    public function xiugai_zhifumima(){
+        $time=gettime();
+        $_SESSION['xiugai_zhifumima']=$time;
+        $this->assign("time",$time);
+        $this->assign("title","会员_修改支付密码");
+        $this->display('xiugai_zhifumima');
+    }
+    
+    public function xiugai_zhifumima_check(){
+        if($_POST['check']=='xiugai_mima'){
+            $user_id=$_SESSION['huiyuan']['user_id'];
+            $mima =$_POST['mima'];
+            if(is_feifa($mima)){
+                exit();
+            }
+            $usersmodel=D('Users');
+            $salt=$usersmodel->where("user_id=$user_id")->getField('salt');
+            $mima_md5=md5($mima.$salt);
+            $data=$usersmodel->where("user_id=$user_id and zhifu_password='{$mima_md5}'")->count();
+            $this->ajaxReturn($data);
+            exit();
+        }
+    }
+    
+    public function xiugai_zhifumima_success(){
+        if(!empty($_POST['hidden'])&&!empty($_SESSION['xiugai_zhifumima'])){
+            $hidden=$_POST['hidden'];
+            if($hidden==$_SESSION['xiugai_zhifumima']){
+                $user_id=$_SESSION['huiyuan']['user_id'];
+                $mima =$_POST['yuan_mima'];
+                if(is_feifa($mima)){
+                    exit();
+                }
+                $usersmodel=D('Users');
+                $salt=$usersmodel->where("user_id='{$user_id}'")->getField('salt');
+                $mima_md5=md5($mima.$salt);
+                $data=$usersmodel->where("user_id='{$user_id}' and zhifu_password='{$mima_md5}'")->count();
+                if($data=='1'){
+                     $new_mima_md5=md5($_POST['new_mima'].$salt);
+                     $row=array(
+                         'zhifu_password'=>$new_mima_md5
+                     );
+                     $usersmodel->where("user_id=$user_id")->save($row);
+                     $this->success('修改成功,将返回原页面',$_SESSION['ref'],3);
+                }else{
+                    $this->error('原密码错误，修改失败',U('Member/xiugai_mima'),3);
+                }
+            }else{
+                $this->error('您中途打开了另一个修改页面，请重新进入',U('Member/xiugai_mima'),3);
+            }
+        }else{
+            $this->error('非法操作，请从修改密码页面进入',U('index/index'),3);
+
+        }
+    }
+    
 }
 
 
