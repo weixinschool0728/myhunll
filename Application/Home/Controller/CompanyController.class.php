@@ -12,6 +12,16 @@ class CompanyController extends FontEndController {
             $name="用户协议";
         }elseif($name==='hunliren_protocol'){
             $name="商家协议";
+        }elseif($name==='daijinquan'){
+            $name="代金券规则";
+        }elseif($name==='fanxian'){
+            $name="返现规则";
+        }elseif($name==='shuangbeipeifu'){
+            $name="双倍赔付规则";
+        }elseif($name==='suishitui'){
+            $name="随时退规则";
+        }elseif($name==='baozhengjin'){
+            $name="保证金规则";
         }
         $companymodel=D('Admin_company');
         $data=$companymodel->where("name='$name'")->find();
