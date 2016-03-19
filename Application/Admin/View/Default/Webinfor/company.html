@@ -10,17 +10,25 @@
 <script src="__PUBLIC_COMMON__/Js/kindeditor/lang/zh_CN.js"></script>
 </head>
 <body>
-    
-    <div style="font-size: 16px;margin: 20px 200px;">详情编辑--轮播<{$data['position']==='轮播上'?'上':'下'}>（<{$xuhao}>）</div>
-    <form name="advert_xqbj" method="post" enctype="multipart/form-data" action="<{:U('Advert/xqbj_check')}>">
-        <input name='xuhao' value="<{$xuhao}>" type="hidden" />
+    <div style="font-size: 16px;margin: 20px 200px;"><{$data['name']}>——编辑</div>
+    <form name="company" method="post" enctype="multipart/form-data"  action="<{:U('Webinfor/bianji_check')}>">
+        <input name='name' value="<{$data['name']}>" type="hidden" />
     <div style="margin: 0px 0px 20px 30px;" >
     <textarea id="content" name="content" style="width:90%;height:300px;visibility:hidden;">
-                    <{$data['advert_desc']}>
+                    <{$data['text']}>
     </textarea>
     </div>
-    <input type="submit" value="确定发布" style="margin: 20px 0px 50px 30px;" />
+    <input id='qdxg' type="submit" value="确定修改" style="margin: 20px 0px 50px 30px;" />
     </form>
     <script src="__PUBLIC_ADMIN__/Js/kindeditor.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $('#qdxg').bind('click',function(event){
+            var name="<{$data['name']}>";
+            if(!window.confirm('确定要修改'+name+'吗？')){
+                event.preventDefault();
+            };
+        });
+    </script> 
 </body>
 </html>

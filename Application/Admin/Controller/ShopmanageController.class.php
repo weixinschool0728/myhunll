@@ -60,7 +60,7 @@ class ShopmanageController extends FontEndController {
         }else{
             $count=$goodsmodel->where("cat_id={$cat_id} and is_delete=0")->count();
         }
-        $page=$this->get_page($count, 2);
+        $page=$this->get_page($count, 10);
         $page_foot=$page->show();//显示页脚信息
         if(!empty($serch_name)){
             $where['goods_name']=array('like',"%$serch_name%");
