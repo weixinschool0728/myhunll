@@ -33,11 +33,11 @@ line-height:2.2;}
 .site-info_r i{
 display:block;
 margin:0px auto;
-background-image:url(../Images/index/footer.png);
-width:54px;
-height:54px;
-background-position:0px -82px;
-margin-bottom:30px;
+background-image:url(../Images/public/17_weixin.jpg);
+background-size: 100px;
+width:100px;
+height:100px;
+margin-bottom:10px;
 }
 .site-info_r p{
 display:block;

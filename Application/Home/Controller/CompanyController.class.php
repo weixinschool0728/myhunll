@@ -22,6 +22,20 @@ class CompanyController extends FontEndController {
             $name="随时退规则";
         }elseif($name==='baozhengjin'){
             $name="保证金规则";
+        }elseif($name==='yiqiwangweixin'){
+            $name="一起网微信";
+        }elseif($name==='yiqiwangapp'){
+            $name="一起网APP";
+        }elseif($name==='lianxiwomen'){
+            $name="联系我们";
+        }elseif($name==='join'){
+            $name="加入我们";
+        }elseif($name==='liucheng'){
+            $name="一起网流程";
+        }elseif($name==='tuikuang'){
+            $name="申请退款";
+        }elseif($name==='question'){
+            $name="常见问题";
         }
         $companymodel=D('Admin_company');
         $data=$companymodel->where("name='$name'")->find();
