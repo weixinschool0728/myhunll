@@ -87,30 +87,73 @@ cursor:pointer;
 }
 .logo .logor{
 height:60px;
-width:220px;
+width:320px;
 float:right;
 margin-top:21px;
 overflow:hidden;
 }
-.logor .phone1{
-margin-top:5px;
-float:left;
+
+
+.logor .weixin{
 }
-.logor .phone23{
-float:left;
-height:60px;
-padding-left:10px;
+#17weixin{
+    position:relative;
+    float: right;
 }
-.logor .phone2{
-float:right;
+.weixin_erweima{
+    position: absolute;
+    height: 150px;
+    top:110px;
+    right: 50px;
+    display: none;
+    z-index: 1000;
 }
-.logor .phone3{
-font-size:24px;
-color:#03BA8A;
-clear:both;
-padding-top:8px;
+.weixin_tubiao{
+    height: 23px;
+    margin-left: 10px;
 }
 
+.chengnuo_content{
+    height: 60px;
+    width: 320px;
+    padding: 10px 0px;
+    margin-top: 5px; 
+    border-bottom: 1px solid #DDD;
+    float: right;
+}
+.chengnuo_content .peifu{
+    display: block;
+    height: 22px;
+    width: 22px;
+    background-image: url("../Images/public/peifu.png");
+    margin: 0px auto;
+}
+.chengnuo_content a{
+    display: inline-block;
+    font-size: 12px;
+    color: #999;
+    margin-left: 20px;
+    float: right;
+}
+.chengnuo_content .tui{
+    display: block;
+    height: 22px;
+    width: 22px;
+    background-image: url("../Images/public/tui.png");
+    margin: 0px auto;
+}
+.chengnuo_content .baozhengjin{
+    display: block;
+    height: 22px;
+    width: 22px;
+    margin: 0px auto;
+    background-color: #2BB8AA;
+    font-size: 16px;
+    color: #FFF;
+    text-align: center;
+    line-height: 22px;
+    font-weight:bolder;
+}
 .menu{
 height:40px;
 width:1200px;

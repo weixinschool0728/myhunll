@@ -7,7 +7,7 @@
 <span class="span1">
     <!--<a  href="#" class="red">登录</a><a href="<{:U('Zhuce/index')}>">注册</a>-->
     <{$yonghuxinxi}>
-    <a id="noborder" href="#">手机婚拉拉</a>
+    <a id="noborder" href="#">手机一起网</a>
 </span>
 
     <ul class="span2">   
@@ -50,15 +50,32 @@
 </form>
 </div>
 <div class="logor">
-<div class="phone1"><img src="__PUBLIC_HOME__/Images/menu_and_foot/phone-blue.jpg" /></div>
-<div class="phone23">
-<div class="phone2">婚礼咨询免费热线</div>
-<div class="phone3">0731-83975029</div>
-</div>
+
+<div class="chengnuo_content">
+    <a id='17weixin'>
+        <img class="weixin_tubiao" src="__PUBLIC_HOME__/Images/public/weixin_tubiao.jpg" />
+        <img class="weixin_erweima" id='weixin_erweima' src="__PUBLIC_HOME__/Images/public/17_weixin.jpg" />
+        <div class="phone2">咨询微信</div>
+        </a>
+             <a href="<{:U('Company/index','name=shuangbeipeifu')}>">
+             <i class="peifu"></i>
+             双倍赔付
+             </a>
+             <a href="<{:U('Company/index','name=suishitui')}>">
+             <i class="tui"></i>
+             随时退
+             </a>
+             <a href="<{:U('Company/index','name=baozhengjin')}>" style="margin-right: 0px;">
+                 <i class="baozhengjin">
+                     保
+                 </i>
+                 保证金
+             </a>
+         </div>
 </div>
 </div><!--//logo-->
 <div class="menu"><!--导航-->
-<div class="menu_l">特色婚啦啦</div>
+<div class="menu_l">特色一起网</div>
 <div class="menu_r">
 <ul>
 <li><a href="<{:U('Index/index')}>">首页</a></li>
@@ -111,6 +128,13 @@
             datatype:'json'
         });
          $('#menu_history').css('display','none');
+    });
+    $('#17weixin').bind('click',function(){
+        if($('.weixin_erweima').css('display')!=='none'){
+            $('.weixin_erweima').css('display','none');
+        }else{
+            $('.weixin_erweima').css('display','block');
+        }
     });
 </script>
 
