@@ -22,6 +22,7 @@
                     </volist>
                 </select>
                 <input type="button" name="add" value="添加" class="add_button" />
+                <input type="button" name="del" value="删除" class="add_button" />
             </div>
             <div class="serch_div">
                 <div class="tr_td1">输入套餐名</div>
@@ -47,31 +48,7 @@
     function sc_change(){
         $('form[name=combo]').submit();
     }
-    $('.input_button').bind('click',function(){
-        var index=$(this).prev().val();
-        if(index===''){
-            alert('请输入需要放入的橱窗编号');
-        }else if(!(parseInt(index)>0&&parseInt(index)<13)){
-            alert('橱窗编号必须是1到12之间');
-        }else{
-            var id=$(this).attr('id');
-            var name=$(this).attr('name');
-            if(window.confirm('确定要把 ['+name+']放入橱窗 吗？')){
-                var server=$('option:selected').val();
-                var url="/Admin/Shopmanage/chuchuan/leixin/shop/goods_id/"+id+"/index/"+index+"/server/"+server+".html";
-                $.ajax({
-                    type:'get',
-                    async : false,
-                    url:url,
-                    datatype:'json'
-                });
-                window.location.href=window.location.href;
-            }else{
-                return false;
-            }
-        }
-        
-    });
+    
     
     
     

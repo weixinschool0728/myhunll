@@ -167,6 +167,24 @@ class AdvertController extends FontEndController {
         $this->display('lanrenhunli');
     }
     
+    public function lanrenhunli_add() {
+        if($_POST['check']==='combo_add'){
+            $combomodel=D('Admin_combo');
+            $data['combo_name']="new";
+            $result=$combomodel->add($data);
+            $this->ajaxReturn($result);
+        }
+    }
+    
+    public function lanrenhunli_del() {
+        if($_POST['check']==='combo_del'){
+            $combomodel=D('Admin_combo');
+            $id=$_POST['id'];
+            $result=$combomodel->add($data);
+            $this->ajaxReturn($result);
+        }
+    }
+    
     public function lanrenhunli_edit(){
         var_dump($_GET);
     }
