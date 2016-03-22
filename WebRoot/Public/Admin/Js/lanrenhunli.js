@@ -25,7 +25,7 @@ $('input[name=add]').bind('click',function(){
     }); 
 });
 $('input[name=del]').bind('click',function(){
-    var id=$('option:selected').val;
+    var id=$('select[name=combo_id]>option:selected').val();
     var url='/Admin/Advert/lanrenhunli_del.html';
     var data={
         check:'combo_del',
@@ -38,12 +38,9 @@ $('input[name=del]').bind('click',function(){
         data:data,
         datatype:'json',
         success:function(msg){
-            var lo_url="/Admin/Advert/lanrenhunli.html?combo_id="+msg;
+            var lo_url="/Admin/Advert/lanrenhunli.html";
             window.location.href=lo_url;
         }
     }); 
 });
 
-$('.edit_button').bind('click',function(){
-    $('form[name=combo_edit]').submit();
-});

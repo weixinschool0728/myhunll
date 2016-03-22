@@ -6,6 +6,7 @@
 .big_title{
     font-size: 20px;
     margin: 10px 0px 30px 200px;
+    float: left;
 }
 .tr_td1{
 text-align:right;
@@ -97,23 +98,30 @@ font-size:14px;
 .content .img_zst{
     height: 60px;
 }
-.index_input{
-    width: 100px;
-    padding: 3px 5px;
-    margin: 20px 0px;
-}
+
 .td6 .input_button{
    margin-left: 10px;
+   margin: 20px 0px;
 }
 
-.add_button{
-    margin-left: 20px;
-    padding: 0px 3px;
+.combo_input{
+    width: 70px;
+    padding: 3px 5px;
+    text-align: center;
 }
-.edit_button{
-    padding: 1px 5px;
+.combo_good{
+    border: 1px solid #B2B2B2;
+    width: 230px;
+    float:left;
+    padding: 5px 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
-.combo_jieshao{
-    width: 600px;
-    height: 200px;
+.del_button{
+    margin-left: 10px;
+}
+#edit_queding{
+    float: left;
+    margin-top: 10px;
+    margin-left: 30px;
 }

@@ -19,6 +19,7 @@ class ShopmanageController extends FontEndController {
         $cat_id=$categorymodel->where("cat_name='$server_content'")->getField('cat_id');
         $goodsmodel=D('Goods');
         $serch_name=$_POST['serch'];
+        $this->assign('serch_name',$serch_name);
         if(!empty($serch_name)){
             $where['goods_name']=array('like',"%$serch_name%");
             $count=$goodsmodel->where($where)->where("cat_id={$cat_id} and is_delete=0")->count();

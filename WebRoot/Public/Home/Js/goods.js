@@ -37,7 +37,7 @@
                 
                 
                 $('#div_li').html(str);
-                    $('#page_foot_1').html(msg.page_foot);
+                $('#page_foot_1').html(msg.page_foot);
             }
         });
     

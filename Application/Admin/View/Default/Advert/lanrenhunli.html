@@ -12,7 +12,6 @@
 <body>
     <div class="inof_div">
         <div class="big_title">懒人婚礼管理</div>
-        <from name='combo_edit' method='get' action="<{:U('Advert/lanrenhunli_edit')}>">
         <form name="combo"  method="get"   action="<{:U('Advert/lanrenhunli')}>">
             <div class="tr">
                 <div class="tr_td1">套餐 ID</div>
@@ -26,7 +25,11 @@
             </div>
             <div class="serch_div">
                 <div class="tr_td1">输入套餐名</div>
-                <input type="text" name="combo_name" class="text_serch" value="<{$combo_name}>" />
+                <input type="text" name="combo_name" class="text_serch" value="<{$combo['combo_name']}>" />
+            </div>
+            <div class="serch_div">
+                <div class="tr_td1">套餐介绍：</div>
+                <textarea class="combo_jieshao" name='combo_jieshao' value="<{$combo['combo_jieshao']}>"><{$combo['combo_jieshao']}></textarea>
             </div>
            
         
@@ -34,7 +37,6 @@
                 <div class="tr_td1"></div>
                 <input type="button" name="edit" value="编辑" class="edit_button" />
             </div>
-        </form>
         </form>
     </div>
       
@@ -46,10 +48,36 @@
     $("select[name=combo_id]").val(select_val);
     $('select[name=combo_id]').bind('change',function(){sc_change();});
     function sc_change(){
+        var form_url="<{:U('Advert/lanrenhunli')}>";
+        $('form[name=combo]').attr('action',form_url);
         $('form[name=combo]').submit();
     }
-    
-    
+    $('.edit_button').bind('click',function(){
+        if(window.confirm('确定要修改套餐名和套餐介绍并进入编辑页面吗？')){
+             var url='/admin/Advert/queding_bianji.html';
+             var data={
+                 combo_id:$('option:selected').val(),
+                 combo_name:$('input[name=combo_name]').val(),
+                 combo_jieshao:$('textarea[name=combo_jieshao]').val()
+             };
+             $.ajax({
+                 type:'post',
+                 async : false,
+                 url:url,
+                 datatype:'json',
+                 data:data,
+                 success:function(){
+                     //alert('修改成功');
+                 }
+             });
+         }else{
+             return false;
+         }
+        var form_url="<{:U('Advert/lanrenhunli_edit')}>";
+        $('form[name=combo]').attr('action',form_url);
+        $('form[name=combo]').submit();
+    });
+   
     
     
 </script>
