@@ -1,5 +1,6 @@
  //引入在线编辑器
     var editor;
+    KindEditor.options.filterMode = false;
     KindEditor.ready(function(K) {
         var options = {
             items:[

@@ -38,6 +38,7 @@ $('input[name=radio_sex]:eq(0)').attr('checked','checked');
 
     //引入在线编辑器
     var editor;
+    KindEditor.options.filterMode = false;
     KindEditor.ready(function(K) {
         var options = {
             items:[
