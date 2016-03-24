@@ -23,6 +23,7 @@
                 //this.loadPlugin('autoheight');
             //},//自动高度
             height:'800px',
+            width:'1200px',
             fontSizeTable:['9px', '10px', '12px', '14px', '16px', '18px', '24px', '32px']//指定文字大小。
         };
         editor = K.create('textarea[name="content"]',options);
