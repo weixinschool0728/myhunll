@@ -182,14 +182,22 @@ function order_status($pay_status,$status,$order_id,$server_day,$goods_id){
         }else{
             return array('status'=>'未支付','status_button'=>'去付款','status_url'=>"/Home/Goods/zhifu/server_day/{$server_day}/goods_id/{$goods_id}.html");
         }  
-    }else{
+    }elseif($pay_status==='1'){
         if($status==='1'){
-            return array('status'=>'等待买家确认','status_button'=>'确认服务完成','status_url'=>"/Home/Order/queren/order_id/{$order_id}.html");
+            if(shijianchuo($server_day) > time()){
+                 return array('status'=>'等待商家服务','status_button'=>'等待商家服务','status_url'=>"javascript:void(0)");
+            }else{
+                return array('status'=>$server_day,'status_button'=>'确认服务完成','status_url'=>"/Home/Order/queren/order_id/{$order_id}.html");
+            }
         }else if($status==='2'){
             return array('status'=>'待评价','status_button'=>'去评价','status_url'=>"/Home/Order/appraise/order_id/{$order_id}.html");
         }else if($status==='3'){
             return array('status'=>'交易成功','status_button'=>'删除订单','status_url'=>"$order_id");
         }
+    }elseif($pay_status==='2'){
+        return array('status'=>'退款申请','status_button'=>'退款申请','status_url'=>"javascript:void(0)");
+    }elseif($pay_status==='3'){
+        return array('status'=>'退款成功','status_button'=>'退款成功','status_url'=>"javascript:void(0)");
     }
 }
 //数组取值
@@ -279,4 +287,10 @@ function quxiao_shuxing($url,$value){
             $a.=urlencode($value).'+';
         }
         return substr($a,0,-1);
+    }
+    
+    //server_day转换成时间戳
+    function shijianchuo($s_d){
+        $a=mktime(0, 0, 1,substr($s_d,4,2), substr($s_d,6,2), substr($s_d,0,4));
+        return $a;
     }

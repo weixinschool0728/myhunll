@@ -12,6 +12,8 @@ class OrderController extends FontEndController {
          $status_count['daiqueren']=$ordermodel->where("user_id={$user_id} and pay_status=1 and status=1 and deleted=0")->count();//获取待确认条数
          $status_count['daipingjia']=$ordermodel->where("user_id={$user_id} and pay_status=1 and status=2 and deleted=0")->count();//获取待评价条数
          $this->assign(status_count,$status_count);
+         $time=  time();
+         $this->assign('time',$time);
          if(empty($status)){
              $selected['all']="selected='selected'";//选中下拉菜单的全部订单
              $this->assign(selected,$selected);
@@ -98,8 +100,11 @@ class OrderController extends FontEndController {
         $this->assign('user_id',$user_id);
         $order_id=$_GET['order_id'];
         $ordermodel=D('Order');
-        $order=$ordermodel->table('m_order t1,m_users t2,m_goods t3')->where("t1.order_id={$order_id} and t1.shop_id=t2.user_id and t1.goods_id=t3.goods_id")->field('t1.user_id,t1.shop_id,t1.order_id,t1.order_no,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.created,t1.updated,t1.deleted,t2.true_name,t2.location,t2.mobile_phone,t3.goods_img,t1.price,t1.dues')->find();
+        $order=$ordermodel->table('m_order t1,m_users t2,m_goods t3')->where("t1.order_id='{$order_id}' and t1.shop_id=t2.user_id and t1.goods_id=t3.goods_id")->field('t1.user_id,t1.shop_id,t1.order_id,t1.order_no,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.created,t1.updated,t1.deleted,t2.true_name,t2.location,t2.mobile_phone,t3.goods_img,t1.price,t1.dues')->find();
         $maijia_id=$order['user_id'];
+        if(empty($maijia_id)){
+            $this->error('该订单不存在','/Home/Order/index');
+        }
         $usermodel=D('Users');
         $maijia=$usermodel->where("user_id=$maijia_id")->field('user_name,mobile_phone')->find();
         $this->assign('maijia',$maijia);
@@ -301,5 +306,77 @@ class OrderController extends FontEndController {
         $this->assign('page_foot',$page_foot);
          
         $this->display('appraise_manage');
+    }
+    
+    
+    public function tuikuang() {
+        $this->assign('title','一起网-申请退款');
+        $user_id=$_SESSION['huiyuan']['user_id'];
+        $this->assign('user_id',$user_id);
+        $order_id=$_GET['order_id'];
+        $ordermodel=D('Order');
+        $order=$ordermodel->table('m_order t1,m_users t2,m_goods t3')->where("t1.order_id={$order_id} and t1.shop_id=t2.user_id and t1.goods_id=t3.goods_id")->field('t1.user_id,t1.shop_id,t1.order_id,t1.order_no,t1.goods_id,t1.goods_name,t1.server_day,t1.shop_name,t1.status,t1.pay_status,t1.created,t1.updated,t1.deleted,t2.true_name,t2.location,t2.mobile_phone,t3.goods_img,t1.price,t1.dues')->find();
+        $maijia_id=$order['user_id'];
+        if(empty($maijia_id)){
+            $this->error('该订单不存在','/Home/Order/index');
+        }
+        if($order[pay_status]==='0'){
+            $this->error('该订单未付款','/Home/Order/index');
+        }
+        $usermodel=D('Users');
+        $maijia=$usermodel->where("user_id=$maijia_id")->field('user_name,mobile_phone')->find();
+        $this->assign('maijia',$maijia);
+        if($order['user_id']===$user_id||$order['shop_id']===$user_id){
+            $this->assign('order',$order);
+            $this->display('tuikuang');
+        }else{
+            $this->error('该订单不存在','/Home/Order/index');
+        }
+    }
+    
+    public function tuikuang_check() {
+        $order_id=$_POST['order_id'];
+        if(empty($order_id)){
+            exit();
+        }
+        $ordermodel=D('Order');
+        $order=$ordermodel->where("order_id=$order_id")->field("user_id,shop_id,goods_id,server_day,dues")->find();
+        $s_d=$order['server_day'];
+        $order_user=$order['user_id'];
+        $user_id=$_SESSION['huiyuan']['user_id'];
+        if($order_user!==$user_id){
+            exit();
+        }
+        $usersmodel=D('Users');
+        if($_POST['check']==='tuikuang_befor_hunli'){
+            $server_day= mktime(0, 0, 1,  substr($s_d,4,2), substr($s_d,6,2), substr($s_d,0,4)); 
+            $time=time();
+            if($server_day-$time>432000){//大于5天 100%无条件退款$_POST['cause']==='商家时间冲突，无法预约'){
+                $order_row=array(
+                    'pay_status'=>3,
+                    'tuikuang_cause'=>$_POST['cause']
+                );
+                $ordermodel->where("order_id=$order_id")->save($order_row);
+                $usersmodel->where("user_id=$order_user")->setInc( 'credit_line',$order['dues']);
+                $this->ajaxReturn('success');
+            }else{
+                if($_POST['cause']==='商家时间冲突，无法预约'){
+                    $order_row=array(
+                        'pay_status'=>2,
+                        'tuikuang_cause'=>$_POST['cause']
+                    );
+                    $ordermodel->where("order_id=$order_id")->save($order_row);
+                    $this->ajaxReturn('shenqing');
+                }else{//小于5天 退款80%
+                    $order_row=array(
+                        'pay_status'=>3,
+                        'tuikuang_cause'=>$_POST['cause']
+                    );
+                    $ordermodel->where("order_id=$order_id")->save($order_row);
+                    $usersmodel->where("user_id=$order_user")->setInc( 'credit_line',$order['dues']*0.8);
+                    $this->ajaxReturn('success');
+                }
+            }
+        }
     }
 }

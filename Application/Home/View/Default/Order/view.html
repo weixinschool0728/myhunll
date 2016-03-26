@@ -21,26 +21,26 @@
             <if condition="$order['deleted'] eq '1'" >
                 <div>当前订单状态：<span class="red">该订单已被删除</span></div>
              <else />   
-                <div>当前订单状态：<span class="red"><{:order_status($order['pay_status'],$order['status'])['status']}></span></div>
+                <div>当前订单状态：<span class="red"><{:order_status($order['pay_status'],$order['status'],$order['order_id'],$order['server_day'],$order['goods_id'])['status']}></span></div>
                 <if  condition="$order['status'] eq '4'">
                     <a class="button_a_lvse" href="<{$order['order_id']}>">删除订单</a>  
                 <elseif condition="($order['status'] eq '1') and ($order['pay_status'] eq '0')" />
                     <div>请及时付款，不然该日期就被别人预订了</div>
                     <div class="d1">
-                        <a href="<{:order_status($order['pay_status'],$order['status'],$order['server_day'],$order['goods_id'])['status_url']}>" class="button_a_lvse"><{:order_status($order['pay_status'],$order['status'])['status_button']}></a>
+                        <a href="<{:order_status($order['pay_status'],$order['status'],$order['order_id'],$order['server_day'],$order['goods_id'])['status_url']}>" class="button_a_lvse"><{:order_status($order['pay_status'],$order['status'],$order['order_id'],$order['server_day'],$order['goods_id'])['status_button']}></a>
                         <a class="button_a_lvse" id='quxiao_order' name="<{$vo['order_id']}>">取消订单</a>
                     </div>
                 <elseif condition="($order['status'] eq '1') and ($order['pay_status'] eq '1')"  />
                     <div>请服务完成后再点确认，不然可能货财两空</div>
                     <div class="d1">
-                        <a href="<{:order_status($order['pay_status'],$order['status'],$order['server_day'],$order['goods_id'])['status_url']}>" class="button_a_lvse"><{:order_status($order['pay_status'],$order['status'])['status_button']}></a>
-                        <a class="button_a_lvse" href="<{$order['order_id']}>">删除订单</a>
+                        <a href="<{:order_status($order['pay_status'],$order['status'],$order['order_id'],$order['server_day'],$order['goods_id'])['status_url']}>" class="button_a_lvse"><{:order_status($order['pay_status'],$order['status'],$order['order_id'],$order['server_day'],$order['goods_id'])['status_button']}></a>
+                        <a class="button_a_lvse" href='<{:U("Order/tuikuang",array("order_id"=>$vo["order_id"]))}>'>申请退款</a>
                     </div>
                 <elseif condition="($order['status'] eq '2')"  />
                     <div>请及时评价，会有意外惊喜</div>
                     <div class="d1">
-                        <a href="<{:order_status($order['pay_status'],$order['status'],$order['server_day'],$order['goods_id'])['status_url']}>" class="button_a_lvse"><{:order_status($order['pay_status'],$order['status'])['status_button']}></a>
-                        <a class="button_a_lvse" href="<{$order['order_id']}>">删除订单</a>
+                        <a href="<{:order_status($order['pay_status'],$order['status'],$order['order_id'],$order['server_day'],$order['goods_id'])['status_url']}>" class="button_a_lvse"><{:order_status($order['pay_status'],$order['status'],$order['order_id'],$order['server_day'],$order['goods_id'])['status_button']}></a>
+                        <a class="button_a_lvse" href='<{:U("Order/shouhou",array("order_id"=>$vo["order_id"]))}>'>申请退款</a>
                     </div>
                 <else />
                     <div class="d1">
