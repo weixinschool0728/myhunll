@@ -195,9 +195,9 @@ function order_status($pay_status,$status,$order_id,$server_day,$goods_id){
             return array('status'=>'交易成功','status_button'=>'删除订单','status_url'=>"$order_id");
         }
     }elseif($pay_status==='2'){
-        return array('status'=>'退款申请','status_button'=>'退款申请','status_url'=>"javascript:void(0)");
+        return array('status'=>'退款中...','status_button'=>'退款中...','status_url'=>"/Home/Order/tuikuang/order_id/{$order_id}.html");
     }elseif($pay_status==='3'){
-        return array('status'=>'退款成功','status_button'=>'退款成功','status_url'=>"javascript:void(0)");
+        return array('status'=>'退款成功','status_button'=>'退款成功','status_url'=>"/Home/Order/tuikuang/order_id/{$order_id}.html");
     }
 }
 //数组取值

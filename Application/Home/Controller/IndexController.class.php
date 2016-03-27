@@ -11,7 +11,7 @@ class IndexController extends FontEndController {
         $this->assign('lunbo_shang',$lunbo_shang);
         $lunbo_xia=$advertmodel->where("position='轮播下'")->field('xuhao,img_url,url')->select();
         $this->assign('lunbo_xia',$lunbo_xia);
-        $shouye_right=$advertmodel->where("position='首页右'")->field('xuhao,img_url,url')->select();
+        $shouye_right=$advertmodel->where("position='首页右'")->field('xuhao,img_url,url,title')->select();
         $this->assign('shouye_right',$shouye_right);
         //获取策划类最新的八个商品信息
         $goodsmodel=D('Goods');

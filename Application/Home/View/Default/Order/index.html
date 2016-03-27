@@ -46,18 +46,17 @@
                 <div class='td3'>&yen;<{$vo['dues']}></div>
                 <div class='td4'><p><{:order_status($vo['pay_status'],$vo['status'],$vo['order_id'],$vo['server_day'],$vo['goods_id'])['status']}></p><a href="<{:U('Order/view',array('order_id'=>$vo['order_id']))}>">订单详情</a></div>
                 <div class='td5'>
-                    <if condition="($vo['pay_status'] neq '3')">
-                    <a href="<{:order_status($vo['pay_status'],$vo['status'],$vo['order_id'],$vo['server_day'],$vo['goods_id'])['status_url']}>" class="button_a_lvse"><{:order_status($vo['pay_status'],$vo['status'],$vo['order_id'],$vo['server_day'],$vo['goods_id'])['status_button']}></a>
+                    <if condition="$vo['pay_status'] eq '3' ">
+                        <a href="<{$vo['order_id']}>" class="button_a_lvse" style="margin-bottom: 20px;">删除订单</a>
                     </if>
+                    <a href="<{:order_status($vo['pay_status'],$vo['status'],$vo['order_id'],$vo['server_day'],$vo['goods_id'])['status_url']}>" class="button_a_lvse"><{:order_status($vo['pay_status'],$vo['status'],$vo['order_id'],$vo['server_day'],$vo['goods_id'])['status_button']}></a>
                     <if  condition="($vo['pay_status'] eq '0') and ($vo['status'] neq '4')">
                         <a id='quxiao_order' class="button_a_lvse" name="<{$vo['order_id']}>" style="margin-top: 20px;">取消订单</a>
                     </if>
-                    <if  condition="($vo['pay_status'] eq '1') and ($vo['status'] eq '1') and (shijianchuo($vo['server_day']) gt $time)">
+                    <if  condition="($vo['pay_status'] eq '1') and ($vo['status'] eq '1') and (shijianchuo($vo['server_day']) gt $time)">                      
                         <a id='tuikuang' class="button_a_lvse" name="<{$vo['order_id']}>" href='<{:U("Order/tuikuang",array("order_id"=>$vo["order_id"]))}>' style="margin-top: 20px;">申请退款</a>
                     </if>
-                    <if  condition="($vo['pay_status'] eq '2') or ($vo['pay_status'] eq '3')">
-                        <a id='tuikuang' class="button_a_lvse" name="<{$vo['order_id']}>" href='<{:U("Order/tuikuang",array("order_id"=>$vo["order_id"]))}>' style="margin-top: 20px;">退款状态</a>
-                    </if>
+                    
                     <if  condition="(($vo['pay_status'] eq '1') and ($vo['status'] neq '1')) or (shijianchuo($vo['server_day']) lt $time) ">
                         <a id='shouhou' class="button_a_lvse" name="<{$vo['order_id']}>" href="<{:U('Order/shouhou')}>" style="margin-top: 20px;">申请售后</a>
                     </if>
