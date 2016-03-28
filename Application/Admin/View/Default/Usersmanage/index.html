@@ -28,7 +28,7 @@
             <div class='td2'><{$vo['user_name']}></div>
             <div class='td3'><{$vo['email']}></div>
             <div class='td4'><{$vo['mobile_phone']}></div>
-            <div class='td5'><{$vo['shopman_id']===0?'普通会员':'婚礼人'}></div>
+            <div class='td5'><{$vo['shopman_id']==='0'?'普通会员':'婚礼人'}></div>
             <div class='td6'><{$vo['server_content']}></div>
             <div class='td7'><{$vo['reg_time']|date='Y/m/d H：i',###}></div>
         </div>
