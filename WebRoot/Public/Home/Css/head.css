@@ -113,7 +113,7 @@ overflow:hidden;
     margin-left: 10px;
 }
 
-.chengnuo_content{
+.head_chengnuo_content{
     height: 60px;
     width: 320px;
     padding: 10px 0px;
@@ -121,28 +121,28 @@ overflow:hidden;
     border-bottom: 1px solid #DDD;
     float: right;
 }
-.chengnuo_content .peifu{
+.head_chengnuo_content .peifu{
     display: block;
     height: 22px;
     width: 22px;
     background-image: url("../Images/public/peifu.png");
     margin: 0px auto;
 }
-.chengnuo_content a{
+.head_chengnuo_content a{
     display: inline-block;
     font-size: 12px;
     color: #999;
     margin-left: 20px;
     float: right;
 }
-.chengnuo_content .tui{
+.head_chengnuo_content .tui{
     display: block;
     height: 22px;
     width: 22px;
     background-image: url("../Images/public/tui.png");
     margin: 0px auto;
 }
-.chengnuo_content .baozhengjin{
+.head_chengnuo_content .baozhengjin{
     display: block;
     height: 22px;
     width: 22px;
