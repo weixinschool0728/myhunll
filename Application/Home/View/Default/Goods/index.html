@@ -40,7 +40,7 @@
     <div class="info">
         <div class="price">
             <div class="price1"><div class="span">价格:</div><div class="span1">&yen;&nbsp;<s><{$goods['yuan_price']}></s></div></div>
-            <div class="price2"><div class="span">婚啦啦价:</div><div class="span2">&yen;&nbsp;<{$goods['price']}></div>
+            <div class="price2"><div class="span">一起网价:</div><div class="span2">&yen;&nbsp;<{$goods['price']}></div>
                 <if  condition="$goods['daijinquan'] eq '1'">
                     <span class="daijinquan" style="margin-left: 5px;">券</span>
                 </if>
@@ -215,8 +215,8 @@
         <div class="box_bl">
      <div class="other">
          <ul>
-             <li class="other_title" id="li_title"> <span class="span1">该商家的其它商品</span>
-                 <span class="span2 hlljg">婚啦啦价</span><span class="span2 mdj">门 店 价</span><span class="span2 ys">已售</span>
+             <li class="other_title" id="li_title"> <span class="span1">该商家的其它服务</span>
+                 <span class="span2 hlljg">一起网价</span><span class="span2 mdj">门 店 价</span><span class="span2 ys">已售</span>
                  </li>
                  <div id="div_li">   </div>
          </ul>
@@ -224,7 +224,7 @@
      </div>
     <a name='maodian_pingjia' id='maodian_pingjia'>&nbsp;</a>
     <div class="guanggao" style="margin-top: 15px;">
-             <h3>该商家其它商品</h3>
+             <h3>该商家其它服务</h3>
             <volist name="goods_qita" id="vo">
                 <div class="box_r_shopping">
                     <a href="<{:U('Goods/index',array('goods_id'=>$vo['goods_id']))}>">
@@ -240,7 +240,7 @@
         </div>
     <div class="shop_div">
     <div class="content_title"><ul>
-            <li class="spxq">商品详情</li>
+            <li class="spxq">服务详情</li>
             <li class="ljpj">累计评价</li>
         </ul></div>
     <div id="spxq">
