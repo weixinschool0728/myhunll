@@ -26,7 +26,7 @@ function is_ip(str){
 
 //验证是否含有非法字符，含有非法返回true，否则返回false
 function is_feifa(str){
-    var reg = /[=!;:#&\\\/\^\$\(\)\[\]\{\}\*\+\?\-\"\']+/gi;
+    var reg = /[=;:#&\\\/\^\$\(\)\[\]\{\}\*\+\?\-\"\']+/gi;
     var result= reg.test(str);
     return result;
 }
@@ -44,7 +44,7 @@ function text_blue(obj,obj_info){
         return false;
     }else if(is_feifa(obj.val())){
         obj_info.css('color','red');
-        obj_info.html('含有非法字符，请重新输入');
+        obj_info.html('含有非法字符=;:#&\/^$()[]{}*+?-"，请重新输入');
         return false;
     }else{
         obj_info.html('&radic;');
