@@ -142,7 +142,10 @@ class GoodsmanageController extends FontEndController {
             exit();
         }
         $usersmodel=D('Users');
-        $user_id=$_SESSION['huiyuan']['user_id'];
+        $goodsmodel=D('Goods');
+        $goods=$goodsmodel->where("goods_id=$goods_id")->find();//商品信息列表
+        $user_id=$goods['user_id'];
+        //$user_id=$_SESSION['admin_huiyuan']['user_id'];
         //获取所在地区
         $content['area']=$usersmodel->where("user_id={$user_id}")->getField('location');
 
@@ -151,7 +154,6 @@ class GoodsmanageController extends FontEndController {
         if($server_form==='0'){
             $content['radio_sex']=$usersmodel->where("user_id={$user_id}")->getField('sex');//得到个人的性别
         }
-        
         
         $result=get_file($content['content']);//得到编辑框里面的图片文件
         //遍历图片文件，并把图片文件从临时文件夹保存进正式文件夹,并把文件名存储到$file_name数组中
@@ -175,7 +177,7 @@ class GoodsmanageController extends FontEndController {
          }
         $str_shuxing=serialize($arr_shuxing);
         //保存商品信息，把商品信息写入数据库
-        $goodsmodel=D('Goods');
+        
         $row=array(
             'cat_id'=>$content['cat_id'],//分类ID
             'area'=>$content['area'],     //地区
