@@ -148,11 +148,17 @@ function creat_img(obj,img_url){
 function fabu(){
     //text_blue($('input[name=title]'),$('#info_title'));
     //check_file_image($('input[name=file_img]'),$('#span_touxiang'),false);
-    price_blue($('input[name=price]'),$('#info_price'));
-    price_blue($('input[name=yuan_price]'),$('#info_yuan_price'));
-    //if(text_blue($('input[name=title]'),$('#info_title'))&&check_file_image($('input[name=file_img]'),$('#span_touxiang'),false)&&price_blue($('input[name=price]'),$('#info_price'))&&price_blue($('input[name=yuan_price]'),$('#info_yuan_price'))){
-    if(text_blue($('input[name=title]'),$('#info_title'))&&price_blue($('input[name=price]'),$('#info_price'))&&price_blue($('input[name=yuan_price]'),$('#info_yuan_price'))){    
-        $('form[name=release_goods]').submit();
+    var aa=$('input[name=goods_img]').attr('value');
+    if(aa.indexOf("undefined")!==-1){
+        alert('商品图片因超过5M或其它原因未上传成功');
+    }else{
+        price_blue($('input[name=price]'),$('#info_price'));
+        price_blue($('input[name=yuan_price]'),$('#info_yuan_price'));
+        //if(text_blue($('input[name=title]'),$('#info_title'))&&check_file_image($('input[name=file_img]'),$('#span_touxiang'),false)&&price_blue($('input[name=price]'),$('#info_price'))&&price_blue($('input[name=yuan_price]'),$('#info_yuan_price'))){
+        if(text_blue($('input[name=title]'),$('#info_title'))&&price_blue($('input[name=price]'),$('#info_price'))&&price_blue($('input[name=yuan_price]'),$('#info_yuan_price'))){    
+            $('form[name=release_goods]').submit();
+        }
     }
+    
     return false;
 }

@@ -99,8 +99,8 @@ function price_blue(obj,obj_info){
 function fabu(){
     //text_blue($('input[name=title]'),$('#info_title'));
     var aa=$('input[name=goods_img]').attr('value');
-    if(aa==="undefined"){
-        alert('商品图片未上传成功');
+    if(aa.indexOf("undefined")!==-1){
+        alert('商品图片因超过5M或其它原因未上传成功');
     }else{
         var a=text_blue($('input[name=title]'),$('#info_title'));
         var b=check_file_image($('input[name=file_img]'),$('#span_touxiang'),false);
@@ -126,7 +126,8 @@ function file_jia_change(){
                     type: 'post',  
                     dataType:"json",
                     async : false,
-                    success: function(msg){  
+                    success: function(msg){
+                        alert(msg.src);
                         var img_url=msg.src;
                         creat_img($('#file_jia'),img_url);
                         return true; 

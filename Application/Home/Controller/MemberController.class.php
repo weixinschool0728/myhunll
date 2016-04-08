@@ -96,8 +96,8 @@ class MemberController extends FontEndController {
             $this->error('未选择商品图片');
             exit();
         }
-        if(strstr($content['goods_img'], "undefined")===false){
-            $this->error('商品图片未上传成功');
+        if(strstr($content['goods_img'], "undefined")!==false){
+            $this->error('有未上传成功的商品图片');
             exit();
         }
         //获取图片URL,分割成数组
@@ -621,6 +621,10 @@ class MemberController extends FontEndController {
         $content=$_POST;//获取提交的内容
         if($content['goods_img']===''){
             $this->error('未选择商品图片');
+            exit();
+        }
+        if(strstr($content['goods_img'], "undefined")!==false){
+            $this->error('有未上传成功的商品图片');
             exit();
         }
         //获取图片URL,分割成数组

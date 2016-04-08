@@ -21,7 +21,7 @@
     
 </div>
  <form name="updated_head_queren" method="post"  action="<{:U('Member/updated_head_queren')}>">
-     <input name="head_img" value="" type="hidden"/> 
+     <input name="head_img" value=""  type="hidden" /> 
  </form>
 <form id = "form_file_jia" enctype="multipart/form-data" action="<{:U('Member/file_jia')}>" method="post">   
         <input name="file_img" type="file"  style="visibility:hidden; width:0px; height: 0px;"/>
@@ -45,7 +45,7 @@ function file_jia_change(){
                     async : false,
                     success: function(msg){
                         $('#touxiang_img').attr('src','/'+msg.src);
-                        $('input[name=head_img]').attr('value',msg.src);
+                        $('input[name=head_img]').attr('value',''+msg.src);
                         return true; 
                     },  
                     error: function(){  
@@ -55,7 +55,12 @@ function file_jia_change(){
                 });  
 }
 $('#submit_a').bind('click',function(){
-    $('form[name=updated_head_queren]').submit();
+    var aa=$('input[name=head_img]').attr('value');
+    if(aa.indexOf("undefined")!==-1){
+        alert('商品图片因超过5M或其它原因未上传成功');
+    }else{
+        $('form[name=updated_head_queren]').submit();
+    }
 });
 </script>
 
