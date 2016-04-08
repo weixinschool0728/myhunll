@@ -98,14 +98,19 @@ function price_blue(obj,obj_info){
 
 function fabu(){
     //text_blue($('input[name=title]'),$('#info_title'));
-    
-    var a=text_blue($('input[name=title]'),$('#info_title'));
-    var b=check_file_image($('input[name=file_img]'),$('#span_touxiang'),false);
-    var c=price_blue($('input[name=price]'),$('#info_price'));
-    var d=price_blue($('input[name=yuan_price]'),$('#info_yuan_price'));
-    if(a&&b&&c&&d){
-        $('form[name=release_goods]').submit();
+    var aa=$('input[name=goods_img]').attr('value');
+    if(aa==="undefined"){
+        alert('商品图片未上传成功');
+    }else{
+        var a=text_blue($('input[name=title]'),$('#info_title'));
+        var b=check_file_image($('input[name=file_img]'),$('#span_touxiang'),false);
+        var c=price_blue($('input[name=price]'),$('#info_price'));
+        var d=price_blue($('input[name=yuan_price]'),$('#info_yuan_price'));
+        if(a&&b&&c&&d){
+            $('form[name=release_goods]').submit();
+        }
     }
+    
     return false;
 }
 
