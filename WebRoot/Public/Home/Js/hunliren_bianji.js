@@ -382,6 +382,13 @@ function check_seleck(){
 			//}
 	//}
 function xiayibu_onclick(){
+    if($('input[name=member_file_touxiang]').attr('value')=== "undefined"){
+        alert('头像图片因超过5M或其它原因未上传成功,请重新上传');
+    }else if($('input[name=member_file_shenfenzheng]').attr('value')=== "undefined"){
+        alert('身份证图片因超过5M或其它原因未上传成功,请重新上传');
+    }else if($('input[name=member_file_erweima]').attr('value')=== "undefined"){
+        alert('微信二维码图片因超过5M或其它原因未上传成功,请重新上传');
+    }else{
 	var c4=address_juti_onblur();
 	var c5=contact_qq_onblur();
 	var c6=contact_weixin_onblur();
@@ -389,12 +396,11 @@ function xiayibu_onclick(){
 	var c8=check_seleck();
 	//var c9=check_checkbox();
         var c10=text_blue($('#shop_introduce'),$('#infor_shop_introduce'));
-        
-
         if(c4&&c5&&c6&&c8&&c10&&c11){
             obj_form.submit();
         }
-        return false;
+    }
+    return false;
     }
     
 $('#shop_introduce').bind('focus',function(){
@@ -435,7 +441,10 @@ function file_jia_change(obj){
                             img_url=msg.file_erweima;
                         }
                         $('#'+id).attr('src','/'+img_url);
-                        $('input[name=member_'+id+']').attr('value',img_url);  
+                        $('input[name=member_'+id+']').attr('value',String(img_url));
+                        if(String(img_url)==="undefined"){
+                            alert('图片因超过5M或其它原因未上传成功,请重新上传');
+                        }
                         return true; 
                     },  
                     error: function(){  

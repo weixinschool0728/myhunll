@@ -45,7 +45,10 @@ function file_jia_change(){
                     async : false,
                     success: function(msg){
                         $('#touxiang_img').attr('src','/'+msg.src);
-                        $('input[name=head_img]').attr('value',''+msg.src);
+                        $('input[name=head_img]').attr('value',String(msg.src));
+                        if(String(msg.src)=== "undefined"){
+                            alert('商品图片因超过5M或其它原因未上传成功,请重新上传');
+                        }
                         return true; 
                     },  
                     error: function(){  

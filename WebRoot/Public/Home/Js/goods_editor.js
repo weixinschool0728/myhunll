@@ -115,6 +115,9 @@ function file_jia_change(){
                     success: function(msg){  
                         var img_url=msg.src;
                         creat_img($('#file_jia'),img_url);
+                        if(String(img_url)=== "undefined"){
+                            alert('商品图片因超过5M或其它原因未上传成功,请重新上传');
+                        }
                         return true; 
                     },  
                     error: function(){  

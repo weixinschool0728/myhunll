@@ -104,6 +104,11 @@ function delete_file(obj){
 
 //发表评论按钮绑定事件
 $('#fabiao').bind('click',function(){
+    var aa=$('input[name=goods_img]').attr('value');
+    if(aa.indexOf("undefined")!==-1){
+        alert('评价图片因超过5M或其它原因未上传成功');
+        return false;
+    }
     var a=$('input[name=pingfen_1]').val(),b=$('input[name=pingfen_2]').val(),c=$('input[name=pingfen_3]').val();
     if(a===''||b===''||c===''){
         if(a===''){
@@ -141,6 +146,9 @@ function file_jia_change(){
                     success: function(msg){  
                         var img_url=msg.src;
                         creat_img($('#file_jia'),img_url);
+                        if(String(img_url)=== "undefined"){
+                            alert('图片因超过5M或其它原因未上传成功,请重新上传');
+                        }
                         return true; 
                     },  
                     error: function(){  

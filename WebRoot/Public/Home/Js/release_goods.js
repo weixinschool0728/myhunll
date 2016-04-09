@@ -127,9 +127,11 @@ function file_jia_change(){
                     dataType:"json",
                     async : false,
                     success: function(msg){
-                        alert(msg.src);
                         var img_url=msg.src;
                         creat_img($('#file_jia'),img_url);
+                        if(String(img_url)=== "undefined"){
+                            alert('商品图片因超过5M或其它原因未上传成功,请重新上传');
+                        }
                         return true; 
                     },  
                     error: function(){  
