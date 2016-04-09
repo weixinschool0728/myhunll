@@ -105,7 +105,6 @@ class GoodsmanageController extends FontEndController {
     public function bianji_check(){
         $goods_id=$_GET['goods_id'];
         $content=$_POST;//获取提交的内容
-        var_dump($content['goods_img']);exit();
         if($content['goods_img']===''){
             $this->error('未选择商品图片');
             exit();
