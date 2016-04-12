@@ -73,7 +73,7 @@ function btn_sjyz_click(){
     setit=setInterval("yanshi_30()",1000);
     var url='/Home/zhuce/send_message.html';
     var data={
-            shoujihao:$('#dlm_sjh').html(),
+            shoujihao:$('#dlm_sjh').text(),
             check:"send_message"
             };
     $.ajax({
