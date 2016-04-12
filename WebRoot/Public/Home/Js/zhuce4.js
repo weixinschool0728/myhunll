@@ -391,8 +391,19 @@ function check_checkbox(){
 			}
 	}
 function xiayibu_onclick(){
+    if($('input[name=member_file_touxiang]').attr('value')=== "undefined"){
+        alert('头像图片因超过5M或其它原因未上传成功,请重新上传');
+        return false;
+    }else if($('input[name=member_file_shenfenzheng]').attr('value')=== "undefined"){
+        alert('身份证图片因超过5M或其它原因未上传成功,请重新上传');
+        return false;
+    }else if($('input[name=member_file_erweima]').attr('value')=== "undefined"){
+        alert('微信二维码图片因超过5M或其它原因未上传成功,请重新上传');
+        return false;
+    }
 	var c1=check_file_image($(obj_file_touxiang),$("#span_touxiang"),false);
-	var c2=check_file_image($(obj_file_shenfenzheng),$("#span_shenfenzheng"),false);
+	//var c2=check_file_image($(obj_file_shenfenzheng),$("#span_shenfenzheng"),false);
+        var c2=true;
 	//var c3=check_file_image(obj_file_yingyezhizhao,2);
 	var c4=address_juti_onblur();
 	var c5=contact_qq_onblur();
@@ -445,7 +456,10 @@ function file_jia_change(obj){
                         }else{
                             img_url=msg.file_erweima;
                         }
-                        creat_img($('#'+id),img_url);
+                        creat_img($('#'+id),String(img_url));
+                        if(String(img_url)==="undefined"){
+                            alert('图片因超过5M或其它原因未上传成功,请重新上传');
+                        }
                         return true; 
                     },  
                     error: function(){  

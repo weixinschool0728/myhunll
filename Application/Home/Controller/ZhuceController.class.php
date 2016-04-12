@@ -126,9 +126,10 @@ class ZhuceController extends FontEndController {
         if(empty($_POST['member_file_touxiang'])){
             $this->error('未选择上传头像');
         }
-        if(empty($_POST['member_file_shenfenzheng'])){
-            $this->error('未选择上传身份证照片');
-        }
+        //身份证以后再验证
+        //if(empty($_POST['member_file_shenfenzheng'])){
+            //$this->error('未选择上传身份证照片');
+        //}
         //移动文件 并且改变url
         $today=substr($_POST['member_file_touxiang'],26,8);//获取到文件夹名  如20150101
         creat_file(UPLOAD.'image/member/'.$today);//创建文件夹（如果存在不会创建）
