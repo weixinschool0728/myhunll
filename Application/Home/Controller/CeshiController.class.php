@@ -7,8 +7,14 @@ use Home\Controller;
 class CeshiController extends FontEndController {
 
 
+    
     public function index() {
-        $shoujihao="13574506835";
+        $this->display();
+    }
+    public function send_message() {
+        $shoujihao=$_POST['shoujihao'];
+        $this->ajaxReturn($shoujihao);
+        exit();
         vendor('taobaoali.TopSdk');//引入第三方类库
         date_default_timezone_set('Asia/Shanghai'); 
             $appkey="23304840";
@@ -28,7 +34,7 @@ class CeshiController extends FontEndController {
             $req->setSmsTemplateCode("SMS_4705353");
             $resp = $c->execute($req);
             $data=$resp->result->success;
-            //$this->ajaxReturn($data);
+            $this->ajaxReturn($shoujihao);
     }
 
    
