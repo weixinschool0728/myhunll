@@ -77,7 +77,7 @@ function btn_sjyz_click(){
             check:"send_message"
             };
     $.ajax({
-        type:'post',
+        type:'get',
         url:url,
         data:data,
         datatype:'json',
