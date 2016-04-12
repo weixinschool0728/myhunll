@@ -69,7 +69,7 @@ function shoujiyanzheng_blur(){
 
 $('input[name="btn_sjyz"]').bind('click',btn_sjyz_click);
 function btn_sjyz_click(){
-    alert($('#dlm_sjh').html());
+    alert($('#dlm_sjh').text());
     return true;
     i=30;
     setit=setInterval("yanshi_30()",1000);
