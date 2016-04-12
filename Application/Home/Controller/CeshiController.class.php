@@ -12,7 +12,7 @@ class CeshiController extends FontEndController {
         $this->display();
     }
     public function send_message() {
-        $shoujihao=$_POST['shoujihao'].'a';
+        $shoujihao=$_POST['shoujihao'];
         $this->ajaxReturn($shoujihao);
         exit();
         vendor('taobaoali.TopSdk');//引入第三方类库

@@ -69,6 +69,8 @@ function shoujiyanzheng_blur(){
 
 $('input[name="btn_sjyz"]').bind('click',btn_sjyz_click);
 function btn_sjyz_click(){
+    alert($('#dlm_sjh').html());
+    return true;
     i=30;
     setit=setInterval("yanshi_30()",1000);
     var url='/Home/ceshi/send_message.html';
