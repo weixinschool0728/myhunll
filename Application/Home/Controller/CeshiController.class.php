@@ -13,7 +13,7 @@ class CeshiController extends FontEndController {
     }
     public function send_message() {
         $shoujihao=$_POST['shoujihao'];
-        $this->ajaxReturn($shoujihao);
+        $this->ajaxReturn("aaaaaa");
         exit();
         vendor('taobaoali.TopSdk');//引入第三方类库
         date_default_timezone_set('Asia/Shanghai'); 
