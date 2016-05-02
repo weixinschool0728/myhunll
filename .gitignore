@@ -1,7 +1,7 @@
-/nbproject
-/Application/Runtime
+﻿/nbproject
+/Application/Runtime/*
 /Application/Common/Conf/config.php
 /Application/Common/Conf/config - 副本.php
-/WebRoot/Public/Uploads
+/WebRoot/Public/Uploads/*
 /Application/Home/Conf/config.php
-/WebRoot/Upload
+/WebRoot/Upload/*
